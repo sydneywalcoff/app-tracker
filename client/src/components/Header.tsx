@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
     return(
-        <header className="text-3xl font-bold underline">
-            App Tracker
+        <header className="flex justify-center py-8 mb-6">
+            <h1 className="text-3xl font-bold">App Tracker</h1>
         </header>
     );
 }
