@@ -11,7 +11,7 @@ const TrackerForm = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
         let { name, value } = e.target;
-        let inputName;
+        let inputName = name.charAt(0).toUpperCase() + name.slice(1);
         switch(name) {
             case 'job-title':
                 name = 'jobTitle';
