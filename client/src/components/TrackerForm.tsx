@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useState, ChangeEvent} from 'react';
 
 const TrackerForm = () => {
+    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', stage: 'preparing' })
+
+    const handleSubmit = (e: ChangeEvent<HTMLFormElement> ) => {
+        e.preventDefault();
+        console.log(formState)
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
+        switch(e.target.name) {
+            case 'job-title':
+                setFormState({...formState, jobTitle: e.target.value})
+                break;
+            case 'company-name':
+                setFormState({...formState, companyName: e.target.value})
+                break;
+            case 'job-description':
+                setFormState({...formState, jobDescription: e.target.value})
+                break;
+            case 'quick-apply':
+                // console.log('quickApply', e.currentTarget.checked);
+                break;
+            case 'stage':
+                console.log(e.target.value);
+                setFormState({...formState, stage: e.target.value})
+                break;
+            case 'location':
+                setFormState({...formState, [e.target.name]: e.target.value})
+                break;
+            default: 
+                break;
+        }
+    };
+
 
     return (
         <div className="flex-col p-6 mx-auto">
@@ -13,42 +46,42 @@ const TrackerForm = () => {
                         </div>
                     </div>
                     <div className="mt-5 md:mt-0 md:col-span-2">
-                        <form action="#">
+                        <form action="#" onSubmit={handleSubmit}>
                             <div className="shadow overflow-hidden sm:rounded-md">
                                 <div className="px-4 py-5 bg-white sm:p-6">
                                     <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-6 sm:col-span-3">
                                             <label htmlFor="job-title" className="block text-sm font-medium text-gray-700">Job Title</label>
-                                            <input type="text" name="job-title" id="job-title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"  />
+                                            <input type="text" name="job-title" id="job-title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" onChange={handleChange} />
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-3">
                                             <label htmlFor="company-name" className="block text-sm font-medium text-gray-700">Company Name</label>
-                                            <input type="text" name="company-name" id="company-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            <input type="text" name="company-name" id="company-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" onChange={handleChange}/>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
-                                            <input type="text" name="location" id="location" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            <input type="text" name="location" id="location" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" onChange={handleChange}/>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-3">
                                             <label htmlFor="stage" className="block text-sm font-medium text-gray-700">Stage</label>
-                                            <select id="stage" name="stage" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option>Preparing</option>
-                                                <option>Applied</option>
+                                            <select id="stage" name="stage" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" onChange={handleChange}>
+                                                <option value="preparing">Preparing</option>
+                                                <option value="applied">Applied</option>
                                             </select>
                                         </div>
 
                                         <div className="col-span-6">
                                             <label htmlFor="job-description" className="block text-sm font-medium text-gray-700">Job Description</label>
-                                            <textarea name="job-description" id="job-description" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            <textarea name="job-description" rows={5} id="job-description" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" onChange={handleChange}/>
                                         </div>
 
-                                        <div className="col-span-6 inline-flex align-items">
+                                        {/* <div className="col-span-6 inline-flex align-items">
                                             <label htmlFor="quick-apply" className="block text-sm font-medium text-gray-700">Quick Apply?</label>
-                                            <input type="checkbox" name="quick-apply" id="quick-apply" className="my-auto mx-2" />
-                                        </div>
+                                            <input type="checkbox" name="quick-apply" id="quick-apply" className="my-auto mx-2" onChange={handleChange}/>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
