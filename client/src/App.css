@@ -5,3 +5,8 @@ header {
     background-color: black;
     color: white;
 }
+
+/* nav */
+nav {
+    border-right: 1px solid black;
+}
