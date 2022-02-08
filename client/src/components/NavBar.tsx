@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { SetStateAction, Dispatch } from 'react';
 
-const NavBar = () => {
-    const pageTitles = [
-        { name: 'track new job.' },
-        { name: 'job tracker.' },
-        { name: 'stats.' }
-    ];
+interface navBarProps {
+    pageTitles: { name: string }[],
+    setCurrentTitle: Dispatch<SetStateAction<{ name: string }>>
+}
+
+const NavBar = ({ pageTitles, setCurrentTitle }: navBarProps) => {
+    
     return (
         <nav className="flex flex-col w-48 h-full">
             <ul className='p-4'>
-                {pageTitles.map(title => (
-                    <li className='m-2'>{title.name}</li>
+                {pageTitles.map((title) => (
+                    <li className='m-2 hover:text-xl' key ={title.name}><span onClick = {() => setCurrentTitle(title)}>{title.name}</span></li>
                 ))}
 
             </ul>

@@ -34,7 +34,10 @@ function App() {
     <div className='h-screen'>
       <Header />
       <section className='h-screen flex'>
-        <NavBar />
+        <NavBar 
+          pageTitles = {pageTitles}
+          setCurrentTitle={setCurrentTitle}
+        />
         {currentPage(currentTitle)}
       </section>
     </div>
