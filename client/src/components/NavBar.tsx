@@ -1,12 +1,18 @@
 import React from 'react';
 
 const NavBar = () => {
-    return(
+    const pageTitles = [
+        { name: 'track new job.' },
+        { name: 'job tracker.' },
+        { name: 'stats.' }
+    ];
+    return (
         <nav className="flex flex-col w-48 h-full">
             <ul className='p-4'>
-                <li className='m-2'>track new job.</li>
-                <li className='m-2'> job tracker.</li>
-                <li className='m-2'> stats.</li>
+                {pageTitles.map(title => (
+                    <li className='m-2'>{title.name}</li>
+                ))}
+
             </ul>
         </nav>
     );
