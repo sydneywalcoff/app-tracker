@@ -1,6 +1,36 @@
 import React from 'react';
 
 const TrackerTable = () => {
+    const jobs = [
+        {
+            jobTitle: 'Software Developer',
+            companyName: 'Spotify',
+            location: 'Los Angeles',
+            stage: 'Applied',
+            dateApplied: '2/8/22' 
+        },
+        {
+            jobTitle: 'Software Developer',
+            companyName: 'Spotify',
+            location: 'Los Angeles',
+            stage: 'Applied',
+            dateApplied: '2/8/22' 
+        },
+        {
+            jobTitle: 'Software Developer',
+            companyName: 'Spotify',
+            location: 'Los Angeles',
+            stage: 'Applied',
+            dateApplied: '2/8/22' 
+        },
+        {
+            jobTitle: 'Software Developer',
+            companyName: 'Spotify',
+            location: 'Los Angeles',
+            stage: 'Applied',
+            dateApplied: '2/8/22' 
+        },
+    ]
     return (
         <div className="flex flex-col mx-auto my-8">
             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -20,60 +50,27 @@ const TrackerTable = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="flex items-center">
-                                            <p className="text-sm text-gray-900">2/8/22</p>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">Software Developer</div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Spotify</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Applied </span>
-                                    </td>
-                                    <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Angeles</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="flex items-center">
-                                            <p className="text-sm text-gray-900">2/8/22</p>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">Software Developer</div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Spotify</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Applied </span>
-                                    </td>
-                                    <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Angeles</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="flex items-center">
-                                            <p className="text-sm text-gray-900">2/8/22</p>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">Software Developer</div>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Spotify</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Applied </span>
-                                    </td>
-                                    <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Angeles</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a>
-                                    </td>
-                                </tr>
+                                {jobs.map(job => (
+                                    <tr>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <p className="text-sm text-gray-900">{job.dateApplied}</p>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="text-sm text-gray-900">{job.jobTitle}</div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{job.companyName}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{job.stage}</span>
+                                        </td>
+                                        <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{job.location}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a>
+                                        </td>
+                                    </tr>
+                                ))}
+                                
                             </tbody>
                         </table>
                     </div>
