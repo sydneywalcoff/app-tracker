@@ -1,6 +1,8 @@
 import React from 'react';
+import { getJobs } from '../utils/localStorage';
 
 const TrackerTable = () => {
+    console.log(getJobs())
     const jobs = [
         {
             jobTitle: 'Software Engineer',
