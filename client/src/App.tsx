@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import TrackerForm from './components/TrackerForm';
+import TrackerTable from './components/TrackerTable';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Header />
       <main className='h-screen flex'>
         <NavBar />
-        <TrackerForm />
+        {/* <TrackerForm /> */}
+        <TrackerTable />
       </main>
     </div>
   );
