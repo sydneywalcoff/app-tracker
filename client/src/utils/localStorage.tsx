@@ -1,7 +1,20 @@
-const getJobs = () => {
-    const jobsArr = localStorage.getItem('jobs') ? localStorage.getItem('jobs') : [];
+interface jobProp {
+    jobTitle: string,
+    companyName: string,
+    jobDescription: string,
+    location: string,
+    stage: string
+}
 
+const getJobs = () => {
+    const jobsArr = localStorage.getItem('jobs') ? JSON.parse(localStorage.getItem('jobs') || '') : [];
     return jobsArr
 };
 
-export { getJobs }
+const saveJob = (job: jobProp) => {
+    let jobsArr = getJobs();
+    jobsArr.push(job)
+    localStorage.setItem('jobs', JSON.stringify(jobsArr))
+}
+
+export { getJobs, saveJob }

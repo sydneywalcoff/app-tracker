@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent} from 'react';
+import { saveJob } from '../utils/localStorage';
 
 const TrackerForm = () => {
     const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', stage: 'preparing' })
@@ -6,7 +7,8 @@ const TrackerForm = () => {
 
     const handleSubmit = (e: ChangeEvent<HTMLFormElement> ) => {
         e.preventDefault();
-        console.log(formState)
+        saveJob(formState)
+
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
