@@ -1,38 +1,18 @@
 import React from 'react';
 import { getJobs } from '../utils/localStorage';
 
+interface jobProp {
+    jobTitle: string,
+    companyName: string,
+    jobDescription: string,
+    location: string,
+    stage: string,
+    dateApplied: string
+}
+
 const TrackerTable = () => {
     console.log(getJobs())
-    const jobs = [
-        {
-            jobTitle: 'Software Engineer',
-            companyName: 'Amazon',
-            location: 'The Yay',
-            stage: 'Applied',
-            dateApplied: '1/25/22' 
-        },
-        {
-            jobTitle: 'Full-Stack Developer',
-            companyName: 'Facebook',
-            location: 'Genovia',
-            stage: 'Applied',
-            dateApplied: '1/28/22' 
-        },
-        {
-            jobTitle: 'Software Developer',
-            companyName: 'Spotify',
-            location: 'Los Angeles',
-            stage: 'Applied',
-            dateApplied: '1/2/22' 
-        },
-        {
-            jobTitle: 'Front-end Developer',
-            companyName: 'Youtube',
-            location: 'Antarctica',
-            stage: 'Applied',
-            dateApplied: '2/8/22' 
-        },
-    ]
+    const jobs = getJobs();
     return (
         <div className="flex flex-col mx-auto my-8">
             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -52,7 +32,7 @@ const TrackerTable = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                {jobs.map(job => (
+                                {jobs.map((job: jobProp) => (
                                     <tr>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
