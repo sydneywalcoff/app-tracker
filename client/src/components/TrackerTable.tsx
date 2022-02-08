@@ -3,30 +3,30 @@ import React from 'react';
 const TrackerTable = () => {
     const jobs = [
         {
-            jobTitle: 'Software Developer',
-            companyName: 'Spotify',
-            location: 'Los Angeles',
+            jobTitle: 'Software Engineer',
+            companyName: 'Amazon',
+            location: 'The Yay',
             stage: 'Applied',
-            dateApplied: '2/8/22' 
+            dateApplied: '1/25/22' 
+        },
+        {
+            jobTitle: 'Full-Stack Developer',
+            companyName: 'Facebook',
+            location: 'Genovia',
+            stage: 'Applied',
+            dateApplied: '1/28/22' 
         },
         {
             jobTitle: 'Software Developer',
             companyName: 'Spotify',
             location: 'Los Angeles',
             stage: 'Applied',
-            dateApplied: '2/8/22' 
+            dateApplied: '1/2/22' 
         },
         {
-            jobTitle: 'Software Developer',
-            companyName: 'Spotify',
-            location: 'Los Angeles',
-            stage: 'Applied',
-            dateApplied: '2/8/22' 
-        },
-        {
-            jobTitle: 'Software Developer',
-            companyName: 'Spotify',
-            location: 'Los Angeles',
+            jobTitle: 'Front-end Developer',
+            companyName: 'Youtube',
+            location: 'Antarctica',
             stage: 'Applied',
             dateApplied: '2/8/22' 
         },
