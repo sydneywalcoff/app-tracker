@@ -1,17 +1,27 @@
 import React, { SetStateAction, Dispatch } from 'react';
+import { Link } from 'react-router-dom';
 
-interface navBarProps {
-    pageTitles: { name: string }[],
-    setCurrentTitle: Dispatch<SetStateAction<{ name: string }>>
-}
-
-const NavBar = ({ pageTitles, setCurrentTitle }: navBarProps) => {
-    
+const NavBar = () => {
+    const pageTitles = [
+        { 
+            name: 'track new job.',
+            location: '/' 
+        },
+        { 
+            name: 'job tracker.',
+            location: '/applied'
+        },
+        {
+            name: 'stats.',
+            // will have to be updated eventually
+            location: '/'
+        }
+    ];
     return (
         <nav className="flex flex-col w-48 h-full">
             <ul className='p-4'>
                 {pageTitles.map((title) => (
-                    <li className='m-2 hover:text-xl' key ={title.name}><span onClick = {() => setCurrentTitle(title)}>{title.name}</span></li>
+                    <li className='m-2 hover:text-xl' key={title.name}><Link to={title.location}>{title.name}</Link></li>
                 ))}
 
             </ul>
