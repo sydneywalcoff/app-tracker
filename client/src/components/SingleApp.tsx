@@ -2,6 +2,8 @@ import React from 'react';
 import { getSingleJob } from '../utils/localStorage';
 import { useParams } from 'react-router-dom';
 
+import StageBadge from './StageBadge';
+
 const SingleApp = () => {
     let { jobId } = useParams();
     if (!jobId) {
@@ -28,7 +30,7 @@ const SingleApp = () => {
                     <button type="button" className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
                     <div>
                         <h4 className='mb-3'><span className="font-bold">location: </span>{job.location} </h4>
-                        <h4 className='mb-3'><span className="font-bold">stage: </span>{job.stage} </h4>
+                        <h4 className='mb-3'><span className="font-bold">stage: </span> <StageBadge stage={job.stage}/> </h4>
                         <h4 className='mb-3'><span className="font-bold">date applied: </span>{job.dateApplied} </h4>
                     </div>
                 </div>
