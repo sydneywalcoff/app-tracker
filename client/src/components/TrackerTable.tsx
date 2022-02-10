@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { getJobs } from '../utils/localStorage';
 
+import StageBadge from './StageBadge'
+
 interface jobProp {
     id: string,
     jobTitle: string,
@@ -43,7 +45,9 @@ const TrackerTable = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{job.companyName}</td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{job.stage}</span>
+                                            <StageBadge 
+                                                stage={job.stage}
+                                            />
                                         </td>
                                         <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{job.location}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
