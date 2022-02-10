@@ -5,6 +5,7 @@ import './App.css';
 // components
 import Header from './components/Header';
 import NavBar from './components/NavBar';
+import SingleApp from './components/SingleApp';
 import TrackerForm from './components/TrackerForm';
 import TrackerTable from './components/TrackerTable';
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TrackerForm/>} />
           <Route path="applied" element ={<TrackerTable/>} />
+          <Route path="applied/:job" element={<SingleApp/>}/>
         </Routes>
       </section>
     </div>
