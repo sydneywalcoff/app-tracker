@@ -1,23 +1,15 @@
 import React from 'react';
-
-interface jobProp {
-    jobTitle: string,
-    companyName: string,
-    jobDescription: string,
-    location: string,
-    stage: string,
-    dateApplied: string
-}
+import { getSingleJob } from '../utils/localStorage';
+import { useParams } from 'react-router-dom';
 
 const SingleApp = () => {
-    const job = {
-        jobTitle: 'Front End Developer',
-        companyName: 'Amazon',
-        jobDescription: 'ajdsl;gja;ldjfal;dkghnaldnflakvnjkasdnkajdngl;amdscl;nja jksdglasdjfla;mlnadfhalsdfkjalsknal;fhnglaksmclknkjadshfgl;asdjf',
-        location: 'remote',
-        stage: 'applied',
-        dateApplied: '2/9/22'
-    };
+    const { jobId } = useParams();
+    if(!jobId) {
+        return (
+            <h1>Sorry! Something is wrong. </h1>
+        );
+    }
+    let job = getSingleJob(jobId)[0];
     return (
         <section className='flex p-9 w-screen justify-center'>
             <div className="flex-col px-5">

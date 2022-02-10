@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TrackerForm/>} />
           <Route path="applied" element ={<TrackerTable/>} />
-          <Route path="applied/:job" element={<SingleApp/>}/>
+          <Route path="applied/:jobId" element={<SingleApp/>}/>
         </Routes>
       </section>
     </div>
