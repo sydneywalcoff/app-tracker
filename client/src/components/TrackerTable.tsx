@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { getJobs } from '../utils/localStorage';
 
 interface jobProp {
+    id: string,
     jobTitle: string,
     companyName: string,
     jobDescription: string,
@@ -11,7 +13,6 @@ interface jobProp {
 }
 
 const TrackerTable = () => {
-    console.log(getJobs())
     const jobs = getJobs();
     return (
         <div className="flex flex-col mx-auto my-8">
@@ -48,7 +49,8 @@ const TrackerTable = () => {
                                         </td>
                                         <td className ="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{job.location}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a>
+                                            {/* <a href="#" className="text-indigo-600 hover:text-indigo-900">More</a > */}
+                                            <Link to={job.id} className="text-indigo-600 hover:text-indigo-900">More</Link >
                                         </td>
                                     </tr>
                                 ))}
