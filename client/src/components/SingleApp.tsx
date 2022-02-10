@@ -44,9 +44,9 @@ const SingleApp = () => {
                         <li className="list-disc mb-3">What is the rest of the hiring process?</li>
                     </ul>
                 </div>
-                <div className="basis-1/2">
+                <div className="flex-col basis-1/2">
                     <h3 className="text-2xl mb-2">Notes</h3>
-                    <textarea className="w-100"></textarea>
+                    <textarea className="w-full h-full border-solid border-2"></textarea>
                 </div>
             </div>
         </section>
