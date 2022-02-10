@@ -15,7 +15,7 @@ const getJobs = () => {
 const getSingleJob = (id: string) => {
     let jobsArr = getJobs();
     const job = jobsArr.filter((el: jobProp) => el.id === id);
-    return job;
+    return job[0];
 };
 
 const saveJob = (job: jobProp) => {

@@ -9,7 +9,7 @@ const SingleApp = () => {
             <h1>Sorry! Something is wrong. </h1>
         );
     }
-    let job = getSingleJob(jobId)[0];
+    let job = getSingleJob(jobId);
     return (
         <section className='flex p-9 w-screen justify-center'>
             <div className="flex-col px-5">
