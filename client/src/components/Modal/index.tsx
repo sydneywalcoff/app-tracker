@@ -1,4 +1,4 @@
-import React, { SetStateAction, Dispatch } from "react";
+import React, { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
 import "./styles.css";
 import StageBadge from "../StageBadge";
 
@@ -19,6 +19,7 @@ interface ModalProps {
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
     const {
+        id,
         jobTitle,
         dateApplied,
         companyName,
@@ -26,6 +27,43 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
     } = job;
+
+    const [editJobForm, setEditJobForm] = useState({
+        id: id,
+        jobTitle: jobTitle,
+        dateApplied: dateApplied,
+        companyName: companyName,
+        stage: stage,
+        jobDescription: jobDescription,
+        location: location
+    })
+
+    const changeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> ) => {
+        let { value, name } = e.target;
+        switch(name) {
+            case 'job-title':
+                name = 'jobTitle';
+                break;
+            case 'company-name':
+                name = 'companyName';
+                break;
+            case 'job-description':
+                name = 'jobDescription';
+                break;
+            case 'quick-apply':
+                // console.log('quickApply', e.currentTarget.checked);
+                break;
+            default: 
+                break;
+        }
+        console.log(name, value)
+        setEditJobForm({...editJobForm, [name]: value })
+    };
+
+    const submitHandler = () => {
+        console.log(editJobForm);
+    };
+
     return (
         <>
             <div className="darkBG" />
@@ -46,6 +84,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 name="job-title"
                                 className="mb-2 p-1 border-solid border-2"
                                 placeholder={jobTitle}
+                                onChange={changeHandler}
                             />
                             <label htmlFor="company-name" className="font-bold m-2 pr-1">
                                 Company:
@@ -54,12 +93,14 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 className="mb-2 p-1 border-solid border-2"
                                 name="company-name"
                                 placeholder={companyName}
+                                onChange={changeHandler}
                             />
                         </div>
                         <h3 className="font-bold mb-2">Job Description</h3>
                         <textarea
                             className="whitespace-pre-wrap p-1 w-full h-full border-solid border-2"
                             placeholder={jobDescription}
+                            onChange={changeHandler}
                         />
                     </div>
                     <div className="flex-col basis-1/4">
@@ -77,7 +118,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <StageBadge stage={stage} />{" "}
                             </h4>
                         </div>
-                        <button type="button"  className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                        <button type="button" onClick={submitHandler} className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
                     </div>
                 </div>
             </div>
