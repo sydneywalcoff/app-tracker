@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-interface App {
+interface AppInterface {
     jobTitle: string,
     jobDescription: string, 
     status: string,
@@ -41,6 +41,6 @@ const appSchema = new Schema({
     }
 });
 
-const App: App = model("App", appSchema);
+const App: AppInterface = model("App", appSchema);
 
-module.exports = App;
+export = App;
