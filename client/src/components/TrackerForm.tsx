@@ -1,14 +1,27 @@
 import React, { useState, ChangeEvent} from 'react';
 import { saveJob } from '../utils/localStorage';
 import randomId from '../utils/randomId';
+import { ADD_APP } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const TrackerForm = () => {
-    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', stage: 'preparing' })
-    const [error, setError] = useState('');
+    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', status: 'preparing' })
+    const [inputError, setInputError] = useState('');
+    const [addApp, { error }] = useMutation(ADD_APP);
 
-    const handleSubmit = (e: ChangeEvent<HTMLFormElement> ) => {
+    const handleSubmit = async (e: ChangeEvent<HTMLFormElement> ) => {
         e.preventDefault();
-        // saveJob(formState)
+        try {
+            await addApp({
+                variables: {
+                    ...formState,
+                    "quickApply": false
+                }
+            })
+            window.location.assign('/applied')
+        } catch (err) {
+            console.error(error)
+        }
 
     };
 
@@ -35,7 +48,7 @@ const TrackerForm = () => {
                 break;
         }
         if(!value.length) {
-            setError(`${inputName} is required!`)
+            setInputError(`${inputName} is required!`)
             return;
         }
 
@@ -91,8 +104,8 @@ const TrackerForm = () => {
                                             <input type="checkbox" name="quick-apply" id="quick-apply" className="my-auto mx-2" onBlur={handleChange}/>
                                         </div> */}
                                     </div>
-                                    {error && (
-                                        <p className='text-red-700 mt-2'>{error}</p>
+                                    {inputError && (
+                                        <p className='text-red-700 mt-2'>{inputError}</p>
                                     )}
                                 </div>
                                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">

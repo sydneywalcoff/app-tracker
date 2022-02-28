@@ -1,15 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const ADD_APP = gql`
-    mutation addApp($jobTitle: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!) {
-        addApp(jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply) {
-        _id
-        jobTitle
-        jobDescription
-        location
-        status
-        quickApply
-        jobScore
+    mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int) {
+        addApp(jobTitle: $jobTitle, companyName: $companyName, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, jobScore: $jobScore) {
+            jobTitle
         }
     }
 `;
@@ -25,6 +19,7 @@ export const EDIT_APP = gql`
             quickApply
             jobScore
         }
+    }
 `;
 
 export const DELETE_APP = gql`
