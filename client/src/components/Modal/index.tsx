@@ -8,7 +8,7 @@ interface jobProp {
     companyName: string;
     jobDescription: string;
     location: string;
-    stage: string;
+    status: string;
     dateApplied: string;
 }
 
@@ -23,7 +23,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobTitle,
         dateApplied,
         companyName,
-        stage,
+        status,
         jobDescription,
         location,
     } = job;
@@ -33,7 +33,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobTitle: jobTitle,
         dateApplied: dateApplied,
         companyName: companyName,
-        stage: stage,
+        status: status,
         jobDescription: jobDescription,
         location: location
     })
@@ -115,7 +115,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                             </h4>
                             <h4 className="mb-3">
                                 <span className="font-bold">stage: </span>{" "}
-                                <StageBadge stage={stage} />{" "}
+                                <StageBadge stage={status} />{" "}
                             </h4>
                         </div>
                         <button type="button" onClick={submitHandler} className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
