@@ -1,7 +1,10 @@
+const{ App } = require('../models');
+
 const resolvers = {
     Query: {
-        hello() {
-            return 'hello'
+        Apps: async () => {
+            const Apps = await App.find();
+            return Apps;
         }
     }
 };
