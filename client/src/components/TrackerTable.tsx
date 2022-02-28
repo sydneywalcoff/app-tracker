@@ -18,9 +18,8 @@ interface jobProp {
 
 const TrackerTable = () => {
   const { data } = useQuery(QUERY_APPS);
-  console.log(data?.Apps)
-
-  const jobs: jobProp[] = data?.Apps || [];
+  
+  const jobs: jobProp[] = data?.apps || [];
 
   return (
     <div className="flex flex-col mx-auto my-8">

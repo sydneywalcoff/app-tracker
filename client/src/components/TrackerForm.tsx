@@ -1,15 +1,14 @@
 import React, { useState, ChangeEvent} from 'react';
 import { saveJob } from '../utils/localStorage';
-import formatDate  from '../utils/formatDate';
 import randomId from '../utils/randomId';
 
 const TrackerForm = () => {
-    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', stage: 'preparing', dateApplied: formatDate(), id: randomId() })
+    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', stage: 'preparing' })
     const [error, setError] = useState('');
 
     const handleSubmit = (e: ChangeEvent<HTMLFormElement> ) => {
         e.preventDefault();
-        saveJob(formState)
+        // saveJob(formState)
 
     };
 

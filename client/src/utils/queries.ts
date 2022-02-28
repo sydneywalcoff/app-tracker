@@ -1,22 +1,24 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_APPS = gql`
-    query {
-        Apps {
-            jobTitle
+    query App {
+        apps {
             _id
+            jobTitle
             jobDescription
             status
             location
             quickApply
             jobScore
+            dateApplied
+            companyName
         }
     }
 `;
 
 export const QUERY_SINGLE_APP = gql`
-    query App ($id: ID!) {
-        App(_id: $id) {
+    query app ($id: ID!) {
+        app(_id: $id) {
             jobTitle
             _id
             jobDescription
@@ -24,6 +26,8 @@ export const QUERY_SINGLE_APP = gql`
             location
             quickApply
             jobScore
+            dateApplied
+            companyName
         }
     }
 `;
