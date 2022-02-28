@@ -5,6 +5,7 @@ const typeDefs = gql`
         _id: ID!
         jobTitle: String!
         jobDescription: String!
+        companyName: String!
         status: String!
         location: String!
         quickApply: Boolean!
@@ -12,13 +13,13 @@ const typeDefs = gql`
     }
 
     type Query {
-        Apps: [App]
-        App(_id: ID!): App
+        apps: [App]
+        app(_id: ID!): App
     }
 
     type Mutation {
-        addApp(jobTitle: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
-        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int) : App
+        addApp(jobTitle: String!, companyName: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
+        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int) : App
         deleteApp(_id: ID!) : App
     }
 `;

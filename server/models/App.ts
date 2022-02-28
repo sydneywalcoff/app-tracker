@@ -2,7 +2,8 @@ import { Schema, model } from 'mongoose';
 
 interface AppInterface {
     jobTitle: string,
-    jobDescription: string, 
+    jobDescription: string,
+    companyName: string,
     status: string,
     location: string,
     quickApply: boolean,
@@ -19,6 +20,10 @@ const appSchema = new Schema({
         require: true
     }, 
     status:  {
+        type: String,
+        require: true
+    },
+    companyName: {
         type: String,
         require: true
     },

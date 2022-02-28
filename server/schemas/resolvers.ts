@@ -3,7 +3,8 @@ import { App } from "../models";
 interface AppInterface {
     _id: any,
     jobTitle: string,
-    jobDescription: string, 
+    jobDescription: string,
+    companyName: string, 
     status: string,
     location: string,
     quickApply: boolean,
@@ -16,11 +17,11 @@ interface IdAppProps {
 
 const resolvers = {
     Query: {
-        Apps: async () => {
+        apps: async () => {
             const appsData = await App.find();
             return appsData;
         },
-        App: async (_: undefined, { _id }: IdAppProps ) => {
+        app: async (_: undefined, { _id }: IdAppProps ) => {
             const appData = await App.findById(_id);
             return appData;
         }
