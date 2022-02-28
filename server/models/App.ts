@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 interface AppInterface {
     jobTitle: string,
@@ -41,6 +41,6 @@ const appSchema = new Schema({
     }
 });
 
-const App: AppInterface = model("App", appSchema);
+const App = model("App", appSchema);
 
 export = App;
