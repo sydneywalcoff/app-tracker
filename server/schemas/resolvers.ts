@@ -1,6 +1,7 @@
 import { App } from "../models";
 
 interface AppInterface {
+    _id: any,
     jobTitle: string,
     jobDescription: string, 
     status: string,
@@ -16,8 +17,8 @@ interface SingleAppProps {
 const resolvers = {
     Query: {
         Apps: async () => {
-            const AppsData = await App.find();
-            return AppsData;
+            const appsData = await App.find();
+            return appsData;
         },
         App: async (_: undefined, { _id }: SingleAppProps ) => {
             const appData = await App.findById(_id);
@@ -26,8 +27,13 @@ const resolvers = {
     },
     Mutation: {
         addApp: async (_:undefined, args: AppInterface) => {
-            const AppData = await App.create(args);
-            return AppData;
+            const appData = await App.create(args);
+            return appData;
+        },
+        editApp: async (_: undefined, args: AppInterface) => {
+            const { _id } = args;
+            const appData = await App.findByIdAndUpdate(_id,args);
+            return appData;
         }
     }
 };
