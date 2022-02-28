@@ -12,7 +12,7 @@ interface jobProp {
   companyName: string;
   jobDescription: string;
   location: string;
-  stage: string;
+  status: string;
   dateApplied: string;
 }
 
@@ -82,7 +82,7 @@ const TrackerTable = () => {
                       {job.companyName}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <StageBadge stage={job.stage} />
+                      <StageBadge stage={job.status} />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {job.location}
