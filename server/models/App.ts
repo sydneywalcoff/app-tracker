@@ -28,7 +28,8 @@ const appSchema = new Schema({
     },
     quickApply:  {
         type: Boolean,
-        require: true
+        require: true,
+        default: false
     },
     jobScore:  {
         type: Number,

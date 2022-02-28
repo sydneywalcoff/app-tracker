@@ -8,11 +8,15 @@ const typeDefs = gql`
         status: String!
         location: String!
         quickApply: Boolean!
-        jobScore: Int!
+        jobScore: Int
     }
 
     type Query {
         Apps: [App]
+    }
+
+    type Mutation {
+        addApp(jobTitle: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
     }
 `;
 
