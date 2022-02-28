@@ -13,6 +13,7 @@ const typeDefs = gql`
 
     type Query {
         Apps: [App]
+        App(_id: ID!): App
     }
 
     type Mutation {

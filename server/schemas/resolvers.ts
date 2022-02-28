@@ -9,12 +9,20 @@ interface AppInterface {
     jobScore?: number
 }
 
+interface SingleAppProps {
+    _id: String
+}
+
 const resolvers = {
     Query: {
         Apps: async () => {
             const AppsData = await App.find();
             return AppsData;
         },
+        App: async (_: undefined, { _id }: SingleAppProps ) => {
+            const appData = await App.findById(_id);
+            return appData;
+        }
     },
     Mutation: {
         addApp: async (_:undefined, args: AppInterface) => {
