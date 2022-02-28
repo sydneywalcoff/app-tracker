@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import formatDate  from '../utils/dateFormat'
 
 interface AppInterface {
     jobTitle: string,
@@ -7,7 +8,8 @@ interface AppInterface {
     status: string,
     location: string,
     quickApply: boolean,
-    jobScore?: number
+    jobScore?: number,
+    dateApplied: string
 }
 
 const appSchema = new Schema({
@@ -40,6 +42,10 @@ const appSchema = new Schema({
         type: Number,
         require: false
     },
+    dateApplied: {
+        type: String,
+        default: formatDate()
+    }
 },
 {
     toJSON: {

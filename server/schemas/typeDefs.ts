@@ -10,6 +10,7 @@ const typeDefs = gql`
         location: String!
         quickApply: Boolean!
         jobScore: Int
+        dateApplied: String
     }
 
     type Query {
