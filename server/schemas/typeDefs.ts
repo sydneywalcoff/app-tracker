@@ -19,6 +19,7 @@ const typeDefs = gql`
     type Mutation {
         addApp(jobTitle: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
         editApp(_id: ID!, jobTitle: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int) : App
+        deleteApp(_id: ID!) : App
     }
 `;
 

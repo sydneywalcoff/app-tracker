@@ -10,7 +10,7 @@ interface AppInterface {
     jobScore?: number
 }
 
-interface SingleAppProps {
+interface IdAppProps {
     _id: String
 }
 
@@ -20,7 +20,7 @@ const resolvers = {
             const appsData = await App.find();
             return appsData;
         },
-        App: async (_: undefined, { _id }: SingleAppProps ) => {
+        App: async (_: undefined, { _id }: IdAppProps ) => {
             const appData = await App.findById(_id);
             return appData;
         }
@@ -34,6 +34,10 @@ const resolvers = {
             const { _id } = args;
             const appData = await App.findByIdAndUpdate(_id,args);
             return appData;
+        },
+        deleteApp: async (_: undefined, { _id }: IdAppProps) => {
+            const deletedAppData = await App.findOneAndDelete(_id);
+            return deletedAppData;
         }
     }
 };
