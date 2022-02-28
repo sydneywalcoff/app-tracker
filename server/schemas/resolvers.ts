@@ -1,11 +1,11 @@
-const{ App } = require('../models');
+import { App } from "../models";
 
 const resolvers = {
     Query: {
         Apps: async () => {
-            const Apps = await App.find();
-            return Apps;
-        }
+            const AppsData = await App.find();
+            return AppsData;
+        },
     }
 };
 
