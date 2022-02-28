@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { getSingleJob } from '../utils/localStorage';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+
+import { QUERY_SINGLE_APP } from '../utils/queries';
 
 import StageBadge from './StageBadge';
 import Modal from './Modal';
@@ -12,14 +15,18 @@ const SingleApp = () => {
     const handleEdit = () => {
         setModalOpen(!modalOpen)
     };
+    let { data } = useQuery(QUERY_SINGLE_APP, {
+        variables: {
+            id: jobId
+        }
+    });
+    const job = data?.app || {};
 
-
-    if (!jobId) {
+    if (job.length === 0) {
         return (
             <h1 className="mx-auto my-8 text-3xl">Sorry! Something went wrong. </h1>
         );
     }
-    let job = getSingleJob(jobId);
     if (!job) {
         return (
             <h1 className="mx-auto my-8 text-3xl">Sorry! No application with that ID. </h1>
@@ -38,7 +45,7 @@ const SingleApp = () => {
                     <button type="button" onClick={handleEdit} className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
                     <div>
                         <h4 className='mb-3'><span className="font-bold">location: </span>{job.location} </h4>
-                        <h4 className='mb-3'><span className="font-bold">stage: </span> <StageBadge stage={job.stage}/> </h4>
+                        <h4 className='mb-3'><span className="font-bold">stage: </span> <StageBadge stage={job.status}/> </h4>
                         <h4 className='mb-3'><span className="font-bold">date applied: </span>{job.dateApplied} </h4>
                     </div>
                 </div>
