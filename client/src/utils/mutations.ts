@@ -3,7 +3,13 @@ import { gql } from '@apollo/client';
 export const ADD_APP = gql`
     mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int) {
         addApp(jobTitle: $jobTitle, companyName: $companyName, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, jobScore: $jobScore) {
+            _id
             jobTitle
+            jobDescription
+            status
+            location
+            quickApply
+            jobScore
         }
     }
 `;
