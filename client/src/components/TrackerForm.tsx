@@ -12,6 +12,11 @@ const TrackerForm = () => {
 
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement> ) => {
         e.preventDefault();
+        const { jobTitle, companyName, location, jobDescription } = formState;
+        if(jobTitle.length === 0 || companyName.length === 0 || location.length === 0 || jobDescription.length === 0) {
+            setInputError('All fields are required :(');
+            return;
+        }
         try {
             await addApp({
                 variables: {
