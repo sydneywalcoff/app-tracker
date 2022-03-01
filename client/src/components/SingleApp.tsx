@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { getSingleJob } from "../utils/localStorage";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import { QUERY_SINGLE_APP } from "../utils/queries";
+import { DELETE_APP } from "../utils/mutations";
 
 import StageBadge from "./StageBadge";
 import Modal from "./Modal";
@@ -11,17 +12,24 @@ import Modal from "./Modal";
 const SingleApp = () => {
   const [modalOpen, setModalOpen] = useState(false);
   let { jobId } = useParams();
-
-  const handleEdit = () => {
-    setModalOpen(!modalOpen);
-  };
   let { data } = useQuery(QUERY_SINGLE_APP, {
     variables: {
       id: jobId,
     },
   });
+  const [deleteApp, { error }] = useMutation(DELETE_APP);
   const job = data?.app || {};
-  console.log(job)
+
+  const handleEdit = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const handleDelete = async (id:String) => {
+    await deleteApp({
+      variables: { id },
+    });
+    window.location.assign("/applied");
+  };
 
   const quickApplyText = () => {
     if (job.quickApply) {
@@ -52,13 +60,22 @@ const SingleApp = () => {
           <p className="text-md whitespace-pre-wrap">{job.jobDescription}</p>
         </div>
         <div className="px-5 basis-1/4">
-          <button
-            type="button"
-            onClick={handleEdit}
-            className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Edit
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={handleEdit}
+              className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              onClick={() => handleDelete(job._id)}
+              className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            >
+              Delete
+            </button>
+          </div>
           <div>
             <h4 className="mb-3">
               <span className="font-bold">location: </span>
