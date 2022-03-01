@@ -11,11 +11,11 @@ const NavBar = () => {
             name: 'job tracker.',
             location: '/applied'
         },
-        {
-            name: 'stats.',
-            // will have to be updated eventually
-            location: '/'
-        }
+        // {
+        //     name: 'stats.',
+        //     // will have to be updated eventually
+        //     location: '/'
+        // }
     ];
     return (
         <nav className="flex flex-col w-48 h-full">
