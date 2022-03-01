@@ -5,7 +5,8 @@ import { ADD_APP } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const TrackerForm = () => {
-    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', status: 'preparing' })
+    const [formState, setFormState] = useState({jobTitle: '', companyName: '', location: '', jobDescription: '', status: 'preparing', jobScore: 0 });
+    const [checkboxState, setCheckboxState] = useState(false);
     const [inputError, setInputError] = useState('');
     const [addApp, { error }] = useMutation(ADD_APP);
 
@@ -15,7 +16,7 @@ const TrackerForm = () => {
             await addApp({
                 variables: {
                     ...formState,
-                    "quickApply": false
+                    "quickApply": checkboxState
                 }
             })
             window.location.assign('/applied')
@@ -25,7 +26,11 @@ const TrackerForm = () => {
 
     };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
+    const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCheckboxState(!checkboxState)
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement> ) => {
         let { name, value } = e.target;
         let inputName = name.charAt(0).toUpperCase() + name.slice(1);
         switch(name) {
@@ -41,14 +46,20 @@ const TrackerForm = () => {
                 name = 'jobDescription';
                 inputName = 'Job description';
                 break;
-            case 'quick-apply':
-                // console.log('quickApply', e.currentTarget.checked);
+            case 'job-score':
+                name = 'jobScore';
+                inputName = 'Job Score';
                 break;
             default: 
                 break;
         }
         if(!value.length) {
             setInputError(`${inputName} is required!`)
+            return;
+        }
+        if(name === 'jobScore') {
+            const scoreNum = parseInt(value, 10);
+            setFormState({...formState, [name]: scoreNum});
             return;
         }
 
@@ -99,10 +110,12 @@ const TrackerForm = () => {
                                             <textarea name="job-description" rows={5} id="job-description" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" onBlur={handleChange}/>
                                         </div>
 
-                                        {/* <div className="col-span-6 inline-flex align-items">
+                                        <div className="col-span-6 inline-flex align-items">
                                             <label htmlFor="quick-apply" className="block text-sm font-medium text-gray-700">Quick Apply?</label>
-                                            <input type="checkbox" name="quick-apply" id="quick-apply" className="my-auto mx-2" onBlur={handleChange}/>
-                                        </div> */}
+                                            <input type="checkbox" name="quick-apply" id="quick-apply" className="my-auto mx-2" onChange={handleCheckboxChange} />
+                                            <label htmlFor="job-score" className="block text-sm font-medium text-gray-700">JobScan Score</label>
+                                            <input type="text" name="job-score" id="job-score" className="my-auto mx-2" onBlur={handleChange} />
+                                        </div>
                                     </div>
                                     {inputError && (
                                         <p className='text-red-700 mt-2'>{inputError}</p>
