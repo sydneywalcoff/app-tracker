@@ -1,12 +1,12 @@
-import { ApolloServer } from 'apollo-server-express';
-import express from 'express';
-import path from 'path';
+const { ApolloServer } = require('apollo-server-express');
+const {express} = require('express');
+const { path } = require('path');
 
 const app = express();
 const db = require('./config/connection');
 
 const PORT: string | number = process.env.PORT || 3001;
-import { typeDefs, resolvers } from './schemas'
+const { typeDefs, resolvers } = require('./schemas');
 
 const server = new ApolloServer({
     typeDefs,
