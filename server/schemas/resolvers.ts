@@ -37,7 +37,7 @@ const resolvers = {
             return appData;
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
-            const deletedAppData = await App.findOneAndDelete(_id);
+            const deletedAppData = await App.findOneAndDelete({ _id });
             return deletedAppData;
         }
     }

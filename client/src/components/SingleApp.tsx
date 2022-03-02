@@ -24,9 +24,9 @@ const SingleApp = () => {
     setModalOpen(!modalOpen);
   };
 
-  const handleDelete = async (id:String) => {
+  const handleDelete = async () => {
     await deleteApp({
-      variables: { id },
+      variables: { id: jobId },
     });
     window.location.assign("/applied");
   };
@@ -70,7 +70,7 @@ const SingleApp = () => {
             </button>
             <button
               type="button"
-              onClick={() => handleDelete(job._id)}
+              onClick={handleDelete}
               className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
               Delete
