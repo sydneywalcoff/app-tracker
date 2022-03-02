@@ -55,4 +55,4 @@ const appSchema = new Schema({
 
 const App = model("App", appSchema);
 
-export = App;
+module.exports = App;
