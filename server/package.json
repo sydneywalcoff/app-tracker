@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.ts",
-    "watch": "nodemon server.ts"
+    "start": "node dist/server.ts",
+    "watch": "nodemon server.ts",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "",

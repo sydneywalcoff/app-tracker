@@ -2,6 +2,10 @@
     "compilerOptions": {
       "target": "es6",
       "module": "es2015",
-      "strict": true
-    }
+      "strict": true,
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "outDir": "dist",
+    },
+    "exclude": ["/node_modules"]
 }
