@@ -1,14 +1,20 @@
 import React, { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
+import { useMutation } from "@apollo/client";
+
 import "./styles.css";
 import StageBadge from "../StageBadge";
 
+import { EDIT_APP } from '../../utils/mutations';
+
 interface jobProp {
+    _id: string;
     jobTitle: string;
     companyName: string;
     jobDescription: string;
     location: string;
     status: string;
     dateApplied: string;
+    quickApply: boolean;
 }
 
 interface ModalProps {
@@ -17,16 +23,20 @@ interface ModalProps {
 }
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
+   const [editApp] = useMutation(EDIT_APP)
     const {
+        _id,
         jobTitle,
         dateApplied,
         companyName,
         status,
         jobDescription,
         location,
+        quickApply
     } = job;
 
     const [editJobForm, setEditJobForm] = useState({
+        id: _id,
         jobTitle: jobTitle,
         dateApplied: dateApplied,
         companyName: companyName,
@@ -53,12 +63,17 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default: 
                 break;
         }
-        console.log(name, value)
         setEditJobForm({...editJobForm, [name]: value })
     };
 
-    const submitHandler = () => {
-        console.log(editJobForm);
+    const submitHandler = async () => {
+        await editApp({
+            variables: {
+                ...editJobForm,
+                quickApply: quickApply
+            }
+        })
+        window.location.reload();
     };
 
     return (
