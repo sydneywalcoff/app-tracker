@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import path from 'path';
 
 const app = express();
 const db = require('./config/connection');
@@ -14,10 +15,14 @@ const server = new ApolloServer({
 
 const startServer = async () => {
     await server.start();
-    
+
     server.applyMiddleware({ app })
 };
 startServer();
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+};
 
 db.once('open', () => {
     app.listen(PORT, () => {
