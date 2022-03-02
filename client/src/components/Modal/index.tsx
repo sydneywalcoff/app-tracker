@@ -3,7 +3,6 @@ import "./styles.css";
 import StageBadge from "../StageBadge";
 
 interface jobProp {
-    id: string;
     jobTitle: string;
     companyName: string;
     jobDescription: string;
@@ -19,7 +18,6 @@ interface ModalProps {
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
     const {
-        id,
         jobTitle,
         dateApplied,
         companyName,
@@ -29,7 +27,6 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
     } = job;
 
     const [editJobForm, setEditJobForm] = useState({
-        id: id,
         jobTitle: jobTitle,
         dateApplied: dateApplied,
         companyName: companyName,
@@ -99,6 +96,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                         <h3 className="font-bold mb-2">Job Description</h3>
                         <textarea
                             className="whitespace-pre-wrap p-1 w-full h-full border-solid border-2"
+                            name="job-description"
                             placeholder={jobDescription}
                             onChange={changeHandler}
                         />
