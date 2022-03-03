@@ -5,8 +5,9 @@ import { useQuery } from "@apollo/client";
 import { QUERY_APPS } from "../utils/queries";
 
 import StageBadge from "./StageBadge";
+import FilterBar from "./FilterBar";
 
-interface jobProp {
+interface JobProp {
   _id: string;
   jobTitle: string;
   companyName: string;
@@ -18,11 +19,18 @@ interface jobProp {
 
 const TrackerTable = () => {
   const { data } = useQuery(QUERY_APPS);
-  
-  const jobs: jobProp[] = data?.apps || [];
+
+  let jobs: JobProp[] = data?.apps || [];
+  let filterOptions = jobs;
+  if (jobs.length > 0) {
+
+  }
 
   return (
     <div className="flex flex-col mx-auto my-8">
+      <div className="my-3 mx-auto">
+        <FilterBar filterTitle='Location' filterOptions={filterOptions} />
+      </div>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -63,7 +71,7 @@ const TrackerTable = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {jobs.map((job: jobProp, i:number) => (
+                {jobs.map((job: JobProp, i: number) => (
                   <tr key={i}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
