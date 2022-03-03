@@ -17,7 +17,7 @@ const SingleApp = () => {
       id: jobId,
     },
   });
-  const [deleteApp, { error }] = useMutation(DELETE_APP);
+  const [deleteApp] = useMutation(DELETE_APP);
   const job = data?.app || {};
 
   const handleEdit = () => {
@@ -93,7 +93,7 @@ const SingleApp = () => {
               <span className="font-bold">quick apply?: </span>
               {quickApplyText()}{" "}
             </h4>
-            {job.jobScore && (
+            {job.jobScore > 0 && (
               <h4 className="mb-3">
                 <span className="font-bold">JobScan Score: </span>
                 {job.jobScore}{" "}
