@@ -1,8 +1,5 @@
-import React, { useState, ChangeEvent } from "react";
-import { saveJob } from "../utils/localStorage";
-import randomId from "../utils/randomId";
+import { useState, ChangeEvent } from "react";
 import { ADD_APP } from "../utils/mutations";
-import { QUERY_APPS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 
 const TrackerForm = () => {
@@ -16,7 +13,7 @@ const TrackerForm = () => {
   });
   const [checkboxState, setCheckboxState] = useState(false);
   const [inputError, setInputError] = useState("");
-  const [addApp, { error }] = useMutation(ADD_APP);
+  const [addApp] = useMutation(ADD_APP);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +36,7 @@ const TrackerForm = () => {
       });
       window.location.assign('/applied')
     } catch (err) {
-      console.error(error);
+      console.error(err);
     }
   };
 

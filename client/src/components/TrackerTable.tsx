@@ -63,8 +63,8 @@ const TrackerTable = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {jobs.map((job: jobProp) => (
-                  <tr>
+                {jobs.map((job: jobProp, i:number) => (
+                  <tr key={i}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <p className="text-sm text-gray-900">
