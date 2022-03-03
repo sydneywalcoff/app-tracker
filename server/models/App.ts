@@ -1,18 +1,7 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document, Model } from 'mongoose';
 import formatDate  from '../utils/dateFormat'
 
-interface AppInterface {
-    jobTitle: string,
-    jobDescription: string,
-    companyName: string,
-    status: string,
-    location: string,
-    quickApply: boolean,
-    jobScore?: number,
-    dateApplied: string
-}
-
-const appSchema = new Schema({
+const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
         type: String,
         require: true
@@ -53,6 +42,15 @@ const appSchema = new Schema({
     }
 });
 
-const App = model("App", appSchema);
+export interface AppDocument extends Document {
+    jobTitle: string,
+    jobDescription: string,
+    companyName: string,
+    status: string,
+    location: string,
+    quickApply: boolean,
+    jobScore?: number,
+    dateApplied: string
+}
 
-module.exports = App;
+module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);
