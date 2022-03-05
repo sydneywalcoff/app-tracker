@@ -11,6 +11,13 @@ const typeDefs = gql`
         quickApply: Boolean!
         jobScore: Int
         dateApplied: String
+        notes: [Note]
+    }
+
+    type Note {
+        _id: ID!
+        noteText: String!
+        dateAdded: String!
     }
 
     type Query {

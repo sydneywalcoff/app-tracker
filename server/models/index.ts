@@ -1,3 +1,4 @@
 const App = require('./App');
+const Note = require('./Note');
 
-module.exports =  App 
+module.exports = { App, Note }

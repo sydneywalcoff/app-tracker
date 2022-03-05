@@ -1,4 +1,4 @@
-const App  = require("../models");
+const { App, Note }  = require("../models");
 
 interface AppInterface {
     _id: any,
