@@ -140,7 +140,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     type="text"
                                     name="location"
                                     id="location"
-                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                    className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md"
+                                    placeholder={job.location}
                                     onChange={changeHandler}
                                 />
                             </h4>
