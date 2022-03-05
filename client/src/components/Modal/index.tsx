@@ -127,7 +127,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                         />
                     </div>
                     <div className="flex-col basis-1/4">
-                        <div>
+                        <>
                             <h4 className="mb-3">
                                 <span className="font-bold">date applied: </span>
                                 {dateApplied}{" "}
@@ -164,7 +164,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     <option value="rejected">Rejected</option>
                                 </select>
                             </h4>
-                        </div>
+                        </>
                         <button
                             type="button"
                             onClick={submitHandler}
