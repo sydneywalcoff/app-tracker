@@ -158,6 +158,10 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 >
                                     <option value="preparing">Preparing</option>
                                     <option value="applied">Applied</option>
+                                    <option value="phone screen">Phone Screen</option>
+                                    <option value="firstInterview">First Interview</option>
+                                    <option value="technical">Technical Interview</option>
+                                    <option value="rejected">Rejected</option>
                                 </select>
                             </h4>
                         </div>
