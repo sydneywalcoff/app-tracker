@@ -18,7 +18,7 @@ interface IdAppProps {
 const resolvers = {
     Query: {
         apps: async () => {
-            const appsData = await App.find();
+            const appsData = await App.find().sort({ dateApplied: -1, location: 'asc'});
             return appsData;
         },
         app: async (_: undefined, { _id }: IdAppProps ) => {
