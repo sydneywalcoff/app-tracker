@@ -14,6 +14,7 @@ interface jobProp {
     status: string;
     dateApplied: string;
     quickApply: boolean;
+    jobScore: string;
 }
 
 interface ModalProps {
@@ -32,6 +33,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         quickApply,
+        jobScore
     } = job;
 
     const [editJobForm, setEditJobForm] = useState({
@@ -42,6 +44,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status: status,
         jobDescription: jobDescription,
         location: location,
+        jobScore: 0
     });
 
     const changeHandler = (
@@ -51,7 +54,6 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             | ChangeEvent<HTMLSelectElement>
     ) => {
         let { value, name } = e.target;
-        console.log(name, value);
         switch (name) {
             case "job-title":
                 name = "jobTitle";
@@ -68,13 +70,21 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             case "quick-apply":
                 // console.log('quickApply', e.currentTarget.checked);
                 break;
+            case "job-score":
+                name = "jobScore";
+                break;
             default:
                 break;
+        }
+        if(name== 'jobScore') {
+            setEditJobForm({ ...editJobForm, [name]: parseInt(value)});
+            return;
         }
         setEditJobForm({ ...editJobForm, [name]: value });
     };
 
     const submitHandler = async () => {
+        console.log(editJobForm.jobScore)
         await editApp({
             variables: {
                 ...editJobForm,
@@ -144,6 +154,10 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     placeholder={job.location}
                                     onChange={changeHandler}
                                 />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="job-score" className="font-bold">Job Score:</label>
+                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="stage" className="font-bold">

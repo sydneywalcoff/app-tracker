@@ -15,8 +15,8 @@ export const ADD_APP = gql`
 `;
 
 export const EDIT_APP = gql`
-    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String!, $location: String!, $quickApply: Boolean!) {
-        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, companyName:$companyName) {
+    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int) {
+        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, companyName:$companyName, jobScore: $jobScore ) {
             _id
             jobTitle
             jobDescription
