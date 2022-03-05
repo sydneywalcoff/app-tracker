@@ -81,7 +81,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 quickApply: quickApply,
             },
         });
-        window.location.reload();
+        setModalOpen(false)
     };
 
     return (
