@@ -168,7 +168,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                         <button
                             type="button"
                             onClick={submitHandler}
-                            className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-2 right-4"
                         >
                             Save
                         </button>
