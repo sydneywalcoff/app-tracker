@@ -128,11 +128,11 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                     </div>
                     <div className="flex-col basis-1/4">
                         <>
-                            <h4 className="mb-3">
+                            <div className="mb-3">
                                 <span className="font-bold">date applied: </span>
                                 {dateApplied}{" "}
-                            </h4>
-                            <h4 className="mb-3">
+                            </div>
+                            <div className="mb-3">
                                 <label htmlFor="location" className="font-bold">
                                     location:{" "}
                                 </label>
@@ -144,8 +144,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     placeholder={job.location}
                                     onChange={changeHandler}
                                 />
-                            </h4>
-                            <h4 className="mb-3">
+                            </div>
+                            <div className="mb-3">
                                 <label htmlFor="stage" className="font-bold">
                                     stage:{" "}
                                 </label>{" "}
@@ -163,7 +163,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     <option value="technical">Technical Interview</option>
                                     <option value="rejected">Rejected</option>
                                 </select>
-                            </h4>
+                            </div>
                         </>
                         <button
                             type="button"
