@@ -1,4 +1,3 @@
-import React, { SetStateAction, Dispatch } from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -18,7 +17,7 @@ const NavBar = () => {
         // }
     ];
     return (
-        <nav className="flex flex-col w-48 h-full">
+        <nav>
             <ul className='p-4'>
                 {pageTitles.map((title) => (
                     <li className='m-2 hover:text-xl' key={title.name}><Link to={title.location}>{title.name}</Link></li>

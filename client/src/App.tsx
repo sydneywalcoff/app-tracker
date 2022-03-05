@@ -25,9 +25,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="h-screen">
+      <>
         <Header />
-        <section className="h-screen flex">
+        <section className="flex">
           <NavBar />
           <Routes>
             <Route path="/" element={<TrackerForm />} />
@@ -35,7 +35,7 @@ function App() {
             <Route path="applied/:jobId" element={<SingleApp />} />
           </Routes>
         </section>
-      </div>
+      </>
     </ApolloProvider>
   );
 }
