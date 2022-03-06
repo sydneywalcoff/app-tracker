@@ -5,6 +5,10 @@ interface IdAppProps {
     _id: String
 }
 
+interface PostIdProps extends AppDocument {
+    postId: String
+}
+
 const resolvers = {
     Query: {
         apps: async () => {
@@ -29,6 +33,15 @@ const resolvers = {
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
             const deletedAppData = await App.findOneAndDelete({ _id });
             return deletedAppData;
+        },
+        addNote: async (_:undefined, args: PostIdProps) => {
+            const { postId } = args
+            const updatedAppData = await App.findByIdAndUpdate(
+                { _id: postId }, 
+                { $addToSet: { notes: args } },
+                { new: true }
+            );
+            return updatedAppData
         }
     }
 };
