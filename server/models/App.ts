@@ -1,5 +1,6 @@
 import { Schema, model, Document, Model } from 'mongoose';
 import formatDate  from '../utils/dateFormat'
+const noteSchema = require('./Note');
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -34,7 +35,8 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     dateApplied: {
         type: String,
         default: formatDate()
-    }
+    },
+    notes: [noteSchema]
 },
 {
     toJSON: {
@@ -50,7 +52,8 @@ export interface AppDocument extends Document {
     location: string,
     quickApply: boolean,
     jobScore?: number,
-    dateApplied: string
+    dateApplied: string,
+    notes: []
 }
 
 module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);

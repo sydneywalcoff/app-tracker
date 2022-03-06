@@ -1,4 +1,4 @@
-const { App, Note }  = require("../models");
+const App  = require("../models");
 
 interface AppInterface {
     _id: any,
@@ -8,7 +8,8 @@ interface AppInterface {
     status: string,
     location: string,
     quickApply: boolean,
-    jobScore?: number
+    jobScore?: number,
+    notes: []
 }
 
 interface IdAppProps {
