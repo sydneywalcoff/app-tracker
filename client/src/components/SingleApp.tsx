@@ -8,6 +8,7 @@ import { DELETE_APP } from "../utils/mutations";
 
 import StageBadge from "./StageBadge";
 import Modal from "./Modal";
+import Notes from "./Notes";
 
 const SingleApp = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -126,8 +127,7 @@ const SingleApp = () => {
           </ul>
         </div>
         <div className="flex-col basis-1/2">
-          <h3 className="text-2xl mb-2">Notes</h3>
-          <textarea className="w-full h-full border-solid border-2"></textarea>
+          <Notes />
         </div>
       </div>
       {modalOpen && <Modal job={job} setModalOpen={setModalOpen} />}
