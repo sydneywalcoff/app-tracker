@@ -127,7 +127,7 @@ const SingleApp = () => {
           </ul>
         </div>
         <div className="flex-col basis-1/2">
-          <Notes notes={job.notes}/>
+          <Notes notes={job.notes} postId={job._id}/>
         </div>
       </div>
       {modalOpen && <Modal job={job} setModalOpen={setModalOpen} />}

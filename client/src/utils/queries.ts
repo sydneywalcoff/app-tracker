@@ -12,6 +12,11 @@ export const QUERY_APPS = gql`
             jobScore
             dateApplied
             companyName
+            notes {
+                noteText
+                _id
+                dateAdded
+            }
         }
     }
 `;
@@ -28,6 +33,11 @@ export const QUERY_SINGLE_APP = gql`
             jobScore
             dateApplied
             companyName
+            notes {
+                noteText
+                _id
+                dateAdded
+            }
         }
     }
 `;

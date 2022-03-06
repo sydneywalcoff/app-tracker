@@ -1,4 +1,6 @@
 import { useState, ChangeEvent } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_NOTE } from '../utils/mutations';
 
 type Note = {
     _id: string,
@@ -6,13 +8,16 @@ type Note = {
 }
 
 interface NoteProp{
+    postId: string | undefined, 
     notes: Note[]
 }
 
-const Notes =  ({ notes }: NoteProp) => {
+const Notes =  ({ notes, postId }: NoteProp) => {
     const [noteText, setNoteText] = useState('');
-    const addNote = () => {
-        console.log(noteText)
+    const [addNote] = useMutation(ADD_NOTE);
+    const submitNote = async () => {
+        await addNote({ variables: { noteText, postId } });
+        
     };
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,7 +40,7 @@ const Notes =  ({ notes }: NoteProp) => {
                 <button
               type="button"
               className=" justify-center ml-auto my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={addNote}
+              onClick={submitNote}
             >
               Add Note.
             </button>
