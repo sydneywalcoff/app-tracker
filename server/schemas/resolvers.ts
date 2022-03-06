@@ -1,16 +1,5 @@
 const App  = require("../models");
-
-interface AppInterface {
-    _id: any,
-    jobTitle: string,
-    jobDescription: string,
-    companyName: string, 
-    status: string,
-    location: string,
-    quickApply: boolean,
-    jobScore?: number,
-    notes: []
-}
+import { AppDocument } from '../models'
 
 interface IdAppProps {
     _id: String
@@ -28,11 +17,11 @@ const resolvers = {
         }
     },
     Mutation: {
-        addApp: async (_:undefined, args: AppInterface) => {
+        addApp: async (_:undefined, args: AppDocument) => {
             const appData = await App.create(args);
             return appData;
         },
-        editApp: async (_: undefined, args: AppInterface) => {
+        editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
             const appData = await App.findByIdAndUpdate(_id,args);
             return appData;

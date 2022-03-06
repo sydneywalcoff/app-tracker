@@ -1,6 +1,6 @@
 import { Schema, Document } from 'mongoose';
 
-const noteSchema = new Schema<noteDocument>({
+const noteSchema = new Schema<NoteDocument>({
     noteText: {
         type: String,
         required: true
@@ -16,7 +16,7 @@ const noteSchema = new Schema<noteDocument>({
     }
 });
 
-export interface noteDocument extends Document {
+export interface NoteDocument extends Document {
     noteText: string,
     dateAdded: string,
 }
