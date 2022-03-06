@@ -43,8 +43,20 @@ export const DELETE_APP = gql`
 `;
 
 export const ADD_NOTE = gql`
-    mutation Mutation($noteText: String!, $postId: ID!) {
-        addNote(noteText: $noteText, postId: $postId) {
+    mutation Mutation($noteText: String!, $appId: ID!) {
+        addNote(noteText: $noteText, appId: $appId) {
+            jobTitle
+            notes {
+                noteText
+                dateAdded
+            }
+        }
+    }
+`;
+
+export const DELETE_NOTE = gql`
+    mutation ($noteId: ID!, $appId: ID!) {
+        deleteNote(noteId: $noteId, appId: $appId) {
             jobTitle
             notes {
                 noteText
