@@ -1,4 +1,5 @@
 import { Schema, Document } from 'mongoose';
+import formatDate from '../utils/dateFormat';
 
 const noteSchema = new Schema<NoteDocument>({
     noteText: {
@@ -7,7 +8,7 @@ const noteSchema = new Schema<NoteDocument>({
     },
     dateAdded: {
         type: String,
-        required: true
+        default: formatDate()
     }
 },
 {
