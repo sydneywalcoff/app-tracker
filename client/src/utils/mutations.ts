@@ -41,3 +41,15 @@ export const DELETE_APP = gql`
         }
     }
 `;
+
+export const ADD_NOTE = gql`
+    mutation Mutation($noteText: String!, $postId: ID!) {
+        addNote(noteText: $noteText, postId: $postId) {
+            jobTitle
+            notes {
+                noteText
+                dateAdded
+            }
+        }
+    }
+`;
