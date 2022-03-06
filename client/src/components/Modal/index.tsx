@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import "./styles.css";
 
 import { EDIT_APP } from "../../utils/mutations";
+import { QUERY_SINGLE_APP } from '../../utils/queries';
 
 interface jobProp {
     _id: string;
@@ -23,7 +24,20 @@ interface ModalProps {
 }
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
-    const [editApp] = useMutation(EDIT_APP);
+    const [editApp] = useMutation(EDIT_APP, {
+        update(cache, { data: { editApp } }) {
+            cache.updateQuery({
+                query: QUERY_SINGLE_APP,
+                variables: {
+                    id: job._id
+                }
+            }, ({ app }) => ({
+                app: {
+                    editApp
+                }
+            }))
+        }
+    });
     const {
         _id,
         jobTitle,
