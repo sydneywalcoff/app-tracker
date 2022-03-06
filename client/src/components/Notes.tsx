@@ -1,20 +1,50 @@
 import { useState, ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_NOTE } from '../utils/mutations';
+import { QUERY_SINGLE_APP } from '../utils/queries'
 
 type Note = {
     _id: string,
     noteText: string
 }
 
-interface NoteProp{
-    postId: string | undefined, 
+interface NoteProp {
+    postId: string | undefined,
     notes: Note[]
 }
 
-const Notes =  ({ notes, postId }: NoteProp) => {
+interface cacheProp {
+    app: null | object
+}
+
+interface jobProp {
+    _id: string;
+    jobTitle: string;
+    companyName: string;
+    jobDescription: string;
+    location: string;
+    status: string;
+    dateApplied: string;
+}
+
+const Notes = ({ notes, postId }: NoteProp) => {
     const [noteText, setNoteText] = useState('');
-    const [addNote] = useMutation(ADD_NOTE);
+    const [addNote] = useMutation(ADD_NOTE, {
+        update(cache, { data: { addNote } }) {
+            try {
+                cache.updateQuery({ query: QUERY_SINGLE_APP, variables: {
+                    id: postId
+                } }, ({ app }) => ({
+                    app: {
+                        ...app,
+                        notes: [...app.notes, addNote]
+                    }
+                }))
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    });
 
     const submitNote = async () => {
         await addNote({ variables: { noteText, postId } });
@@ -39,12 +69,12 @@ const Notes =  ({ notes, postId }: NoteProp) => {
             <div className="flex flex-col">
                 <textarea className="w-full h-half border-solid border-2 p-1" onChange={handleChange} placeholder='take notes...' value={noteText}></textarea>
                 <button
-              type="button"
-              className=" justify-center ml-auto my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={submitNote}
-            >
-              Add Note.
-            </button>
+                    type="button"
+                    className=" justify-center ml-auto my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={submitNote}
+                >
+                    Add Note.
+                </button>
             </div>
         </>
     );
