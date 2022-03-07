@@ -33,7 +33,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 }
             }, ({ app }) => ({
                 app: {
-                    editApp
+                    ...app,
+                    notes: [app.notes]
                 }
             }))
         }
@@ -52,12 +53,12 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
 
     const [editJobForm, setEditJobForm] = useState({
         id: _id,
-        jobTitle: jobTitle,
-        dateApplied: dateApplied,
-        companyName: companyName,
-        status: status,
-        jobDescription: jobDescription,
-        location: location,
+        jobTitle,
+        dateApplied,
+        companyName,
+        status,
+        jobDescription,
+        location,
         jobScore: 0
     });
 
@@ -90,7 +91,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default:
                 break;
         }
-        if(name== 'jobScore') {
+        if(name === 'jobScore') {
             setEditJobForm({ ...editJobForm, [name]: parseInt(value)});
             return;
         }
@@ -98,7 +99,6 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
     };
 
     const submitHandler = async () => {
-        console.log(editJobForm.jobScore)
         await editApp({
             variables: {
                 ...editJobForm,
