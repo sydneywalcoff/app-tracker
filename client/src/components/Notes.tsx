@@ -19,12 +19,15 @@ const Notes = ({ notes, appId }: NoteProp) => {
     const [addNote] = useMutation(ADD_NOTE, {
         update(cache, { data: { addNote } }) {
             try {
-                cache.updateQuery({ query: QUERY_SINGLE_APP, variables: {
-                    id: appId
-                } }, ({ app }) => ({
+                cache.updateQuery({
+                    query: QUERY_SINGLE_APP, 
+                    variables: {
+                        id: appId
+                    }
+                }, ({ app }) => ({
                     app: {
                         ...app,
-                        notes: [...app.notes, addNote]
+                        notes: app.notes
                     }
                 }))
             } catch (e) {
@@ -34,18 +37,17 @@ const Notes = ({ notes, appId }: NoteProp) => {
     });
 
     const [deleteNote] = useMutation(DELETE_NOTE, {
-        update(cache, { data: { deleteNote } } ) {
-            console.log(deleteNote.notes)
+        update(cache, { data: { deleteNote } }) {
             try {
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,
                     variables: {
                         id: appId
                     }
-                }, ({app}) => ({
+                }, ({ app }) => ({
                     app: {
                         ...app,
-                        notes: [deleteNote, ...app.notes]
+                        notes: app.notes
                     }
                 }))
             } catch (e) {
