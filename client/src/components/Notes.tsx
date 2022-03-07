@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_NOTE } from '../utils/mutations';
+import { ADD_NOTE, DELETE_NOTE } from '../utils/mutations';
 import { QUERY_SINGLE_APP } from '../utils/queries'
 
 type Note = {
@@ -9,31 +9,18 @@ type Note = {
 }
 
 interface NoteProp {
-    postId: string | undefined,
+    appId: string | undefined,
     notes: Note[]
 }
 
-interface cacheProp {
-    app: null | object
-}
 
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    location: string;
-    status: string;
-    dateApplied: string;
-}
-
-const Notes = ({ notes, postId }: NoteProp) => {
+const Notes = ({ notes, appId }: NoteProp) => {
     const [noteText, setNoteText] = useState('');
     const [addNote] = useMutation(ADD_NOTE, {
         update(cache, { data: { addNote } }) {
             try {
                 cache.updateQuery({ query: QUERY_SINGLE_APP, variables: {
-                    id: postId
+                    id: appId
                 } }, ({ app }) => ({
                     app: {
                         ...app,
@@ -46,8 +33,29 @@ const Notes = ({ notes, postId }: NoteProp) => {
         }
     });
 
+    const [deleteNote] = useMutation(DELETE_NOTE, {
+        update(cache, { data: { deleteNote } } ) {
+            console.log(deleteNote.notes)
+            try {
+                cache.updateQuery({
+                    query: QUERY_SINGLE_APP,
+                    variables: {
+                        id: appId
+                    }
+                }, ({app}) => ({
+                    app: {
+                        ...app,
+                        notes: [deleteNote, ...app.notes]
+                    }
+                }))
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    })
+
     const submitNote = async () => {
-        await addNote({ variables: { noteText, postId } });
+        await addNote({ variables: { noteText, appId } });
         setNoteText('')
     };
 
@@ -56,13 +64,25 @@ const Notes = ({ notes, postId }: NoteProp) => {
         setNoteText(value);
     };
 
+    const handleDeleteNote = async (noteId: string) => {
+        await deleteNote({
+            variables: {
+                noteId,
+                appId
+            }
+        })
+    }
+
     return (
         <>
             <h3 className="text-2xl mb-2">Notes</h3>
             <div>
-                {notes ? (notes.map((note: Note, i: number) => (
+                {(notes && notes.length > 0) ? (notes.map((note: Note, i: number) => (
                     <ul key={i} className="px-5">
-                        <li className="list-disc mb-3">{note.noteText}</li>
+                        <li className="list-disc mb-3 flex justify-between">
+                            <p>{note.noteText}</p>
+                            <span onClick={() => handleDeleteNote(note._id)}>x</span>
+                        </li>
                     </ul>
                 ))) : (<p className='text-md font-bold my-3'>no notes yet :(</p>)}
             </div>

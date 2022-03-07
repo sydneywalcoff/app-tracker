@@ -10,6 +10,12 @@ export const ADD_APP = gql`
             location
             quickApply
             jobScore
+            dateApplied
+            notes {
+                _id
+                noteText
+                dateAdded
+            }
         }
     }
 `;
@@ -23,7 +29,13 @@ export const EDIT_APP = gql`
             status
             location
             quickApply
-            jobScore
+            jobScore,
+            dateApplied
+            notes {
+                _id
+                noteText
+                dateAdded
+            }
         }
     }
 `;
@@ -37,7 +49,13 @@ export const DELETE_APP = gql`
             location
             status
             quickApply
-            jobScore
+            jobScore,
+            dateApplied
+            notes {
+                _id
+                noteText
+                dateAdded
+            }
         }
     }
 `;
@@ -45,8 +63,16 @@ export const DELETE_APP = gql`
 export const ADD_NOTE = gql`
     mutation Mutation($noteText: String!, $appId: ID!) {
         addNote(noteText: $noteText, appId: $appId) {
+            _id
             jobTitle
+            jobDescription
+            location
+            status
+            quickApply
+            jobScore
+            dateApplied
             notes {
+                _id
                 noteText
                 dateAdded
             }
@@ -57,10 +83,17 @@ export const ADD_NOTE = gql`
 export const DELETE_NOTE = gql`
     mutation ($noteId: ID!, $appId: ID!) {
         deleteNote(noteId: $noteId, appId: $appId) {
+            _id
             jobTitle
+            jobDescription
+            location
+            status
+            quickApply
+            jobScore
+            dateApplied
             notes {
+                _id
                 noteText
-                dateAdded
             }
         }
     }
