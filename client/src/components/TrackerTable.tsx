@@ -16,10 +16,36 @@ interface jobProp {
   dateApplied: string;
 }
 
+type jobStatusObj = {
+  [key: string]: jobProp[]
+}
+
 const TrackerTable = () => {
   const { data } = useQuery(QUERY_APPS);
   
-  const jobs: jobProp[] = data?.apps || [];
+  let jobs: jobProp[] = data?.apps || [];
+  
+  const filterByStatus = () => {
+    const jobStatusObj: jobStatusObj = {};
+    const statusArr: String[] = [ "first interview", "technical", "phone screen", "preparing", "applied", "rejected" ];
+    jobs.forEach(app => {
+      const { status } = app;
+      if(!jobStatusObj[status]) {
+        jobStatusObj[status] = [app];
+        return;
+      }
+      jobStatusObj[status] = [...jobStatusObj[status], app]
+    })
+    let sortedJobs:jobProp[][] = [];
+    // statusArr.forEach(status => {
+    //   if(jobStatusObj[status]) {
+    //     sortedJobs.push(jobStatusObj[status])
+    //   }
+    // })
+    sortedJobs.flat();
+    return sortedJobs;
+  }
+  console.log(filterByStatus());
 
   return (
     <div className="flex flex-col mx-auto my-8">
