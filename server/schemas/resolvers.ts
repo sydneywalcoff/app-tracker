@@ -32,7 +32,7 @@ const resolvers = {
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
-            const appData = await App.findByIdAndUpdate(_id, args, { new: true});
+            const appData = await App.findByIdAndUpdate(_id, args, { new: true });
             return appData;
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
