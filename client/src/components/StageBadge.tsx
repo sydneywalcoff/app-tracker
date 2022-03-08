@@ -5,37 +5,41 @@ interface StageBadgeProps {
 }
 
 const StageBadge = ({ stage }: StageBadgeProps) => {
-    let color;
+    let bgColorClass, textColorClass;
 
-    switch(stage) {
+
+    switch (stage) {
         case 'applied': {
-            color = 'green';
+            bgColorClass = 'bg-green-100';
+            textColorClass = 'text-green-800'
             break;
         }
         case 'preparing': {
-            color = 'gray';
+            bgColorClass = 'bg-gray-100';
+            textColorClass = 'text-gray-800'
             break;
         }
         case 'rejected': {
-            color = 'red';
+            bgColorClass = 'bg-red-100';
+            textColorClass = 'text-red-800'
             break;
         }
         case 'phone screen': {
-            color = 'blue';
+            bgColorClass = 'bg-blue-100';
+            textColorClass = 'text-blue-800'
             break;
         }
         case 'technical': {
-            color = 'orange'
+            bgColorClass = 'bg-orange-100';
+            textColorClass = 'text-orange-800'
             break;
         }
-        default:{
+        default: {
             break;
         }
     }
-
-    const statusColorClass = `bg-${color}-100 text-${color}-800`;
-    return(
-        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColorClass}`}>{stage}</span>
+    return (
+        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${bgColorClass} ${textColorClass}`}>{stage}</span>
     );
 };
 
