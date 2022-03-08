@@ -20,6 +20,7 @@ const SingleApp = () => {
   });
   const [deleteApp] = useMutation(DELETE_APP);
   const job = data?.app || {};
+  console.log(job)
 
   const handleEdit = () => {
     setModalOpen(!modalOpen);
@@ -52,7 +53,7 @@ const SingleApp = () => {
     );
   }
   return (
-    <section className="p-9 w-screen">
+    <section className="p-9 w-3/4 mx-auto">
       <div className="flex justify-center">
         <div className="px-5 basis-3/4">
           <h1 className="text-4xl font-bold mb-2">{job.jobTitle}</h1>
@@ -78,6 +79,10 @@ const SingleApp = () => {
             </button>
           </div>
           <div>
+            <h4 className="mb-3">
+              <span className="font-bold">updated last: </span>
+              {job.updatedLast}{" "}
+            </h4>
             <h4 className="mb-3">
               <span className="font-bold">location: </span>
               {job.location}{" "}
