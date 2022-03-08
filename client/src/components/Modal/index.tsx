@@ -26,17 +26,13 @@ interface ModalProps {
 const Modal = ({ job, setModalOpen }: ModalProps) => {
     const [editApp] = useMutation(EDIT_APP, {
         update(cache, { data: { editApp } }) {
-            cache.updateQuery({
-                query: QUERY_SINGLE_APP,
-                variables: {
-                    id: job._id
-                }
-            }, ({ app }) => ({
-                app: {
-                    ...app,
-                    notes: [app.notes]
-                }
-            }))
+            try {
+                cache.updateQuery({ query: QUERY_SINGLE_APP, variables: { id: job._id } }, ({ app }) => ({
+                    app
+                }))
+            } catch (e) {
+                console.error(e)
+            }
         }
     });
     const {

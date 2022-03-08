@@ -31,6 +31,7 @@ export const EDIT_APP = gql`
             quickApply
             jobScore,
             dateApplied
+            companyName
             notes {
                 _id
                 noteText
