@@ -27,25 +27,25 @@ const TrackerTable = () => {
   
   const filterByStatus = () => {
     const jobStatusObj: jobStatusObj = {};
-    const statusArr: String[] = [ "first interview", "technical", "phone screen", "preparing", "applied", "rejected" ];
+    const statusArr: string[] = [ "first interview", "technical", "phone screen", "preparing", "applied", "rejected" ];
     jobs.forEach(app => {
       const { status } = app;
       if(!jobStatusObj[status]) {
         jobStatusObj[status] = [app];
         return;
       }
-      jobStatusObj[status] = [...jobStatusObj[status], app]
+      jobStatusObj[status] = [...jobStatusObj[status], app];
+
     })
     let sortedJobs:jobProp[][] = [];
-    // statusArr.forEach(status => {
-    //   if(jobStatusObj[status]) {
-    //     sortedJobs.push(jobStatusObj[status])
-    //   }
-    // })
-    sortedJobs.flat();
-    return sortedJobs;
+    statusArr.forEach(status => {
+      if(jobStatusObj[status]) {
+        sortedJobs.push(jobStatusObj[status])
+      }
+    })
+    return sortedJobs.flat();
   }
-  console.log(filterByStatus());
+  jobs = filterByStatus();
 
   return (
     <div className="flex flex-col mx-auto my-8">
