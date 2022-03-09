@@ -11,9 +11,9 @@ import "./App.css";
 // components
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
-import SingleApp from "./components/SingleApp";
-import TrackerForm from "./components/TrackerForm";
-import TrackerTable from "./components/TrackerTable";
+import SingleApp from "./pages/SingleApp";
+import TrackerForm from "./pages/TrackerForm";
+import TrackerTable from "./pages/TrackerTable";
 
 const cache = new InMemoryCache();
 

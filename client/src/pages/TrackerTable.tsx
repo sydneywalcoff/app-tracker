@@ -4,7 +4,7 @@ import { getJobs } from "../utils/localStorage";
 import { useQuery } from "@apollo/client";
 import { QUERY_APPS } from "../utils/queries";
 
-import StageBadge from "./StageBadge";
+import StageBadge from "../components/StageBadge";
 
 interface jobProp {
   _id: string;

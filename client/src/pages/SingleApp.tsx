@@ -6,9 +6,9 @@ import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_SINGLE_APP } from "../utils/queries";
 import { DELETE_APP } from "../utils/mutations";
 
-import StageBadge from "./StageBadge";
-import Modal from "./Modal";
-import Notes from "./Notes";
+import StageBadge from "../components/StageBadge";
+import Modal from "../components/Modal";
+import Notes from "../components/Notes";
 
 const SingleApp = () => {
   const [modalOpen, setModalOpen] = useState(false);
