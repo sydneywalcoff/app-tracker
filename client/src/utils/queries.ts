@@ -12,6 +12,7 @@ export const QUERY_APPS = gql`
             jobScore
             dateApplied
             companyName
+            lastUpdated
             notes {
                 noteText
                 _id
@@ -33,6 +34,7 @@ export const QUERY_SINGLE_APP = gql`
             jobScore
             dateApplied
             companyName
+            lastUpdated
             notes {
                 noteText
                 _id

@@ -80,7 +80,7 @@ const SingleApp = () => {
           <div>
             <h4 className="mb-3">
               <span className="font-bold">updated last: </span>
-              {job.updatedLast}{" "}
+              {job.lastUpdated}{" "}
             </h4>
             <h4 className="mb-3">
               <span className="font-bold">location: </span>
