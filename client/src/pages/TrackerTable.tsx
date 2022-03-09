@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_APPS } from "../utils/queries";
 
 import StageBadge from "../components/StageBadge";
+import SearchBar from '../components/SearchBar';
 
 interface jobProp {
   _id: string;
@@ -49,6 +50,7 @@ const TrackerTable = () => {
 
   return (
     <div className="flex flex-col mx-auto my-8">
+      <SearchBar  />
       <div className="-my-2 sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
