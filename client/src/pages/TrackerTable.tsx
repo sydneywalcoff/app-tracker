@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getJobs } from "../utils/localStorage";
 import { useQuery } from "@apollo/client";
 import { QUERY_APPS } from "../utils/queries";
+import { formatDate, hasBeenGhosted }  from '../utils/dateFormat'
 
 import StageBadge from "../components/StageBadge";
 import SearchBar from '../components/SearchBar';
@@ -16,6 +17,7 @@ interface jobProp {
   location: string;
   status: string;
   dateApplied: string;
+  lastUpdated: string;
 }
 
 type jobStatusObj = {
@@ -55,7 +57,6 @@ const TrackerTable = () => {
     jobs.filter(job => {
       const {
         jobTitle,
-        status,
         location,
         companyName
       } = job;
@@ -69,11 +70,11 @@ const TrackerTable = () => {
   if(activeApps) {
     let activeApps: Set<jobProp> = new Set();
     jobs.filter(job => {
-      const { status } = job;
-      if(status !== 'rejected') {
+      const { status, lastUpdated } = job;
+      const isGhosted = hasBeenGhosted(lastUpdated);
+      if(status !== 'rejected' && !isGhosted) {
         activeApps.add(job);
       }
-      // lastUpdated is < 2 weeks ago
     })
     jobs = Array.from(activeApps);
   }
