@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, ChangeEvent, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { getJobs } from "../utils/localStorage";
 import { useQuery } from "@apollo/client";
@@ -22,25 +22,25 @@ type jobStatusObj = {
 }
 
 const TrackerTable = () => {
+  const [searchText, setSearchText] = useState<string>('');
   const { data } = useQuery(QUERY_APPS);
-  
   let jobs: jobProp[] = data?.apps || [];
-  
+
   const filterByStatus = () => {
     const jobStatusObj: jobStatusObj = {};
-    const statusArr: string[] = [ "first interview", "technical", "phone screen", "preparing", "applied", "rejected" ];
+    const statusArr: string[] = ["first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
     jobs.forEach(app => {
       const { status } = app;
-      if(!jobStatusObj[status]) {
+      if (!jobStatusObj[status]) {
         jobStatusObj[status] = [app];
         return;
       }
       jobStatusObj[status] = [...jobStatusObj[status], app];
 
     })
-    let sortedJobs:jobProp[][] = [];
+    let sortedJobs: jobProp[][] = [];
     statusArr.forEach(status => {
-      if(jobStatusObj[status]) {
+      if (jobStatusObj[status]) {
         sortedJobs.push(jobStatusObj[status])
       }
     })
@@ -48,12 +48,28 @@ const TrackerTable = () => {
   }
   jobs = filterByStatus();
 
+  if (searchText) {
+    let searchResults: Set<jobProp> = new Set();
+    jobs.filter(job => {
+      const {
+        jobTitle,
+        status,
+        location,
+        companyName
+      } = job;
+      if (companyName.toLowerCase().includes(searchText.toLowerCase()) || location.toLowerCase().includes(searchText.toLowerCase()) || jobTitle.toLowerCase().includes(searchText.toLowerCase())) {
+        searchResults.add(job)
+      }
+    })
+    jobs = Array.from(searchResults)
+  }
+
   return (
-    <div className="flex flex-col mx-auto my-8">
-      <SearchBar  />
+    <div className="flex flex-col mx-auto my-8 min-w-2/3">
+      <SearchBar searchText={searchText} setSearchText={setSearchText} />
       <div className="-my-2 sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div className="py-2 align-middle inline-block  sm:px-6 lg:px-8">
+          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg min-w-full">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -91,7 +107,7 @@ const TrackerTable = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {jobs.map((job: jobProp, i:number) => (
+                {jobs.map((job: jobProp, i: number) => (
                   <tr key={i}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
