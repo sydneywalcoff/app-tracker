@@ -17,7 +17,7 @@ const NavBar = () => {
         // }
     ];
     return (
-        <nav>
+        <nav className="min-w-[11%]">
             <ul className='p-4'>
                 {pageTitles.map((title) => (
                     <li className='m-2 hover:text-xl' key={title.name}><Link to={title.location}>{title.name}</Link></li>
