@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { getJobs } from "../utils/localStorage";
 import { useQuery } from "@apollo/client";
+
 import { QUERY_APPS } from "../utils/queries";
-import { formatDate, hasBeenGhosted }  from '../utils/dateFormat'
+import { hasBeenGhosted }  from '../utils/dateFormat'
 
 import StageBadge from "../components/StageBadge";
 import SearchBar from '../components/SearchBar';
@@ -80,17 +80,17 @@ const TrackerTable = () => {
   }
 
   return (
-    <div className="flex flex-col mx-auto my-8 min-w-2/3">
+    <div className="flex flex-col mx-auto my-8 max-w-[50%]">
       <div className="flex justify-between">
         <SearchBar searchText={searchText} setSearchText={setSearchText} />
         <Filter active={activeApps} setActiveApps={setActiveApps}/>
       </div>
-      <div className="-my-2 sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block  sm:px-6 lg:px-8">
+      <div className="-my-2 sm:-mx-6 lg:-mx-8 min-w-full">
+        <div className="py-2 align-middle inline-block  sm:px-6 lg:px-8 min-w-full">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg min-w-full">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
+              <thead className="bg-gray-50 min-w-full">
+                <tr className="min-w-full">
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -99,7 +99,7 @@ const TrackerTable = () => {
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider "
                   >
                     Position
                   </th>
@@ -134,18 +134,18 @@ const TrackerTable = () => {
                         </p>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4">
                       <div className="text-sm text-gray-900">
                         {job.jobTitle}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 text-sm text-gray-500">
                       {job.companyName}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <StageBadge stage={job.status} />
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-gray-900">
                       {job.location}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
