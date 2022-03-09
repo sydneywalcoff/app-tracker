@@ -213,7 +213,7 @@ const TrackerForm = () => {
                         type="text"
                         name="job-score"
                         id="job-score"
-                        className="my-auto mx-2"
+                        className="mt-1 ml-2 focus:ring-indigo-500 focus:border-indigo-500  shadow-sm sm:text-sm border-gray-300 rounded-md"
                         onBlur={handleChange}
                       />
                     </div>
