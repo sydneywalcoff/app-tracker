@@ -36,6 +36,10 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         type: String,
         default: formatDate()
     },
+    lastUpdated: {
+        type: String,
+        get: date => formatDate()
+    },
     notes: [noteSchema]
 },
 {
@@ -53,6 +57,7 @@ export interface AppDocument extends Document {
     quickApply: boolean,
     jobScore?: number,
     dateApplied: string,
+    lastUpdated: string,
     notes: []
 }
 
