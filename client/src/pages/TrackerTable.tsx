@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, SetStateAction } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { getJobs } from "../utils/localStorage";
 import { useQuery } from "@apollo/client";
@@ -6,6 +6,7 @@ import { QUERY_APPS } from "../utils/queries";
 
 import StageBadge from "../components/StageBadge";
 import SearchBar from '../components/SearchBar';
+import Filter from '../components/Filter';
 
 interface jobProp {
   _id: string;
@@ -23,6 +24,7 @@ type jobStatusObj = {
 
 const TrackerTable = () => {
   const [searchText, setSearchText] = useState<string>('');
+  const [activeApps, setActiveApps] = useState<boolean>(true);
   const { data } = useQuery(QUERY_APPS);
   let jobs: jobProp[] = data?.apps || [];
 
@@ -64,9 +66,24 @@ const TrackerTable = () => {
     jobs = Array.from(searchResults)
   }
 
+  if(activeApps) {
+    let activeApps: Set<jobProp> = new Set();
+    jobs.filter(job => {
+      const { status } = job;
+      if(status !== 'rejected') {
+        activeApps.add(job);
+      }
+      // lastUpdated is < 2 weeks ago
+    })
+    jobs = Array.from(activeApps);
+  }
+
   return (
     <div className="flex flex-col mx-auto my-8 min-w-2/3">
-      <SearchBar searchText={searchText} setSearchText={setSearchText} />
+      <div className="flex justify-between">
+        <SearchBar searchText={searchText} setSearchText={setSearchText} />
+        <Filter active={activeApps} setActiveApps={setActiveApps}/>
+      </div>
       <div className="-my-2 sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block  sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg min-w-full">
