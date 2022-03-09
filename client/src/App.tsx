@@ -8,12 +8,13 @@ import {
 
 import "./App.css";
 
-// components
+// components & pages
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import SingleApp from "./pages/SingleApp";
 import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
+import Stats from './pages/Stats';
 
 const cache = new InMemoryCache();
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/" element={<TrackerForm />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} />
+            <Route path='stats' element={<Stats />} />
           </Routes>
         </section>
       </>
