@@ -39,7 +39,12 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     },
     lastUpdated: {
         type: Date,
-        get: timeStamp => dateFormat(timeStamp),
+        get: timeStamp => {
+            if(!timeStamp) {
+                return ''
+            }
+            return dateFormat(timeStamp)
+        },
     },
     notes: [noteSchema]
 },
