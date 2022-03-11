@@ -35,7 +35,6 @@ const resolvers = {
             const { _id } = args;
             const lastUpdated = Date.now();
             const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated}, { new: true });
-            console.log(appData)
             return appData;
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
