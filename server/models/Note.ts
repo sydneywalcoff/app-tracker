@@ -1,5 +1,5 @@
 import { Schema, Document } from 'mongoose';
-import formatDate from '../utils/dateFormat';
+import dateFormat from '../utils/dateFormat';
 
 const noteSchema = new Schema<NoteDocument>({
     noteText: {
@@ -7,8 +7,9 @@ const noteSchema = new Schema<NoteDocument>({
         required: true
     },
     dateAdded: {
-        type: String,
-        default: formatDate()
+        type: Date,
+        default: Date.now,
+        get: timeStamp => dateFormat(timeStamp)
     }
 },
 {
@@ -19,7 +20,7 @@ const noteSchema = new Schema<NoteDocument>({
 
 export interface NoteDocument extends Document {
     noteText: string,
-    dateAdded: string,
+    dateAdded: Date,
 }
 
 module.exports = noteSchema;

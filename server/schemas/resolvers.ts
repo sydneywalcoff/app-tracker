@@ -27,12 +27,14 @@ const resolvers = {
     },
     Mutation: {
         addApp: async (_: undefined, args: AppDocument) => {
-            const appData = await App.create(args);
+            const lastUpdated = Date.now();
+            const appData = await App.create({...args, lastUpdated});
             return appData;
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
-            const appData = await App.findByIdAndUpdate(_id, args, { new: true });
+            const lastUpdated = Date.now();
+            const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated}, { new: true });
             return appData;
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
@@ -40,19 +42,21 @@ const resolvers = {
             return deletedAppData;
         },
         addNote: async (_: undefined, args: AppIdProps) => {
-            const { appId } = args
+            const { appId } = args;
+            const lastUpdated = Date.now();
             const updatedAppData = await App.findByIdAndUpdate(
                 { _id: appId },
-                { $addToSet: { notes: args } },
+                { $addToSet: { notes: args }, lastUpdated },
                 { new: true }
             );
             return updatedAppData
         },
         deleteNote: async (_: undefined, args: NoteIdProps) => {
             const { appId, noteId } = args;
+            const lastUpdated = Date.now();
             const updatedAppData = await App.findByIdAndUpdate(
                 { _id: appId },
-                { $pull: { notes: { _id: noteId } } },
+                { $pull: { notes: { _id: noteId } }, lastUpdated },
                 { new: true }
             );
             return updatedAppData;
