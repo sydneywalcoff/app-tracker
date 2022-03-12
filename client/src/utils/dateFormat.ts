@@ -95,7 +95,8 @@ const getWeekDates = (
     const thisYear = dateObj.getFullYear();
     const weekDatesArr: string[] = [];
     for (let i = 7; i > 0; i--) {
-        const date = (`${thisMonth} ${todaysDate - i + 1} ${thisYear}`);
+        // plus 2 so that the week starts on Monday
+        const date = (`${thisMonth} ${todaysDate - i + 2} ${thisYear}`);
         weekDatesArr.push(dateFormat(date))
     }
     return weekDatesArr;
