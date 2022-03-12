@@ -1,4 +1,4 @@
-import dateFormat from '../utils/dateFormat';
+import { dateFormat } from '../utils/dateFormat';
 
 interface jobProp {
     _id: string;
