@@ -23,7 +23,7 @@ const addDateSuffix = (date: number): String => {
 
 // function to format a timestamp, accepts the timestamp and an `options` object as parameters
 const dateFormat = (
-    timestamp: number,
+    timestamp: number | string,
     { monthLength = 'short', dateSuffix = true } = {}
 ) => {
     // create month object
@@ -61,13 +61,44 @@ const dateFormat = (
     }
 
     let minutes: number | string = dateObj.getMinutes();
-    if(minutes === 0){ minutes = '00'}
+    if (minutes === 0) { minutes = '00' }
     // set `am` or `pm`
-    const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
+    // const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
 
     const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year}`;
 
     return formattedTimeStamp;
 };
 
-export default dateFormat
+const getWeekDates = (
+    timeStamp: number, {
+        monthLength = 'short'
+    } = {}
+) => {
+    const months: monthObjProps = {
+        0: monthLength === 'short' ? 'Jan' : 'January',
+        1: monthLength === 'short' ? 'Feb' : 'February',
+        2: monthLength === 'short' ? 'Mar' : 'March',
+        3: monthLength === 'short' ? 'Apr' : 'April',
+        4: monthLength === 'short' ? 'May' : 'May',
+        5: monthLength === 'short' ? 'Jun' : 'June',
+        6: monthLength === 'short' ? 'Jul' : 'July',
+        7: monthLength === 'short' ? 'Aug' : 'August',
+        8: monthLength === 'short' ? 'Sep' : 'September',
+        9: monthLength === 'short' ? 'Oct' : 'October',
+        10: monthLength === 'short' ? 'Nov' : 'November',
+        11: monthLength === 'short' ? 'Dec' : 'December'
+    };
+    const dateObj: Date = new Date(timeStamp);
+    const todaysDate = dateObj.getDate();
+    const thisMonth = months[dateObj.getMonth()];
+    const thisYear = dateObj.getFullYear();
+    const weekDatesArr: string[] = [];
+    for (let i = 7; i > 0; i--) {
+        const date = (`${thisMonth} ${todaysDate - i + 1} ${thisYear}`);
+        weekDatesArr.push(dateFormat(date))
+    }
+    return weekDatesArr;
+};
+
+export { dateFormat, getWeekDates }
