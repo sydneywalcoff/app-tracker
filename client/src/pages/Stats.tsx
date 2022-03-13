@@ -12,6 +12,7 @@ interface jobProp {
     jobDescription: string;
     location: string;
     status: string;
+    jobScore: number | null;
     dateApplied: string;
     lastUpdated: string;
 }
