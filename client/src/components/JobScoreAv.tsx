@@ -30,8 +30,8 @@ const JobScoreAv = ({ apps } : JobScoreAvInterface) => {
     let jobScoreAverage: number | string = jobScoreAverageArr.reduce((a,b) => {
         return a + b;
     });
-    jobScoreAverage = (jobScoreAverage/(jobScoreAverageArr.length)).toFixed(2);
-    
+    jobScoreAverage = (jobScoreAverage/(jobScoreAverageArr.length)).toFixed();
+
     let colorClass;
     if(parseInt(jobScoreAverage) >= 70) {
         colorClass = 'text-green-800'
@@ -44,7 +44,7 @@ const JobScoreAv = ({ apps } : JobScoreAvInterface) => {
     return(
         <div className="max-w-sm rounded overflow-hidden shadow-lg flex flex-col align-center p-4 my-4 ">
             <h2 className='text-center'>Job Score Average</h2>
-            <h1 className={`text-center text-6xl ${colorClass}` }>{jobScoreAverage}</h1>
+            <h1 className={`text-center text-6xl ${colorClass}` }>{jobScoreAverage}%</h1>
         </div>
     );
 };
