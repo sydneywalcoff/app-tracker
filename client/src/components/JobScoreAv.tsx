@@ -13,11 +13,11 @@ interface jobProp {
 }
 
 interface JobScoreAvInterface {
-    apps: jobProp[]
+    apps: jobProp[],
+    thisWeek: string[]
 }
 
-const JobScoreAv = ({ apps } : JobScoreAvInterface) => {
-    const thisWeek = getWeekDates(Date.now())
+const JobScoreAv = ({ apps, thisWeek } : JobScoreAvInterface) => {
     const thisWeekApps = apps.filter(app => {
         return thisWeek.includes(app.dateApplied);
     });

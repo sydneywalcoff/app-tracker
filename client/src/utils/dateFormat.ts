@@ -91,12 +91,13 @@ const getWeekDates = (
     };
     const dateObj: Date = new Date(timeStamp);
     const todaysDate = dateObj.getDate();
+    const dayOfWeek = dateObj.getDay() - 1;
     const thisMonth = months[dateObj.getMonth()];
     const thisYear = dateObj.getFullYear();
     const weekDatesArr: string[] = [];
-    for (let i = 7; i > 0; i--) {
-        // plus 2 so that the week starts on Monday
-        const date = (`${thisMonth} ${todaysDate - i + 2} ${thisYear}`);
+    for (let i = 0; i < 7; i++) {
+        let date = (`${thisMonth} ${todaysDate + i - dayOfWeek} ${thisYear}`);
+
         weekDatesArr.push(dateFormat(date))
     }
     return weekDatesArr;
