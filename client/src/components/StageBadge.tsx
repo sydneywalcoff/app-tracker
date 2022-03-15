@@ -34,6 +34,11 @@ const StageBadge = ({ stage }: StageBadgeProps) => {
             textColorClass = 'text-orange-800'
             break;
         }
+        case 'first interview': {
+            bgColorClass = 'bg-purple-100';
+            textColorClass = 'text-purple-800';
+            break;
+        }
         default: {
             break;
         }
