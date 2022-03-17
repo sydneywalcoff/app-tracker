@@ -12,13 +12,20 @@ const typeDefs = gql`
         jobScore: Int
         dateApplied: String
         lastUpdated: String
-        notes: [Note]
+        notes: [Note],
+        questions: [Question]
     }
 
     type Note {
         _id: ID!
         noteText: String!
         dateAdded: String!
+    }
+
+    type Question {
+        _id: ID!
+        questionText: String!
+        answerText: String
     }
 
     type Query {
@@ -32,6 +39,7 @@ const typeDefs = gql`
         deleteApp(_id: ID!) : App
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
+        addQuestion(appId: ID!, questionText: String!) : App
     }
 `;
 

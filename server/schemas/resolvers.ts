@@ -14,6 +14,12 @@ interface NoteIdProps {
     appId: String
 }
 
+interface QuestionProps {
+    appId: String,
+    questionText: String,
+    answerText: String
+}
+
 const resolvers = {
     Query: {
         apps: async () => {
@@ -28,6 +34,7 @@ const resolvers = {
     Mutation: {
         addApp: async (_: undefined, args: AppDocument) => {
             const lastUpdated = Date.now();
+            const questions = ['What is the salary range for this position?', 'What is the rest of the hiring process?'];
             const appData = await App.create({...args, lastUpdated});
             return appData;
         },
@@ -57,6 +64,16 @@ const resolvers = {
             const updatedAppData = await App.findByIdAndUpdate(
                 { _id: appId },
                 { $pull: { notes: { _id: noteId } }, lastUpdated },
+                { new: true }
+            );
+            return updatedAppData;
+        },
+        addQuestion: async(_:undefined, args: QuestionProps) => {
+            const { appId, questionText } = args;
+            const lastUpdated = Date.now();
+            const updatedAppData = await App.findByIdAndUpdate(
+                { _id: appId },
+                { $addToSet: { questions: { questionText } }, lastUpdated },
                 { new: true }
             );
             return updatedAppData;
