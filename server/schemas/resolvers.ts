@@ -38,10 +38,6 @@ const resolvers = {
             const [firstQ, secQ] = initQuestions;
             let appData = await App.create({...args, lastUpdated, questions: [{questionText: firstQ}, {questionText: secQ}]});
             return appData;
-            // const { _id } = appData;
-            // await App.findByIdAndUpdate(_id, { $addToSet: { questions: { questionText: firstQ } } }, { new: true });
-            // const updatedData = await App.findByIdAndUpdate(_id, { $addToSet: { questions: { questionText: secQ } } }, { new: true });
-            // return updatedData;
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
