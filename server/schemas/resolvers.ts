@@ -34,9 +34,14 @@ const resolvers = {
     Mutation: {
         addApp: async (_: undefined, args: AppDocument) => {
             const lastUpdated = Date.now();
-            const questions = ['What is the salary range for this position?', 'What is the rest of the hiring process?'];
-            const appData = await App.create({...args, lastUpdated});
+            const initQuestions = ['What is the salary range for this position?', 'What is the rest of the hiring process?'];
+            const [firstQ, secQ] = initQuestions;
+            let appData = await App.create({...args, lastUpdated, questions: [{questionText: firstQ}, {questionText: secQ}]});
             return appData;
+            // const { _id } = appData;
+            // await App.findByIdAndUpdate(_id, { $addToSet: { questions: { questionText: firstQ } } }, { new: true });
+            // const updatedData = await App.findByIdAndUpdate(_id, { $addToSet: { questions: { questionText: secQ } } }, { new: true });
+            // return updatedData;
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
