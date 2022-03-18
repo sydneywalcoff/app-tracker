@@ -36,13 +36,13 @@ const resolvers = {
             const lastUpdated = Date.now();
             const initQuestions = ['What is the salary range for this position?', 'What is the rest of the hiring process?'];
             const [firstQ, secQ] = initQuestions;
-            let appData = await App.create({...args, lastUpdated, questions: [{questionText: firstQ}, {questionText: secQ}]});
+            const appData = await App.create({ ...args, lastUpdated, questions: [{ questionText: firstQ }, { questionText: secQ }] });
             return appData;
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
             const lastUpdated = Date.now();
-            const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated}, { new: true });
+            const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true });
             return appData;
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
@@ -69,7 +69,7 @@ const resolvers = {
             );
             return updatedAppData;
         },
-        addQuestion: async(_:undefined, args: QuestionProps) => {
+        addQuestion: async (_: undefined, args: QuestionProps) => {
             const { appId, questionText } = args;
             const lastUpdated = Date.now();
             const updatedAppData = await App.findByIdAndUpdate(
