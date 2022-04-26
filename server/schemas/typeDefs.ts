@@ -21,9 +21,18 @@ const typeDefs = gql`
         dateAdded: String!
     }
 
+    type User {
+        _id:ID!
+        username: String!
+        password: String!
+        email: String!
+        apps: [App]
+    }
+
     type Query {
         apps: [App]
         app(_id: ID!): App
+        users: [User]
     }
 
     type Mutation {
@@ -32,6 +41,7 @@ const typeDefs = gql`
         deleteApp(_id: ID!) : App
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
+        addUser(username: String!, password: String!, email: String!): User
     }
 `;
 

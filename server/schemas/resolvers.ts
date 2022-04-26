@@ -1,4 +1,4 @@
-const App = require("../models");
+const { App, User } = require("../models");
 import { AppDocument } from '../models'
 
 interface IdAppProps {
@@ -12,6 +12,12 @@ interface AppIdProps extends AppDocument {
 interface NoteIdProps {
     noteId: String,
     appId: String
+}
+
+interface AddUserProps {
+    username: String,
+    password: String,
+    email: String
 }
 
 const resolvers = {
@@ -60,6 +66,10 @@ const resolvers = {
                 { new: true }
             );
             return updatedAppData;
+        },
+        addUser: async (_:undefined, args: AddUserProps) => {
+            const userData = await User.create(args);
+            return userData;
         }
     }
 };
