@@ -1,4 +1,4 @@
-import { Schema, model, Document, Model } from 'mongoose';
+import { Schema, model, Document, Model, Types } from 'mongoose';
 import { AppDocument } from './App';
 const bcrypt = require('bcrypt');
 const App: AppDocument = require('./App');
@@ -21,7 +21,12 @@ const userSchema = new Schema<UserDocument, Model<UserDocument>>({
         unique: true,
         match: /.+\@.+\..+/
     },
-    apps: []
+    apps: [
+        {
+            type: Types.ObjectId,
+            ref: 'App'
+        }
+    ]
 },
 {
     toJSON: {
