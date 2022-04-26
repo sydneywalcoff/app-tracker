@@ -29,6 +29,10 @@ const resolvers = {
         app: async (_: undefined, { _id }: IdAppProps) => {
             const appData = await App.findById(_id);
             return appData;
+        },
+        users: async () => {
+            const userData = await User.find().select('-__v');
+            return userData;
         }
     },
     Mutation: {
