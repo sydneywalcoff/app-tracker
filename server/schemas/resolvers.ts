@@ -34,15 +34,23 @@ const resolvers = {
             return appData;
         },
         users: async () => {
-            const userData = await User.find().select('-__v');
+            const userData = await User.find().select('-__v -password');
             return userData;
         }
     },
     Mutation: {
-        addApp: async (_: undefined, args: AppDocument) => {
-            const lastUpdated = Date.now();
-            const appData = await App.create({...args, lastUpdated});
-            return appData;
+        addApp: async (_: undefined, args: AppDocument, context) => {
+            if(context.user) {
+                const lastUpdated = Date.now();
+                const appData = await App.create({ ...args, lastUpdated });
+                await User.findByIdAndUpdate(
+                    context.user._id,
+                    { $push: { apps: appData._id} },
+                    { new: true }
+                );
+                return appData;
+            }
+            throw new AuthenticationError('You are not logged in');
         },
         editApp: async (_: undefined, args: AppDocument) => {
             const { _id } = args;
