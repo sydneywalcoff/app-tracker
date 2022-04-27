@@ -35,6 +35,11 @@ const typeDefs = gql`
         users: [User]
     }
 
+    type Auth {
+        token: String
+        user: User
+    }
+
     type Mutation {
         addApp(jobTitle: String!, companyName: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
         editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int, lastUpdated: String) : App
@@ -42,7 +47,7 @@ const typeDefs = gql`
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
         addUser(username: String!, password: String!, email: String!): User
-        login(username: String!, password: String!): User
+        login(username: String!, password: String!): Auth
     }
 `;
 

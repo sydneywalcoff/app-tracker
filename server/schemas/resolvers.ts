@@ -1,7 +1,8 @@
 import { AuthenticationError } from 'apollo-server-express';
 
 const { App, User } = require("../models");
-import { AppDocument } from '../models'
+import { AppDocument } from '../models';
+const { signToken } = require('../utils/auth');
 
 interface IdAppProps {
     _id: String
@@ -80,6 +81,7 @@ const resolvers = {
         login: async (_:undefined, args:AddUserProps) => {
             const { username, password } = args;
             const user = await User.findOne({ username });
+
             if(!user) {
                 throw new AuthenticationError('Wrong credentials')
             }
@@ -87,8 +89,9 @@ const resolvers = {
             if(!isCorrectPassword) {
                 throw new AuthenticationError('Wrong credentials')
             }
+            const token = signToken(user);
 
-            return user;
+            return { user, token };
         }
     }
 };
