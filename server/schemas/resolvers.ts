@@ -1,3 +1,5 @@
+import { AuthenticationError } from 'apollo-server-express';
+
 const { App, User } = require("../models");
 import { AppDocument } from '../models'
 
@@ -74,6 +76,19 @@ const resolvers = {
         addUser: async (_:undefined, args: AddUserProps) => {
             const userData = await User.create(args);
             return userData;
+        },
+        login: async (_:undefined, args:AddUserProps) => {
+            const { username, password } = args;
+            const user = await User.findOne({ username });
+            if(!user) {
+                throw new AuthenticationError('Wrong credentials')
+            }
+            const isCorrectPassword = await user.isCorrectPassword(password);
+            if(!isCorrectPassword) {
+                throw new AuthenticationError('Wrong credentials')
+            }
+
+            return user;
         }
     }
 };

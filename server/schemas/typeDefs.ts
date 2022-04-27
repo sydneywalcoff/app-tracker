@@ -42,6 +42,7 @@ const typeDefs = gql`
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
         addUser(username: String!, password: String!, email: String!): User
+        login(username: String!, password: String!): User
     }
 `;
 
