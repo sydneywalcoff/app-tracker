@@ -76,7 +76,8 @@ const resolvers = {
         },
         addUser: async (_:undefined, args: AddUserProps) => {
             const userData = await User.create(args);
-            return userData;
+            const token = signToken(userData);
+            return { userData, token };
         },
         login: async (_:undefined, args:AddUserProps) => {
             const { username, password } = args;
