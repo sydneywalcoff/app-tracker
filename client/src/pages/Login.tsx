@@ -3,8 +3,7 @@ import { ChangeEvent, useState } from 'react';
 const Login = () => {
     const [loginForm, setLoginForm] = useState({
         username: "",
-        password: '',
-        email: ''
+        password: ''
     })
     const [signupForm, setSignupForm] = useState({
         username: "",
@@ -45,9 +44,9 @@ const Login = () => {
                     <div className="flex flex-col w-1/2 p-5">
                         <h3 className='text-xl text-center'>Login</h3>
                         <form action="#" className="flex flex-col" onSubmit={handleLogin}>
-                            <label htmlFor="loginUsername">Username:</label>
+                            <label htmlFor="username">Username:</label>
                             <input type="text" name="username" className="border border-gray-400" onChange={handleLoginChange}/>
-                            <label htmlFor="email">Password:</label>
+                            <label htmlFor="password">Password:</label>
                             <input type="password" name="password" className="border border-gray-400" onChange={handleLoginChange}/>
                             <button type='submit' className="border border-gray-400 mt-5 w-1/4 mx-auto">login</button>
                         </form>
@@ -59,7 +58,7 @@ const Login = () => {
                             <input type="text" name="email" className="border border-gray-400"  onChange={handleSignupChange} />
                             <label htmlFor="username">Username:</label>
                             <input type="text" name="username" className="border border-gray-400"  onChange={handleSignupChange} />
-                            <label htmlFor="email">Password:</label>
+                            <label htmlFor="password">Password:</label>
                             <input type="password" id="password" name="password" className="border border-gray-400"  onChange={handleSignupChange} />
                             <button type='submit' className="border border-gray-400 mt-5 w-1/4 mx-auto">sign up</button>
                         </form>
