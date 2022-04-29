@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { QUERY_APPS } from "../utils/queries";
-import { hasBeenGhosted }  from '../utils/dateFormat'
+import { hasBeenGhosted }  from '../utils/dateFormat';
+import Auth from '../utils/auth';
 
 import StageBadge from "../components/StageBadge";
 import SearchBar from '../components/SearchBar';
@@ -25,6 +26,11 @@ type jobStatusObj = {
 }
 
 const TrackerTable = () => {
+  const loggedIn = Auth.loggedIn();
+  if(!loggedIn) {
+    window.location.assign('/login')
+  }
+
   const [searchText, setSearchText] = useState<string>('');
   const [activeApps, setActiveApps] = useState<boolean>(true);
   const { data } = useQuery(QUERY_APPS);

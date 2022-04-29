@@ -16,6 +16,7 @@ import NavBar from "./components/NavBar";
 import SingleApp from "./pages/SingleApp";
 import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
+import Login from "./pages/Login";
 
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
@@ -43,7 +44,8 @@ function App() {
         <section className="flex">
           <NavBar />
           <Routes>
-            <Route path="/tracker" element={<TrackerForm />} />
+            <Route path="login" element={<Login />} />
+            <Route path="tracker" element={<TrackerForm />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} />
           </Routes>

@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { getSingleJob } from "../utils/localStorage";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
 import { QUERY_SINGLE_APP } from "../utils/queries";
 import { DELETE_APP } from "../utils/mutations";
+import Auth from '../utils/auth';
 
 import StageBadge from "../components/StageBadge";
 import Modal from "../components/Modal";
 import Notes from "../components/Notes";
 
 const SingleApp = () => {
+  const loggedIn = Auth.loggedIn();
+  if(!loggedIn) {
+    window.location.assign('/login')
+  }
   const [modalOpen, setModalOpen] = useState(false);
   let { jobId } = useParams();
   let { data } = useQuery(QUERY_SINGLE_APP, {

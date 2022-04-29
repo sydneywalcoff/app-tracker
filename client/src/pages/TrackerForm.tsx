@@ -19,7 +19,7 @@ const TrackerForm = () => {
 
   const loggedIn = Auth.loggedIn();
   if(!loggedIn) {
-    window.location.assign('/')
+    window.location.assign('/login')
   }
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
