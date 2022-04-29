@@ -81,15 +81,18 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        deleteNote: async (_: undefined, args: NoteIdProps) => {
-            const { appId, noteId } = args;
-            const lastUpdated = Date.now();
-            const updatedAppData = await App.findByIdAndUpdate(
-                { _id: appId },
-                { $pull: { notes: { _id: noteId } }, lastUpdated },
-                { new: true }
-            );
-            return updatedAppData;
+        deleteNote: async (_: undefined, args: NoteIdProps, context) => {
+            if(context.user) {
+                const { appId, noteId } = args;
+                const lastUpdated = Date.now();
+                const updatedAppData = await App.findByIdAndUpdate(
+                    { _id: appId },
+                    { $pull: { notes: { _id: noteId } }, lastUpdated },
+                    { new: true }
+                );
+                return updatedAppData;
+            }
+            throw new AuthenticationError('You are not logged in');
         },
         addUser: async (_:undefined, args: AddUserProps) => {
             const userData = await User.create(args);
