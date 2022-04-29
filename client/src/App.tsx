@@ -3,8 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider
+  ApolloProvider,
+  createHttpLink
 } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
 
 import "./App.css";
 
@@ -16,10 +18,21 @@ import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
 
 const cache = new InMemoryCache();
+const httpLink = createHttpLink({
+  uri: "/graphql"
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    ...headers,
+    authorization: token ? `Bearer ${token}` : ''
+  }
+})
 
 const client = new ApolloClient({
-  uri: "/graphql",
   cache: cache,
+  link: authLink.concat(httpLink)
 });
 
 function App() {
