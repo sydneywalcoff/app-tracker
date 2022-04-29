@@ -43,7 +43,7 @@ function App() {
         <section className="flex">
           <NavBar />
           <Routes>
-            <Route path="/" element={<TrackerForm />} />
+            <Route path="/tracker" element={<TrackerForm />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} />
           </Routes>

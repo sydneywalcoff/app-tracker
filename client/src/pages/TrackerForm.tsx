@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from "react";
-import { ADD_APP } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
+
+import { ADD_APP } from "../utils/mutations";
+import Auth from '../utils/auth';
 
 const TrackerForm = () => {
   const [formState, setFormState] = useState({
@@ -14,6 +16,11 @@ const TrackerForm = () => {
   const [checkboxState, setCheckboxState] = useState(false);
   const [inputError, setInputError] = useState("");
   const [addApp] = useMutation(ADD_APP);
+
+  const loggedIn = Auth.loggedIn();
+  if(!loggedIn) {
+    window.location.assign('/')
+  }
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
