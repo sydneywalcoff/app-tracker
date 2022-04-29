@@ -61,9 +61,12 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        deleteApp: async (_: undefined, { _id }: IdAppProps) => {
-            const deletedAppData = await App.findOneAndDelete({ _id });
-            return deletedAppData;
+        deleteApp: async (_: undefined, { _id }: IdAppProps, context) => {
+            if(context.user) {
+                const deletedAppData = await App.findOneAndDelete({ _id });
+                return deletedAppData;
+            }
+            throw new AuthenticationError('You are not logged in');
         },
         addNote: async (_: undefined, args: AppIdProps) => {
             const { appId } = args;
