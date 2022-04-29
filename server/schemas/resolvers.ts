@@ -34,7 +34,7 @@ const resolvers = {
             return appData;
         },
         users: async () => {
-            const userData = await User.find().select('-__v -password');
+            const userData = await User.find().select('-__v -password').populate('apps');
             return userData;
         }
     },
@@ -52,11 +52,14 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        editApp: async (_: undefined, args: AppDocument) => {
-            const { _id } = args;
-            const lastUpdated = Date.now();
-            const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated}, { new: true });
-            return appData;
+        editApp: async (_: undefined, args: AppDocument, context) => {
+            if(context.user) {
+                const { _id } = args;
+                const lastUpdated = Date.now();
+                const appData = await App.findByIdAndUpdate(_id, { ...args, lastUpdated}, { new: true });
+                return appData;
+            }
+            throw new AuthenticationError('You are not logged in');
         },
         deleteApp: async (_: undefined, { _id }: IdAppProps) => {
             const deletedAppData = await App.findOneAndDelete({ _id });
