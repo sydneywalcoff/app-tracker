@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { LOGIN } from '../utils/mutations';
+import { LOGIN, SIGNUP } from '../utils/mutations';
 import Auth from '../utils/auth'
 
 const Login = () => {
@@ -14,7 +14,8 @@ const Login = () => {
         password: '',
         email: ''
     })
-    const [login, { error }] = useMutation(LOGIN);
+    const [login] = useMutation(LOGIN);
+    const [addUser] = useMutation(SIGNUP);
 
     const handleLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -46,9 +47,17 @@ const Login = () => {
 
     };
 
-    const handleSignup = (e:ChangeEvent<HTMLFormElement>) => {
+    const handleSignup = async(e:ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(signupForm)
+        try {
+            const { data: { addUser: signupData } } = await addUser({
+                variables: {...signupForm}
+            })
+            Auth.login(signupData.token);
+            window.location.assign('/tracker')
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     return(
@@ -77,7 +86,6 @@ const Login = () => {
                             <input type="password" id="password" name="password" className="border border-gray-400"  onChange={handleSignupChange} />
                             <button type='submit' className="border border-gray-400 mt-5 w-1/4 mx-auto">sign up</button>
                         </form>
-                        
                     </div>
                 </div>
             </div>

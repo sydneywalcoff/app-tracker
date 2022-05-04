@@ -113,3 +113,15 @@ export const LOGIN = gql`
         }
     }
 `;
+
+export const SIGNUP = gql`
+    mutation ($username: String!, $password: String!, $email: String!) {
+        addUser(username: $username, password: $password, email: $email) {
+            token
+            user {
+                _id
+                username
+            }
+        }
+    }
+`;
