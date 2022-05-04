@@ -1,4 +1,8 @@
 import { ChangeEvent, useState } from 'react';
+import { useMutation } from '@apollo/client';
+
+import { LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth'
 
 const Login = () => {
     const [loginForm, setLoginForm] = useState({
@@ -10,6 +14,8 @@ const Login = () => {
         password: '',
         email: ''
     })
+    const [login, { error }] = useMutation(LOGIN);
+
     const handleLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginForm({
@@ -26,9 +32,18 @@ const Login = () => {
         })
     };
 
-    const handleLogin = (e:ChangeEvent<HTMLFormElement>) => {
+    const handleLogin = async (e:ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(loginForm)
+        try {
+            const { data: { login: loginData } } = await login({
+                variables: {...loginForm}
+            })
+            Auth.login(loginData.token);
+            window.location.assign('/tracker')
+        } catch (e) {
+            console.error(e)
+        }
+
     };
 
     const handleSignup = (e:ChangeEvent<HTMLFormElement>) => {

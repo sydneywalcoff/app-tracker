@@ -16,7 +16,6 @@ class AuthService {
         }
         try {
             const decoded: TokenDto = jwt_decode(token);
-            console.log(decoded)
             if(decoded.exp < Date.now() / 1000) {
                 return true;
             } else return false;
