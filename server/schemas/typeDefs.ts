@@ -33,6 +33,7 @@ const typeDefs = gql`
         apps: [App]
         app(_id: ID!): App
         users: [User]
+        me: User
     }
 
     type Auth {
