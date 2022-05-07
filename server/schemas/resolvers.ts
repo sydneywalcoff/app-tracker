@@ -37,12 +37,12 @@ const resolvers = {
             const userData = await User.find().select('-__v -password').populate('apps');
             return userData;
         },
-        me: async (_: undefined, args, { user }) => {
+        myApps: async (_: undefined, args, { user } )=> {
             if(user) {
                 const userData = await User.findOne({ _id: user._id }).select('-__v -password').populate('apps');
-                return userData
+                return userData.apps;
             }
-            throw new AuthenticationError('You are not logged in')
+            throw new AuthenticationError('You are not logged in');
         }
     },
     Mutation: {
