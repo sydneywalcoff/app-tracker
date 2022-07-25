@@ -22,14 +22,12 @@ const cache = new InMemoryCache();
 const httpLink = createHttpLink({
   uri: "/graphql"
 })
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token');
-  return {
-    ...headers,
-    authorization: token ? `Bearer ${token}` : ''
+const token = localStorage.getItem('token');
+const authLink = setContext((request, { headers }) => ({
+  headers: {
+    authorization: token
   }
-})
+}))
 
 const client = new ApolloClient({
   cache: cache,

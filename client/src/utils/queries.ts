@@ -43,3 +43,25 @@ export const QUERY_SINGLE_APP = gql`
         }
     }
 `;
+
+export const QUERY_MY_APPS = gql`
+    query myApps {
+        myApps {
+            _id
+            jobTitle
+            jobDescription
+            status
+            location
+            quickApply
+            jobScore
+            dateApplied
+            companyName
+            lastUpdated
+            notes {
+                noteText
+                _id
+                dateAdded
+            }
+        }
+    }
+`;

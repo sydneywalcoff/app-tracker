@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_APPS } from "../utils/queries";
+import { QUERY_MY_APPS } from "../utils/queries";
 import { hasBeenGhosted }  from '../utils/dateFormat';
 import Auth from '../utils/auth';
 
@@ -33,8 +33,13 @@ const TrackerTable = () => {
 
   const [searchText, setSearchText] = useState<string>('');
   const [activeApps, setActiveApps] = useState<boolean>(true);
-  const { data } = useQuery(QUERY_APPS);
-  let jobs: jobProp[] = data?.apps || [];
+  const { loading, error, data } = useQuery(QUERY_MY_APPS);
+  let jobs: jobProp[] =  data?.myApps || [];
+  if(loading) {
+    return (
+      <h1>loading....</h1>
+    )
+  }
 
   const filterByStatus = () => {
     const jobStatusObj: jobStatusObj = {};

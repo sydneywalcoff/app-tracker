@@ -31,7 +31,7 @@ class AuthService {
 
     login(token: string) {
         localStorage.setItem('token', token);
-        window.location.assign('/');
+        window.location.assign('/applied');
     }
 
     logout() {
