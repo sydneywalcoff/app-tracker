@@ -12,11 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/luxon": "^3.0.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
     "@types/express": "^4.17.13",
-    "@types/luxon": "^2.0.9",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^17.0.21",
     "apollo-server-express": "^3.6.3",

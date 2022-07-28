@@ -47,7 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/luxon": "^2.0.9",
+    "@types/luxon": "^2.4.0",
     "@types/react-router-dom": "^5.3.3",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
