@@ -35,6 +35,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+  if(window.location.pathname === '/') {
+    window.location.assign('/login');
+  }
   return (
     <ApolloProvider client={client}>
       <>
