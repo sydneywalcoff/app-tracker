@@ -18,6 +18,8 @@ import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
 import Login from "./pages/Login";
 
+import Auth from './utils/auth';
+
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
   uri: "/graphql"
@@ -35,8 +37,14 @@ const client = new ApolloClient({
 });
 
 function App() {
-  if(window.location.pathname === '/') {
-    window.location.assign('/login');
+  if(window.location.pathname==='/') {
+
+    if(Auth.loggedIn()) {
+      window.location.assign('/applied');
+    }
+    if(!Auth.loggedIn()) {
+      window.location.assign('/login');
+    }
   }
   return (
     <ApolloProvider client={client}>

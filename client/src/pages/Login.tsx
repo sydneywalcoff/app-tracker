@@ -5,6 +5,8 @@ import { LOGIN, SIGNUP } from '../utils/mutations';
 import Auth from '../utils/auth'
 
 const Login = () => {
+    if(Auth.loggedIn()) window.location.assign('/applied')
+
     const [loginForm, setLoginForm] = useState({
         username: "",
         password: ''
