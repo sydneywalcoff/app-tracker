@@ -10,3 +10,8 @@ header {
 nav {
     border-right: 1px solid black;
 }
+
+.navbar {
+    min-width: 151px;
+    min-height: calc(100vh - 100px)
+}

@@ -22,7 +22,7 @@ const NavBar = () => {
         Auth.logout();
     }
     return (
-        <nav className="min-w-[11%] min-h-screen">
+        <nav className="navbar">
             <ul className='p-4'>
                 {loggedIn ? (
                     <li className='m-2 hover:text-xl font-bold' onClick={logout}>log out.</li>
