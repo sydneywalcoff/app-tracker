@@ -91,7 +91,7 @@ const TrackerTable = () => {
   }
 
   return (
-    <div className="flex flex-col mx-auto my-8 max-w-[50%]">
+    <div className="flex flex-col mx-auto my-8 max-w-[66%]">
       <div className="flex justify-between">
         <SearchBar searchText={searchText} setSearchText={setSearchText} />
         <Filter active={activeApps} setActiveApps={setActiveApps}/>

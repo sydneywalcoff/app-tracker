@@ -64,7 +64,7 @@ const Login = () => {
 
     return(
         <section className="flex flex-col w-full">
-            <div className="flex flex-col p-5 m-auto w-[65%] h-[65%] border border-gray-600">
+            <div className="flex flex-col p-5 m-auto w-[65%] min-h-[65%] border border-gray-600">
                 <h2 className="text-center p-5 text-3xl">Login / Sign Up!</h2>
                 <div className="flex pt-5">
                     <div className="flex flex-col w-1/2 p-5">
