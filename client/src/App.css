@@ -12,6 +12,6 @@ nav {
 }
 
 .navbar {
-    min-width: 151px;
+    min-width: 175px;
     min-height: calc(100vh - 100px)
 }
