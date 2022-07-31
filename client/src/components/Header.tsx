@@ -1,9 +1,10 @@
 import React from 'react';
+import Logo from './Logo';
 
 const Header = () => {
     return(
-        <header className="flex justify-center py-8">
-            <h1 className="text-3xl font-bold">App Tracker</h1>
+        <header className="flex p-4 md:p-9">
+            <Logo />
         </header>
     );
 }
