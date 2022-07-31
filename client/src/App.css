@@ -4,19 +4,3 @@
 body {
     font-family: 'Kanit';
 }
-
-/* header */
-header {
-    background-color: #55AEE0;
-    color: white;
-}
-
-/* nav */
-nav {
-    border-right: 1px solid black;
-}
-
-.navbar {
-    min-width: 175px;
-    min-height: calc(100vh - 100px)
-}

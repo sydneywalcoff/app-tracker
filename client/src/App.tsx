@@ -12,7 +12,6 @@ import "./App.css";
 
 // components
 import Header from "./components/Header";
-import NavBar from "./components/NavBar";
 import SingleApp from "./pages/SingleApp";
 import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
@@ -51,7 +50,6 @@ function App() {
       <>
         <Header />
         <section className="flex">
-          <NavBar />
           <Routes>
             {/* <Route path="login" element={<Login />} />
             <Route path="tracker" element={<TrackerForm />} />

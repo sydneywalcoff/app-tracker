@@ -2,13 +2,13 @@ import './assets/style.css'
 
 interface buttonPropsI {
     text: string;
-    color?: string;
+    classes?: string;
 }
 
-const Button = ({ text, color }: buttonPropsI) => {
+const Button = ({ text, classes }: buttonPropsI) => {
     
     return(
-        <button className={`py-1 px-4 ${color}`}>{text}</button>
+        <button className={`px-4 ${classes}`}>{text}</button>
     );
 };
 
