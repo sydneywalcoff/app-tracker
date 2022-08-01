@@ -23,6 +23,7 @@ const NavBar = () => {
 
     const logout = () => {
         Auth.logout();
+        window.location.assign('/login')
     }
     return (
         <nav>
@@ -32,9 +33,9 @@ const NavBar = () => {
                 ))}
                 
                 {loggedIn ? (
-                    <Button text="Log out" classes='ml-3' />
+                    <Button text="Log out" classes='ml-3' onClick={logout}/>
                 ) : (
-                    <Button text="Login" classes='ml-3' />
+                    <Button text="Login" classes='ml-3' onClick={() => window.location.assign('/login')} />
                 )}
             </ul>
         </nav>
