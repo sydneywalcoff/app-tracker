@@ -6,7 +6,11 @@ import Auth from '../../utils/auth';
 
 import './assets/style.css';
 
-const NavBar = () => {
+interface navBarIProps {
+    isMobileMenuOpen: boolean;
+}
+
+const NavBar = ({isMobileMenuOpen}: navBarIProps) => {
     const loggedIn = Auth.loggedIn();
     const pageTitles = [
         { 
@@ -28,7 +32,7 @@ const NavBar = () => {
         window.location.assign('/login')
     }
     return (
-        <nav className='absolute right-0 hidden md:relative'>
+        <nav className={`absolute right-0 ${isMobileMenuOpen ? 'block' :'hidden'} md:block md:relative`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
                 {pageTitles.map((title) => (
                     <li className='m-2' key={title.name}><Link to={title.location}>{title.name}</Link></li>

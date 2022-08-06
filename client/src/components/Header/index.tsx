@@ -18,7 +18,7 @@ const Header = () => {
         <header className="flex p-4 justify-between">
             <Logo />
             <img src={ isMobileMenuOpen ? OpenNavMenu : ClosedNavMenu } className='mobileNavMenu' onClick={navMenuClickHandler} alt=''/>
-            <NavBar />
+            <NavBar isMobileMenuOpen={isMobileMenuOpen}/>
         </header>
     );
 }
