@@ -1,0 +1,19 @@
+header {
+    background-color: #55AEE0;
+    color: white;
+    font-size: 25px;
+}
+
+header img {
+    max-height: 45px;
+}
+
+header .mobileNavMenu {
+    display: none;
+}
+
+@media screen and (max-width: 767.98px) {
+    header .mobileNavMenu {
+        display: block;
+    }
+}
