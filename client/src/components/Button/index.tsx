@@ -4,13 +4,14 @@ import './assets/style.css'
 interface buttonPropsI {
     text: string;
     classes?: string;
-    onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+    type: "button" | "submit" | "reset" | undefined;
 }
 
-const Button = ({ text, classes, onClick }: buttonPropsI) => {
+const Button = ({ text, classes, onClick, type }: buttonPropsI) => {
     
     return(
-        <button className={`px-4 ${classes}`} onClick={onClick}>{text}</button>
+        <button className={`px-4 ${classes}`} onClick={onClick} type={type}>{text}</button>
     );
 };
 

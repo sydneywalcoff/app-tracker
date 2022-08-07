@@ -39,9 +39,9 @@ const NavBar = ({isMobileMenuOpen}: navBarIProps) => {
                 ))}
                 
                 {loggedIn ? (
-                    <Button text="Log out" classes='ml-0 mt-4 md:mt-0 md:ml-3' onClick={logout}/>
+                    <Button type="button" text="Log out" classes='ml-0 mt-4 md:mt-0 md:ml-3' onClick={logout}/>
                 ) : (
-                    <Button text="Login" classes='ml-0 mt-4 md:mt-0 md:ml-3' onClick={() => window.location.assign('/login')} />
+                    <Button type="button" text="Login" classes='ml-0 mt-4 md:mt-0 md:ml-3' onClick={() => window.location.assign('/login')} />
                 )}
             </ul>
         </nav>

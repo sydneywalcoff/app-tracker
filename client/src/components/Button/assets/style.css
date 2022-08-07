@@ -1,11 +1,11 @@
-button {
+button[type='button'],button[type='submit'] {
     background-color: #fff;
     color: #55AEE0;
     border-radius: 22px;
     max-height: 45px;
 }
 
-button.blue {
+button[type='button'].blue, button[type='submit'].blue  {
     background-color: #55AEE0;
     color: #fff;
 }

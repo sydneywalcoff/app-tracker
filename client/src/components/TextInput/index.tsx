@@ -1,8 +1,15 @@
-const TextInput = () => {
+import { ChangeEventHandler } from 'react';
+
+interface TextInputPropsI {
+    labelTitle: string;
+    onChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const TextInput = ({labelTitle, onChange }: TextInputPropsI) => {
     return (
         <>
-            <label htmlFor=""></label>
-            <input type="text" />
+            <label htmlFor={labelTitle}>{labelTitle}:</label>
+            <input type="text" name={labelTitle} className="" onChange={onChange}/>
         </>
     );
 }
