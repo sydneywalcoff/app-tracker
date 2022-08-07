@@ -70,25 +70,22 @@ const Login = () => {
 
     return(
         <ContentContainer className='gray-bg p-5'>
-            <div className="flex">
+            <div className="flex justify-around">
                 <div className="login p-5">
-                    <h2 className='text-xl text-center'>Login</h2>
+                    <h2 className='text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
                         <TextInput onChange={handleLoginChange} labelTitle='username'/>
                         <TextInput onChange={handleLoginChange} labelTitle='password'/>
                         <Button text="login" type="submit" classes="blue"/>
                     </form>
                 </div>
-                <div className="signup w-1/2 p-5">
-                    <h2 className='text-xl text-center'>Signup</h2>
+                <div className="signup p-5">
+                    <h2 className='text-center'>Signup</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleSignup}>
-                        <label htmlFor="email">Email:</label>
-                        <input type="text" name="email" className="border border-gray-400"  onChange={handleSignupChange} />
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" name="username" className="border border-gray-400"  onChange={handleSignupChange} />
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" name="password" className="border border-gray-400"  onChange={handleSignupChange} />
-                        <button type='submit' className="border border-gray-400 mt-5 w-1/4 mx-auto">sign up</button>
+                        <TextInput labelTitle='email' onChange={handleSignupChange} />
+                        <TextInput labelTitle='username' onChange={handleSignupChange} />
+                        <TextInput labelTitle='password' onChange={handleSignupChange} />
+                        <Button text="signup" type="submit" classes="blue" />
                     </form>
                 </div>
             </div>

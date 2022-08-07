@@ -11,7 +11,7 @@ const TextInput = ({labelTitle, onChange }: TextInputPropsI) => {
     return (
         <>
             <label htmlFor={labelTitle}>{labelTitle}:</label>
-            <input type={labelTitle === 'password' ? 'password' : 'text'} name={labelTitle} className="" onChange={onChange}/>
+            <input type={labelTitle === 'password' ? 'password' : 'text'} name={labelTitle} className="drop-shadow-md" onChange={onChange}/>
         </>
     );
 }

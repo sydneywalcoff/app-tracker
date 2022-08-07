@@ -1,3 +1,7 @@
 .contentContainer .login h2, .contentContainer .signup h2 {
     font-size: 30px;
 }
+
+.login button, .signup button {
+    margin: 15px 0;
+}
