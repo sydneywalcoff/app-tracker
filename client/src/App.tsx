@@ -49,7 +49,7 @@ function App() {
     <ApolloProvider client={client}>
       <>
         <Header />
-        <section className="flex">
+        <section className="main">
           <Routes>
             <Route path="login" element={<Login />} />
             {/* <Route path="tracker" element={<TrackerForm />} />
