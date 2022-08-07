@@ -51,8 +51,8 @@ function App() {
         <Header />
         <section className="flex">
           <Routes>
-            {/* <Route path="login" element={<Login />} />
-            <Route path="tracker" element={<TrackerForm />} />
+            <Route path="login" element={<Login />} />
+            {/* <Route path="tracker" element={<TrackerForm />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> */}
           </Routes>

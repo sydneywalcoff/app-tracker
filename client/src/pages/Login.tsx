@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 import { LOGIN, SIGNUP } from '../utils/mutations';
 import Auth from '../utils/auth'
 
+import ContentContainer from '../components/ContentContainer';
+
 const Login = () => {
     if(Auth.loggedIn()) window.location.assign('/applied')
 
@@ -63,7 +65,7 @@ const Login = () => {
     };
 
     return(
-        <section className="flex flex-col w-full">
+        <ContentContainer className={'gray-bg'}>
             <div className="flex flex-col p-5 m-auto w-[65%] min-h-[65%] border border-gray-600">
                 <h2 className="text-center p-5 text-3xl">Login / Sign Up!</h2>
                 <div className="flex pt-5">
@@ -91,7 +93,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </ContentContainer>
     )
 };
 

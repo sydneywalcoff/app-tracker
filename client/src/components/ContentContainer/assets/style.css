@@ -1,0 +1,10 @@
+.contentContainer {
+    width: 80%; 
+    margin: 50px auto;
+    min-height: 80%;
+    border-radius: 25px;
+}
+
+.gray-bg {
+    background-color: #EAEBEC;
+}
