@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { LOGIN, SIGNUP } from '../utils/mutations';
-import Auth from '../utils/auth'
+import { LOGIN, SIGNUP } from '../../utils/mutations';
+import Auth from '../../utils/auth'
 
-import ContentContainer from '../components/ContentContainer';
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
+import ContentContainer from '../../components/ContentContainer';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+
+import './assets/style.css';
 
 const Login = () => {
     if(Auth.loggedIn()) window.location.assign('/applied')
@@ -69,8 +71,8 @@ const Login = () => {
     return(
         <ContentContainer className='gray-bg p-5'>
             <div className="flex">
-                <div className="login w-1/2 p-5">
-                    <h3 className='text-xl text-center'>Login</h3>
+                <div className="login p-5">
+                    <h2 className='text-xl text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
                         <TextInput onChange={handleLoginChange} labelTitle='username'/>
                         <TextInput onChange={handleLoginChange} labelTitle='password'/>
@@ -78,7 +80,7 @@ const Login = () => {
                     </form>
                 </div>
                 <div className="signup w-1/2 p-5">
-                    <h3 className='text-xl text-center'>Signup</h3>
+                    <h2 className='text-xl text-center'>Signup</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleSignup}>
                         <label htmlFor="email">Email:</label>
                         <input type="text" name="email" className="border border-gray-400"  onChange={handleSignupChange} />
