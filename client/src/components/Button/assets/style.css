@@ -4,6 +4,7 @@ button[type='button'],button[type='submit'] {
     border-radius: 22px;
     max-height: 65px;
     max-width: 190px;
+    width: 100%;
 }
 
 button[type='button'].blue, button[type='submit'].blue  {
