@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 
 import './assets/style.css';
 
-const Login = () => {
+const LoginPage = () => {
     if(Auth.loggedIn()) window.location.assign('/applied')
 
     const [loginForm, setLoginForm] = useState({
@@ -93,4 +93,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default LoginPage;

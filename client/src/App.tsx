@@ -15,7 +15,7 @@ import Header from "./components/Header";
 import SingleApp from "./pages/SingleApp";
 import TrackerForm from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
-import Login from "./pages/Login";
+import LoginPage from "./pages/Login";
 
 import Auth from './utils/auth';
 
@@ -51,7 +51,7 @@ function App() {
         <Header />
         <section className="main">
           <Routes>
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<LoginPage />} />
             {/* <Route path="tracker" element={<TrackerForm />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> */}
