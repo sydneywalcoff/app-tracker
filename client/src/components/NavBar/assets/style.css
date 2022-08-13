@@ -4,7 +4,7 @@
         color: #333;
         height: calc(100vh - 77px);
         background-color: #CAECFF;
-        width: 166px;
+        width: 170px;
     }
 
     header nav ul {
@@ -13,7 +13,7 @@
     }
 
     header nav ul button {
-        max-width: 122px;
+        max-width: 122px !important;
         align-self: flex-end;
     }
 }
