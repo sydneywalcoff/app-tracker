@@ -4,8 +4,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
-import TextInput from "../../components/TextInput";
 import ContentContainer from "../../components/ContentContainer";
+import TextInput from "../../components/TextInput";
 
 const TrackerFormPage = () => {
     const [formState, setFormState] = useState({
