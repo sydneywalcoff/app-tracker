@@ -2,7 +2,8 @@ button[type='button'],button[type='submit'] {
     background-color: #fff;
     color: #55AEE0;
     border-radius: 22px;
-    max-height: 45px;
+    max-height: 65px;
+    max-width: 190px;
 }
 
 button[type='button'].blue, button[type='submit'].blue  {

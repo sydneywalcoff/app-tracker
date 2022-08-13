@@ -11,7 +11,7 @@ interface buttonPropsI {
 const Button = ({ text, classes, onClick, type }: buttonPropsI) => {
     
     return(
-        <button className={`px-4 ${classes}`} onClick={onClick} type={type}>{text}</button>
+        <button className={`px-4 py-2 ${classes}`} onClick={onClick} type={type}>{text}</button>
     );
 };
 
