@@ -76,7 +76,7 @@ const Login = () => {
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
                         <TextInput onChange={handleLoginChange} labelTitle='username'/>
                         <TextInput onChange={handleLoginChange} labelTitle='password'/>
-                        <Button text="login" type="submit" classes="blue"/>
+                        <Button text="login" type="submit" classes="blue mx-auto"/>
                     </form>
                 </div>
                 <div className="signup p-5">
@@ -85,7 +85,7 @@ const Login = () => {
                         <TextInput labelTitle='email' onChange={handleSignupChange} />
                         <TextInput labelTitle='username' onChange={handleSignupChange} />
                         <TextInput labelTitle='password' onChange={handleSignupChange} />
-                        <Button text="signup" type="submit" classes="blue" />
+                        <Button text="signup" type="submit" classes="blue mx-auto" />
                     </form>
                 </div>
             </div>
