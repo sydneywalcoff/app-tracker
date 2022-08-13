@@ -85,7 +85,7 @@ const Login = () => {
                         <TextInput labelTitle='email' onChange={handleSignupChange} />
                         <TextInput labelTitle='username' onChange={handleSignupChange} />
                         <TextInput labelTitle='password' onChange={handleSignupChange} />
-                        <Button text="signup" type="submit" classes="blue mx-auto" />
+                        <Button text="signup" type="submit" classes="blue" />
                     </form>
                 </div>
             </div>
