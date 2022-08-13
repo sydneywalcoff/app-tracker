@@ -6,14 +6,9 @@
     font-size: 30px;
     margin-bottom: 15px;
 }
-.login form {
-    max-height: 258px;
-    height: 100%;
-}
-.signup button {
-    margin: 15px auto;
-}
 
-.login button {
-    margin-top: auto;
+@media screen and (min-width: 767.98px) {
+    .login form {
+        height: 244px;
+    }
 }

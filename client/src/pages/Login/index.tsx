@@ -70,13 +70,13 @@ const Login = () => {
 
     return(
         <ContentContainer className='gray-bg p-5'>
-            <div className="flex justify-around">
+            <div className="flex flex-col items-center md:items-start md:justify-around md:flex-row">
                 <div className="login p-5">
                     <h2 className='text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
                         <TextInput onChange={handleLoginChange} labelTitle='username'/>
                         <TextInput onChange={handleLoginChange} labelTitle='password'/>
-                        <Button text="login" type="submit" classes="blue mx-auto"/>
+                        <Button text="login" type="submit" classes="blue mx-auto mt-4 md:mt-auto"/>
                     </form>
                 </div>
                 <div className="signup p-5">
@@ -85,7 +85,7 @@ const Login = () => {
                         <TextInput labelTitle='email' onChange={handleSignupChange} />
                         <TextInput labelTitle='username' onChange={handleSignupChange} />
                         <TextInput labelTitle='password' onChange={handleSignupChange} />
-                        <Button text="signup" type="submit" classes="blue" />
+                        <Button text="signup" type="submit" classes="blue mx-auto mt-4 md:mt-auto" />
                     </form>
                 </div>
             </div>
