@@ -1,8 +1,19 @@
-.contentContainer .login h2, .contentContainer .signup h2 {
+.login, .signup {
+    max-width: 350px;
+    width: 100%;
+}
+.login h2, .signup h2 {
     font-size: 30px;
     margin-bottom: 15px;
 }
-
-.login button, .signup button {
+.login form {
+    max-height: 258px;
+    height: 100%;
+}
+.signup button {
     margin: 15px 0;
+}
+
+.login button {
+    margin-top: auto;
 }
