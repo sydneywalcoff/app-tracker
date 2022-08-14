@@ -8,3 +8,7 @@
     width: auto;
     margin-left: auto;
 }
+
+.tracker label {
+    padding-left: .5em;
+}

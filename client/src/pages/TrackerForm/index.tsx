@@ -104,7 +104,7 @@ const TrackerFormPage = () => {
 
     return (
         <ContentContainer>
-            <div className="flex-col p-6 mx-auto tracker">
+            <div className="flex-col tracker">
                 <div className="mt-10 sm:mt-0">
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="md:col-span-1">
@@ -136,7 +136,7 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-4">
+                                            <div className="col-span-6 sm:col-span-4 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="location"
