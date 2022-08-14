@@ -1,4 +1,10 @@
-form {
+.form {
     background-color: var(--light-blue);
     border-radius: 25px;
+}
+
+.tracker button {
+    font-size: 22px;
+    width: auto;
+    margin-left: auto;
 }

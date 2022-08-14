@@ -7,6 +7,7 @@ import Auth from '../../utils/auth';
 import ContentContainer from "../../components/ContentContainer";
 import TextInput from "../../components/TextInput";
 import TextArea from "../../components/TextArea";
+import Button from '../../components/Button';
 
 import './assets/style.css';
 
@@ -103,7 +104,7 @@ const TrackerFormPage = () => {
 
     return (
         <ContentContainer>
-            <div className="flex-col p-6 mx-auto">
+            <div className="flex-col p-6 mx-auto tracker">
                 <div className="mt-10 sm:mt-0">
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="md:col-span-1">
@@ -116,10 +117,10 @@ const TrackerFormPage = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="mt-5 md:mt-0 md:col-span-2">
+                        <div className="mt-5 md:mt-0 md:col-span-2 form">
                             <form action="#" onSubmit={handleSubmit}>
-                                <div className="shadow overflow-hidden sm:rounded-md">
-                                    <div className="px-4 py-5 sm:p-6">
+                                <div className=" overflow-hidden sm:rounded-md">
+                                    <div className="px-4 py-5 sm:p-6 flex flex-col shadow">
                                         <div className="grid grid-cols-6 gap-6">
                                             <div className="col-span-6 sm:col-span-3">
                                                 <TextInput 
@@ -187,14 +188,7 @@ const TrackerFormPage = () => {
                                         {inputError && (
                                             <p className="text-red-700 mt-2">{inputError}</p>
                                         )}
-                                    </div>
-                                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                        <button
-                                            type="submit"
-                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        >
-                                            Save
-                                        </button>
+                                        <Button text="Save" type="submit"/>
                                     </div>
                                 </div>
                             </form>
