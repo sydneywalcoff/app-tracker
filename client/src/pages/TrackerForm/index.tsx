@@ -6,6 +6,7 @@ import Auth from '../../utils/auth';
 
 import ContentContainer from "../../components/ContentContainer";
 import TextInput from "../../components/TextInput";
+import TextArea from "../../components/TextArea";
 
 const TrackerFormPage = () => {
     const [formState, setFormState] = useState({
@@ -159,19 +160,7 @@ const TrackerFormPage = () => {
                                                 </div>
 
                                                 <div className="col-span-6">
-                                                    <label
-                                                        htmlFor="job-description"
-                                                        className="block text-sm font-medium text-gray-700"
-                                                    >
-                                                        Job Description
-                                                    </label>
-                                                    <textarea
-                                                        name="job-description"
-                                                        rows={5}
-                                                        id="job-description"
-                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                        onBlur={handleChange}
-                                                    />
+                                                    <TextArea onChange={handleChange} labelText="job description"/>
                                                 </div>
 
                                                 <div className="col-span-6 inline-flex align-items">
@@ -212,9 +201,7 @@ const TrackerFormPage = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-
-                </div>
+                {/* How to Use Section */}
             </>
         </ContentContainer>
     );
