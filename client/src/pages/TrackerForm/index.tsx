@@ -144,6 +144,13 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
 
+                                            <div className="col-span-6 sm:col-span-4 flex-col flex">
+                                                <TextInput 
+                                                    onChange={handleChange} 
+                                                    labelTitle="jobScan Score"
+                                                />
+                                            </div>
+
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label
                                                     htmlFor="stage"
@@ -168,10 +175,6 @@ const TrackerFormPage = () => {
 
                                             <div className="col-span-6 inline-flex align-items">
                                                <Checkbox onChange={handleCheckboxChange}/>
-                                                <TextInput 
-                                                    onChange={handleChange} 
-                                                    labelTitle="jobScan Score"
-                                                />
                                             </div>
                                         </div>
                                         {inputError && (
