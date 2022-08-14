@@ -8,6 +8,7 @@ import ContentContainer from "../../components/ContentContainer";
 import TextInput from "../../components/TextInput";
 import TextArea from "../../components/TextArea";
 import Button from '../../components/Button';
+import Checkbox from "../../components/Checkbox";
 
 import './assets/style.css';
 
@@ -166,19 +167,7 @@ const TrackerFormPage = () => {
                                             </div>
 
                                             <div className="col-span-6 inline-flex align-items">
-                                                <label
-                                                    htmlFor="quick-apply"
-                                                    className="block text-sm font-medium text-gray-700"
-                                                >
-                                                    Quick Apply?
-                                                </label>
-                                                <input
-                                                    type="checkbox"
-                                                    name="quick-apply"
-                                                    id="quick-apply"
-                                                    className="my-auto mx-2"
-                                                    onChange={handleCheckboxChange}
-                                                />
+                                               <Checkbox onChange={handleCheckboxChange}/>
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="jobScan Score"
