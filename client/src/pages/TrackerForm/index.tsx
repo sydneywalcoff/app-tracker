@@ -123,28 +123,28 @@ const TrackerFormPage = () => {
                                 <div className=" overflow-hidden sm:rounded-md">
                                     <div className="px-4 py-5 sm:p-6 flex flex-col shadow">
                                         <div className="grid grid-cols-6 gap-6">
-                                            <div className="col-span-6 sm:col-span-3">
+                                            <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="job title"
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-3">
+                                            <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="company name"
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-4 flex-col flex">
+                                            <div className="col-span-6 sm:col-span-3 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="location"
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-4 flex-col flex">
+                                            <div className="col-span-6 sm:col-span-3 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
                                                     labelTitle="jobScan Score"

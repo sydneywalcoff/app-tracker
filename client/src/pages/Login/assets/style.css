@@ -7,6 +7,10 @@
     margin-bottom: 15px;
 }
 
+.login input, .signup input {
+    margin-bottom:20px;
+}
+
 @media screen and (min-width: 767.98px) {
     .login form {
         height: 292px;
