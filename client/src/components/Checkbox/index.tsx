@@ -4,9 +4,10 @@ import './assets/style.css';
 
 interface CheckboxPropsI {
     onChange: ChangeEventHandler<HTMLInputElement>
+    classes?: string;
 }
 
-const Checkbox = ({onChange}: CheckboxPropsI) => {
+const Checkbox = ({onChange, classes}: CheckboxPropsI) => {
     return(
         <div className="checkbox-div">
             <label
@@ -15,7 +16,7 @@ const Checkbox = ({onChange}: CheckboxPropsI) => {
             >
                 Quick Apply?
             </label>
-            <span className="checkbox ml-2 drop-shadow-md"></span>
+            <span className={`checkbox drop-shadow-md ${classes ? classes : ''}`}></span>
             <input
                 type="checkbox"
                 name="quick-apply"

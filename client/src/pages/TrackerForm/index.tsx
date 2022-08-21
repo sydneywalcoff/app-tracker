@@ -174,7 +174,7 @@ const TrackerFormPage = () => {
                                             </div>
 
                                             <div className="col-span-6 inline-flex align-items">
-                                               <Checkbox onChange={handleCheckboxChange}/>
+                                               <Checkbox onChange={handleCheckboxChange} classes="ml-3"/>
                                             </div>
                                         </div>
                                         {inputError && (
