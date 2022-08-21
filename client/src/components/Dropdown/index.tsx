@@ -1,5 +1,7 @@
 import { ChangeEventHandler } from "react";
 
+import './assets/style.css';
+
 interface DropdownPropsI {
     onChange: ChangeEventHandler<HTMLSelectElement>
 }
