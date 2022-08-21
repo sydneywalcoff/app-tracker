@@ -13,7 +13,7 @@ const TextArea = ({onChange, labelText, classes }: TextAreaPropsI) => {
         <>
             <label
                 htmlFor="job-description"
-                className="block text-sm font-medium text-gray-700"
+                className="block font-medium text-gray-700"
             >
                 {labelText}
             </label>
