@@ -9,6 +9,7 @@ import TextInput from "../../components/TextInput";
 import TextArea from "../../components/TextArea";
 import Button from '../../components/Button';
 import Checkbox from "../../components/Checkbox";
+import Dropdown from "../../components/Dropdown";
 
 import './assets/style.css';
 
@@ -152,21 +153,7 @@ const TrackerFormPage = () => {
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3">
-                                                <label
-                                                    htmlFor="stage"
-                                                    className="block text-sm font-medium text-gray-700"
-                                                >
-                                                    Stage
-                                                </label>
-                                                <select
-                                                    id="stage"
-                                                    name="stage"
-                                                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    onBlur={handleChange}
-                                                >
-                                                    <option value="preparing">Preparing</option>
-                                                    <option value="applied">Applied</option>
-                                                </select>
+                                               <Dropdown onChange={handleChange} />
                                             </div>
 
                                             <div className="col-span-6">
