@@ -8,6 +8,7 @@ interface CheckboxPropsI {
 }
 
 const Checkbox = ({onChange, classes}: CheckboxPropsI) => {
+    
     return(
         <div className="checkbox-div">
             <label
@@ -16,13 +17,13 @@ const Checkbox = ({onChange, classes}: CheckboxPropsI) => {
             >
                 Quick Apply?
             </label>
-            <span className={`checkbox drop-shadow-md ${classes ? classes : ''}`}></span>
             <input
                 type="checkbox"
                 name="quick-apply"
                 id="quick-apply"
                 onChange={onChange}
             />
+            <span className={`checkbox-custom drop-shadow-md ${classes ? classes : ''}`}></span>
         </div>
     )
 };
