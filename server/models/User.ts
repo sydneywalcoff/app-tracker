@@ -48,6 +48,11 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
+userSchema.methods.updatePassword = async function (newPassword) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(newPassword, saltRounds);
+    this.save();
+}
 
 export interface UserDocument extends Document {
     username: String,

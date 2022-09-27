@@ -20,7 +20,8 @@ interface NoteIdProps {
 interface AddUserProps {
     username: String,
     password: String,
-    email: String
+    email: String,
+    newPassword?: String,
 }
 
 const resolvers = {
@@ -34,7 +35,7 @@ const resolvers = {
             return appData;
         },
         users: async () => {
-            const userData = await User.find().select('-__v -password').populate('apps');
+            const userData = await User.find().populate('apps');
             return userData;
         },
         myApps: async (_: undefined, args, { user } )=> {
@@ -120,7 +121,20 @@ const resolvers = {
             const token = signToken(user);
 
             return { user, token };
-        }
+        },
+        forgotPassword: async (_:undefined, args: AddUserProps) => {
+            const { username, email, newPassword } = args;
+            const user = await User.findOne({ username });
+
+            if(!user || user.email !== email) {
+                throw new AuthenticationError('No user by that name')
+            }
+            await User.findOneAndUpdate(
+                { _id: user.id }, 
+                { password: newPassword }
+            );
+            await user.updatePassword(newPassword);
+        },
     }
 };
 
