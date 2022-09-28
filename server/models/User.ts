@@ -50,7 +50,8 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 userSchema.methods.updatePassword = async function (newPassword) {
     const saltRounds = 10;
-    this.password = await bcrypt.hash(newPassword, saltRounds);
+    const hashword = await bcrypt.hash(newPassword, saltRounds);
+    this.password = hashword
     this.save();
 }
 

@@ -125,15 +125,15 @@ const resolvers = {
         forgotPassword: async (_:undefined, args: AddUserProps) => {
             const { username, email, newPassword } = args;
             const user = await User.findOne({ username });
-
             if(!user || user.email !== email) {
                 throw new AuthenticationError('No user by that name')
             }
-            await User.findOneAndUpdate(
+            let password = newPassword;
+            const updatedUser = await User.findOneAndUpdate(
                 { _id: user.id }, 
-                { password: newPassword }
+                { password }
             );
-            await user.updatePassword(newPassword);
+            await updatedUser.updatePassword(password);
         },
     }
 };
