@@ -91,10 +91,10 @@ const TrackerFormPage = () => {
             default:
                 break;
         }
-        if (!value.length) {
-            setInputError(`${inputName} is required!`);
-            return;
-        }
+        // if (!value.length) {
+        //     setInputError(`${inputName} is required!`);
+        //     return;
+        // }
         if (name === "jobScore") {
             const scoreNum = parseInt(value, 10);
             setFormState({ ...formState, [name]: scoreNum });
@@ -108,20 +108,39 @@ const TrackerFormPage = () => {
         <ContentContainer>
             <div className="flex-col tracker">
                 <div className="mt-10 sm:mt-0">
-                    <div className="md:grid md:grid-cols-3 md:gap-6">
-                        <div className="md:col-span-1">
-                            <div className="px-4 sm:px-0">
-                                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                                    Job Information
-                                </h3>
-                                <p className="mt-1 text-sm text-gray-600">
-                                    Use as much info as possible. All fields are required.
-                                </p>
+                    <div className="flex">
+                        <div className="how-to">
+                            <h1>How to Use</h1>
+                            <div className="use-list-container">
+                                <div className="use-tip">
+                                    <h2 className="use-title">Basic Info</h2>
+                                    <div className="use-answer"></div>
+                                </div>
+                                <div className="use-tip">
+                                    <h2 className="use-title">Location</h2>
+                                    <div className="use-answer"></div>
+                                </div>
+                                <div className="use-tip">
+                                    <h2 className="use-title">Stage</h2>
+                                    <div className="use-answer"></div>
+                                </div>
+                                <div className="use-tip">
+                                    <h2 className="use-title">JobScan Score</h2>
+                                    <div className="use-answer"></div>
+                                </div>
+                                <div className="use-tip">
+                                    <h2 className="use-title">Job Description</h2>
+                                    <div className="use-answer"></div>
+                                </div>
+                                <div className="use-tip">
+                                    <h2 className="use-title">Quick Apply</h2>
+                                    <div className="use-answer"></div>
+                                </div>
                             </div>
                         </div>
-                        <div className="mt-5 md:mt-0 md:col-span-2 form">
+                        <div className="mt-5 md:mt-0 form">
                             <form action="#" onSubmit={handleSubmit}>
-                                <div className=" overflow-hidden sm:rounded-md">
+                                <div className="overflow-hidden sm:rounded-md">
                                     <div className="px-4 py-5 sm:p-6 flex flex-col shadow">
                                         <div className="grid grid-cols-6 gap-6">
                                             <div className="col-span-6 sm:col-span-3 flex flex-col">

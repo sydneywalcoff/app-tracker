@@ -4,10 +4,19 @@
     --blue: #55AEE0;
     --light-blue: #CAECFF;
     --white: #fff;
+    --gray: #EAEBEC;
 }
 
 /* universal styles */
 body {
     font-family: 'Kanit';
     color: #333;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 35px;
 }
