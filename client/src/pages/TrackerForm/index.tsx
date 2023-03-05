@@ -138,7 +138,8 @@ const TrackerFormPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-5 md:mt-0 form-container">
+                        <div className="form-container">
+                            <h1>The Tracker</h1>
                             <form action="#" className="form" onSubmit={handleSubmit}>
                                 <div className="overflow-hidden sm:rounded-md">
                                     <div className="px-4 py-5 sm:p-6 flex flex-col shadow">
