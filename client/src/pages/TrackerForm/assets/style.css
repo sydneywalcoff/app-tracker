@@ -1,7 +1,6 @@
 .form {
     background-color: var(--light-blue);
     border-radius: 25px;
-    width: 65%;
 }
 .tracker button {
     font-size: 22px;

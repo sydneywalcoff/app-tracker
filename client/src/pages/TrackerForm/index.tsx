@@ -138,8 +138,8 @@ const TrackerFormPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-5 md:mt-0 form">
-                            <form action="#" onSubmit={handleSubmit}>
+                        <div className="mt-5 md:mt-0">
+                            <form action="#" className="form" onSubmit={handleSubmit}>
                                 <div className="overflow-hidden sm:rounded-md">
                                     <div className="px-4 py-5 sm:p-6 flex flex-col shadow">
                                         <div className="grid grid-cols-6 gap-6">
@@ -179,14 +179,14 @@ const TrackerFormPage = () => {
                                                 <TextArea onChange={handleChange} labelText="job description"/>
                                             </div>
 
-                                            <div className="col-span-6 inline-flex align-items">
+                                            <div className="col-span-6 sm:col-span-3 inline-flex align-items">
                                                <Checkbox onChange={handleCheckboxChange} classes="ml-3"/>
                                             </div>
+                                            <div className="col-span-6 sm:col-span-3 inline-flex "><Button text="Save" type="submit"/></div>
                                         </div>
                                         {inputError && (
                                             <p className="text-red-700 mt-2">{inputError}</p>
                                         )}
-                                        <Button text="Save" type="submit"/>
                                     </div>
                                 </div>
                             </form>
