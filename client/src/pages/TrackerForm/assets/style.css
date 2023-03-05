@@ -45,3 +45,28 @@
 .tracker .form-container {
     width: 100%;
 }
+
+@media screen and (max-width: 960px) {
+    .tracker .flex {
+        flex-direction: column;
+    }
+    .tracker .form-container {
+        order: 1;
+    }
+    .tracker .how-to {
+        order: 2;
+        margin-right: 0;
+        margin-top: 30px;
+        width: 100%;
+    }
+    .tracker .how-to h1 {
+        font-size: 35px;
+    }
+    .tracker .use-list-container {
+        max-width: 75%;
+        margin: 0 auto;
+    }
+    .tracker .use-list-container .use-tip h2 {
+        font-size: 25px;
+    }
+}
