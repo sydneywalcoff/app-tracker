@@ -12,7 +12,7 @@
 }
 .tracker .how-to {
     margin-right: 75px;
-    width: 50%;
+    width: 65%;
 }
 .tracker .how-to h1 {
     font-weight: 600;
@@ -40,4 +40,8 @@
 }
 .tracker .use-list-container .use-tip h2 {
     font-size: 35px;
+}
+
+.tracker .form-container {
+    width: 100%;
 }
