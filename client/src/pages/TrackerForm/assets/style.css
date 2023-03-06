@@ -1,6 +1,7 @@
 .form {
     background-color: var(--light-blue);
     border-radius: 25px;
+    height: 100%;
 }
 .tracker button {
     font-size: 22px;
@@ -39,7 +40,7 @@
     border-radius: 0 0 15px 15px;
 }
 .tracker .use-list-container .use-tip h2 {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .tracker .form-container {
