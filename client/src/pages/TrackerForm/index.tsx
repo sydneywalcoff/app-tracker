@@ -67,23 +67,18 @@ const TrackerFormPage = () => {
             | ChangeEvent<HTMLSelectElement>
     ) => {
         let { name, value } = e.target;
-        let inputName = name.charAt(0).toUpperCase() + name.slice(1);
         switch (name) {
             case "job-title":
                 name = "jobTitle";
-                inputName = "Job title";
                 break;
             case "company-name":
                 name = "companyName";
-                inputName = "Company name";
                 break;
             case "job-description":
                 name = "jobDescription";
-                inputName = "Job description";
                 break;
             case "job-score":
                 name = "jobScore";
-                inputName = "Job Score";
                 break;
             case "stage":
                 name = "status";
@@ -147,14 +142,14 @@ const TrackerFormPage = () => {
                                             <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="job title"
+                                                    labelTitle="job-title"
                                                 />
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="company name"
+                                                    labelTitle="company-name"
                                                 />
                                             </div>
 
@@ -168,7 +163,7 @@ const TrackerFormPage = () => {
                                             <div className="col-span-6 sm:col-span-3 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="jobScan Score"
+                                                    labelTitle="job-score"
                                                 />
                                             </div>
 
@@ -177,7 +172,7 @@ const TrackerFormPage = () => {
                                             </div>
 
                                             <div className="col-span-6">
-                                                <TextArea onChange={handleChange} labelText="job description"/>
+                                                <TextArea onChange={handleChange} labelText="job-description"/>
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 inline-flex align-items">
@@ -195,8 +190,6 @@ const TrackerFormPage = () => {
                     </div>
                 </div>
             </div>
-            {/* How to Use Section */}
-            
         </ContentContainer>
     );
 };
