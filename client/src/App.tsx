@@ -49,7 +49,7 @@ function App() {
     <ApolloProvider client={client}>
       <>
         <Header />
-        <section className="main">
+        <section className="main relative">
           <Routes>
             <Route path="login" element={<LoginPage />} />
             <Route path="tracker" element={<TrackerFormPage />} />
