@@ -142,28 +142,32 @@ const TrackerFormPage = () => {
                                             <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="job-title"
+                                                    name="job-title"
+                                                    labelTitle="Job title"
                                                 />
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="company-name"
+                                                    name="company-name"
+                                                    labelTitle="Company name"
                                                 />
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="location"
+                                                    name="location"
+                                                    labelTitle="Location"
                                                 />
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 flex-col flex">
                                                 <TextInput 
                                                     onChange={handleChange} 
-                                                    labelTitle="job-score"
+                                                    name="job-score"
+                                                    labelTitle="JobScan score"
                                                 />
                                             </div>
 
@@ -172,7 +176,7 @@ const TrackerFormPage = () => {
                                             </div>
 
                                             <div className="col-span-6">
-                                                <TextArea onChange={handleChange} labelText="job-description"/>
+                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description"/>
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3 inline-flex align-items">

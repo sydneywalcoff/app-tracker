@@ -54,7 +54,7 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="tracker" element={<TrackerFormPage />} />
             <Route path="applied" element={<TrackerTable />} />
-            {/* <Route path="applied/:jobId" element={<SingleApp />} />  */}
+            <Route path="applied/:jobId" element={<SingleApp />} /> 
           </Routes>
         </section>
       </>

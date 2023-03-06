@@ -6,22 +6,23 @@ interface TextAreaPropsI {
     onChange: ChangeEventHandler<HTMLTextAreaElement>
     labelText: String;
     classes?: String;
+    name?: string;
 }
 
-const TextArea = ({onChange, labelText, classes }: TextAreaPropsI) => {
+const TextArea = ({onChange, labelText, name, classes }: TextAreaPropsI) => {
     return (
         <>
             <label
-                htmlFor="job-description"
+                htmlFor={name}
                 className="block font-medium text-gray-700"
             >
                 {labelText}
             </label>
             <textarea
-                name="job-description"
+                name={name}
                 rows={5}
-                id="job-description"
-                className={`mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full drop-shadow-md ${classes}`}
+                id={name}
+                className={`mt-1 py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full drop-shadow-md ${classes}`}
                 onChange={onChange}
             />
         </>
