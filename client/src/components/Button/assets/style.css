@@ -5,11 +5,6 @@ button[type='button'],button[type='submit'] {
     max-width: 190px;
     width: 100%;
 }
-
-button[type='button'].primary, button[type='submit'].primary  {
-    color: #55AEE0;
-    background-color: #fff;
-}
 button[type='button'].blue, button[type='submit'].blue  {
     background-color: #55AEE0;
     color: #fff;
