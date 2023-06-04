@@ -3,16 +3,17 @@ import { ChangeEventHandler } from 'react';
 import './assets/style.css';
 
 interface TextInputPropsI {
-    labelTitle: string;
+    labelTitle?: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
-    name?: string;
+    name: string;
 }
 
-const TextInput = ({labelTitle, onChange, name }: TextInputPropsI) => {
+const TextInput = ({ labelTitle, onChange, name }: TextInputPropsI) => {
+    const styledName = labelTitle ? labelTitle : name;
     return (
         <>
-            <label htmlFor={labelTitle}>{labelTitle}:</label>
-            <input type={labelTitle === 'password' ? 'password' : 'text'} name={name} className="drop-shadow-md p-2" onChange={onChange}/>
+            <label htmlFor={name}>{styledName}:</label>
+            <input type={name === 'password' ? 'password' : 'text'} name={name} className="drop-shadow-md p-2" onChange={onChange}/>
         </>
     );
 }

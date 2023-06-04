@@ -74,17 +74,17 @@ const LoginPage = () => {
                 <div className="login p-5">
                     <h2 className='text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
-                        <TextInput onChange={handleLoginChange} labelTitle='username'/>
-                        <TextInput onChange={handleLoginChange} labelTitle='password'/>
+                        <TextInput onChange={handleLoginChange} name='username'/>
+                        <TextInput onChange={handleLoginChange} name='password'/>
                         <Button text="login" type="submit" classes="blue mx-auto mt-4 md:mt-auto"/>
                     </form>
                 </div>
                 <div className="signup p-5">
                     <h2 className='text-center'>Signup</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleSignup}>
-                        <TextInput labelTitle='email' onChange={handleSignupChange} />
-                        <TextInput labelTitle='username' onChange={handleSignupChange} />
-                        <TextInput labelTitle='password' onChange={handleSignupChange} />
+                        <TextInput name='email' onChange={handleSignupChange} />
+                        <TextInput name='username' onChange={handleSignupChange} />
+                        <TextInput name='password' onChange={handleSignupChange} />
                         <Button text="signup" type="submit" classes="blue mx-auto mt-4 md:mt-auto" />
                     </form>
                 </div>
