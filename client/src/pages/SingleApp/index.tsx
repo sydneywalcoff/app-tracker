@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
-import { QUERY_SINGLE_APP } from "../utils/queries";
-import { DELETE_APP } from "../utils/mutations";
-import Auth from '../utils/auth';
+import { QUERY_SINGLE_APP } from "../../utils/queries";
+import { DELETE_APP } from "../../utils/mutations";
+import Auth from '../../utils/auth';
 
-import StageBadge from "../components/StageBadge";
-import Modal from "../components/Modal";
-import Notes from "../components/Notes";
+import StageBadge from "../../components/StageBadge";
+import Modal from "../../components/Modal";
+import Notes from "../../components/Notes";
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -69,14 +69,14 @@ const SingleApp = () => {
             <button
               type="button"
               onClick={handleEdit}
-              className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="edit-btn inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Edit
             </button>
             <button
               type="button"
               onClick={handleDelete}
-              className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              className="delete-btn inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
               Delete
             </button>

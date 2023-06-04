@@ -1,13 +1,21 @@
 button[type='button'],button[type='submit'] {
-    background-color: #fff;
-    color: #55AEE0;
+    cursor: pointer;
     border-radius: 22px;
     max-height: 65px;
     max-width: 190px;
     width: 100%;
 }
 
+button[type='button'].primary, button[type='submit'].primary  {
+    color: #55AEE0;
+    background-color: #fff;
+}
 button[type='button'].blue, button[type='submit'].blue  {
     background-color: #55AEE0;
+    color: #fff;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
     color: #fff;
 }
