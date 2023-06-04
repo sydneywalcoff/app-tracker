@@ -16,4 +16,6 @@
         max-width: 122px !important;
         align-self: flex-end;
     }
+
+    header nav a.active { font-weight: 700; }
 }

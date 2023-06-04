@@ -10,16 +10,16 @@ interface navBarIProps {
     isMobileMenuOpen: boolean;
 }
 
-const NavBar = ({isMobileMenuOpen}: navBarIProps) => {
+const NavBar = ({ isMobileMenuOpen }: navBarIProps) => {
     const loggedIn = Auth.loggedIn();
     const pageTitles = [
-        { 
+        {
             name: 'Track.',
-            location: '/tracker' 
+            location: '/tracker',
         },
-        { 
+        {
             name: 'Applied.',
-            location: '/applied'
+            location: '/applied',
         },
         // {
         //     name: 'stats.',
@@ -27,19 +27,21 @@ const NavBar = ({isMobileMenuOpen}: navBarIProps) => {
         // }
     ];
 
+
     const logout = () => {
         Auth.logout();
         window.location.assign('/login')
     }
+
     return (
-        <nav className={`absolute right-0 ${isMobileMenuOpen ? 'block' :'hidden'} md:block md:relative`}>
+        <nav className={`absolute right-0 ${isMobileMenuOpen ? 'block' : 'hidden'} md:block md:relative`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
-                {pageTitles.map((title) => (
+                {pageTitles.map((title, index) => (
                     <li className='m-2' key={title.name}><Link to={title.location}>{title.name}</Link></li>
                 ))}
-                
+
                 {loggedIn ? (
-                    <Button type="button" text="Log out" classes='primary ml-0 mt-4 md:mt-0 md:ml-3 text-gray-900 bg-white' onClick={logout}/>
+                    <Button type="button" text="Log out" classes='primary ml-0 mt-4 md:mt-0 md:ml-3 text-gray-900 bg-white' onClick={logout} />
                 ) : (
                     <Button type="button" text="Login" classes='primary ml-0 mt-4 md:mt-0 md:ml-3 text-gray-900 bg-white' onClick={() => window.location.assign('/login')} />
                 )}
