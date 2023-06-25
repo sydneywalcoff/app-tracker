@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap');
 
 :root {
-    --blue: rgb(30, 58, 138);
-    --light-blue: #CAECFF;
+    --blue: #1E3A8A;
+    --light-blue: #DBEAFE;
     --white: #fff;
-    --gray: #EAEBEC;
+    --gray: #F3F4F6;
+    --primary-text-color: #333;
 }
 
 /* universal styles */
 body {
     font-family: 'Kanit', sans-serif;
-    color: #333;
+    color: var(--primary-text-color);
 }
 
 h1 {
