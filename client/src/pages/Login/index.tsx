@@ -69,14 +69,14 @@ const LoginPage = () => {
     };
 
     return(
-        <ContentContainer className='gray-bg p-5'>
+        <ContentContainer className='gray-bg'>
             <div className="flex flex-col items-center md:items-start md:justify-around md:flex-row">
                 <div className="login p-5">
                     <h2 className='text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
                         <TextInput onChange={handleLoginChange} name='username'/>
                         <TextInput onChange={handleLoginChange} name='password'/>
-                        <Button text="login" type="submit" classes="blue mx-auto mt-4 md:mt-auto"/>
+                        <Button text="login" type="submit" classes="blue mx-auto mt-4"/>
                     </form>
                 </div>
                 <div className="signup p-5">
@@ -85,7 +85,7 @@ const LoginPage = () => {
                         <TextInput name='email' onChange={handleSignupChange} />
                         <TextInput name='username' onChange={handleSignupChange} />
                         <TextInput name='password' onChange={handleSignupChange} />
-                        <Button text="signup" type="submit" classes="blue mx-auto mt-4 md:mt-auto" />
+                        <Button text="signup" type="submit" classes="blue mx-auto mt-4" />
                     </form>
                 </div>
             </div>
