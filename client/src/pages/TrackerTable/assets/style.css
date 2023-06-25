@@ -1,0 +1,12 @@
+h1, p {
+    text-align: center;
+}
+
+p {
+    font-size: 23px;
+    margin-top: 15px;
+}
+
+p a {
+    text-decoration: underline;
+}
