@@ -8,9 +8,9 @@ interface ContentContainerPropsI {
 
 const ContentContainer = ({children, className}: ContentContainerPropsI) => {
     return(
-        <section className={`contentContainer ${className ? className : ''}`}>
+        <div className={`contentContainer ${className ? className : ''}`}>
             {children}
-        </section>
+        </div>
     );
 };
 
