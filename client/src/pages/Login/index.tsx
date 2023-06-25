@@ -59,7 +59,7 @@ const LoginPage = () => {
             window.location.assign('/tracker')
         } catch (e) {
             console.error(e);
-            notify(`${e}`);
+            notify(`${e} Please try again!`);
         }
 
     };
@@ -74,7 +74,7 @@ const LoginPage = () => {
             window.location.assign('/tracker')
         } catch (e) {
             console.error(e);
-            notify(`${e}`);
+            notify(`${e} Please try again!`);
         }
     };
 
