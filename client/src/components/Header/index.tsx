@@ -15,7 +15,7 @@ const Header = () => {
     }
 
     return(
-        <header className="flex text-white bg-blue-900 p-4 justify-between drop-shadow-md">
+        <header className="flex text-white p-4 justify-between drop-shadow-md">
             <Logo />
             <img src={ isMobileMenuOpen ? OpenNavMenu : ClosedNavMenu } className='mobileNavMenu' onClick={navMenuClickHandler} alt=''/>
             <NavBar isMobileMenuOpen={isMobileMenuOpen}/>

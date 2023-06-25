@@ -1,5 +1,6 @@
 header {
     font-size: 25px;
+    background-color: var(--blue);
 }
 
 header img {
