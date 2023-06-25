@@ -20,3 +20,12 @@ h1 {
 h2 {
     font-size: 35px;
 }
+
+
+/* general toast styles */
+.Toastify__toast-container {
+    width: 90%;
+}
+.Toastify__close-button {
+    align-self: center;
+}

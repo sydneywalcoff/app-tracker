@@ -1,4 +1,5 @@
-button[type='button'],button[type='submit'] {
+button[type='button']:not(.Toastify__close-button),
+button[type='submit']:not(.Toastify__close-button) {
     cursor: pointer;
     border-radius: 22px;
     max-height: 65px;
