@@ -15,10 +15,12 @@ const Header = () => {
     }
 
     return(
-        <header className="flex text-white p-4 justify-between drop-shadow-md">
-            <Logo />
-            <img src={ isMobileMenuOpen ? OpenNavMenu : ClosedNavMenu } className='mobileNavMenu' onClick={navMenuClickHandler} alt=''/>
-            <NavBar isMobileMenuOpen={isMobileMenuOpen}/>
+        <header className="drop-shadow-md">
+            <div className="content flex text-white p-4 justify-between">
+                <Logo />
+                <img src={ isMobileMenuOpen ? OpenNavMenu : ClosedNavMenu } className='mobileNavMenu' onClick={navMenuClickHandler} alt=''/>
+                <NavBar isMobileMenuOpen={isMobileMenuOpen}/>
+            </div>
         </header>
     );
 }
