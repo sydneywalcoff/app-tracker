@@ -7,6 +7,8 @@ import {
   createHttpLink
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 
@@ -49,6 +51,7 @@ function App() {
     <ApolloProvider client={client}>
       <>
         <Header />
+        <ToastContainer />
         <section className="main relative">
           <Routes>
             <Route path="login" element={<LoginPage />} />

@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import { LOGIN, SIGNUP } from '../../utils/mutations';
 import Auth from '../../utils/auth'
@@ -11,6 +12,7 @@ import Button from '../../components/Button';
 import './assets/style.css';
 
 const LoginPage = () => {
+    const notify = () => toast('oh no :(');
     if (Auth.loggedIn()) window.location.assign('/applied');
 
     const [loginForm, setLoginForm] = useState({
@@ -51,6 +53,7 @@ const LoginPage = () => {
             window.location.assign('/tracker')
         } catch (e) {
             console.error(e);
+            notify();
         }
 
     };
@@ -65,6 +68,7 @@ const LoginPage = () => {
             window.location.assign('/tracker')
         } catch (e) {
             console.error(e);
+            notify();
         }
     };
 
