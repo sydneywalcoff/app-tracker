@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 import './assets/style.css';
 
 const LoginPage = () => {
-    if(Auth.loggedIn()) window.location.assign('/applied')
+    if (Auth.loggedIn()) window.location.assign('/applied');
 
     const [loginForm, setLoginForm] = useState({
         username: "",
@@ -41,25 +41,25 @@ const LoginPage = () => {
         })
     };
 
-    const handleLogin = async (e:ChangeEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const { data: { login: loginData } } = await login({
-                variables: {...loginForm}
+                variables: { ...loginForm }
             })
             Auth.login(loginData.token);
             window.location.assign('/tracker')
         } catch (e) {
-            console.error(e)
+            console.error(e);
         }
 
     };
 
-    const handleSignup = async(e:ChangeEvent<HTMLFormElement>) => {
+    const handleSignup = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const { data: { addUser: signupData } } = await addUser({
-                variables: {...signupForm}
+                variables: { ...signupForm }
             })
             Auth.login(signupData.token);
             window.location.assign('/tracker')
@@ -68,15 +68,15 @@ const LoginPage = () => {
         }
     };
 
-    return(
+    return (
         <ContentContainer className='gray-bg'>
             <div className="flex flex-col items-center md:items-start md:justify-around md:flex-row">
                 <div className="login p-5">
                     <h2 className='text-center'>Login</h2>
                     <form action="#" className="flex flex-col" onSubmit={handleLogin}>
-                        <TextInput onChange={handleLoginChange} name='username'/>
-                        <TextInput onChange={handleLoginChange} name='password'/>
-                        <Button text="login" type="submit" classes="blue mx-auto mt-4"/>
+                        <TextInput onChange={handleLoginChange} name='username' />
+                        <TextInput onChange={handleLoginChange} name='password' />
+                        <Button text="login" type="submit" classes="blue mx-auto mt-4" />
                     </form>
                 </div>
                 <div className="signup p-5">
