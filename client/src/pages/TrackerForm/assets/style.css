@@ -1,7 +1,6 @@
 .form {
     background-color: var(--light-blue);
-    border-radius: 25px;
-    height: 100%;
+    border-radius: 12px;
 }
 .tracker button {
     font-size: 22px;
@@ -45,6 +44,7 @@
 
 .tracker .form-container {
     width: 100%;
+    align-items: flex-end;
 }
 .tracker .form-container h1 {
     display: none;

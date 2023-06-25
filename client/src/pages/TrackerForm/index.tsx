@@ -133,7 +133,7 @@ const TrackerFormPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="form-container">
+                        <div className="form-container flex">
                             <h1>The Tracker</h1>
                             <form action="#" className="form" onSubmit={handleSubmit}>
                                 <div className="overflow-hidden sm:rounded-md">
