@@ -11,10 +11,10 @@
 .tracker label {
     padding-left: .5em;
 }
-.tracker .how-to {
+/* .tracker .how-to {
     margin-right: 75px;
     width: 65%;
-}
+} */
 .tracker h1 {
     font-weight: 600;
     text-align: center;
