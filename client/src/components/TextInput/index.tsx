@@ -11,10 +11,7 @@ interface TextInputPropsI {
 const TextInput = ({ labelTitle, onChange, name }: TextInputPropsI) => {
     const styledName = labelTitle ? labelTitle : name;
     return (
-        <>
-            <label htmlFor={name}>{styledName}:</label>
-            <input type={name === 'password' ? 'password' : 'text'} name={name} className="drop-shadow-md p-2" onChange={onChange}/>
-        </>
+        <input type={name === 'password' ? 'password' : 'text'} name={name} className="drop-shadow-md p-2" onChange={onChange} placeholder={styledName} />
     );
 }
 
