@@ -152,7 +152,9 @@ const TrackerFormPage = () => {
                                                 <div className="col-span-6 sm:col-span-3 inline-flex align-items">
                                                     <Checkbox onChange={handleCheckboxChange} classes="ml-3" />
                                                 </div>
-                                                <div className="col-span-6 sm:col-span-3 inline-flex "><Button text="Save" classes="primary" type="submit" /></div>
+                                                <div className="col-span-6 sm:col-span-3 inline-flex">
+                                                    <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                                </div>
                                             </div>
                                             {inputError && (
                                                 <p className="text-red-700 mt-2">{inputError}</p>
