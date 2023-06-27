@@ -6,27 +6,20 @@ import Auth from '../../utils/auth';
 
 import './assets/style.css';
 
-interface navBarIProps {
-    isMobileMenuOpen: boolean;
+interface pageRoutingObj {
+    name: string;
+    location: string;
 }
 
-const NavBar = ({ isMobileMenuOpen }: navBarIProps) => {
-    const loggedIn = Auth.loggedIn();
-    const pageTitles = [
-        {
-            name: 'Track.',
-            location: '/tracker',
-        },
-        {
-            name: 'Applied.',
-            location: '/applied',
-        },
-        // {
-        //     name: 'stats.',
-        //     location: '/stats'
-        // }
-    ];
+interface navBarIProps {
+    isMobileMenuOpen: boolean;
+    pageRoutingArr: pageRoutingObj[];
+}
 
+const NavBar = ({ isMobileMenuOpen, pageRoutingArr }: navBarIProps) => {
+    const loggedIn = Auth.loggedIn();
+
+    const pageTitles = pageRoutingArr;
 
     const logout = () => {
         Auth.logout();
