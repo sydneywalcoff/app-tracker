@@ -165,37 +165,6 @@ const TrackerFormPage = () => {
                             </div>
                         </div>
                     </ContentContainer>
-                    <ContentContainer>
-                        <div className="how-to">
-                            <h1>How to Use</h1>
-                            <div className="use-list-container">
-                                <div className="use-tip">
-                                    <h2 className="use-title">Basic Info</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                                <div className="use-tip">
-                                    <h2 className="use-title">Location</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                                <div className="use-tip">
-                                    <h2 className="use-title">Stage</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                                <div className="use-tip">
-                                    <h2 className="use-title">JobScan Score</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                                <div className="use-tip">
-                                    <h2 className="use-title">Job Description</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                                <div className="use-tip">
-                                    <h2 className="use-title">Quick Apply</h2>
-                                    <div className="use-answer"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentContainer>
                 </div>
             </div>
         </SectionContainer>

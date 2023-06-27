@@ -52,14 +52,14 @@ function App() {
       <>
         <Header />
         <ToastContainer />
-        <section className="main relative">
+        <main className="relative flex">
           <Routes>
             <Route path="login" element={<LoginPage />} />
             <Route path="tracker" element={<TrackerFormPage />} />
             <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> 
           </Routes>
-        </section>
+        </main>
       </>
     </ApolloProvider>
   );
