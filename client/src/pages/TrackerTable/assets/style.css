@@ -7,4 +7,26 @@
     width: 100%;
     display: flex;
     border-radius: 4px;
+    border-color: #e5e7eb;
+    border-bottom-width: 1px;
+}
+
+.applied table {
+    border-color: #e5e7eb;
+    width: 100%;
+}
+
+.applied table thead{
+    background-color: rgb(249 250 251);
+    width: 100%;
+}
+
+.applied table thead tr th {
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 14px;
+    color: #6b7280;
+    letter-spacing: 1px;
+    padding: 12px 24px;
 }
