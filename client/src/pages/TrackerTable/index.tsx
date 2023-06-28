@@ -140,9 +140,9 @@ const TrackerTable = () => {
                             {jobs.map((job: jobProp, i: number) => (
                                 <tr key={i}>
                                     <td className="whitespace-nowrap">
-                                            <p>
-                                                {job.dateApplied}
-                                            </p>
+                                        <p>
+                                            {job.dateApplied}
+                                        </p>
                                     </td>
                                     <td>
                                         <p>
