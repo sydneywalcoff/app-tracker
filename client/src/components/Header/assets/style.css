@@ -21,6 +21,8 @@ header .mobileNavMenu {
 
 @media screen and (max-width: 767.98px) {
     header .mobileNavMenu {
-        display: block;
+        display: flex;
+        align-self: center;
+        max-height: 35px;
     }
 }
