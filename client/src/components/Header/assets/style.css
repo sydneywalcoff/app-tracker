@@ -15,6 +15,7 @@ header img {
 }
 
 header .mobileNavMenu {
+    cursor: pointer;
     display: none;
 }
 

@@ -3,7 +3,7 @@
         top: 77px;
         color: #333;
         height: calc(100vh - 77px);
-        background-color: #CAECFF;
+        background-color: var(--light-gray);
         width: 170px;
     }
 
