@@ -110,56 +110,54 @@ const TrackerFormPage = () => {
                         
                             </div>
                             <div className="form-container flex">
-                                <form action="#" className="form" onSubmit={handleSubmit}>
-                                    <div className="overflow-hidden sm:rounded-md">
-                                        <div className="px-4 py-5 sm:p-6 flex flex-col shadow w-full h-full justify-center">
-                                            <h1>Track.</h1>
-                                            <div className="grid grid-cols-6 gap-6">
-                                                <div className="col-span-6 sm:col-span-3 flex flex-col">
-                                                    <TextInput
-                                                        onChange={handleChange}
-                                                        name="job-title"
-                                                        labelTitle="Job title"
-                                                    />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3 flex flex-col">
-                                                    <TextInput
-                                                        onChange={handleChange}
-                                                        name="company-name"
-                                                        labelTitle="Company name"
-                                                    />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3 flex-col flex">
-                                                    <TextInput
-                                                        onChange={handleChange}
-                                                        name="location"
-                                                        labelTitle="Location"
-                                                    />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3 flex-col flex">
-                                                    <TextInput
-                                                        onChange={handleChange}
-                                                        name="job-score"
-                                                        labelTitle="JobScan score"
-                                                    />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3">
-                                                    <Dropdown onChange={handleChange} />
-                                                </div>
-                                                <div className="col-span-6">
-                                                    <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3 inline-flex align-items">
-                                                    <Checkbox onChange={handleCheckboxChange} classes="ml-3" />
-                                                </div>
-                                                <div className="col-span-6 sm:col-span-3 inline-flex">
-                                                    <Button text="Save" classes="primary drop-shadow-md" type="submit" />
-                                                </div>
+                                <form action="#" className="form shadow" onSubmit={handleSubmit}>
+                                    <div className="content">
+                                        <h1>Track.</h1>
+                                        <div className="form-content">
+                                            <div className="input-container">
+                                                <TextInput
+                                                    onChange={handleChange}
+                                                    name="job-title"
+                                                    labelTitle="Job title"
+                                                />
                                             </div>
-                                            {inputError && (
-                                                <p className="text-red-700 mt-2">{inputError}</p>
-                                            )}
+                                            <div className="input-container">
+                                                <TextInput
+                                                    onChange={handleChange}
+                                                    name="company-name"
+                                                    labelTitle="Company name"
+                                                />
+                                            </div>
+                                            <div className="input-container">
+                                                <TextInput
+                                                    onChange={handleChange}
+                                                    name="location"
+                                                    labelTitle="Location"
+                                                />
+                                            </div>
+                                            <div className="input-container">
+                                                <TextInput
+                                                    onChange={handleChange}
+                                                    name="job-score"
+                                                    labelTitle="JobScan score"
+                                                />
+                                            </div>
+                                            <div className="dropdown-container">
+                                                <Dropdown onChange={handleChange} />
+                                            </div>
+                                            <div className="textArea-container">
+                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
+                                            </div>
+                                            <div className="checkbox-container">
+                                                <Checkbox onChange={handleCheckboxChange} classes="ml-3" />
+                                            </div>
+                                            <div className="btn-container">
+                                                <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                            </div>
                                         </div>
+                                        {inputError && (
+                                            <p className="text-red-700 mt-2">{inputError}</p>
+                                        )}
                                     </div>
                                 </form>
                             </div>
