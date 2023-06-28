@@ -177,9 +177,12 @@ const TrackerTable = () => {
                         <div className="job-item" key={i}>
                             <div className="top-container">
                                 <div className="text">
-                                    <p>{job.jobTitle}</p> - <p>{job.companyName}</p>
+                                    <p className="title">{job.jobTitle}</p>
+                                    <p className="company">{job.companyName}</p>
                                 </div>
-                                <StageBadge stage={job.status} />
+                                <div className="badge-container">
+                                    <StageBadge stage={job.status} />
+                                </div>
                             </div>
                             <div className="bottom-container">
                                 <div className="text">

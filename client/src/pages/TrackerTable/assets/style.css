@@ -68,11 +68,20 @@
         background-color: var(--light-blue);
         padding: 8px 16px;
         border-radius: 4px 4px 0 0;
+        line-height: 1.1;
     }
     
-    .applied .job-item .top-container .text {
-        display: inline-flex;
+    .applied .job-item .top-container .text p.title {
+        font-size: 18px;
     }
+    .applied .job-item .top-container .text p.company {
+        font-size: 14px;
+        color: #6b7280;
+    }
+    .applied .job-item .top-container .badge-container {
+        max-height: 20px;
+    }
+
     .applied .job-item .bottom-container{
         display: flex;
         justify-content: space-between;
