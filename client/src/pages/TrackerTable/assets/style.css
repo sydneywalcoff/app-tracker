@@ -1,12 +1,10 @@
-/* h1, p {
-    text-align: center;
+.applied {
+    display: flex;
+    flex-direction: column;
 }
 
-p {
-    font-size: 23px;
-    margin-top: 15px;
+.applied .table-container {
+    width: 100%;
+    display: flex;
+    border-radius: 4px;
 }
-
-p a {
-    text-decoration: underline;
-} */
