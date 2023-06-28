@@ -1,6 +1,8 @@
 header {
     font-size: 25px;
     background-color: var(--blue);
+    position: relative;
+    z-index: 10;
 }
 
 header .content {
