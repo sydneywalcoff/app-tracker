@@ -110,10 +110,10 @@ const TrackerFormPage = () => {
                         
                             </div>
                             <div className="form-container flex">
-                                <h1>The Tracker</h1>
                                 <form action="#" className="form" onSubmit={handleSubmit}>
                                     <div className="overflow-hidden sm:rounded-md">
                                         <div className="px-4 py-5 sm:p-6 flex flex-col shadow w-full h-full justify-center">
+                                            <h1>Track.</h1>
                                             <div className="grid grid-cols-6 gap-6">
                                                 <div className="col-span-6 sm:col-span-3 flex flex-col">
                                                     <TextInput
