@@ -113,6 +113,7 @@ const TrackerFormPage = () => {
                                 <form action="#" className="form shadow" onSubmit={handleSubmit}>
                                     <div className="content">
                                         <h1>Track.</h1>
+                                        <p>All fields except JobScan Score and Quick Apply are required.</p>
                                         <div className="form-content">
                                             <div className="input-container">
                                                 <TextInput

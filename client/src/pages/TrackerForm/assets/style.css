@@ -14,6 +14,13 @@
 .tracker h1 {
     font-weight: 600;
     text-align: left;
+    line-height: 1;
+}
+
+.tracker p {
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 16px;
 }
 
 .tracker .form-container {
@@ -55,11 +62,15 @@
     .tracker .form-container {
         order: 1;
     }
-    .tracker .form-container h1 {
-        display: block;
-        text-align: center;
-    }
     .tracker h1 {
         font-size: 35px;
     }
+
+    .tracker .form-container .form-content .input-container,
+    .tracker .form-container .form-content .dropdown-container,
+    .tracker .form-container .form-content .textArea-container,
+    .tracker .form-container .form-content .checkbox-container {
+        max-width: 100%;
+    }
+
 }
