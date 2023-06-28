@@ -39,3 +39,50 @@
     font-size: 14px;
     padding: 12px 24px;
 }
+
+.mobile-table {
+    display:none;
+}
+
+@media screen and (max-width: 767px) {
+    .applied .table-container {
+        display: none;
+    }
+
+    .applied .mobile-table {
+        display: block;
+    }
+
+    .applied .job-item {
+        border: 1px solid var(--light-gray);
+        border-radius: 4px;
+        margin-bottom: 16px;
+        background-color: #fff;
+    }
+
+    .applied .job-item .top-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        width: 100%;
+        background-color: var(--light-blue);
+        padding: 8px 16px;
+        border-radius: 4px 4px 0 0;
+    }
+    
+    .applied .job-item .top-container .text {
+        display: inline-flex;
+    }
+    .applied .job-item .bottom-container{
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+    }
+    .applied .job-item .bottom-container .text p span {
+        color: #6b7280;
+    }
+
+    .applied .job-item .bottom-container a {
+        display:flex;
+    }
+}

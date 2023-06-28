@@ -7,6 +7,7 @@ import { hasBeenGhosted } from '../../utils/dateFormat';
 import Auth from '../../utils/auth';
 
 import './assets/style.css';
+import arrow from './assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg';
 
 import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
@@ -170,6 +171,30 @@ const TrackerTable = () => {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div className="mobile-table">
+                    {jobs.map((job: jobProp, i: number) => (
+                        <div className="job-item" key={i}>
+                            <div className="top-container">
+                                <div className="text">
+                                    <p>{job.jobTitle}</p> - <p>{job.companyName}</p>
+                                </div>
+                                <StageBadge stage={job.status} />
+                            </div>
+                            <div className="bottom-container">
+                                <div className="text">
+                                    <p><span>applied:</span> {job.dateApplied}</p>
+                                    <p><span>location:</span> {job.location}</p>
+                                </div>
+                                <Link
+                                    to={job._id}
+                                    className="text-indigo-600 hover:text-indigo-900"
+                                >
+                                    <img src={arrow} className="arrow"/>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </>
         </ContentContainer>
