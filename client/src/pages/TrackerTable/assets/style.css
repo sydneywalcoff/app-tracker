@@ -17,16 +17,25 @@
 }
 
 .applied table thead{
-    background-color: rgb(249 250 251);
+    background-color: #f9fafb;
     width: 100%;
+}
+
+.applied table tbody {
+    background-color: #fff;
+    border-color: #e5e7eb;
 }
 
 .applied table thead tr th {
     font-weight: 500;
     text-transform: uppercase;
     text-align: left;
-    font-size: 14px;
     color: #6b7280;
     letter-spacing: 1px;
+}
+
+.applied table thead tr th,
+.applied table tbody tr td {
+    font-size: 14px;
     padding: 12px 24px;
 }

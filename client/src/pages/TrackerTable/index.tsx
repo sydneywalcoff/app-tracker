@@ -114,7 +114,7 @@ const TrackerTable = () => {
                     <SearchBar searchText={searchText} setSearchText={setSearchText} />
                     <Filter active={activeApps} setActiveApps={setActiveApps} />
                 </div>
-                <div className="table-container shadow ">
+                <div className="table-container shadow">
                     <table className="w-full divide-y">
                         <thead className="w-full">
                             <tr className="w-full">
@@ -136,31 +136,29 @@ const TrackerTable = () => {
                                 <th scope="col" className="relative"></th>
                             </tr>
                         </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
+                        <tbody className="divide-y">
                             {jobs.map((job: jobProp, i: number) => (
                                 <tr key={i}>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="flex items-center">
-                                            <p className="text-sm text-gray-900">
+                                    <td className="whitespace-nowrap">
+                                            <p>
                                                 {job.dateApplied}
                                             </p>
-                                        </div>
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <div className="text-sm text-gray-900">
+                                    <td>
+                                        <p>
                                             {job.jobTitle}
-                                        </div>
+                                        </p>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        {job.companyName}
+                                    <td className="text-gray-500">
+                                        <p>{job.companyName}</p>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="whitespace-nowrap">
                                         <StageBadge stage={job.status} />
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-900">
-                                        {job.location}
+                                    <td>
+                                        <p>{job.location}</p>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td className="whitespace-nowrap text-right font-medium">
                                         <Link
                                             to={job._id}
                                             className="text-indigo-600 hover:text-indigo-900"
