@@ -12,6 +12,7 @@ import Modal from "../../components/Modal";
 import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
+import Button from '../../components/Button';
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -40,67 +41,60 @@ const SingleApp = () => {
   };
 
   const quickApplyText = () => job.quickApply ? "yes" : "no";
-
-  if (job.length === 0 || job.length == undefined ) {
-    return (
-      <ContentContainer>
-        <h1>Sorry! Something went wrong. </h1>
-      </ContentContainer>
-    );
-  }
+  console.log(job.jobScore)
   return (
-    <SectionContainer>
+    <SectionContainer className='single-app'>
       <ContentContainer>
         <>
-          <div className="flex justify-center">
-            <div className="px-5 basis-3/4">
-              <h1 className="text-4xl font-bold mb-2">{job.jobTitle}</h1>
-              <h2 className="text-xl mb-5">{job.companyName}</h2>
-              <h3 className="text-3xl mb-2">Job Description</h3>
-              <p className="text-md whitespace-pre-wrap">{job.jobDescription}</p>
+          <div className="top-content flex justify-between">
+            <div className="job-info">
+              <h1>{job.jobTitle}</h1>
+              <p className="company">{job.companyName}</p>
+              <h2>Job Description</h2>
+              <div className="desc-container">
+                <p>{job.jobDescription}</p>
+              </div>
             </div>
-            <div className="px-5 basis-1/4">
+            <div className="job-details">
               <div className="flex justify-between">
-                <button
+                <Button
+                  classes="edit-btn blue"
+                  text="Edit"
                   type="button"
                   onClick={handleEdit}
-                  className="edit-btn inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Edit
-                </button>
-                <button
+                />
+                <Button
+                  classes="delete-btn blue"
+                  text="Delete"
                   type="button"
                   onClick={handleDelete}
-                  className="delete-btn inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                >
-                  Delete
-                </button>
+                />
               </div>
               <div>
                 <h4 className="mb-3">
                   <span className="font-bold">updated last: </span>
-                  {job.lastUpdated}{" "}
+                  {job.lastUpdated}
                 </h4>
                 <h4 className="mb-3">
                   <span className="font-bold">location: </span>
-                  {job.location}{" "}
+                  {job.location}
                 </h4>
                 <h4 className="mb-3">
-                  <span className="font-bold">stage: </span>{" "}
-                  <StageBadge stage={job.status} />{" "}
+                  <span className="font-bold">stage: </span>
+                  <StageBadge stage={job.status} />
                 </h4>
                 <h4 className="mb-3">
                   <span className="font-bold">date applied: </span>
-                  {job.dateApplied}{" "}
+                  {job.dateApplied}
                 </h4>
                 <h4 className="mb-3">
                   <span className="font-bold">quick apply?: </span>
-                  {quickApplyText()}{" "}
+                  {quickApplyText()}
                 </h4>
                 {job.jobScore > 0 && (
                   <h4 className="mb-3">
                     <span className="font-bold">JobScan Score: </span>
-                    {job.jobScore}{" "}
+                    {job.jobScore}
                   </h4>
                 )}
               </div>

@@ -1,3 +1,33 @@
-h1 {
-    text-align: center;
+.single-app .job-info {
+    width: 100%;
+    max-width: 66%;
+}
+.single-app .job-info h1 {
+    font-size: 32px;
+    line-height:1;
+    font-weight: 700;
+}
+.single-app .job-info h2 {
+    line-height:1;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+.single-app .job-info .company  {
+    margin-left: 15px;
+    font-size: 22px;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+}
+.single-app .job-info .desc-container {
+    max-height: 500px;
+    overflow-y: scroll;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.single-app .job-details {
+    width: 100%;
+    max-width: 30%;
+    margin-left: 4%;
 }
