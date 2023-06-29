@@ -36,12 +36,7 @@ const SingleApp = () => {
     window.location.assign("/applied");
   };
 
-  const quickApplyText = () => {
-    if (job.quickApply) {
-      return "yes";
-    }
-    return "no";
-  };
+  const quickApplyText = () => job.quickApply ? "yes" : "no";
 
   if (job.length === 0) {
     return (
