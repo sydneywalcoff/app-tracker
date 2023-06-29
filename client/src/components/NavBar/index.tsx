@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '../Button';
@@ -13,10 +14,11 @@ interface pageRoutingObj {
 
 interface navBarIProps {
     isMobileMenuOpen: boolean;
+    setIsMobileMenuOpen: Dispatch<SetStateAction<boolean>>
     pageRoutingArr: pageRoutingObj[];
 }
 
-const NavBar = ({ isMobileMenuOpen, pageRoutingArr }: navBarIProps) => {
+const NavBar = ({ isMobileMenuOpen, pageRoutingArr, setIsMobileMenuOpen }: navBarIProps) => {
     const loggedIn = Auth.loggedIn();
 
     const pageTitles = pageRoutingArr;
@@ -26,11 +28,16 @@ const NavBar = ({ isMobileMenuOpen, pageRoutingArr }: navBarIProps) => {
         window.location.assign('/login')
     }
 
+    const closeMenu = () => {
+        setIsMobileMenuOpen(false);
+
+    }
+
     return (
         <nav className={`absolute right-0 ${isMobileMenuOpen ? 'block' : 'hidden'} md:block md:relative`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
                 {pageTitles.map((title, index) => (
-                    <li className='m-2' key={title.name}><Link to={title.location}>{title.name}</Link></li>
+                    <li className='m-2' key={title.name} ><Link onClick={closeMenu} to={title.location}>{title.name}</Link></li>
                 ))}
 
                 {loggedIn ? (

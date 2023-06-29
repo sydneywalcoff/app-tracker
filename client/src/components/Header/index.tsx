@@ -39,7 +39,8 @@ const Header = () => {
             <div className="content flex text-white p-4 justify-between">
                 <Logo />
                 <img src={ isMobileMenuOpen ? OpenNavMenu : ClosedNavMenu } className='mobileNavMenu' onClick={navMenuClickHandler} alt=''/>
-                <NavBar isMobileMenuOpen={isMobileMenuOpen} pageRoutingArr={routingObjArr}/>
+                <NavBar isMobileMenuOpen={isMobileMenuOpen} pageRoutingArr={routingObjArr}
+                setIsMobileMenuOpen={setIsMobileMenuOpen}/>
             </div>
         </header>
     );
