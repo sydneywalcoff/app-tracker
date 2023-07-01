@@ -7,12 +7,14 @@ import { DELETE_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
 import './assets/style.css'
+import trashIcon from './assets/trash.svg';
+import editIcon from './assets/edit.svg';
+
 import StageBadge from "../../components/StageBadge";
 import Modal from "../../components/Modal";
 import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
-import Button from '../../components/Button';
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -55,44 +57,34 @@ const SingleApp = () => {
                 <p>{job.jobDescription}</p>
               </div>
             </div>
-            <div className="job-details">
-              <div className="flex justify-between">
-                <Button
-                  classes="edit-btn blue"
-                  text="Edit"
-                  type="button"
-                  onClick={handleEdit}
-                />
-                <Button
-                  classes="delete-btn blue"
-                  text="Delete"
-                  type="button"
-                  onClick={handleDelete}
-                />
+            <div className="job-details-container">
+              <div className="flex flex-end">
+                <div className="edit-btn" onClick={handleEdit}><img src={editIcon} alt="" /></div>
+                <div className="delete-btn" onClick={handleDelete}><img src={trashIcon} alt="" /></div>
               </div>
-              <div>
-                <h4 className="mb-3">
+              <div className="details">
+                <h4>
                   <span className="font-bold">updated last: </span>
                   {job.lastUpdated}
                 </h4>
-                <h4 className="mb-3">
+                <h4>
                   <span className="font-bold">location: </span>
                   {job.location}
                 </h4>
-                <h4 className="mb-3">
+                <h4>
                   <span className="font-bold">stage: </span>
                   <StageBadge stage={job.status} />
                 </h4>
-                <h4 className="mb-3">
+                <h4>
                   <span className="font-bold">date applied: </span>
                   {job.dateApplied}
                 </h4>
-                <h4 className="mb-3">
+                <h4>
                   <span className="font-bold">quick apply?: </span>
                   {quickApplyText()}
                 </h4>
                 {job.jobScore > 0 && (
-                  <h4 className="mb-3">
+                  <h4>
                     <span className="font-bold">JobScan Score: </span>
                     {job.jobScore}
                   </h4>
@@ -100,7 +92,7 @@ const SingleApp = () => {
               </div>
             </div>
           </div>
-          <div className="flex px-5 mt-10">
+          <div className="flex px-5 mt-10 bottom-content">
             <div className="basis-1/2">
               <h3 className="text-2xl mb-2">Questions</h3>
               <ul className="px-5">
