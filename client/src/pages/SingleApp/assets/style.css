@@ -71,14 +71,32 @@
     min-width: 200px;
 }
 
+
+.single-app .bottom-content {
+    margin-top: 35px;
+    padding: 0 20px;
+}
+
+.single-app .bottom-content .questions,
+.single-app .bottom-content .notes {
+    max-width: 50%;
+}
+
 @media screen and (max-width: 767px) {
     .single-app .job-info {
         max-width: 100%;
     }
 
+    .single-app .job-info h2 {
+        margin-top: 25px;
+    }
+
     .single-app .delete-edit-btns {
-        max-width: 30%;
+        max-width: 222px;
         margin-bottom: 10px;
+    }
+    .single-app .job-details-container .delete-btn {
+        margin-right: 0;
     }
 
     .single-app .job-info .company {
@@ -93,4 +111,19 @@
     .single-app .job-details-container .edit-btn {
         max-width: 24px;
     }
+
+    .single-app .bottom-content {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .single-app .bottom-content .questions,
+    .single-app .bottom-content .notes {
+        max-width: 100%;
+    }
+
+    .single-app .bottom-content .questions {
+        margin-bottom: 25px;
+    }
+
 }

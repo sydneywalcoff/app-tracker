@@ -138,8 +138,8 @@ const SingleApp = () => {
               </div>
             </div>
           </div>
-          <div className="flex px-5 mt-10 bottom-content">
-            <div className="basis-1/2">
+          <div className="flex bottom-content">
+            <div className="questions">
               <h3 className="text-2xl mb-2">Questions</h3>
               <ul className="px-5">
                 <li className="list-disc mb-3">
@@ -161,7 +161,7 @@ const SingleApp = () => {
                 </li>
               </ul>
             </div>
-            <div className="flex-col basis-1/2">
+            <div className="flex-col notes">
               <Notes notes={job.notes} appId={job._id} />
             </div>
           </div>
