@@ -22,6 +22,7 @@ const SingleApp = () => {
     window.location.assign('/login')
   }
   const [modalOpen, setModalOpen] = useState(false);
+  const [isSeeMoreOpen, setIsSeeMoreOpen] = useState('');
   let { jobId } = useParams();
   let { data } = useQuery(QUERY_SINGLE_APP, {
     variables: {
@@ -41,9 +42,19 @@ const SingleApp = () => {
     });
     window.location.assign("/applied");
   };
+  
+  const seeMoreClass = isSeeMoreOpen ? 'active' : '';
+  const seeMoreText = isSeeMoreOpen ? 'See Less' : 'See More';
+
+  const handleSeeMore = () => {
+    if(isSeeMoreOpen) {
+      setIsSeeMoreOpen('');
+      return;
+    } 
+    setIsSeeMoreOpen('active');
+  }
 
   const quickApplyText = () => job.quickApply ? "yes" : "no";
-  console.log(job.jobScore)
   return (
     <SectionContainer className='single-app'>
       <ContentContainer>
@@ -53,9 +64,10 @@ const SingleApp = () => {
               <h1>{job.jobTitle}</h1>
               <p className="company">{job.companyName}</p>
               <h2>Job Description</h2>
-              <div className="desc-container">
+              <div className={`desc-container ${seeMoreClass}`}>
                 <p>{job.jobDescription}</p>
               </div>
+              <div className="seeMore" onClick={handleSeeMore}>{seeMoreText}</div>
             </div>
             <div className="job-details-container">
               <div className="flex flex-end">
