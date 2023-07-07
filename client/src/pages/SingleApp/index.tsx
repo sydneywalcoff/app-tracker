@@ -70,7 +70,7 @@ const SingleApp = () => {
               <div className="seeMore" onClick={handleSeeMore}>{seeMoreText}</div>
             </div>
             <div className="job-details-container">
-              <div className="flex flex-end">
+              <div className="flex justify-between">
                 <div className="edit-btn" onClick={handleEdit}><img src={editIcon} alt="" /></div>
                 <div className="delete-btn" onClick={handleDelete}><img src={trashIcon} alt="" /></div>
               </div>

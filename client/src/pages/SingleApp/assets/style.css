@@ -48,10 +48,8 @@
     max-width: 32px;
     cursor: pointer;
 }
-.single-app .job-details-container .edit-btn img {
-    aspect-ratio: 1/1;
-    max-width: 24px;
-    margin: auto 0;
+.single-app .job-details-container .delete-btn{
+    margin-right:  24px;
 }
 
 .single-app .job-details-container .details h4{
