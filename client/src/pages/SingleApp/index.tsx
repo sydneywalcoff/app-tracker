@@ -19,7 +19,7 @@ import ContentContainer from "../../components/ContentContainer";
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
   if (!loggedIn) {
-    window.location.assign('/login')
+    window.location.assign('/login');
   }
   const [modalOpen, setModalOpen] = useState(false);
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState('');
@@ -42,15 +42,15 @@ const SingleApp = () => {
     });
     window.location.assign("/applied");
   };
-  
+
   const seeMoreClass = isSeeMoreOpen ? 'active' : '';
   const seeMoreText = isSeeMoreOpen ? 'See Less' : 'See More';
 
   const handleSeeMore = () => {
-    if(isSeeMoreOpen) {
+    if (isSeeMoreOpen) {
       setIsSeeMoreOpen('');
       return;
-    } 
+    }
     setIsSeeMoreOpen('active');
   }
 
@@ -63,13 +63,47 @@ const SingleApp = () => {
             <div className="job-info">
               <h1>{job.jobTitle}</h1>
               <p className="company">{job.companyName}</p>
+              <div className="job-details-container mobileOnly">
+                <div className="flex justify-between delete-edit-btns">
+                  <div className="edit-btn" onClick={handleEdit}><img src={editIcon} alt="" /></div>
+                  <div className="delete-btn" onClick={handleDelete}><img src={trashIcon} alt="" /></div>
+                </div>
+                <div className="details">
+                  <h4>
+                    <span className="font-bold">updated last: </span>
+                    {job.lastUpdated}
+                  </h4>
+                  <h4>
+                    <span className="font-bold">location: </span>
+                    {job.location}
+                  </h4>
+                  <h4>
+                    <span className="font-bold">stage: </span>
+                    <StageBadge stage={job.status} />
+                  </h4>
+                  <h4>
+                    <span className="font-bold">date applied: </span>
+                    {job.dateApplied}
+                  </h4>
+                  <h4>
+                    <span className="font-bold">quick apply?: </span>
+                    {quickApplyText()}
+                  </h4>
+                  {job.jobScore > 0 && (
+                    <h4>
+                      <span className="font-bold">JobScan Score: </span>
+                      {job.jobScore}
+                    </h4>
+                  )}
+                </div>
+              </div>
               <h2>Job Description</h2>
               <div className={`desc-container ${seeMoreClass}`}>
                 <p>{job.jobDescription}</p>
               </div>
               <div className="seeMore" onClick={handleSeeMore}>{seeMoreText}</div>
             </div>
-            <div className="job-details-container">
+            <div className="job-details-container desktopOnly">
               <div className="flex justify-between">
                 <div className="edit-btn" onClick={handleEdit}><img src={editIcon} alt="" /></div>
                 <div className="delete-btn" onClick={handleDelete}><img src={trashIcon} alt="" /></div>

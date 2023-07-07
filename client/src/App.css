@@ -33,3 +33,21 @@ h2 {
 .Toastify__close-button {
     align-self: center;
 }
+
+.desktopOnly {
+    display:block;
+}
+
+.mobileOnly {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .desktopOnly {
+        display: none;
+    }
+
+    .mobileOnly {
+        display: block;
+    }
+}
