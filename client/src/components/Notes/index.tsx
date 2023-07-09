@@ -80,7 +80,7 @@ const Notes = ({ notes, appId }: NoteProp) => {
     }
 
     return (
-        <div className='notes'>
+        <>
             <h3 className="text-2xl mb-2">Notes</h3>
             <div>
                 {(notes && notes.length > 0) ? (notes.map((note: Note, i: number) => (
@@ -101,7 +101,7 @@ const Notes = ({ notes, appId }: NoteProp) => {
                 type='button'
                 ></Button>
             </div>
-        </div>
+        </>
     );
 }
 
