@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 
 import "./styles.css";
 
+import Button from '../Button';
+
 import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_SINGLE_APP } from '../../utils/queries';
 
@@ -110,7 +112,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             <div className="centered modal p-4">
                 <div className="flex justify-between">
                     <h3 className="text-3xl pl-4">Edit Details:</h3>
-                    <p className="flex" onClick={() => setModalOpen(false)}>
+                    <p className="flex close-btn" onClick={() => setModalOpen(false)}>
                         x
                     </p>
                 </div>
@@ -189,13 +191,12 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 </select>
                             </div>
                         </>
-                        <button
+                        <Button
                             type="button"
                             onClick={submitHandler}
-                            className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-2 right-4"
-                        >
-                            Save
-                        </button>
+                            text="Save"
+                            classes="blue"
+                        ></Button>
                     </div>
                 </div>
             </div>
