@@ -94,7 +94,7 @@
     }
 
     .single-app .delete-edit-btns {
-        max-width: 222px;
+        width: 100%;
         margin-bottom: 10px;
     }
     .single-app .job-details-container .delete-btn {
