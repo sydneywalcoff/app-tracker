@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
@@ -23,6 +23,8 @@ const SingleApp = () => {
   }
   const [modalOpen, setModalOpen] = useState(false);
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState('');
+  const [jobDescHeight, setJobDescHeight] = useState(0);
+
   let { jobId } = useParams();
   let { data } = useQuery(QUERY_SINGLE_APP, {
     variables: {
@@ -53,6 +55,13 @@ const SingleApp = () => {
     }
     setIsSeeMoreOpen('active');
   }
+
+  useLayoutEffect(() => {
+    if(document.getElementsByClassName('desc-container')[0].clientHeight < 500 ) {
+      // hide the see More text
+    }
+  })
+
 
   const quickApplyText = () => job.quickApply ? "yes" : "no";
   return (
