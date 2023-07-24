@@ -6,6 +6,7 @@ import { QUERY_SINGLE_APP } from '../../utils/queries'
 import './assets/style.css';
 
 import Button from '../Button';
+import TextArea from '../TextArea';
 
 type Note = {
     _id: string,
@@ -93,7 +94,12 @@ const Notes = ({ notes, appId }: NoteProp) => {
                 ))) : (<p className='text-md font-bold my-3'>no notes yet :(</p>)}
             </div>
             <div className="flex flex-col">
-                <textarea className="w-full h-half border-solid border-2 p-1" onChange={handleChange} placeholder='take notes...' value={noteText}></textarea>
+                <TextArea
+                    placeholder='take notes...'
+                    onChange={handleChange}
+                    value={noteText}
+                    labelText=''
+                ></TextArea>
                 <Button
                 text="Add Note."
                 classes='blue ml-auto mt-4'

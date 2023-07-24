@@ -7,9 +7,11 @@ interface TextAreaPropsI {
     labelText: String;
     classes?: String;
     name?: string;
+    placeholder?: string;
+    value?: string;
 }
 
-const TextArea = ({onChange, labelText, name, classes }: TextAreaPropsI) => {
+const TextArea = ({onChange, labelText, name, classes, placeholder, value }: TextAreaPropsI) => {
     return (
         <>
             <label
@@ -23,7 +25,9 @@ const TextArea = ({onChange, labelText, name, classes }: TextAreaPropsI) => {
                 rows={5}
                 id={name}
                 className={`mt-1 py-2 px-3 block w-full drop-shadow-md ${classes}`}
+                value={value}
                 onChange={onChange}
+                placeholder={placeholder}
             />
         </>
     );
