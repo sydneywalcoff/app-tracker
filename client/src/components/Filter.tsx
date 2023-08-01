@@ -8,7 +8,7 @@ const Filter = (props: FilterProps ) => {
     const { active, setActiveApps } = props;
     let bgColorClass, textColorClass, text;
     if(active) {
-        bgColorClass = 'bg-black';
+        bgColorClass = 'bg-gray-900';
         textColorClass='text-white';
         text = 'Active'
     } else {

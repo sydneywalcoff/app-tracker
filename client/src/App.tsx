@@ -7,16 +7,17 @@ import {
   createHttpLink
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 
 // components
 import Header from "./components/Header";
-import NavBar from "./components/NavBar";
 import SingleApp from "./pages/SingleApp";
-import TrackerForm from "./pages/TrackerForm";
+import TrackerFormPage from "./pages/TrackerForm";
 import TrackerTable from "./pages/TrackerTable";
-import Login from "./pages/Login";
+import LoginPage from "./pages/Login";
 
 import Auth from './utils/auth';
 
@@ -50,15 +51,15 @@ function App() {
     <ApolloProvider client={client}>
       <>
         <Header />
-        <section className="flex">
-          <NavBar />
+        <ToastContainer />
+        <main className="relative flex">
           <Routes>
-            <Route path="login" element={<Login />} />
-            <Route path="tracker" element={<TrackerForm />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="tracker" element={<TrackerFormPage />} />
             <Route path="applied" element={<TrackerTable />} />
-            <Route path="applied/:jobId" element={<SingleApp />} />
+            <Route path="applied/:jobId" element={<SingleApp />} /> 
           </Routes>
-        </section>
+        </main>
       </>
     </ApolloProvider>
   );
