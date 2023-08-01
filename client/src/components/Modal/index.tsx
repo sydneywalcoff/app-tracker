@@ -1,7 +1,7 @@
-import React, { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
+import { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 
-import "./styles.css";
+import "./assets/styles.css";
 
 import Button from '../Button';
 
@@ -26,6 +26,7 @@ interface ModalProps {
 }
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     const [editApp] = useMutation(EDIT_APP, {
         update(cache, { data: { editApp } }) {
             try {
@@ -106,13 +107,18 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         setModalOpen(false)
     };
 
+    const closeModal = () => {
+        setModalOpen(false);
+        document.getElementsByTagName('body')[0].style.overflow = 'auto';
+    }
+
     return (
         <>
             <div className="darkBG" />
             <div className="centered modal p-4">
                 <div className="flex justify-between">
                     <h3 className="text-3xl pl-4">Edit Details:</h3>
-                    <p className="flex close-btn" onClick={() => setModalOpen(false)}>
+                    <p className="flex close-btn" onClick={closeModal}>
                         x
                     </p>
                 </div>
