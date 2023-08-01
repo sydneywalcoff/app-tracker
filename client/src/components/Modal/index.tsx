@@ -90,8 +90,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default:
                 break;
         }
-        if(name === 'jobScore') {
-            setEditJobForm({ ...editJobForm, [name]: parseInt(value)});
+        if (name === 'jobScore') {
+            setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
         setEditJobForm({ ...editJobForm, [name]: value });
@@ -175,7 +175,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore}/>
+                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="stage" className="font-bold">
