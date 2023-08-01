@@ -1,7 +1,9 @@
-import React, { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
+import { SetStateAction, Dispatch, useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 
-import "./styles.css";
+import "./assets/styles.css";
+
+import Button from '../Button';
 
 import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_SINGLE_APP } from '../../utils/queries';
@@ -24,6 +26,7 @@ interface ModalProps {
 }
 
 const Modal = ({ job, setModalOpen }: ModalProps) => {
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     const [editApp] = useMutation(EDIT_APP, {
         update(cache, { data: { editApp } }) {
             try {
@@ -87,8 +90,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default:
                 break;
         }
-        if(name === 'jobScore') {
-            setEditJobForm({ ...editJobForm, [name]: parseInt(value)});
+        if (name === 'jobScore') {
+            setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
         setEditJobForm({ ...editJobForm, [name]: value });
@@ -104,13 +107,18 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         setModalOpen(false)
     };
 
+    const closeModal = () => {
+        setModalOpen(false);
+        document.getElementsByTagName('body')[0].style.overflow = 'auto';
+    }
+
     return (
         <>
             <div className="darkBG" />
             <div className="centered modal p-4">
                 <div className="flex justify-between">
                     <h3 className="text-3xl pl-4">Edit Details:</h3>
-                    <p className="flex" onClick={() => setModalOpen(false)}>
+                    <p className="flex close-btn" onClick={closeModal}>
                         x
                     </p>
                 </div>
@@ -167,7 +175,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore}/>
+                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="stage" className="font-bold">
@@ -189,13 +197,12 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 </select>
                             </div>
                         </>
-                        <button
+                        <Button
                             type="button"
                             onClick={submitHandler}
-                            className="mb-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-2 right-4"
-                        >
-                            Save
-                        </button>
+                            text="Save"
+                            classes="blue"
+                        ></Button>
                     </div>
                 </div>
             </div>

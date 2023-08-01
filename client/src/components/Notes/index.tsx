@@ -1,7 +1,12 @@
 import { useState, ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_NOTE, DELETE_NOTE } from '../utils/mutations';
-import { QUERY_SINGLE_APP } from '../utils/queries'
+import { ADD_NOTE, DELETE_NOTE } from '../../utils/mutations';
+import { QUERY_SINGLE_APP } from '../../utils/queries'
+
+import './assets/style.css';
+
+import Button from '../Button';
+import TextArea from '../TextArea';
 
 type Note = {
     _id: string,
@@ -83,20 +88,24 @@ const Notes = ({ notes, appId }: NoteProp) => {
                     <ul key={i} className="px-5">
                         <li className="list-disc mb-3 flex justify-between">
                             <p>{note.noteText}</p>
-                            <span onClick={() => handleDeleteNote(note._id)}>x</span>
+                            <span className="close-note-btn" onClick={() => handleDeleteNote(note._id)}>x</span>
                         </li>
                     </ul>
                 ))) : (<p className='text-md font-bold my-3'>no notes yet :(</p>)}
             </div>
             <div className="flex flex-col">
-                <textarea className="w-full h-half border-solid border-2 p-1" onChange={handleChange} placeholder='take notes...' value={noteText}></textarea>
-                <button
-                    type="button"
-                    className=" justify-center ml-auto my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={submitNote}
-                >
-                    Add Note.
-                </button>
+                <TextArea
+                    placeholder='take notes...'
+                    onChange={handleChange}
+                    value={noteText}
+                    labelText=''
+                ></TextArea>
+                <Button
+                text="Add Note."
+                classes='blue ml-auto mt-4'
+                onClick={submitNote}
+                type='button'
+                ></Button>
             </div>
         </>
     );
