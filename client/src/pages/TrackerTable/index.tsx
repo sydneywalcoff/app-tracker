@@ -13,6 +13,7 @@ import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
 import SearchBar from '../../components/SearchBar';
 import Filter from '../../components/Filter';
+import Button from "../../components/Button";
 
 interface jobProp {
     _id: string;
@@ -34,11 +35,12 @@ const TrackerTable = () => {
     if (!loggedIn) {
         window.location.assign('/login')
     }
-
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchText, setSearchText] = useState<string>('');
     const [activeApps, setActiveApps] = useState<boolean>(true);
     const { loading, error, data } = useQuery(QUERY_MY_APPS);
     let jobs: jobProp[] = data?.myApps || [];
+    let totalPages: number;
     if (loading) {
         return (
             <ContentContainer>
@@ -106,7 +108,43 @@ const TrackerTable = () => {
         })
         jobs = Array.from(activeApps);
     }
-
+    
+    const numJobs = jobs.length;
+    const pageCounter = () => {
+        const handleBack = () => {
+            console.log('back');
+        }
+        const handleNext = () => {
+            console.log('next');
+        }
+        return(
+            <div className="page-counter-wrap">
+                <div className="page-buttons">
+                    {currentPage !== 1 &&
+                        <><Button
+                    type='button'
+                    onClick={handleBack}
+                    text='prev'
+                    classes="prev"
+                    ></Button>
+                    <p className="slash">/</p></>
+                    }
+                    {currentPage !== totalPages && <Button
+                    type='button'
+                    onClick={handleNext}
+                    text='next'
+                    classes="next"
+                    ></Button>}
+                </div>
+                <div className="pages-counter">
+                    <p className="curr">{currentPage}</p> / <p className="total">{totalPages} </p>
+                </div>
+            </div>
+        );
+    }
+    if(numJobs > 10) {
+       totalPages = Math.ceil(numJobs / 10);
+    }
 
     return (
         <ContentContainer className='applied'>
@@ -199,6 +237,7 @@ const TrackerTable = () => {
                         </div>
                     ))}
                 </div>
+                {numJobs > 10 && pageCounter()}
             </>
         </ContentContainer>
     );
