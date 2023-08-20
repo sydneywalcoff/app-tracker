@@ -212,7 +212,7 @@ const TrackerTable = () => {
                 </div>
                 <div className="mobile-table">
                     {jobs.map((job: jobProp, i: number) => (
-                        <div className="job-item" key={i}>
+                        <div className="job-item" key={job._id}>
                             <div className="top-container">
                                 <div className="text">
                                     <p className="title">{job.jobTitle}</p>
