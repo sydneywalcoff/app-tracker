@@ -176,8 +176,8 @@ const TrackerTable = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y">
-                            {jobs.map((job: jobProp, i: number) => (
-                                <tr key={i}>
+                            {jobs.map((job: jobProp) => (
+                                <tr key={job._id}>
                                     <td className="whitespace-nowrap">
                                         <p>
                                             {job.dateApplied}
