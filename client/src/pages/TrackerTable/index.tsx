@@ -13,6 +13,7 @@ import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
 import SearchBar from '../../components/SearchBar';
 import Filter from '../../components/Filter';
+import Button from "../../components/Button";
 
 interface jobProp {
     _id: string;
@@ -34,11 +35,16 @@ const TrackerTable = () => {
     if (!loggedIn) {
         window.location.assign('/login')
     }
-
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchText, setSearchText] = useState<string>('');
     const [activeApps, setActiveApps] = useState<boolean>(true);
+    const [firstShownApp, setFirstShownApp] = useState<number>(0);
+    const [lastShownApp, setLastShownApp] = useState<number>(9);
+    const [paginatedApps, setPaginatedApps] = useState<jobProp[]>([]);
     const { loading, error, data } = useQuery(QUERY_MY_APPS);
     let jobs: jobProp[] = data?.myApps || [];
+    let totalPages: number;
+
     if (loading) {
         return (
             <ContentContainer>
@@ -107,6 +113,90 @@ const TrackerTable = () => {
         jobs = Array.from(activeApps);
     }
 
+    const numJobs = jobs.length;
+    const pageCounter = () => {
+        const handleBack = () => {
+            setCurrentPage(currentPage - 1);
+            setFirstShownApp(firstShownApp - 10);
+            setLastShownApp(lastShownApp - 10);
+        }
+        const handleNext = () => {
+            setCurrentPage(currentPage + 1);
+            setFirstShownApp(firstShownApp + 10);
+            setLastShownApp(lastShownApp + 10);
+        }
+        return (
+            <div className="page-counter-wrap">
+                <div className="page-buttons">
+                    {currentPage !== 1 &&
+                        <Button
+                            type='button'
+                            onClick={handleBack}
+                            text='prev'
+                            classes="prev"
+                        ></Button>
+
+                    }
+                    {currentPage !== totalPages && currentPage !== 1 && '/'}
+                    {currentPage !== totalPages &&
+                        <Button
+                            type='button'
+                            onClick={handleNext}
+                            text='next'
+                            classes="next"
+                        ></Button>}
+                </div>
+                <div className="pages-counter">
+                    <p className="curr">{currentPage}</p> / <p className="total">{totalPages} </p>
+                </div>
+            </div>
+        );
+    }
+    if (numJobs > 10) {
+        totalPages = Math.ceil(numJobs / 10);
+    }
+
+    const tableBody = (jobs: jobProp[]) => {
+        let paginatedJobs: jobProp[] = [];
+        for(let i=firstShownApp; i<=lastShownApp; i++) {
+            if(jobs[i]){
+                paginatedJobs.push(jobs[i])
+            }
+        }
+        return (
+            paginatedJobs.map((job: jobProp) => (
+                <tr key={job._id}>
+                    <td className="whitespace-nowrap">
+                        <p>
+                            {job.dateApplied}
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            {job.jobTitle}
+                        </p>
+                    </td>
+                    <td className="text-gray-500">
+                        <p>{job.companyName}</p>
+                    </td>
+                    <td className="whitespace-nowrap">
+                        <StageBadge stage={job.status} />
+                    </td>
+                    <td>
+                        <p>{job.location}</p>
+                    </td>
+                    <td className="whitespace-nowrap text-right font-medium">
+                        <Link
+                            to={job._id}
+                            className="text-indigo-600 hover:text-indigo-900"
+                        >
+                            More
+                        </Link>
+                    </td>
+                </tr>
+            ))
+        );
+    };
 
     return (
         <ContentContainer className='applied'>
@@ -138,43 +228,13 @@ const TrackerTable = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y">
-                            {jobs.map((job: jobProp, i: number) => (
-                                <tr key={i}>
-                                    <td className="whitespace-nowrap">
-                                        <p>
-                                            {job.dateApplied}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            {job.jobTitle}
-                                        </p>
-                                    </td>
-                                    <td className="text-gray-500">
-                                        <p>{job.companyName}</p>
-                                    </td>
-                                    <td className="whitespace-nowrap">
-                                        <StageBadge stage={job.status} />
-                                    </td>
-                                    <td>
-                                        <p>{job.location}</p>
-                                    </td>
-                                    <td className="whitespace-nowrap text-right font-medium">
-                                        <Link
-                                            to={job._id}
-                                            className="text-indigo-600 hover:text-indigo-900"
-                                        >
-                                            More
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                            {tableBody(jobs)}
                         </tbody>
                     </table>
                 </div>
                 <div className="mobile-table">
-                    {jobs.map((job: jobProp, i: number) => (
-                        <div className="job-item" key={i}>
+                    {jobs.map((job: jobProp) => (
+                        <div className="job-item" key={job._id}>
                             <div className="top-container">
                                 <div className="text">
                                     <p className="title">{job.jobTitle}</p>
@@ -193,12 +253,14 @@ const TrackerTable = () => {
                                     to={job._id}
                                     className="text-indigo-600 hover:text-indigo-900"
                                 >
-                                    <img src={arrow} className="arrow"/>
-                                </Link>
+                                        <img src={arrow} className="arrow" />
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    )}
                 </div>
+                {numJobs > 10 && pageCounter()}
             </>
         </ContentContainer>
     );

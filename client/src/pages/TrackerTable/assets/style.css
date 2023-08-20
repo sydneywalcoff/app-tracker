@@ -44,6 +44,37 @@
     display:none;
 }
 
+.page-counter-wrap {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.page-buttons {
+    display: flex;
+}
+
+.page-buttons button[type='button']:not(.Toastify__close-button), 
+.page-buttons button[type='submit']:not(.Toastify__close-button) {
+    border-radius: 0;
+    max-height: unset;
+    max-width: unset;
+    padding: 0;
+}
+
+.page-buttons .slash {
+    margin: 0 10px;
+}
+
+.pages-counter {
+    text-align: center;
+    width: fit-content
+}
+
+.pages-counter p {
+    display: inline;
+}
+
 @media screen and (max-width: 767px) {
     .applied .table-container {
         display: none;
