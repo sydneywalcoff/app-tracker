@@ -46,6 +46,10 @@
 }
 .tracker .form-container .form-content .input-container input { width: 100%; }
 
+.tracker .form-container .form-content .input-container.link {
+    margin-top: auto;
+}
+
 .tracker .form-container .form-content .textArea-container {
     width: 100%;
     margin-bottom: 15px;

@@ -146,6 +146,13 @@ const TrackerFormPage = () => {
                                             <div className="dropdown-container">
                                                 <Dropdown onChange={handleChange} />
                                             </div>
+                                            <div className="input-container link">
+                                                <TextInput
+                                                    onChange={handleChange}
+                                                    name="job-url"
+                                                    labelTitle="Link"
+                                                />
+                                            </div>
                                             <div className="textArea-container">
                                                 <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
                                             </div>
