@@ -13,6 +13,7 @@ const typeDefs = gql`
         dateApplied: String
         lastUpdated: String
         notes: [Note]
+        link: String
     }
 
     type Note {
@@ -43,7 +44,7 @@ const typeDefs = gql`
 
     type Mutation {
         addApp(jobTitle: String!, companyName: String!, jobDescription: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int): App
-        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int, lastUpdated: String) : App
+        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String!, location: String!, quickApply: Boolean!, jobScore: Int, lastUpdated: String, link: String) : App
         deleteApp(_id: ID!) : App
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
