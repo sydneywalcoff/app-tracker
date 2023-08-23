@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
@@ -23,7 +23,6 @@ const SingleApp = () => {
   }
   const [modalOpen, setModalOpen] = useState(false);
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState('');
-  const [jobDescHeight, setJobDescHeight] = useState(0);
 
   let { jobId } = useParams();
   let { data } = useQuery(QUERY_SINGLE_APP, {
@@ -55,13 +54,6 @@ const SingleApp = () => {
     }
     setIsSeeMoreOpen('active');
   }
-
-  useLayoutEffect(() => {
-    if(document.getElementsByClassName('desc-container')[0].clientHeight < 500 ) {
-      // hide the see More text
-    }
-  })
-
 
   const quickApplyText = () => job.quickApply ? "yes" : "no";
   return (
@@ -98,6 +90,11 @@ const SingleApp = () => {
                     <span className="font-bold">quick apply?: </span>
                     {quickApplyText()}
                   </h4>
+                  {job.link && <h4>
+                    <span className="font-bold">link: </span>
+                    {job.link}
+                    <a href={job.link}>Saved Link</a>
+                  </h4>}
                   {job.jobScore > 0 && (
                     <h4>
                       <span className="font-bold">JobScan Score: </span>
@@ -140,8 +137,14 @@ const SingleApp = () => {
                 </h4>
                 {job.jobScore > 0 && (
                   <h4>
-                    <span className="font-bold">JobScan Score: </span>
+                    <span className="font-bold">jobScan score: </span>
                     {job.jobScore}
+                  </h4>
+                )}
+                {job.link && (
+                  <h4>
+                    <span className="font-bold">saved link: </span>
+                    <a className="link" href={'https://'+job.link} target="_BLANK">[here]</a>
                   </h4>
                 )}
               </div>

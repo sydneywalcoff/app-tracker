@@ -13,6 +13,7 @@ export const QUERY_APPS = gql`
             dateApplied
             companyName
             lastUpdated
+            link
             notes {
                 noteText
                 _id
@@ -35,6 +36,7 @@ export const QUERY_SINGLE_APP = gql`
             dateApplied
             companyName
             lastUpdated
+            link
             notes {
                 noteText
                 _id
@@ -57,6 +59,7 @@ export const QUERY_MY_APPS = gql`
             dateApplied
             companyName
             lastUpdated
+            link
             notes {
                 noteText
                 _id

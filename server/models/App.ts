@@ -46,7 +46,11 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
             return dateFormat(timeStamp)
         },
     },
-    notes: [noteSchema]
+    notes: [noteSchema], 
+    link: {
+        type: String,
+        require: false
+    }
 },
 {
     toJSON: {
@@ -64,7 +68,8 @@ export interface AppDocument extends Document {
     jobScore?: number,
     dateApplied: Date,
     lastUpdated: Date,
-    notes: []
+    notes: [],
+    link: String
 }
 
 module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);
