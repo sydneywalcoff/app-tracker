@@ -129,7 +129,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                     </p>
                 </div>
                 <div className="flex p-4">
-                    <div className="flex-col basis-3/4 mr-3">
+                    <div className="flex-col w-full flex basis-3/4 mr-3">
                         <div className="my-3">
                             <label htmlFor="job-title" className="font-bold mr-2 pr-1">
                                 Title:
