@@ -104,7 +104,6 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
     };
 
     const submitHandler = async () => {
-        console.log(editJobForm)
         await editApp({
             variables: {
                 ...editJobForm,

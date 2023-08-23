@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
@@ -23,7 +23,6 @@ const SingleApp = () => {
   }
   const [modalOpen, setModalOpen] = useState(false);
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState('');
-  const [jobDescHeight, setJobDescHeight] = useState(0);
 
   let { jobId } = useParams();
   let { data } = useQuery(QUERY_SINGLE_APP, {
