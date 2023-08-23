@@ -84,6 +84,11 @@
     width: 100%;
 }
 
+.single-app .link {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 767px) {
     .single-app .job-info {
         max-width: 100%;

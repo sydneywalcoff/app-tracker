@@ -144,7 +144,7 @@ const SingleApp = () => {
                 {job.link && (
                   <h4>
                     <span className="font-bold">saved link: </span>
-                    <a href={'https://'+job.link} target="_BLANK">[here]</a>
+                    <a className="link" href={'https://'+job.link} target="_BLANK">[here]</a>
                   </h4>
                 )}
               </div>
