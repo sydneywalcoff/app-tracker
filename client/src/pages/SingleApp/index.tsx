@@ -55,7 +55,6 @@ const SingleApp = () => {
     setIsSeeMoreOpen('active');
   }
 
-
   const quickApplyText = () => job.quickApply ? "yes" : "no";
   return (
     <SectionContainer className='single-app'>
@@ -138,8 +137,14 @@ const SingleApp = () => {
                 </h4>
                 {job.jobScore > 0 && (
                   <h4>
-                    <span className="font-bold">JobScan Score: </span>
+                    <span className="font-bold">jobScan score: </span>
                     {job.jobScore}
+                  </h4>
+                )}
+                {job.link && (
+                  <h4>
+                    <span className="font-bold">saved link: </span>
+                    <a href={'https://'+job.link} target="_BLANK">[here]</a>
                   </h4>
                 )}
               </div>
