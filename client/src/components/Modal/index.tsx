@@ -18,6 +18,7 @@ interface jobProp {
     dateApplied: string;
     quickApply: boolean;
     jobScore: string;
+    link: string;
 }
 
 interface ModalProps {
@@ -47,7 +48,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         quickApply,
-        jobScore
+        jobScore,
+        link
     } = job;
 
     const [editJobForm, setEditJobForm] = useState({
@@ -58,7 +60,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        jobScore: 0
+        jobScore: 0,
+        link
     });
 
     const changeHandler = (
@@ -86,6 +89,9 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 break;
             case "job-score":
                 name = "jobScore";
+                break;
+            case 'job-url':
+                name = 'link';
                 break;
             default:
                 break;
@@ -123,7 +129,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                     </p>
                 </div>
                 <div className="flex p-4">
-                    <div className="flex-col basis-3/4 mr-3">
+                    <div className="flex-col w-full flex basis-3/4 mr-3">
                         <div className="my-3">
                             <label htmlFor="job-title" className="font-bold mr-2 pr-1">
                                 Title:
@@ -195,6 +201,10 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     <option value="technical">Technical Interview</option>
                                     <option value="rejected">Rejected</option>
                                 </select>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="job-url" className="font-bold">Link</label>
+                                <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={link} />
                             </div>
                         </>
                         <Button

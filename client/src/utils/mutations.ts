@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_APP = gql`
-    mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int) {
-        addApp(jobTitle: $jobTitle, companyName: $companyName, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, jobScore: $jobScore) {
+    mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int, $link: String) {
+        addApp(jobTitle: $jobTitle, companyName: $companyName, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, jobScore: $jobScore, link: $link) {
             _id
             jobTitle
             jobDescription
@@ -12,6 +12,7 @@ export const ADD_APP = gql`
             jobScore
             dateApplied
             lastUpdated
+            link
             notes {
                 _id
                 noteText
@@ -22,8 +23,8 @@ export const ADD_APP = gql`
 `;
 
 export const EDIT_APP = gql`
-    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int) {
-        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, companyName:$companyName, jobScore: $jobScore ) {
+    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int, $link: String) {
+        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, companyName:$companyName, jobScore: $jobScore, link: $link ) {
             _id
             jobTitle
             jobDescription
@@ -34,6 +35,7 @@ export const EDIT_APP = gql`
             dateApplied
             companyName
             lastUpdated
+            link
             notes {
                 _id
                 noteText
@@ -52,8 +54,9 @@ export const DELETE_APP = gql`
             location
             status
             quickApply
-            jobScore,
+            jobScore
             dateApplied
+            link
             notes {
                 _id
                 noteText
