@@ -30,6 +30,10 @@
     padding: 10px;
 }
 
+.single-app .job-info .desc-container p {
+    white-space: break-spaces;
+}
+
 .single-app .job-info .desc-container.active {
     max-height: unset;
 }
