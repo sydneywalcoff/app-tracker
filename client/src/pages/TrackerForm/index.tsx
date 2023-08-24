@@ -84,6 +84,9 @@ const TrackerFormPage = () => {
             case "stage":
                 name = "status";
                 break;
+            case "job-url":
+                name="link";
+                break;
             default:
                 break;
         }
