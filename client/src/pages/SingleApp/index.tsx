@@ -55,6 +55,9 @@ const SingleApp = () => {
     setIsSeeMoreOpen('active');
   }
 
+  let savedLinkUrl = job?.link || '';
+  savedLinkUrl = savedLinkUrl.includes('https://') ? savedLinkUrl : 'https://' + savedLinkUrl;
+
   const quickApplyText = () => job.quickApply ? "yes" : "no";
   return (
     <SectionContainer className='single-app'>
@@ -144,7 +147,7 @@ const SingleApp = () => {
                 {job.link && (
                   <h4>
                     <span className="font-bold">saved link: </span>
-                    <a className="link" href={'https://'+job.link} target="_BLANK">[here]</a>
+                    <a className="link" href={savedLinkUrl} rel="noreferrer" target="_BLANK">[here]</a>
                   </h4>
                 )}
               </div>
