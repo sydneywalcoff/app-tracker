@@ -93,11 +93,12 @@ const SingleApp = () => {
                     <span className="font-bold">quick apply?: </span>
                     {quickApplyText()}
                   </h4>
-                  {job.link && <h4>
-                    <span className="font-bold">link: </span>
-                    {job.link}
-                    <a href={job.link}>Saved Link</a>
-                  </h4>}
+                  {job.link && (
+                    <h4>
+                      <span className="font-bold">saved link: </span>
+                      <a className="link" href={savedLinkUrl} rel="noreferrer" target="_BLANK">[here]</a>
+                    </h4>
+                  )}
                   {job.jobScore > 0 && (
                     <h4>
                       <span className="font-bold">JobScan Score: </span>
