@@ -114,8 +114,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
     };
 
     const closeModal = () => {
-        setModalOpen(false);
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
+        setModalOpen(false);
     }
 
     return (
