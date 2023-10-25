@@ -35,16 +35,16 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     dateApplied: {
         type: Date,
         default: Date.now,
-        get: timeStamp => dateFormat(timeStamp),
+        // get: timeStamp => dateFormat(timeStamp),
     },
     lastUpdated: {
         type: Date,
-        get: timeStamp => {
-            if(!timeStamp) {
-                return ''
-            }
-            return dateFormat(timeStamp)
-        },
+        // get: timeStamp => {
+        //     if(!timeStamp) {
+        //         return ''
+        //     }
+        //     return dateFormat(timeStamp)
+        // },s
     },
     notes: [noteSchema], 
     link: {
