@@ -40,7 +40,6 @@ const TrackerTable = () => {
     const [activeApps, setActiveApps] = useState<boolean>(true);
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
     const [lastShownApp, setLastShownApp] = useState<number>(9);
-    const [paginatedApps, setPaginatedApps] = useState<jobProp[]>([]);
     const { loading, error, data } = useQuery(QUERY_MY_APPS);
     let jobs: jobProp[] = data?.myApps || [];
     let totalPages: number;
@@ -73,7 +72,7 @@ const TrackerTable = () => {
                 jobStatusObj[status] = [app];
                 return;
             }
-            jobStatusObj[status] = [...jobStatusObj[status], app];
+            jobStatusObj[status] = [app, ...jobStatusObj[status]];
 
         })
         let sortedJobs: jobProp[][] = [];
@@ -158,8 +157,8 @@ const TrackerTable = () => {
 
     const tableBody = (jobs: jobProp[]) => {
         let paginatedJobs: jobProp[] = [];
-        for(let i=firstShownApp; i<=lastShownApp; i++) {
-            if(jobs[i]){
+        for (let i = firstShownApp; i <= lastShownApp; i++) {
+            if (jobs[i]) {
                 paginatedJobs.push(jobs[i])
             }
         }
@@ -253,11 +252,11 @@ const TrackerTable = () => {
                                     to={job._id}
                                     className="text-indigo-600 hover:text-indigo-900"
                                 >
-                                        <img src={arrow} className="arrow" />
-                                    </Link>
-                                </div>
+                                    <img src={arrow} className="arrow" />
+                                </Link>
                             </div>
-                        )
+                        </div>
+                    )
                     )}
                 </div>
                 {numJobs > 10 && pageCounter()}
