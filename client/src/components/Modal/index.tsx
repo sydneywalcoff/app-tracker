@@ -110,6 +110,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 quickApply: quickApply,
             },
         });
+        document.getElementsByTagName('body')[0].style.overflow = 'auto';
         setModalOpen(false)
     };
 
