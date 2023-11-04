@@ -1,14 +1,12 @@
 import { DateTime } from 'luxon';
 
-const formatDate = () => {
-    const month = DateTime.local().month;
-    const date = DateTime.local().day;
-    let year: (string | number | string[]) = DateTime.local().year;
-    year = year.toString().split('')
-    year.splice(0,2)
-    year = parseInt(year.join(''))
-
-    return `${month}/${date}/${year}`
+const parseDateString = (dateStr:string) => {
+    let dateArr: string | string[] = dateStr.split(' ');
+    let month: any = dateArr[1].substring(0, dateArr[1].length -3);
+    dateArr[1] = month;
+    dateArr = dateArr.join(' ');
+    let parsedDateObj = DateTime.fromFormat(dateArr, 'LLL d yyyy');
+    return parsedDateObj;
 };
 
 const hasBeenGhosted = (lastUpdated: string) => {
@@ -22,4 +20,4 @@ const hasBeenGhosted = (lastUpdated: string) => {
     return false;
 };
 
-export { formatDate, hasBeenGhosted };
+export { hasBeenGhosted, parseDateString };

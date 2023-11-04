@@ -32,7 +32,6 @@ const SingleApp = () => {
   });
   const [deleteApp] = useMutation(DELETE_APP);
   const job = data?.app || {};
-  console.log(new Date(job.dateApplied))
   const handleEdit = () => {
     setModalOpen(!modalOpen);
   };
