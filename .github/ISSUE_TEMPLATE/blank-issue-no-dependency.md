@@ -3,7 +3,7 @@ name: Blank Issue w/out Dependency
 about: Consistent formatting make Issues concise and easy to navigate
 title: ''
 labels: ''
-projects: ["expunge-assist/1"]
+projects: ["app-tracker/1"]
 assignees: ''
 
 ---
