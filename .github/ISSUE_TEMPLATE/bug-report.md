@@ -3,7 +3,6 @@ name: Bug Report
 about: Issue to clearly and concisely report bugs in the app
 title: '[BUG]:'
 labels: 'bug'
-projects: ["sydneywalcoff/1"]
 assignees: 'sydneywalcoff'
 
 ---
