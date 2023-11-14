@@ -2,13 +2,14 @@
 name: Blank Issue w/ Dependency
 about: Consistent formatting make Issues concise and easy to navigate
 title: ''
-labels: ''
+labels: ['blocked']
 projects: ["expunge-assist/1"]
 assignees: ''
 
 ---
 
 ### Dependency
+- 
 
 ### Overview
 REPLACE THIS TEXT -Text here that clearly states the purpose of this issue in 2 sentences or less.
