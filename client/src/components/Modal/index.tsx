@@ -17,7 +17,7 @@ interface jobProp {
     status: string;
     dateApplied: string;
     quickApply: boolean;
-    jobScore: string;
+    jobScore: number;
     link: string;
 }
 
@@ -60,7 +60,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        jobScore: 0,
+        jobScore,
         link
     });
 
