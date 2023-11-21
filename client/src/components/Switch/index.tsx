@@ -1,10 +1,11 @@
-import { Dispatch } from 'react'
-interface FilterProps {
+import { Dispatch } from 'react';
+
+interface SwitchProps {
     active: boolean
     setActiveApps: Dispatch<boolean>
 }
 
-const Filter = (props: FilterProps ) => {
+const Switch = (props: SwitchProps ) => {
     const { active, setActiveApps } = props;
     let bgColorClass, textColorClass, text;
     if(active) {
@@ -17,11 +18,11 @@ const Filter = (props: FilterProps ) => {
         text = 'All'
     }
     const filterActiveApps = () => {
-        setActiveApps(!active)
+        setActiveApps(!active);
     };
     return (
         <span className={`px-2 inline-flex my-auto text-xs leading-5 font-semibold rounded-full ${bgColorClass} ${textColorClass}`} onClick={filterActiveApps}>{text} Apps</span>
     );
 };
 
-export default Filter;
+export default Switch;
