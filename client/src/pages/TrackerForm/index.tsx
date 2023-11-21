@@ -160,7 +160,7 @@ const TrackerFormPage = () => {
                                                 <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
                                             </div>
                                             <div className="checkbox-container">
-                                                <Checkbox name="quick-apply" onChange={handleCheckboxChange} classes="ml-3" />
+                                                <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
                                             </div>
                                             <div className="btn-container">
                                                 <Button text="Save" classes="primary drop-shadow-md" type="submit" />

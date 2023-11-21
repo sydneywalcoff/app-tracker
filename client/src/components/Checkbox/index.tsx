@@ -6,9 +6,11 @@ interface CheckboxPropsI {
     onChange: ChangeEventHandler<HTMLInputElement>
     classes?: string;
     name: string;
+    text: string;
+    type?: string;
 }
 
-const Checkbox = ({onChange, classes, name}: CheckboxPropsI) => {
+const Checkbox = ({onChange, classes, name, text, type}: CheckboxPropsI) => {
     
     return(
         <div className="checkbox-div">
@@ -16,10 +18,10 @@ const Checkbox = ({onChange, classes, name}: CheckboxPropsI) => {
                 htmlFor={name}
                 className="block"
             >
-                Quick Apply?
+                {text}
             </label>
             <input
-                type="checkbox"
+                type={type ? type: "checkbox"}
                 name={name}
                 id={name}
                 onChange={onChange}
