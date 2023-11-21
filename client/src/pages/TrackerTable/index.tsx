@@ -12,7 +12,7 @@ import arrow from './assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg';
 import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
 import SearchBar from '../../components/SearchBar';
-import Switch from '../../components/Switch';
+import Filter from '../../components/Filter';
 import Button from "../../components/Button";
 
 interface jobProp {
@@ -202,7 +202,7 @@ const TrackerTable = () => {
             <>
                 <div className="flex justify-between">
                     <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                    <Switch active={activeApps} setActiveApps={setActiveApps} />
+                    <Filter active={activeApps} setActiveApps={setActiveApps} />
                 </div>
                 <div className="table-container shadow">
                     <table className="w-full divide-y">
