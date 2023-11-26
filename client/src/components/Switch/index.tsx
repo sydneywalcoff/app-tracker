@@ -1,27 +1,27 @@
 import { Dispatch } from 'react';
 
+import './assets/style.css';
+
 interface SwitchProps {
     active: boolean
+    toggleId: string
     setActiveApps: Dispatch<boolean>
 }
 
-const Switch = (props: SwitchProps ) => {
-    const { active, setActiveApps } = props;
-    let bgColorClass, textColorClass, text;
-    if(active) {
-        bgColorClass = 'bg-gray-900';
-        textColorClass='text-white';
-        text = 'Active'
-    } else {
-        bgColorClass = 'bg-white border border-black-900';
-        textColorClass='text-black';
-        text = 'All'
-    }
+const Switch = (props: SwitchProps) => {
+    const { active, setActiveApps, toggleId } = props;
+    let text = active ? 'Active' : 'All';
     const filterActiveApps = () => {
         setActiveApps(!active);
     };
     return (
-        <span className={`px-2 inline-flex my-auto text-xs leading-5 font-semibold rounded-full ${bgColorClass} ${textColorClass}`} onClick={filterActiveApps}>{text} Apps</span>
+        <div className={`toggle-switch my-4 ${active ? 'active' : ''}`} >
+            <input type="checkbox" className="toggle-switch-checkbox" id={toggleId} name={toggleId} onChange={filterActiveApps}/>
+            <label className="toggle-switch-label" htmlFor={toggleId}>
+                <span className="toggle-switch-inner">{text}</span>
+                <span className="toggle-switch-switch" />
+            </label>
+        </div>
     );
 };
 
