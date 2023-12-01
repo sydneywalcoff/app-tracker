@@ -4,6 +4,7 @@ about: Consistent formatting make Issues concise and easy to navigate
 title: ''
 labels: ['blocked']
 assignees: ''
+projects: ['sydneywalcoff/1']
 
 ---
 
