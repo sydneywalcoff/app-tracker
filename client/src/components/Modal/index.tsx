@@ -196,11 +196,12 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     defaultValue={job.status}
                                 >
                                     <option value="preparing">Preparing</option>
+                                    <option value="rejected">Rejected</option>
                                     <option value="applied">Applied</option>
                                     <option value="phone screen">Phone Screen</option>
                                     <option value="first interview">First Interview</option>
                                     <option value="technical">Technical Interview</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="offer">Offer</option>
                                 </select>
                             </div>
                             <div className="mb-3">
