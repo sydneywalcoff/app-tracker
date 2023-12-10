@@ -65,7 +65,7 @@ const TrackerTable = () => {
 
     const filterByStatus = () => {
         const jobStatusObj: jobStatusObj = {};
-        const statusArr: string[] = ["first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
+        const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
         jobs.forEach(app => {
             const { status } = app;
             if (!jobStatusObj[status]) {
@@ -202,7 +202,7 @@ const TrackerTable = () => {
             <>
                 <div className="flex justify-between">
                     <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                    <Switch active={activeApps} setActiveApps={setActiveApps} toggleId="active-apps-toggle"/>
+                    <Switch active={activeApps} setActiveApps={setActiveApps} toggleId="active-apps-toggle" />
                 </div>
                 <div className="table-container shadow">
                     <table className="w-full divide-y">
