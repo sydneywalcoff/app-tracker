@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const db = require('./config/connection');
 
 const PORT: string | number = process.env.PORT || 3001;
