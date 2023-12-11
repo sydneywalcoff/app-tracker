@@ -1,6 +1,7 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useState, MouseEvent } from "react";
 
 import StageBadge from "../StageBadge";
+import ArrowSVG from './assets/arrow.svg';
 
 import './assets/style.css';
 
@@ -11,37 +12,34 @@ interface StageDropdownPropsI {
 
 const StageDropdown = ({ onChange, options }: StageDropdownPropsI) => {
     const [selectedStage, setSelectedStage] = useState(options[0]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    // const on
+
     return (
-        <>
+        <div className="dropdown shadow-sm">
             <label
-                htmlFor="stage"
+                htmlFor="stage-dropdown"
                 className="block font-medium"
             >
                 stage
             </label>
-            <div className="stage-select-container">
-                <div className="selected-stage">{selectedStage}</div>
-                <div className="stage-options">
+            <div className={`stage-select-container active${isDropdownOpen ? 'active' : '' }` } id="stage-dropdown">
+                <div className="selected-stage p-2">
+                    <StageBadge stage={selectedStage} />
+                    <div className="arrow">
+                        <img src={ArrowSVG} alt="arrow icon" />
+                        </div>
+                </div>
+                <div className='stage-options shadow-lg'>
                     {options && options.map(option => (
-                        <div className="stage-container">
-                            <StageBadge stage={option} />   
+                        <div className="stage-container py-1 px-2">
+                            <StageBadge stage={option} />
                         </div>
                     ))}
                 </div>
             </div>
-            {/* <select
-                id="stage"
-                name="stage"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                onBlur={onChange}
-            >{ options ? options.map(option => (
-                <option value={option}>{option}</option>
-            )) : (<>
-                <option value="preparing">Preparing</option>
-                <option value="applied">Applied</option>
-                </>)}
-            </select> */}
-        </>
+        </div>
     );
 };
 
