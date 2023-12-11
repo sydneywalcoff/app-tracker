@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState, MouseEvent } from "react";
+import { useState } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
@@ -6,15 +6,12 @@ import ArrowSVG from './assets/arrow.svg';
 import './assets/style.css';
 
 interface StageDropdownPropsI {
-    onChange: ChangeEventHandler<HTMLSelectElement>
     options: string[]
 }
 
-const StageDropdown = ({ onChange, options }: StageDropdownPropsI) => {
+const StageDropdown = ({ options }: StageDropdownPropsI) => {
     const [selectedStage, setSelectedStage] = useState(options[0]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    // const on
 
     return (
         <div className="dropdown shadow-sm">
@@ -24,7 +21,7 @@ const StageDropdown = ({ onChange, options }: StageDropdownPropsI) => {
             >
                 stage
             </label>
-            <div className={`stage-select-container active${isDropdownOpen ? 'active' : '' }` } id="stage-dropdown">
+            <div className={`stage-select-container ${isDropdownOpen ? 'active' : '' }` } id="stage-dropdown">
                 <div className="selected-stage p-2">
                     <StageBadge stage={selectedStage} />
                     <div className="arrow">
