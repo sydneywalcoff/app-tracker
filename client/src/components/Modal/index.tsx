@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import "./assets/styles.css";
 
 import Button from '../Button';
+import StageDropdown from "../StageDropdown";
 
 import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_SINGLE_APP } from '../../utils/queries';
@@ -185,7 +186,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="stage" className="font-bold">
+                                {/* <label htmlFor="stage" className="font-bold">
                                     stage:{" "}
                                 </label>{" "}
                                 <select
@@ -202,7 +203,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     <option value="first interview">First Interview</option>
                                     <option value="technical">Technical Interview</option>
                                     <option value="offer">Offer</option>
-                                </select>
+                                </select> */}
+                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', '']}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-url" className="font-bold">Link</label>

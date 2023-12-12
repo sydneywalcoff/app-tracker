@@ -147,7 +147,7 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
                                             <div className="dropdown-container">
-                                                <StageDropdown options={['preparing', 'applied']}/>
+                                                <StageDropdown selectedStage={formState.status}  setSelectedStage={setFormState} options={['preparing', 'applied']}/>
                                             </div>
                                             <div className="input-container link">
                                                 <TextInput

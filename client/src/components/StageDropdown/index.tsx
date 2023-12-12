@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SetStateAction, Dispatch } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
@@ -7,12 +7,12 @@ import './assets/style.css';
 
 interface StageDropdownPropsI {
     options: string[]
+    setSelectedStage: Dispatch<SetStateAction<>>
+    selectedStage: string
 }
 
-const StageDropdown = ({ options }: StageDropdownPropsI) => {
-    const [selectedStage, setSelectedStage] = useState(options[0]);
+const StageDropdown = ({ options, setSelectedStage, selectedStage }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
     return (
         <div className="dropdown shadow-sm">
             <label
