@@ -21,16 +21,16 @@ const StageDropdown = ({ options }: StageDropdownPropsI) => {
             >
                 stage
             </label>
-            <div className={`stage-select-container ${isDropdownOpen ? 'active' : '' }` } id="stage-dropdown" onClick={()=> setIsDropdownOpen(!isDropdownOpen)}>
+            <div className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} id="stage-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 <div className="selected-stage p-2">
                     <StageBadge stage={selectedStage} />
                     <div className="arrow">
                         <img src={ArrowSVG} alt="arrow icon" />
-                        </div>
+                    </div>
                 </div>
                 <div className='stage-options shadow-lg'>
                     {options && options.map(option => (
-                        <div className="stage-container py-1 px-2">
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={()=> setSelectedStage(option)}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
