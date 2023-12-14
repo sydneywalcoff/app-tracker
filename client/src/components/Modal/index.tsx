@@ -191,7 +191,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
-                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} jobInfo={editJobForm}/>
+                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-url" className="font-bold">Link</label>

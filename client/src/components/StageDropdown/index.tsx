@@ -5,22 +5,13 @@ import ArrowSVG from './assets/arrow.svg';
 
 import './assets/style.css';
 
-interface JobProp {
-    jobTitle: string; 
-    companyName: string; 
-    location: string; 
-    jobDescription: string; 
-    status: string;
-    jobScore: number;
-}
-
 interface StageDropdownPropsI {
     onStageChange: (newStage: string) => void;
-    jobInfo: JobProp;
+    selectedStage: string;
     options: Array<string>;
 }
 
-const StageDropdown = ({ options, onStageChange, jobInfo }: StageDropdownPropsI) => {
+const StageDropdown = ({ options, onStageChange, selectedStage }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     return (
@@ -33,7 +24,7 @@ const StageDropdown = ({ options, onStageChange, jobInfo }: StageDropdownPropsI)
             </label>
             <div className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} id="stage-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 <div className="selected-stage p-2">
-                    <StageBadge stage={jobInfo.status} />
+                    <StageBadge stage={selectedStage} />
                     <div className="arrow">
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
