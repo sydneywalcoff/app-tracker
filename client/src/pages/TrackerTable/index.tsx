@@ -11,6 +11,7 @@ import arrow from './assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg';
 
 import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
+import StageDropdown from "../../components/StageDropdown";
 import SearchBar from '../../components/SearchBar';
 import Switch from '../../components/Switch';
 import Button from "../../components/Button";
@@ -62,10 +63,10 @@ const TrackerTable = () => {
             </ContentContainer>
         );
     }
+    const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     const filterByStatus = () => {
         const jobStatusObj: jobStatusObj = {};
-        const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
         jobs.forEach(app => {
             const { status } = app;
             if (!jobStatusObj[status]) {
@@ -179,7 +180,7 @@ const TrackerTable = () => {
                         <p>{job.companyName}</p>
                     </td>
                     <td className="whitespace-nowrap">
-                        <StageBadge stage={job.status} />
+                        <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status} />
                     </td>
                     <td>
                         <p>{job.location}</p>
@@ -240,7 +241,7 @@ const TrackerTable = () => {
                                     <p className="company">{job.companyName}</p>
                                 </div>
                                 <div className="badge-container">
-                                    <StageBadge stage={job.status} />
+                                    <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status} />
                                 </div>
                             </div>
                             <div className="bottom-container">
