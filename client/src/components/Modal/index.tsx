@@ -181,21 +181,21 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                     type="text"
                                     name="location"
                                     id="location"
-                                    className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md"
+                                    className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
                                     placeholder={job.location}
                                     onChange={changeHandler}
                                 />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
+                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
                                 <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-url" className="font-bold">Link</label>
-                                <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={link} />
+                                <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={link} />
                             </div>
                         </>
                         <Button
