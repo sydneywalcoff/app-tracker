@@ -180,7 +180,7 @@ const TrackerTable = () => {
                         <p>{job.companyName}</p>
                     </td>
                     <td className="whitespace-nowrap">
-                        <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status} />
+                        <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status}/>
                     </td>
                     <td>
                         <p>{job.location}</p>
@@ -241,7 +241,7 @@ const TrackerTable = () => {
                                     <p className="company">{job.companyName}</p>
                                 </div>
                                 <div className="badge-container">
-                                    <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status} />
+                                    <StageBadge stage={job.status} />
                                 </div>
                             </div>
                             <div className="bottom-container">
