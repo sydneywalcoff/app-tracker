@@ -25,6 +25,9 @@
     width: 25px;
     top: 0;
     right: 0;
+}
+
+.active.stage-select-container .selected-stage .arrow {
     z-index: 300;
 }
 
