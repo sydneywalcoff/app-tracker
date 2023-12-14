@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
+import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_MY_APPS } from "../../utils/queries";
 import { hasBeenGhosted } from '../../utils/dateFormat';
 import Auth from '../../utils/auth';
@@ -36,6 +37,8 @@ const TrackerTable = () => {
     if (!loggedIn) {
         window.location.assign('/login')
     }
+
+    const [editApp] = useMutation(EDIT_APP);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchText, setSearchText] = useState<string>('');
     const [activeApps, setActiveApps] = useState<boolean>(true);
@@ -156,6 +159,18 @@ const TrackerTable = () => {
         totalPages = Math.ceil(numJobs / 10);
     }
 
+    const handleDropdownChange = async(newStage: string, jobId: string | undefined) => {
+        try {
+            console.log(newStage, jobId);
+            await editApp({variables: {
+                _id: jobId,
+                status: newStage
+            }})
+        } catch(e) {
+            console.log(e)
+        }
+    };
+
     const tableBody = (jobs: jobProp[]) => {
         let paginatedJobs: jobProp[] = [];
         for (let i = firstShownApp; i <= lastShownApp; i++) {
@@ -180,7 +195,7 @@ const TrackerTable = () => {
                         <p>{job.companyName}</p>
                     </td>
                     <td className="whitespace-nowrap">
-                        <StageDropdown options={statusArr} onStageChange={console.log} selectedStage={job.status}/>
+                        <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} jobId={job._id}/>
                     </td>
                     <td>
                         <p>{job.location}</p>

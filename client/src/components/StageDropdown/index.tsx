@@ -6,13 +6,18 @@ import ArrowSVG from './assets/arrow.svg';
 import './assets/style.css';
 
 interface StageDropdownPropsI {
-    onStageChange: (newStage: string) => void;
+    onStageChange: (newStage:string, jobId:string) => Promise<void> | ((newStage: string) => void )| void;
+    jobId?: string | undefined;
     selectedStage: string;
     options: Array<string>;
 }
 
-const StageDropdown = ({ options, onStageChange, selectedStage }: StageDropdownPropsI) => {
+const StageDropdown = ({ options, onStageChange, selectedStage, jobId }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const handleClick = (newStage: string, job:any ) => {
+        onStageChange(newStage, job)
+    };
 
     return (
         <div className="dropdown">
@@ -30,8 +35,8 @@ const StageDropdown = ({ options, onStageChange, selectedStage }: StageDropdownP
                     </div>
                 </div>
                 <div className='stage-options shadow-lg'>
-                    {options && options.map(option => (
-                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => onStageChange(option)}>
+                    {options && options.map((option:string) => (
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, jobId)}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
