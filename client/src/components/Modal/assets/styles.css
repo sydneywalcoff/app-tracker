@@ -28,10 +28,6 @@
     cursor: pointer;
 }
 
-.modal .dropdown {
-    box-shadow: none;
-}
-
 .modal .stage-select-container {
     border: 1px solid rgb(209 213 219)
 }

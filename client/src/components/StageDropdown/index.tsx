@@ -15,7 +15,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage }: StageDropdownP
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     return (
-        <div className="dropdown shadow-sm">
+        <div className="dropdown">
             <label
                 htmlFor="stage-dropdown"
                 className="block font-medium"
