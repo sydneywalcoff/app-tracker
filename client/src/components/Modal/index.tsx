@@ -104,6 +104,11 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         setEditJobForm({ ...editJobForm, [name]: value });
     };
 
+
+    const handleDropDownChange = (newStage: string) => {
+        setEditJobForm({...editJobForm, status: newStage})
+    };
+
     const submitHandler = async () => {
         await editApp({
             variables: {
@@ -186,25 +191,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
-                                {/* <label htmlFor="stage" className="font-bold">
-                                    stage:{" "}
-                                </label>{" "}
-                                <select
-                                    id="stage"
-                                    name="stage"
-                                    className="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    onBlur={changeHandler}
-                                    defaultValue={job.status}
-                                >
-                                    <option value="preparing">Preparing</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="applied">Applied</option>
-                                    <option value="phone screen">Phone Screen</option>
-                                    <option value="first interview">First Interview</option>
-                                    <option value="technical">Technical Interview</option>
-                                    <option value="offer">Offer</option>
-                                </select> */}
-                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', '']}/>
+                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} jobInfo={editJobForm}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-url" className="font-bold">Link</label>

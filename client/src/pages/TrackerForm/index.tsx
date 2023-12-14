@@ -61,6 +61,10 @@ const TrackerFormPage = () => {
         setCheckboxState(!checkboxState);
     };
 
+    const handleDropDownChange = (newStage: string) => {
+        setFormState({...formState, status: newStage})
+    };
+
     const handleChange = (
         e:
             | ChangeEvent<HTMLInputElement>
@@ -147,7 +151,7 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
                                             <div className="dropdown-container">
-                                                <StageDropdown selectedStage={formState.status}  setSelectedStage={setFormState} options={['preparing', 'applied']}/>
+                                                <StageDropdown jobInfo={formState}  onStageChange={handleDropDownChange} options={['preparing', 'applied']}/>
                                             </div>
                                             <div className="input-container link">
                                                 <TextInput
