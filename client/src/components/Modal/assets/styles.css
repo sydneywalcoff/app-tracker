@@ -27,3 +27,7 @@
 .modal .close-btn {
     cursor: pointer;
 }
+
+.modal .stage-select-container {
+    border: 1px solid rgb(209 213 219)
+}
