@@ -10,7 +10,7 @@ import TextInput from "../../components/TextInput";
 import TextArea from "../../components/TextArea";
 import Button from '../../components/Button';
 import Checkbox from "../../components/Checkbox";
-import Dropdown from "../../components/Dropdown";
+import StageDropdown from "../../components/StageDropdown";
 
 import './assets/style.css';
 
@@ -59,6 +59,10 @@ const TrackerFormPage = () => {
 
     const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCheckboxState(!checkboxState);
+    };
+
+    const handleDropDownChange = (newStage: string) => {
+        setFormState({...formState, status: newStage})
     };
 
     const handleChange = (
@@ -147,7 +151,7 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
                                             <div className="dropdown-container">
-                                                <Dropdown onChange={handleChange} />
+                                                <StageDropdown selectedStage={formState.status}  onStageChange={handleDropDownChange} options={['preparing', 'applied']}/>
                                             </div>
                                             <div className="input-container link">
                                                 <TextInput

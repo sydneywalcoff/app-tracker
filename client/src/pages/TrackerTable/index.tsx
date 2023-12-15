@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
+import { EDIT_APP_STATUS } from "../../utils/mutations";
 import { QUERY_MY_APPS } from "../../utils/queries";
 import { hasBeenGhosted } from '../../utils/dateFormat';
 import Auth from '../../utils/auth';
@@ -11,6 +12,7 @@ import arrow from './assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg';
 
 import ContentContainer from "../../components/ContentContainer";
 import StageBadge from "../../components/StageBadge";
+import StageDropdown from "../../components/StageDropdown";
 import SearchBar from '../../components/SearchBar';
 import Switch from '../../components/Switch';
 import Button from "../../components/Button";
@@ -35,12 +37,14 @@ const TrackerTable = () => {
     if (!loggedIn) {
         window.location.assign('/login')
     }
+
+    const [editAppStatus] = useMutation(EDIT_APP_STATUS);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchText, setSearchText] = useState<string>('');
     const [activeApps, setActiveApps] = useState<boolean>(true);
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
     const [lastShownApp, setLastShownApp] = useState<number>(9);
-    const { loading, error, data } = useQuery(QUERY_MY_APPS);
+    const { loading, data } = useQuery(QUERY_MY_APPS);
     let jobs: jobProp[] = data?.myApps || [];
     let totalPages: number;
 
@@ -62,10 +66,10 @@ const TrackerTable = () => {
             </ContentContainer>
         );
     }
+    const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     const filterByStatus = () => {
         const jobStatusObj: jobStatusObj = {};
-        const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
         jobs.forEach(app => {
             const { status } = app;
             if (!jobStatusObj[status]) {
@@ -155,6 +159,20 @@ const TrackerTable = () => {
         totalPages = Math.ceil(numJobs / 10);
     }
 
+    const handleDropdownChange = async (status: string, job: jobProp) => {
+        try {
+            await editAppStatus({
+                variables: {
+                    ...job,
+                    id: job._id,
+                    status
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
     const tableBody = (jobs: jobProp[]) => {
         let paginatedJobs: jobProp[] = [];
         for (let i = firstShownApp; i <= lastShownApp; i++) {
@@ -179,7 +197,7 @@ const TrackerTable = () => {
                         <p>{job.companyName}</p>
                     </td>
                     <td className="whitespace-nowrap">
-                        <StageBadge stage={job.status} />
+                        <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} />
                     </td>
                     <td>
                         <p>{job.location}</p>
