@@ -31,7 +31,7 @@ export const EDIT_APP = gql`
             status
             location
             quickApply
-            jobScore,
+            jobScore
             dateApplied
             companyName
             lastUpdated
@@ -41,6 +41,20 @@ export const EDIT_APP = gql`
                 noteText
                 dateAdded
             }
+        }
+    }
+`;
+
+export const EDIT_APP_STATUS = gql`
+    mutation Mutation($id: ID!, $status: String!) {
+        editAppStatus(_id: $id, status: $status) {
+            _id
+            jobTitle
+            status
+            location
+            dateApplied
+            companyName
+            lastUpdated
         }
     }
 `;

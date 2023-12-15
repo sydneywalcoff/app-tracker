@@ -5,18 +5,29 @@ import ArrowSVG from './assets/arrow.svg';
 
 import './assets/style.css';
 
+interface jobProp {
+    _id: string;
+    jobTitle: string;
+    companyName: string;
+    jobDescription: string;
+    location: string;
+    status: string;
+    dateApplied: string;
+    lastUpdated: string;
+}
+
 interface StageDropdownPropsI {
-    onStageChange: (newStage:string, jobId:string) => Promise<void> | ((newStage: string) => void )| void;
-    jobId?: string | undefined;
+    onStageChange: (newStage:string, job:jobProp) => Promise<void> | ((newStage: string) => void )| void;
+    job?: jobProp | undefined;
     selectedStage: string;
     options: Array<string>;
 }
 
-const StageDropdown = ({ options, onStageChange, selectedStage, jobId }: StageDropdownPropsI) => {
+const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const handleClick = (newStage: string, job:any ) => {
-        onStageChange(newStage, job)
+    const handleClick = (newStage: string, jobInfo: any) => {
+        onStageChange(newStage, jobInfo)
     };
 
     return (
@@ -36,7 +47,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, jobId }: StageDr
                 </div>
                 <div className='stage-options shadow-lg'>
                     {options && options.map((option:string) => (
-                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, jobId)}>
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
                         </div>
                     ))}

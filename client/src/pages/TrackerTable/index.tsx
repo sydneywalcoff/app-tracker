@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
-import { EDIT_APP } from "../../utils/mutations";
+import { EDIT_APP_STATUS } from "../../utils/mutations";
 import { QUERY_MY_APPS } from "../../utils/queries";
 import { hasBeenGhosted } from '../../utils/dateFormat';
 import Auth from '../../utils/auth';
@@ -38,13 +38,13 @@ const TrackerTable = () => {
         window.location.assign('/login')
     }
 
-    const [editApp] = useMutation(EDIT_APP);
+    const [editAppStatus] = useMutation(EDIT_APP_STATUS);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchText, setSearchText] = useState<string>('');
     const [activeApps, setActiveApps] = useState<boolean>(true);
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
     const [lastShownApp, setLastShownApp] = useState<number>(9);
-    const { loading, error, data } = useQuery(QUERY_MY_APPS);
+    const { loading, data } = useQuery(QUERY_MY_APPS);
     let jobs: jobProp[] = data?.myApps || [];
     let totalPages: number;
 
@@ -159,14 +159,16 @@ const TrackerTable = () => {
         totalPages = Math.ceil(numJobs / 10);
     }
 
-    const handleDropdownChange = async(newStage: string, jobId: string | undefined) => {
+    const handleDropdownChange = async (status: string, job: jobProp) => {
         try {
-            console.log(newStage, jobId);
-            await editApp({variables: {
-                _id: jobId,
-                status: newStage
-            }})
-        } catch(e) {
+            await editAppStatus({
+                variables: {
+                    ...job,
+                    id: job._id,
+                    status
+                }
+            })
+        } catch (e) {
             console.log(e)
         }
     };
@@ -195,7 +197,7 @@ const TrackerTable = () => {
                         <p>{job.companyName}</p>
                     </td>
                     <td className="whitespace-nowrap">
-                        <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} jobId={job._id}/>
+                        <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} />
                     </td>
                     <td>
                         <p>{job.location}</p>
