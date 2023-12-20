@@ -77,7 +77,11 @@ const resolvers = {
             if (context.user) {
                 const { _id, status } = args;
                 const lastUpdated = Date.now();
-                const appData = await App.findByIdAndUpdate(_id, { status, lastUpdated }, { new: true });
+                let statusChange = {
+                    status: status,
+                    dateChanged: lastUpdated
+                };
+                const appData = await App.findByIdAndUpdate(_id, { $addToSet: {statusHistory: statusChange}, status, lastUpdated }, { new: true });
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
