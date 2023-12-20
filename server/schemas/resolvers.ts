@@ -49,7 +49,12 @@ const resolvers = {
         addApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
-                const appData = await App.create({ ...args, lastUpdated });
+                const statusChange = {
+                    dateChanged: lastUpdated,
+                    status: args.status
+                };
+                const statusHistory = [statusChange];
+                const appData = await App.create({ ...args, lastUpdated, statusHistory });
                 await User.findByIdAndUpdate(
                     context.user._id,
                     { $push: { apps: appData._id } },
