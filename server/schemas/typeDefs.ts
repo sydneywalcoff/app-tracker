@@ -7,6 +7,7 @@ const typeDefs = gql`
         jobDescription: String!
         companyName: String!
         status: String!
+        statusHistory: [StatusChange]
         location: String!
         quickApply: Boolean!
         jobScore: Int
@@ -28,6 +29,11 @@ const typeDefs = gql`
         password: String!
         email: String!
         apps: [App]
+    }
+
+    type StatusChange {
+        status: String!
+        dateChanged: String!
     }
 
     type Query {
