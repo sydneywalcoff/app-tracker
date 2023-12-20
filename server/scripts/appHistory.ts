@@ -23,9 +23,11 @@ const updateAppHistory = async () => {
         } else {
             history = [appliedObj, statusObj]
         }
-        console.log('start')
         await App.findByIdAndUpdate(_id, { statusHistory: history}, { new: true});
+
     }
+    console.log('done')
+    process.exit(1)
 };
 
 updateAppHistory();
