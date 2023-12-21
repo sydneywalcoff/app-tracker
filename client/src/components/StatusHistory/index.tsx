@@ -12,7 +12,7 @@ interface StatusHistoryI {
 
 const StatusHistory = ({ classes, history }: StatusHistoryI) => {
     return (
-        <div className={`status-history-comp h-full ${classes ? classes: ''}`}>
+        <div className={`status-history-comp h-full flex flex-col ${classes ? classes: ''}`}>
             <h4 className='font-bold'>History</h4>
             <div className="status-history h-full flex justify-center">
                 <div className="line"/>
