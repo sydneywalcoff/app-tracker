@@ -15,6 +15,7 @@ import Modal from "../../components/Modal";
 import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
+import StatusHistory from "../../components/StatusHistory";
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -150,6 +151,7 @@ const SingleApp = () => {
                     <a className="link" href={savedLinkUrl} rel="noreferrer" target="_BLANK">[here]</a>
                   </h4>
                 )}
+                <StatusHistory history={job.statusHistory}/>
               </div>
             </div>
           </div>
