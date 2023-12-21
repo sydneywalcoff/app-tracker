@@ -1,3 +1,5 @@
+import './assets/styles.css';
+
 interface StatusHistoryObj {
     dateChanged: String,
     status: String
@@ -9,12 +11,18 @@ interface StatusHistoryI {
 }
 
 const StatusHistory = ({ classes, history }: StatusHistoryI) => {
-
     return (
-        <div className={`status-history-comp ${classes}`}>
-            <h4>History</h4>
-            <div className="status-history">
-
+        <div className={`status-history-comp h-full ${classes ? classes: ''}`}>
+            <h4 className='font-bold'>History</h4>
+            <div className="status-history h-full flex justify-center">
+                <div className="line"/>
+                <div className="stages-bg h-full flex flex-col justify-between items-center">
+                { history && history.map(({status}) => (
+                    <div className="stage" data-name={status.split(' ').join('-')}>
+                        <div className="circle">{status[0].toUpperCase()}</div>
+                    </div>
+                )) }
+                </div>
             </div>
         </div>
     );
