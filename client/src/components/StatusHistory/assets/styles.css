@@ -1,5 +1,6 @@
 .status-history-comp .status-history {
     position: relative;
+    min-height: 125px;
 }
 
 .status-history-comp .status-history .line {

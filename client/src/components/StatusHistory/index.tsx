@@ -22,6 +22,11 @@ const StatusHistory = ({ classes, history }: StatusHistoryI) => {
                         <div className="circle flex justify-center items-center">{status[0].toUpperCase()}</div>
                     </div>
                 )) }
+                { history && history[history.length -1].status !== 'offer' && history[history.length -1].status !== 'rejected' && (
+                    <div className="stage" data-name='unknown'>
+                        <div className="circle flex justify-center items-center">?</div>
+                    </div>
+                )}
                 </div>
             </div>
         </div>
