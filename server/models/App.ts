@@ -1,6 +1,7 @@
 import { Schema, model, Document, Model } from 'mongoose';
 import dateFormat from '../utils/dateFormat'
 const noteSchema = require('./Note');
+const statusHistorySchema = require('./StatusHistory')
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -15,6 +16,7 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         type: String,
         require: true
     },
+    statusHistory: [statusHistorySchema],
     companyName: {
         type: String,
         require: true
@@ -63,6 +65,7 @@ export interface AppDocument extends Document {
     jobDescription: string,
     companyName: string,
     status: string,
+    statusHistory: [],
     location: string,
     quickApply: boolean,
     jobScore?: number,
