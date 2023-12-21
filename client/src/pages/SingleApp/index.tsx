@@ -118,7 +118,7 @@ const SingleApp = () => {
                 <div className="edit-btn" onClick={handleEdit}><img src={editIcon} alt="" /></div>
                 <div className="delete-btn" onClick={handleDelete}><img src={trashIcon} alt="" /></div>
               </div>
-              <div className="details">
+              <div className="details h-full flex flex-col">
                 <h4>
                   <span className="font-bold">updated last: </span>
                   {job.lastUpdated}
