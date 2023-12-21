@@ -13,8 +13,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50px;
-    background-color: #fff;
-    border: 2px solid var(--light-gray);
+    border: 2px solid;
     z-index: 5;
 }
 
