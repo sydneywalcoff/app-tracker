@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node server.ts",
     "watch": "nodemon -x ts-node server.ts",
-    "script": "nodemon -x ts-node scripts/appHistory.ts"
+    "script": "ts-node scripts/appHistory.ts"
   },
   "keywords": [],
   "author": "",
