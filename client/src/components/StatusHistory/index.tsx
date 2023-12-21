@@ -19,7 +19,7 @@ const StatusHistory = ({ classes, history }: StatusHistoryI) => {
                 <div className="stages-bg h-full flex flex-col justify-between items-center">
                 { history && history.map(({status}) => (
                     <div className="stage" data-name={status.split(' ').join('-')}>
-                        <div className="circle">{status[0].toUpperCase()}</div>
+                        <div className="circle flex justify-center items-center">{status[0].toUpperCase()}</div>
                     </div>
                 )) }
                 </div>
