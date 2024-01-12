@@ -14,7 +14,7 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     }, 
     status:  {
         type: String,
-        require: true
+        require: false
     },
     statusHistory: [statusHistorySchema],
     companyName: {
