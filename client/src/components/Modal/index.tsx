@@ -101,7 +101,6 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
-        console.log(editJobForm)
         setEditJobForm({ ...editJobForm, [name]: value });
     };
 
