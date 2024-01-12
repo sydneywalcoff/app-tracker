@@ -66,13 +66,15 @@ const resolvers = {
         },
         editApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
-                const { _id, status } = args;
+                const { _id, status, statusHistory } = args;
                 const lastUpdated = Date.now();
                 let statusChange = {
                     status: status,
                     dateChanged: lastUpdated
                 };
-                const appData = await App.findByIdAndUpdate(_id, { ...args, $addToSet: {statusHistory: statusChange}, lastUpdated }, { new: true });
+                let appData = !status ? 
+                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) : 
+                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: {statusHistory: statusChange}, lastUpdated }, { new: true })
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
