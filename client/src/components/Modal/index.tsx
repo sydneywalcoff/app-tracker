@@ -58,7 +58,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobTitle,
         dateApplied,
         companyName,
-        status,
+        status: '',
         jobDescription,
         location,
         jobScore,
@@ -101,6 +101,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
+        console.log(editJobForm)
         setEditJobForm({ ...editJobForm, [name]: value });
     };
 
