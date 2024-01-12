@@ -29,6 +29,10 @@ export const EDIT_APP = gql`
             jobTitle
             jobDescription
             status
+            statusHistory {
+                dateChanged
+                status
+            }
             location
             quickApply
             jobScore
@@ -51,6 +55,10 @@ export const EDIT_APP_STATUS = gql`
             _id
             jobTitle
             status
+            statusHistory {
+                dateChanged
+                status
+            }
             location
             dateApplied
             companyName
