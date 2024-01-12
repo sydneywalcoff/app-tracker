@@ -7,6 +7,10 @@ export const QUERY_APPS = gql`
             jobTitle
             jobDescription
             status
+            statusHistory {
+                dateChanged
+                status
+            }
             location
             quickApply
             jobScore
@@ -30,6 +34,10 @@ export const QUERY_SINGLE_APP = gql`
             _id
             jobDescription
             status
+            statusHistory {
+                dateChanged
+                status
+            }
             location
             quickApply
             jobScore
@@ -53,6 +61,10 @@ export const QUERY_MY_APPS = gql`
             jobTitle
             jobDescription
             status
+            statusHistory {
+                dateChanged
+                status
+            }
             location
             quickApply
             jobScore

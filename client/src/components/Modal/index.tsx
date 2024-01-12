@@ -58,7 +58,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobTitle,
         dateApplied,
         companyName,
-        status,
+        status: '',
         jobDescription,
         location,
         jobScore,
