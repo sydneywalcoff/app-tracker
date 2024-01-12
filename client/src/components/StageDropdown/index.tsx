@@ -30,6 +30,10 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
         onStageChange(newStage, jobInfo)
     };
 
+    const handleMouseLeave = () => {
+        setIsDropdownOpen(false);
+    };
+
     return (
         <div className="dropdown">
             <label
@@ -45,7 +49,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
-                <div className='stage-options shadow-lg'>
+                <div className='stage-options shadow-lg' onMouseLeave={handleMouseLeave}>
                     {options && options.map((option:string) => (
                         <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
