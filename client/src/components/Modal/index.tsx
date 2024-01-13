@@ -58,7 +58,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobTitle,
         dateApplied,
         companyName,
-        status: '',
+        status,
         jobDescription,
         location,
         jobScore,
@@ -106,24 +106,43 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
 
 
     const handleDropDownChange = (newStage: string) => {
-        setEditJobForm({...editJobForm, status: newStage})
-    };
-
-    const submitHandler = async () => {
-        await editApp({
-            variables: {
-                ...editJobForm,
-                quickApply: quickApply,
-            },
-        });
-        document.getElementsByTagName('body')[0].style.overflow = 'auto';
-        setModalOpen(false)
+        let oldStage = job.status;
+        if (oldStage !== newStage) {
+            setEditJobForm({ ...editJobForm, status: newStage });
+            return;
+        }
     };
 
     const closeModal = () => {
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
         setModalOpen(false);
     }
+
+    // if we want to add a 'are you sure message' about adding the same status twice, it would go in the submitHandler
+    const submitHandler = async () => {
+        try {
+            if (status !== editJobForm.status) {
+                await editApp({
+                    variables: {
+                        ...editJobForm,
+                        quickApply: quickApply,
+                    },
+                });
+            } else {
+                let { status: _, ...temp } = editJobForm;
+                await editApp({
+                    variables: {
+                        ...temp,
+                        quickApply: quickApply,
+                    },
+                });
+            }
+            closeModal();
+        } catch(e) {
+            console.error(e);
+        }
+    };
+
 
     return (
         <>
@@ -191,7 +210,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={jobScore} />
                             </div>
                             <div className="mb-3">
-                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status}/>
+                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="job-url" className="font-bold">Link</label>
