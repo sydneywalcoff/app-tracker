@@ -1,0 +1,7 @@
+.credit {
+    width: 23%;
+}
+
+.credit:nth-of-type(n + 4) {
+    margin-bottom: 16px;
+}

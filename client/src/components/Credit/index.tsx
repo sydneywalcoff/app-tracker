@@ -1,4 +1,4 @@
-
+import './assets/style.css'
 
 interface CreditPropsI {
     name: string,
@@ -14,16 +14,14 @@ const Credit = ({ name, owner, source, link, credit, desc }: CreditPropsI) => {
         <div className="credit">
             <img src={credit} alt={desc} className="credit-ex" />
             <div className="info-container">
-                <div className="name flex">
-                    <h4>name:</h4>
-                    <p>{name}</p>
+                <div className="name flex justify-between">
+                    <p className='flex'>name: <span>{name}</span></p>
                 </div>
-                <div className="owner flex">
-                    <h4>owner:</h4>
-                    <p>{owner}</p>
+                <div className="owner flex justify-between">
+                    <p className='flex'>owner: {owner}</p>
                 </div>
-                <div className="details flex">
-                    <div className="source"><p>{source}</p></div>
+                <div className="details flex justify-around">
+                    <div className="source"><a href={source}>source</a></div>
                     <div className="link"><a href={link}>[link]</a></div>
                 </div>
             </div>
