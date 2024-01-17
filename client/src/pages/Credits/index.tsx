@@ -58,7 +58,7 @@ const Credits = () => {
             <ContentContainer>
                 <>
                     <h2>Credits</h2>
-                    <div className="credit-container">
+                    <div className="credit-container flex">
                         {credits && credits.map((credit)=> <Credit name={credit.name} desc={credit.desc} owner={credit.owner} source={credit.source} link={credit.link} credit={credit.credit} />)}
                     </div>
                 </>
