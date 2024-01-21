@@ -1,0 +1,13 @@
+.hero {
+    height: 500px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 50px;
+    margin-top: -15px;
+}
+
+.hero .text-container {
+    width: 30%;
+}

@@ -1,5 +1,4 @@
-
-
+import SectionContainer from '../../components/SectionContainer';
 import ContentContainer from '../../components/ContentContainer';
 
 import LandingHeroImg from '../../assets/landing-hero.svg';
@@ -7,18 +6,19 @@ import LandingHeroImg from '../../assets/landing-hero.svg';
 import './assets/style.css';
 
 const LandingPage = () => {
-
     return (
-        <ContentContainer className='gray-bg'>
-            <div className="flex hero">
-                <div className="img-container">
-                    <img src={LandingHeroImg} alt="" />
+        <SectionContainer className="landing-hero">
+            <ContentContainer className='gray-bg'>
+                <div className="flex hero justify-center">
+                    <div className="img-container h-full">
+                        <img src={LandingHeroImg} className="h-full" alt="" />
+                        </div>
+                    <div className="text-container flex items-center text-right">
+                        <h1>JOB HUNTING SUCKS.</h1>
                     </div>
-                <div className="text-container">
-                    <h1>JOB HUNTING SUCKS</h1>
                 </div>
-            </div>
-        </ContentContainer>
+            </ContentContainer>
+        </SectionContainer>
     )
 };
 
