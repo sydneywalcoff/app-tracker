@@ -121,6 +121,12 @@
     }
 }
 
+@media screen and (max-width: 771px) {
+    .hero .text-container span {
+        bottom: -24px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .hero h1 {
         margin-bottom: 32px;
