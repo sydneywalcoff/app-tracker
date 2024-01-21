@@ -7,10 +7,18 @@
 .hero .text-container {
     max-width: 225px;
     width: 100%;
+    position: relative;
+}
+
+.hero .text-container span {
+    position: absolute;
+    right: 0;
+    bottom: 80px;
 }
 
 .hero .img-container {
-    width: calc(100% - 225px);/* 100% minus width of text-container */
+    width: calc(100% - 225px);
+    /* 100% minus width of text-container */
     max-width: 500px;
     min-width: 400px;
 }
@@ -23,30 +31,42 @@
 .text .text-container {
     max-width: 650px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
 .text .text-container p {
     font-size: 20px;
+}
+
+.text .text-container p:not(:last-of-type),
+.text .text-container>p {
+    margin-bottom: 20px;
+}
+
+.text .text-container .styled {
+    display: flex;
+    flex-direction: column;
+}
+
+.text .text-container .styled p {
     max-width: 525px;
 }
-.text .text-container p:nth-of-type(2) {
+
+.text .text-container .styled p:nth-of-type(2) {
     align-self: flex-end;
     text-align: right;
 }
 
-.text .text-container p:not(:last-of-type) {
-    margin-bottom: 20px;
+.list {
+    margin-top: 60px;
 }
 
 .list h2 {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     font-size: 36px;
 }
 
 .list ul {
-    margin-left: 28px;
+    margin-left: 44px;
     list-style-type: disc;
 }
 
@@ -69,6 +89,9 @@
 }
 
 @media screen and (max-width: 767px) {
+    .hero h1 {
+        margin-bottom: 32px;
+    }
     .hero .img-container {
         width: 100%;
         max-width: 450px;
@@ -81,11 +104,25 @@
         justify-content: center;
     }
 
+    .hero .text-container span {
+        position: absolute;
+        right: 0;
+        bottom: 8px;
+    }
+
     .text .text-container p:nth-of-type(2) {
         align-self: flex-start;
         text-align: left;
     }
-    
+
+    .list h2 {
+        font-size: 24px;
+    }
+
+    .list ul li {
+        font-size: 16px;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
