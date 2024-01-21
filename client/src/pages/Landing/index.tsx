@@ -19,12 +19,24 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </ContentContainer>
-                <ContentContainer className='text'>
+                <ContentContainer className='text rounded'>
                     <div className="text-container">
                         <p> Are you stuck in an endless cycle of customizing every resume to every job posting just to be ghosted?</p> 
                         <p>And what can you do? How can you improve if you’re just sending applications into the void?</p> 
-                        <p> Use AppTrack to find and fill the gaps in your background and get the job of your dreams.</p>
+                        <p>Use AppTrack to find and fill the gaps in your background and get the job of your dreams.</p>
                     </div>
+                </ContentContainer>
+                <ContentContainer className="list">
+                    <>
+                        <h2>AppTrack was made to make job tracking <u>easy</u>.</h2>
+                        <ul>
+                            <li>Document what the job posting and details are to prepare yourself better in interviews.</li>
+                            <li>Add notes specific to each application before and during interviews.</li>
+                            <li>Use prepared questions in interviews to gain pivotal insights.</li>
+                            <li>Keep relevant applications at the top of your mind by filtering out rejected apps.</li>
+                            <li>Search function allows you to quickly find applications.</li>
+                        </ul>
+                    </>
                 </ContentContainer>
             </>
         </SectionContainer>

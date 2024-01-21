@@ -15,6 +15,11 @@
     min-width: 400px;
 }
 
+.text {
+    background-color: var(--light-gray);
+    padding: 20px;
+}
+
 .text .text-container {
     max-width: 650px;
     margin: 0 auto;
@@ -35,6 +40,18 @@
     margin-bottom: 20px;
 }
 
+.list h2 {
+    margin-bottom: 32px;
+}
+
+.list ul {
+    margin-left: 28px;
+    list-style-type: disc;
+}
+
+.list ul li:not(:last-of-type) {
+    margin-bottom: 16px;
+}
 
 @media screen and (max-width: 767px) {
     .hero .img-container {
