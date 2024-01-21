@@ -2,26 +2,25 @@ import './assets/style.css'
 
 interface CreditPropsI {
     name: string,
-    owner: string,
+    artist: string,
     source: string,
     link: string,
     credit: string,
     desc: string
 }
 
-const Credit = ({ name, owner, source, link, credit, desc }: CreditPropsI) => {
+const Credit = ({ name, artist, source, link, credit, desc }: CreditPropsI) => {
     return (
-        <div className="credit">
-            <img src={credit} alt={desc} className="credit-ex" />
-            <div className="info-container">
-                <div className="name flex justify-between">
-                    <p className='flex'>name: <span>{name}</span></p>
+        <div className="credit rounded shadow-lg">
+            <img src={credit} alt={desc} className="credit-ex rounded-t" />
+            <div className="info-container p-2">
+                <div className="name">
+                    <h4>name: </h4>
+                    <span>{name}</span>
                 </div>
-                <div className="owner flex justify-between">
-                    <p className='flex'>owner: {owner}</p>
-                </div>
-                <div className="details flex justify-around">
-                    <div className="source"><a href={source}>source</a></div>
+                <div className="artist flex justify-between">
+                    <p className='flex'>artist: {artist}</p>
+                    <span>•</span>
                     <div className="link"><a href={link}>[link]</a></div>
                 </div>
             </div>

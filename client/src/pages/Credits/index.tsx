@@ -58,8 +58,8 @@ const Credits = () => {
             <ContentContainer>
                 <>
                     <h2>Credits</h2>
-                    <div className="credit-container flex flex-wrap justify-between">
-                        {credits && credits.map((credit)=> <Credit name={credit.name} desc={credit.desc} owner={credit.owner} source={credit.source} link={credit.link} credit={credit.credit} />)}
+                    <div className="credit-container flex flex-wrap justify-start">
+                        {credits.map((credit)=> <Credit name={credit.name} desc={credit.desc} artist={credit.owner} source={credit.source} link={credit.link} credit={credit.credit} />)}
                     </div>
                 </>
             </ContentContainer>

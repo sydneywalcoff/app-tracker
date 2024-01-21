@@ -1,7 +1,11 @@
 .credit {
     width: 23%;
+    min-width: 190px;
+    margin: 15px auto;
 }
 
-.credit:nth-of-type(n + 4) {
-    margin-bottom: 16px;
+.credit h4 {
+    font-size: 18px;
+    line-height: 20px;
+    text-transform: uppercase;
 }
