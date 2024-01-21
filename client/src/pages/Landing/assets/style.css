@@ -17,7 +17,7 @@
 
 .text {
     background-color: var(--light-gray);
-    padding: 20px;
+    padding: 32px;
 }
 
 .text .text-container {
@@ -42,6 +42,7 @@
 
 .list h2 {
     margin-bottom: 32px;
+    font-size: 36px;
 }
 
 .list ul {
@@ -49,8 +50,22 @@
     list-style-type: disc;
 }
 
+.list ul li {
+    font-size: 20px;
+}
+
 .list ul li:not(:last-of-type) {
     margin-bottom: 16px;
+}
+
+.repo-link .gh-logo {
+    width: 40px;
+    margin-left: 12px;
+}
+
+.repo-link p {
+    text-align: right;
+    line-height: 18px;
 }
 
 @media screen and (max-width: 767px) {

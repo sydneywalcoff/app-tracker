@@ -2,6 +2,7 @@ import SectionContainer from '../../components/SectionContainer';
 import ContentContainer from '../../components/ContentContainer';
 
 import LandingHeroImg from '../../assets/landing-hero.svg';
+import ghLogo from '../../assets/github-mark.svg';
 
 import './assets/style.css';
 
@@ -36,6 +37,12 @@ const LandingPage = () => {
                             <li>Keep relevant applications at the top of your mind by filtering out rejected apps.</li>
                             <li>Search function allows you to quickly find applications.</li>
                         </ul>
+                    </>
+                </ContentContainer>
+                <ContentContainer className="repo-link flex items-center justify-end">
+                    <>
+                        <p>Wanna check <br/>under the hood?</p>
+                        <a href="https://github.com/sydneywalcoff/app-tracker"><img src={ghLogo} alt="github logo" className='gh-logo' /></a>
                     </>
                 </ContentContainer>
             </>
