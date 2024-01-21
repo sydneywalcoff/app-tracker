@@ -15,6 +15,26 @@
     min-width: 400px;
 }
 
+.text .text-container {
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.text .text-container p {
+    font-size: 20px;
+    max-width: 525px;
+}
+.text .text-container p:nth-of-type(2) {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.text .text-container p:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
 
 @media screen and (max-width: 767px) {
     .hero .img-container {
@@ -28,11 +48,21 @@
         width: 100%;
         justify-content: center;
     }
+
+    .text .text-container p:nth-of-type(2) {
+        align-self: flex-start;
+        text-align: left;
+    }
+    
 }
 
 @media screen and (max-width: 500px) {
     .hero h1 {
         font-size: 45px;
         line-height: 40px;
+    }
+
+    .text .text-container p {
+        font-size: 16px;
     }
 }
