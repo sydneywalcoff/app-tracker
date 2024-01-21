@@ -65,8 +65,14 @@
     font-size: 36px;
 }
 
+.list .img,
+.list .list-text {
+    min-width: 400px;
+    width: 50%;
+}
+
 .list ul {
-    margin-left: 44px;
+    margin-left: 32px;
     list-style-type: disc;
 }
 
@@ -86,6 +92,23 @@
 .repo-link p {
     text-align: right;
     line-height: 18px;
+}
+
+@media screen and (max-width: 987px) {
+    .list .list-text,
+    .list .img {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .list .img {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .list ul {
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 767px) {

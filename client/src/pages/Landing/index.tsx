@@ -31,19 +31,21 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </ContentContainer>
-                <ContentContainer className="list flex">
+                <ContentContainer className="list">
                     <>
-                        <div className="list-text">
-                            <h2>AppTrack was made to make job tracking <u>easy</u>.</h2>
-                            <ul>
-                                <li>Document the details of job posting and company to prepare yourself better in interviews.</li>
-                                <li>Add notes specific to each application before and during interviews.</li>
-                                <li>Use prepared questions in interviews to gain pivotal insights.</li>
-                                <li>Keep relevant applications at the top of your mind by filtering out rejected apps.</li>
-                                <li>Search function allows you to quickly find applications.</li>
-                            </ul>
+                        <div className="content flex flex-wrap-reverse">
+                            <div className="list-text">
+                                <h2>AppTrack makes job tracking <u>easy</u>.</h2>
+                                <ul>
+                                    <li>Document the details of job posting and company to prepare yourself better in interviews.</li>
+                                    <li>Add notes specific to each application before and during interviews.</li>
+                                    <li>Use prepared questions in interviews to gain pivotal insights.</li>
+                                    <li>Keep relevant applications at the top of your mind by filtering out rejected apps.</li>
+                                    <li>Search function allows you to quickly find applications.</li>
+                                </ul>
+                            </div>
+                            <div className="img h-full w-full"><img src={jobHuntImg} alt="" className='h-full w-full' /></div>
                         </div>
-                        <div className="img h-full w-full"><img src={jobHuntImg} alt="" className='h-full w-full' /></div>
                     </>
                 </ContentContainer>
                 <ContentContainer className="repo-link flex items-center justify-end">
