@@ -48,6 +48,9 @@ const LandingPage = () => {
                         </div>
                     </>
                 </ContentContainer>
+                <ContentContainer className="cta">
+                    <p>Click ✨<a href="./login">here</a>✨ to signup or login</p>
+                </ContentContainer>
                 <ContentContainer className="repo-link flex items-center justify-end">
                     <>
                         <p>Wanna check <br />under the hood?</p>

@@ -84,6 +84,15 @@
     margin-bottom: 16px;
 }
 
+.cta p {
+    text-align: center;
+    font-size: 20px;
+}
+
+.cta p a {
+    text-decoration: underline;
+}
+
 .repo-link .gh-logo {
     width: 40px;
     margin-left: 12px;
@@ -95,6 +104,7 @@
 }
 
 @media screen and (max-width: 987px) {
+
     .list .list-text,
     .list .img {
         min-width: unset;
@@ -115,6 +125,7 @@
     .hero h1 {
         margin-bottom: 32px;
     }
+
     .hero .img-container {
         width: 100%;
         max-width: 450px;
