@@ -21,6 +21,7 @@ interface NoteProp {
 
 const Notes = ({ notes, appId }: NoteProp) => {
     const [noteText, setNoteText] = useState('');
+    const [isDisabledClass, setIsDisabledClass] = useState('disabled');
     const [addNote] = useMutation(ADD_NOTE, {
         update(cache, { data: { addNote } }) {
             try {
@@ -63,11 +64,13 @@ const Notes = ({ notes, appId }: NoteProp) => {
 
     const submitNote = async () => {
         await addNote({ variables: { noteText, appId } });
-        setNoteText('')
+        setNoteText('');
     };
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
+        if(!value.length) setIsDisabledClass('disabled');
+        if(value.length) setIsDisabledClass('');
         setNoteText(value);
     };
 
@@ -102,7 +105,7 @@ const Notes = ({ notes, appId }: NoteProp) => {
                 ></TextArea>
                 <Button
                 text="Add Note."
-                classes='blue ml-auto mt-4'
+                classes={`blue ml-auto mt-4 ${isDisabledClass}`}
                 onClick={submitNote}
                 type='button'
                 ></Button>

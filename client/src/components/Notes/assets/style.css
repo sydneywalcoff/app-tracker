@@ -1,5 +1,9 @@
-
-
-.close-note-btn {
+.notes .close-note-btn {
     cursor: pointer;
+}
+
+.notes .disabled {
+    pointer-events: none;
+    cursor: pointer !important;
+    background-color: gray !important;
 }
