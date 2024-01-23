@@ -36,7 +36,7 @@ const NavBar = ({ isMobileMenuOpen, pageRoutingArr, setIsMobileMenuOpen }: navBa
     return (
         <nav className={`absolute right-0 ${isMobileMenuOpen ? 'block' : 'hidden'} md:block md:relative`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
-                {pageTitles.map((title, index) => (
+                {loggedIn && pageTitles.map((title, index) => (
                     <li className={'m-2 ' + (pathname === title.location ? 'font-bold tracking-wide' : '')} key={title.name} ><Link onClick={closeMenu} to={title.location}>{title.name}</Link></li>
                 ))}
 
