@@ -11,10 +11,12 @@ interface CreditPropsI {
 
 const Credit = ({ name, artist, source, link, credit, desc }: CreditPropsI) => {
     return (
-        <div className="credit rounded shadow-lg">
-            <img src={credit} alt={desc} className="credit-ex rounded-t" />
+        <div className="credit rounded shadow-lg flex flex-col justify-between">
+            <div className="img-container flex items-center h-full">
+                <img src={credit} alt={desc} className="credit-ex rounded-t" />
+            </div>
             <div className="info-container p-2">
-                <div className="name">
+                <div className="name flex flex-wrap">
                     <h4>name: </h4>
                     <span>{name}</span>
                 </div>
