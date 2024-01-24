@@ -4,8 +4,12 @@
     margin: 15px auto;
 }
 
+.credit img {
+    max-height: 200px;
+    margin: 0 auto;
+}
+
 .credit h4 {
-    font-size: 18px;
-    line-height: 20px;
     text-transform: uppercase;
+    margin-right: 8px;
 }
