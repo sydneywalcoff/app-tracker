@@ -2,56 +2,36 @@ import SectionContainer from '../../components/SectionContainer';
 import ContentContainer from '../../components/ContentContainer';
 import Credit from '../../components/Credit';
 
+import githubLogo from '../../assets/github-mark.svg';
+import jobHuntImg from '../../assets/job-hunt.svg';
+import landingHeroImg from '../../assets/landing-hero.svg';
+
 const Credits = () => {
     const credits = [
         {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
+            name: 'Job Hunt',
+            desc: 'An illustration of a man standing in front of a newspaper titled "Jobs", magnifying glass, and tablet.',
+            owner: 'StorySet',
+            source: 'StorySet',
+            link: 'https://storyset.com/illustration/job-hunt/amico',
+            credit: jobHuntImg
         },
         {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
+            name: 'Annoyed',
+            desc: 'An illustration of a woman frustrated with the job junting process',
+            owner: 'StorySet',
+            source: 'StorySet',
+            link: 'https://storyset.com/illustration/annoyed/rafiki',
+            credit: landingHeroImg
         },
         {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
-        },
-        {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
-        },
-        {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
-        },
-        {
-            name: 'The Horrors Persist',
-            desc: 'A hamster with pink sunglasses atop its head driving a pink toy car',
-            owner: 'me',
-            source: 'facebook',
-            link: 'facebook.com',
-            credit: 'https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/0f12d86f053802aa518d8fdad596203bf25024d5491a71799aa6276a78ab633f_1.jpg'
-        },
+            name: 'Github Logo',
+            desc: 'The Github logo',
+            owner: 'Github',
+            source: 'Github',
+            link: 'https://github.com/logos',
+            credit: githubLogo,
+        }
     ];
     return (
         <SectionContainer>
