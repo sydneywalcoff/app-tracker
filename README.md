@@ -13,7 +13,7 @@ AppTrack is a TypeScript, React, MongoDb, Node application built to help job see
 
 ## Usage
 
-The project is live at at [https://sw-app-tracker.herokuapp.com/](https://sw-app-tracker.herokuapp.com/). 
+The project is live at at [https://apptrack.sydneywalcoff.com](https://apptrack.sydneywalcoff.com). 
 
 Make an account or use `test` as username and password.
 
