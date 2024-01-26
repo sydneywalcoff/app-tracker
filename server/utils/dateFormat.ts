@@ -1,5 +1,4 @@
-const addDateSuffix = date => {
-    let dateStr = date.toString();
+const addDateSuffix = dateStr => {
 
     // get last char of date string
     const lastChar = dateStr.charAt(dateStr.length - 1);
@@ -39,27 +38,13 @@ const dateFormat = (
     };
 
     const dateObj = new Date(timestamp);
-    const formattedMonth = months[dateObj.getMonth()];
+    const dateStr = dateObj.toLocaleDateString()
+    let [month, day, year] = dateStr.split('/');
+    const formattedMonth = months[(Number(month) - 1)];
 
     const dayOfMonth = dateSuffix
-        ? addDateSuffix(dateObj.getDate())
-        : dateObj.getDate();
-
-    const year = dateObj.getFullYear();
-    let hour =
-        dateObj.getHours() > 12
-            ? Math.floor(dateObj.getHours() / 2)
-            : dateObj.getHours();
-
-    // if hour is 0 (12:00am), change it to 12
-    if (hour === 0) {
-        hour = 12;
-    }
-
-    let minutes: number | string = dateObj.getMinutes();
-    if(minutes === 0){ minutes = '00'}
-    // set `am` or `pm`
-    const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
+        ? addDateSuffix(day)
+        : day;
 
     const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year}`;
 
