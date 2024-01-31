@@ -183,26 +183,26 @@ const TrackerTable = () => {
         return (
             paginatedJobs.map((job: jobProp) => (
                 <tr key={job._id}>
-                    <td className="whitespace-nowrap">
+                    <td className="whitespace-nowrap job-date-applied">
                         <p>
                             {job.dateApplied}
                         </p>
                     </td>
-                    <td>
+                    <td className="job-title">
                         <p>
                             {job.jobTitle}
                         </p>
                     </td>
-                    <td className="text-gray-500">
+                    <td className="text-gray-500 job-company-name">
                         <p>{job.companyName}</p>
                     </td>
-                    <td className="whitespace-nowrap">
+                    <td className="whitespace-nowrap job-stage">
                         <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} />
                     </td>
-                    <td>
+                    <td className="job-location">
                         <p>{job.location}</p>
                     </td>
-                    <td className="whitespace-nowrap text-right font-medium">
+                    <td className="whitespace-nowrap text-right font-medium job-see-more">
                         <Link
                             to={job._id}
                             className="text-indigo-600 hover:text-indigo-900"
