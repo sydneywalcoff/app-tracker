@@ -40,10 +40,11 @@
     padding: 12px;
 }
 
+.applied table tr .job-stage,
 .applied table tr .job-date-applied {
     width: 135px;
 }
-.applied table tr .job-stage,
+
 .applied table tr .job-location {
     width: 125px;
 } 
