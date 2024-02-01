@@ -47,9 +47,15 @@
 
 .applied table tr .job-location {
     width: 125px;
-} 
+}
 
-.applied table tr .job-see-more { width: 50px; }
+.applied table tr .job-company-name {
+    width: 175px;
+}
+
+.applied table tr .job-see-more {
+    width: 50px;
+}
 
 .mobile-table {
     display: none;
