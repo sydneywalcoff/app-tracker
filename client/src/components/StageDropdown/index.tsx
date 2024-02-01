@@ -17,7 +17,7 @@ interface jobProp {
 }
 
 interface StageDropdownPropsI {
-    onStageChange: (newStage:string, job:jobProp) => Promise<void> | ((newStage: string) => void )| void;
+    onStageChange: (newStage: string, job: jobProp) => Promise<void> | ((newStage: string) => void) | void;
     job?: jobProp | undefined;
     selectedStage: string;
     options: Array<string>;
@@ -50,7 +50,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                     </div>
                 </div>
                 <div className='stage-options shadow-lg' onMouseLeave={handleMouseLeave}>
-                    {options && options.map((option:string) => (
+                    {options && options.map((option: string) => (
                         <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
                         </div>
