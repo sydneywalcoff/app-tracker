@@ -1,177 +1,177 @@
-.hero h1 {
+.landing .hero h1 {
     font-size: 55px;
     line-height: 50px;
     margin-top: -15px;
 }
 
-.hero .text-container {
+.landing .hero .text-container {
     max-width: 225px;
     width: 100%;
     position: relative;
 }
 
-.hero .text-container span {
+.landing .hero .text-container span {
     position: absolute;
     right: 0;
     bottom: 80px;
 }
 
-.hero .img-container {
+.landing .hero .img-container {
     width: calc(100% - 225px);
     /* 100% minus width of text-container */
     max-width: 500px;
     min-width: 400px;
 }
 
-.text {
+.landing .text {
     background-color: var(--light-gray);
     padding: 32px;
 }
 
-.text .text-container {
+.landing .text .text-container {
     max-width: 650px;
     margin: 0 auto;
 }
 
-.text .text-container p {
+.landing .text .text-container p {
     font-size: 20px;
 }
 
-.text .text-container p:not(:last-of-type),
-.text .text-container>p {
+.landing .text .text-container p:not(:last-of-type),
+.landing .text .text-container>p {
     margin-bottom: 20px;
 }
 
-.text .text-container .styled {
+.landing .text .text-container .styled {
     display: flex;
     flex-direction: column;
 }
 
-.text .text-container .styled p {
+.landing .text .text-container .styled p {
     max-width: 525px;
 }
 
-.text .text-container .styled p:nth-of-type(2) {
+.landing .text .text-container .styled p:nth-of-type(2) {
     align-self: flex-end;
     text-align: right;
 }
 
-.list {
+.landing .list {
     margin-top: 60px;
 }
 
-.list h2 {
+.landing .list h2 {
     margin-bottom: 28px;
     font-size: 36px;
 }
 
-.list .img,
-.list .list-text {
+.landing .list .img,
+.landing .list .list-text {
     min-width: 400px;
     width: 50%;
 }
 
-.list ul {
+.landing .list ul {
     margin-left: 32px;
     list-style-type: disc;
 }
 
-.list ul li {
+.landing .list ul li {
     font-size: 20px;
 }
 
-.list ul li:not(:last-of-type) {
+.landing .list ul li:not(:last-of-type) {
     margin-bottom: 16px;
 }
 
-.cta p {
+.landing .cta p {
     text-align: center;
     font-size: 20px;
 }
 
-.cta p a {
+.landing .cta p a {
     text-decoration: underline;
 }
 
-.repo-link .gh-logo {
+.landing .repo-link .gh-logo {
     width: 40px;
     margin-left: 12px;
 }
 
-.repo-link p {
+.landing .repo-link p {
     text-align: right;
     line-height: 18px;
 }
 
 @media screen and (max-width: 987px) {
 
-    .list .list-text,
-    .list .img {
+    .landing .list .list-text,
+    .landing .list .img {
         min-width: unset;
         width: 100%;
     }
 
-    .list .img {
+    .landing .list .img {
         max-width: 450px;
         margin: 0 auto;
     }
 
-    .list ul {
+    .landing .list ul {
         margin-left: 0;
     }
 }
 
 @media screen and (max-width: 771px) {
-    .hero .text-container span {
+    .landing .hero .text-container span {
         bottom: -24px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .hero h1 {
+    .landing .hero h1 {
         margin-bottom: 32px;
     }
 
-    .hero .img-container {
+    .landing .hero .img-container {
         width: 100%;
         max-width: 450px;
         min-width: unset;
     }
 
-    .hero .text-container {
+    .landing .hero .text-container {
         max-width: unset;
         width: 100%;
         justify-content: center;
     }
 
-    .hero .text-container span {
+    .landing .hero .text-container span {
         position: absolute;
         right: 0;
         bottom: 8px;
     }
 
-    .text .text-container p:nth-of-type(2) {
+    .landing .text .text-container p:nth-of-type(2) {
         align-self: flex-start;
         text-align: left;
     }
 
-    .list h2 {
+    .landing .list h2 {
         font-size: 24px;
     }
 
-    .list ul li {
+    .landing .list ul li {
         font-size: 16px;
     }
 
 }
 
 @media screen and (max-width: 500px) {
-    .hero h1 {
+    .landing .hero h1 {
         font-size: 45px;
         line-height: 40px;
     }
 
-    .text .text-container p {
+    .landing .text .text-container p {
         font-size: 16px;
     }
 }
