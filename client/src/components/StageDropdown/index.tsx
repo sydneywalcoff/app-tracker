@@ -35,8 +35,13 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
 
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
         const { code } = event;
-        if (Accessibility.toggleKeys.includes(code)) {
+        const { toggleKeys, closeKeys } = Accessibility;
+        if (toggleKeys.includes(code)) {
             handleDropdownToggle();
+            return;
+        };
+        if(closeKeys.includes(code)) {
+            closeDropdown();
         }
     }
 
@@ -48,7 +53,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
         onStageChange(newStage, jobInfo)
     };
 
-    const closeDropdownToggle = () => {
+    const closeDropdown = () => {
         setIsDropdownOpen(false);
     };
 
@@ -75,7 +80,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
-                <div className='stage-options shadow-lg' onMouseLeave={closeDropdownToggle} role="listbox" aria-expanded={isDropdownOpen}>
+                <div className='stage-options shadow-lg' onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option: string) => (
                         <div className="stage-container py-1 px-2" role="option" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
