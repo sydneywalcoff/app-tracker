@@ -42,7 +42,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             >
                 stage
             </label>
-            <div className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} id="stage-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <div className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} id="stage-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)} tabIndex={0}>
                 <div className="selected-stage p-2">
                     <StageBadge stage={selectedStage} />
                     <div className="arrow">
