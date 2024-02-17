@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
+
+import Accessibility from "../../utils/accessibility";
 
 import './assets/style.css';
 
@@ -26,11 +28,27 @@ interface StageDropdownPropsI {
 const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+
+    const handleDropdownToggle = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleDropdownKeyPress = (event: KeyboardEvent) => {
+        const { code } = event;
+        if (Accessibility.toggleKeys.includes(code)) {
+            handleDropdownToggle();
+        }
+    }
+
+    const handleDropdownClick = () => {
+        handleDropdownToggle();
+    }
+
     const handleClick = (newStage: string, jobInfo: any) => {
         onStageChange(newStage, jobInfo)
     };
 
-    const handleMouseLeave = () => {
+    const closeDropdownToggle = () => {
         setIsDropdownOpen(false);
     };
 
@@ -42,11 +60,12 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             >
                 stage
             </label>
-            <div 
-                className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} 
-                id="stage-dropdown" 
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
-                tabIndex={0} 
+            <div
+                className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`}
+                id="stage-dropdown"
+                onClick={handleDropdownClick}
+                onKeyDown={handleDropdownKeyPress}
+                tabIndex={0}
                 aria-expanded={isDropdownOpen}
                 aria-controls="listbox"
             >
@@ -56,7 +75,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
-                <div className='stage-options shadow-lg' onMouseLeave={handleMouseLeave} role="listbox" aria-expanded={isDropdownOpen}>
+                <div className='stage-options shadow-lg' onMouseLeave={closeDropdownToggle} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option: string) => (
                         <div className="stage-container py-1 px-2" role="option" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
