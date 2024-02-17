@@ -42,14 +42,21 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             >
                 stage
             </label>
-            <div className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} id="stage-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)} tabIndex={0}>
+            <div 
+                className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`} 
+                id="stage-dropdown" 
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
+                tabIndex={0} 
+                aria-expanded={isDropdownOpen}
+                aria-controls="listbox"
+            >
                 <div className="selected-stage p-2">
                     <StageBadge stage={selectedStage} />
                     <div className="arrow">
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
-                <div className='stage-options shadow-lg' onMouseLeave={handleMouseLeave} role="options" aria-expanded={isDropdownOpen}>
+                <div className='stage-options shadow-lg' onMouseLeave={handleMouseLeave} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option: string) => (
                         <div className="stage-container py-1 px-2" role="option" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
