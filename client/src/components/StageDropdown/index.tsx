@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useState, useRef, useEffect } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
@@ -27,16 +27,19 @@ interface StageDropdownPropsI {
 
 const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropDownElRef = useRef(null);
 
+    useEffect(() => {
+        console.log(dropDownElRef.current)
+        // if(isDropdownOpen) {
+
+        // } else {
+        // };
+        // console.log(dropDownElRef.current?.focus());
+    }, [])
 
     const handleDropdownToggle = () => {
         setIsDropdownOpen(!isDropdownOpen);
-
-        if(isDropdownOpen) {
-
-        } else {
-
-        }
     };
 
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
@@ -49,14 +52,14 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
         if(closeKeys.includes(code)) {
             closeDropdown();
         }
-    }
+    };
 
     const handleDropdownClick = () => {
         handleDropdownToggle();
-    }
+    };
 
     const handleClick = (newStage: string, jobInfo: any) => {
-        onStageChange(newStage, jobInfo)
+        onStageChange(newStage, jobInfo);
     };
 
     const closeDropdown = () => {
@@ -79,6 +82,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                 tabIndex={0}
                 aria-expanded={isDropdownOpen}
                 aria-controls="listbox"
+                ref={dropDownElRef}
             >
                 <div className="selected-stage p-2">
                     <StageBadge stage={selectedStage} />
@@ -88,7 +92,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                 </div>
                 <div className='stage-options shadow-lg' onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option: string) => (
-                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
