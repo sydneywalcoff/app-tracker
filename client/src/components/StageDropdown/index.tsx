@@ -31,6 +31,12 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
 
     const handleDropdownToggle = () => {
         setIsDropdownOpen(!isDropdownOpen);
+
+        if(isDropdownOpen) {
+
+        } else {
+
+        }
     };
 
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
@@ -82,7 +88,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                 </div>
                 <div className='stage-options shadow-lg' onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option: string) => (
-                        <div className="stage-container py-1 px-2" role="option" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} onClick={() => handleClick(option, job)}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
