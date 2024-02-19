@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState, useRef, useEffect } from "react";
+import { KeyboardEvent, useState, useRef, useEffect, createRef } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
@@ -27,16 +27,17 @@ interface StageDropdownPropsI {
 
 const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropDownElRef = useRef(null);
-
+    const dropDownElRef = useRef<HTMLDivElement>(null);
+    const optionRefs = useRef(options.map(()=>createRef<HTMLDivElement>()));
+    
     useEffect(() => {
-        console.log(dropDownElRef.current)
-        // if(isDropdownOpen) {
+        if(!isDropdownOpen) {
+            dropDownElRef.current?.focus();
+            return;
+        }
+        optionRefs.current[0].current?.focus();
 
-        // } else {
-        // };
-        // console.log(dropDownElRef.current?.focus());
-    }, [])
+    }, [isDropdownOpen])
 
     const handleDropdownToggle = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -49,7 +50,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             handleDropdownToggle();
             return;
         };
-        if(closeKeys.includes(code)) {
+        if (closeKeys.includes(code)) {
             closeDropdown();
         }
     };
@@ -91,8 +92,8 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                     </div>
                 </div>
                 <div className='stage-options shadow-lg' onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
-                    {options && options.map((option: string) => (
-                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option, job)}>
+                    {options && options.map((option: string, index: number) => (
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option, job)} ref={optionRefs.current[index]}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
