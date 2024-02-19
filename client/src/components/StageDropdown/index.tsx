@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState, useRef, useEffect, createRef } from "react";
+import { KeyboardEvent, useState, useRef, useEffect, createRef, SetStateAction } from "react";
 
 import StageBadge from "../StageBadge";
 import ArrowSVG from './assets/arrow.svg';
@@ -27,6 +27,7 @@ interface StageDropdownPropsI {
 
 const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    // const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(()=>createRef<HTMLDivElement>()));
     
@@ -35,6 +36,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             dropDownElRef.current?.focus();
             return;
         }
+        // setSelectedIndex(0)
         optionRefs.current[0].current?.focus();
 
     }, [isDropdownOpen])
@@ -45,13 +47,22 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
 
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
         const { code } = event;
-        const { toggleKeys, closeKeys } = Accessibility;
+        const { toggleKeys, closeKeys, upKeys, downKeys } = Accessibility;
         if (toggleKeys.includes(code)) {
             handleDropdownToggle();
             return;
         };
         if (closeKeys.includes(code)) {
             closeDropdown();
+            return;
+        }
+        if(upKeys.includes(code)) {
+
+            return;
+        }
+        if(downKeys.includes(code)) {
+
+            return;
         }
     };
 
