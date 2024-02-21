@@ -29,30 +29,29 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
     const dropDownElRef = useRef<HTMLDivElement>(null);
-    const optionRefs = useRef(options.map(()=>createRef<HTMLDivElement>()));
+    const optionRefs = useRef(options.map(() => createRef<HTMLDivElement>()));
     const maxIndex = optionRefs.current.length - 1;
-    
+
     useEffect(() => {
         setSelectedIndex(0)
         optionRefs.current[0].current?.focus();
-
     }, [isDropdownOpen])
 
-    const handleDropdownToggle = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const handleDropdownOpen = () => {
+        setIsDropdownOpen(true);
     };
 
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
         const { code } = event;
         const { toggleKeys, closeKeys, upKeys, downKeys } = Accessibility;
-        if(code ===  'Tab' && isDropdownOpen) {
+        if (code === 'Tab' && isDropdownOpen) {
             event.preventDefault();
         }
         if (toggleKeys.includes(code)) {
             event.preventDefault();
-            if(typeof(selectedIndex) !== 'number') return;
-            if(!isDropdownOpen) {
-                handleDropdownToggle();
+            if (typeof (selectedIndex) !== 'number') return;
+            if (!isDropdownOpen) {
+                handleDropdownOpen();
                 return;
             }
             return;
@@ -62,10 +61,10 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             closeDropdown();
             return;
         }
-        if(upKeys.includes(code)) {
+        if (upKeys.includes(code)) {
             event.preventDefault();
-            if(typeof(selectedIndex) !== 'number') return;
-            if(selectedIndex === 0) {
+            if (typeof (selectedIndex) !== 'number') return;
+            if (selectedIndex === 0) {
                 optionRefs.current[maxIndex].current?.focus();
                 setSelectedIndex(maxIndex);
                 return;
@@ -75,10 +74,10 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             setSelectedIndex(newIndex);
             return;
         }
-        if(downKeys.includes(code)) {
+        if (downKeys.includes(code)) {
             event.preventDefault();
-            if(typeof(selectedIndex) !== 'number') return;
-            if(selectedIndex === maxIndex) {
+            if (typeof (selectedIndex) !== 'number') return;
+            if (selectedIndex === maxIndex) {
                 optionRefs.current[0].current?.focus();
                 setSelectedIndex(0);
                 return;
@@ -91,7 +90,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
     };
 
     const handleDropdownClick = () => {
-        handleDropdownToggle();
+        handleDropdownOpen();
     };
 
     const handleClick = (newStage: string, jobInfo: any) => {
