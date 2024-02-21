@@ -45,15 +45,25 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
     const handleDropdownKeyPress = (event: KeyboardEvent) => {
         const { code } = event;
         const { toggleKeys, closeKeys, upKeys, downKeys } = Accessibility;
+        if(code ===  'Tab' && isDropdownOpen) {
+            event.preventDefault();
+        }
         if (toggleKeys.includes(code)) {
-            handleDropdownToggle();
+            event.preventDefault();
+            if(typeof(selectedIndex) !== 'number') return;
+            if(!isDropdownOpen) {
+                handleDropdownToggle();
+                return;
+            }
             return;
         };
         if (closeKeys.includes(code)) {
+            event.preventDefault();
             closeDropdown();
             return;
         }
         if(upKeys.includes(code)) {
+            event.preventDefault();
             if(typeof(selectedIndex) !== 'number') return;
             if(selectedIndex === 0) {
                 optionRefs.current[maxIndex].current?.focus();
@@ -66,6 +76,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             return;
         }
         if(downKeys.includes(code)) {
+            event.preventDefault();
             if(typeof(selectedIndex) !== 'number') return;
             if(selectedIndex === maxIndex) {
                 optionRefs.current[0].current?.focus();
