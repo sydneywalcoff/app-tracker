@@ -19,7 +19,7 @@ interface jobProp {
 }
 
 interface StageDropdownPropsI {
-    onStageChange: (newStage: string, job: jobProp) => Promise<void> | ((newStage: string) => void) | void;
+    onStageChange: (newStage: string, job?: (jobProp | undefined)) => Promise<void> | void;
     job?: jobProp | undefined;
     selectedStage: string;
     options: Array<string>;
@@ -54,6 +54,9 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                 handleDropdownOpen();
                 return;
             }
+            let newStage = optionRefs.current[selectedIndex].current?.textContent || '';
+            onStageChange(newStage);
+            closeDropdown();
             return;
         };
         if (closeKeys.includes(code)) {
