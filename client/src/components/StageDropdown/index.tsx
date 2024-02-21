@@ -27,16 +27,13 @@ interface StageDropdownPropsI {
 
 const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
+    const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(()=>createRef<HTMLDivElement>()));
+    const maxIndex = optionRefs.current.length - 1;
     
     useEffect(() => {
-        if(!isDropdownOpen) {
-            dropDownElRef.current?.focus();
-            return;
-        }
-        // setSelectedIndex(0)
+        setSelectedIndex(0)
         optionRefs.current[0].current?.focus();
 
     }, [isDropdownOpen])
@@ -57,11 +54,27 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             return;
         }
         if(upKeys.includes(code)) {
-
+            if(typeof(selectedIndex) !== 'number') return;
+            if(selectedIndex === 0) {
+                optionRefs.current[maxIndex].current?.focus();
+                setSelectedIndex(maxIndex);
+                return;
+            }
+            let newIndex = selectedIndex - 1;
+            optionRefs.current[newIndex].current?.focus();
+            setSelectedIndex(newIndex);
             return;
         }
         if(downKeys.includes(code)) {
-
+            if(typeof(selectedIndex) !== 'number') return;
+            if(selectedIndex === maxIndex) {
+                optionRefs.current[0].current?.focus();
+                setSelectedIndex(0);
+                return;
+            }
+            let newIndex = selectedIndex + 1;
+            optionRefs.current[newIndex].current?.focus();
+            setSelectedIndex(newIndex);
             return;
         }
     };
@@ -76,6 +89,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
 
     const closeDropdown = () => {
         setIsDropdownOpen(false);
+        dropDownElRef.current?.focus();
     };
 
     return (
@@ -89,6 +103,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
             <div
                 className={`stage-select-container ${isDropdownOpen ? 'active' : ''}`}
                 id="stage-dropdown"
+                role="combobox"
                 onClick={handleDropdownClick}
                 onKeyDown={handleDropdownKeyPress}
                 tabIndex={0}
