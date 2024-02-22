@@ -121,7 +121,8 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                 onKeyDown={handleDropdownKeyPress}
                 tabIndex={0}
                 aria-expanded={isDropdownOpen}
-                aria-controls="listbox"
+                aria-controls="stage-dropdown"
+                aria-haspopup="listbox"
                 ref={dropDownElRef}
             >
                 <div className="selected-stage p-2">
@@ -130,9 +131,9 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
-                <div className='stage-options shadow-lg' onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
-                    {options && options.map((option: string, index: number) => (
-                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option, job)} ref={optionRefs.current[index]}>
+                <div className='stage-options shadow-lg' id="stage-dropdown" onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
+                    {options && options.map((option, index) => (
+                        <div className="stage-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option, job)} ref={optionRefs.current[index]} aria-label={option} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
                             <StageBadge stage={option} />
                         </div>
                     ))}
