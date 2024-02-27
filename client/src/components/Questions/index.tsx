@@ -1,3 +1,5 @@
+import './assets/style.css'
+
 const Questions = () => {
     const questionList = ['What is the breakdown of the team and who does what?', 'What are you most excited about having a new person in this role?', 'What is your biggest pain point? How will this role alleviate that?', 'What advice would you give someone through the rest of the interviewing process?', 'What is the rest of the hiring process?'];
 
