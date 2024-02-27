@@ -14,6 +14,7 @@ const typeDefs = gql`
         dateApplied: String
         lastUpdated: String
         notes: [Note]
+        questions: [Question]
         link: String
     }
 
@@ -21,6 +22,13 @@ const typeDefs = gql`
         _id: ID!
         noteText: String!
         dateAdded: String!
+    }
+
+    type Question {
+        _id: ID!
+        questionText: String!
+        dateAdded: String!
+        lastUpdated: String!
     }
 
     type User {
