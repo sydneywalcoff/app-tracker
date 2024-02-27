@@ -3,7 +3,8 @@ const User = require('./User');
 
 import { NoteDocument } from './Note';
 import { AppDocument } from './App';
+import { QuestionDocument } from './Question';
 
-export { NoteDocument, AppDocument }
+export { NoteDocument, AppDocument, QuestionDocument }
 
 module.exports = { App, User }; 

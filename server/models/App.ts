@@ -1,7 +1,8 @@
 import { Schema, model, Document, Model } from 'mongoose';
 import dateFormat from '../utils/dateFormat'
 const noteSchema = require('./Note');
-const statusHistorySchema = require('./StatusHistory')
+const statusHistorySchema = require('./StatusHistory');
+const questionSchema = require('./Question');
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -52,7 +53,8 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     link: {
         type: String,
         require: false
-    }
+    },
+    questions: [questionSchema],
 },
 {
     toJSON: {
@@ -72,7 +74,8 @@ export interface AppDocument extends Document {
     dateApplied: Date,
     lastUpdated: Date,
     notes: [],
-    link: String
+    link: String,
+    questions: [],
 }
 
 module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);
