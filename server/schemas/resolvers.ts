@@ -66,7 +66,7 @@ const resolvers = {
         },
         editApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
-                const { _id, status, statusHistory } = args;
+                const { _id, status } = args;
                 const lastUpdated = Date.now();
                 let statusChange = {
                     status: status,
