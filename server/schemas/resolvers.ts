@@ -17,6 +17,12 @@ interface NoteIdProps {
     appId: String
 }
 
+interface AddQuestionProps {
+    questionText: String,
+    roleTab: String,
+    appId: String
+}
+
 interface AddUserProps {
     username: String,
     password: String,
@@ -49,7 +55,13 @@ const resolvers = {
         addApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
-                const basicQuestionsList = ['What is the breakdown of the team and who does what?', 'What are you most excited about having a new person in this role?', 'What is your biggest pain point? How will this role alleviate that?', 'What advice would you give someone through the rest of the interviewing process?', 'What is the rest of the hiring process?'];
+                const basicQuestionsList = [
+                    'What is the breakdown of the team and who does what?',
+                    'What are you most excited about having a new person in this role?',
+                    'What is your biggest pain point? How will this role alleviate that?',
+                    'What advice would you give someone through the rest of the interviewing process?',
+                    'What is the rest of the hiring process?'
+                ];
                 const statusChange = {
                     dateChanged: lastUpdated,
                     status: args.status
@@ -80,9 +92,9 @@ const resolvers = {
                     status: status,
                     dateChanged: lastUpdated
                 };
-                let appData = !status ? 
-                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) : 
-                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: {statusHistory: statusChange}, lastUpdated }, { new: true })
+                let appData = !status ?
+                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) :
+                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, lastUpdated }, { new: true })
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
@@ -95,7 +107,7 @@ const resolvers = {
                     status: status,
                     dateChanged: lastUpdated
                 };
-                const appData = await App.findByIdAndUpdate(_id, { $addToSet: {statusHistory: statusChange}, status, lastUpdated }, { new: true });
+                const appData = await App.findByIdAndUpdate(_id, { $addToSet: { statusHistory: statusChange }, status, lastUpdated }, { new: true });
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
@@ -127,6 +139,18 @@ const resolvers = {
                 const updatedAppData = await App.findByIdAndUpdate(
                     { _id: appId },
                     { $pull: { notes: { _id: noteId } }, lastUpdated },
+                    { new: true }
+                );
+                return updatedAppData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
+        addQuestion: async (_: undefined, args: AddQuestionProps, context) => {
+            if (context.user) {
+                const lastUpdated = Date.now();
+                const updatedAppData = await App.findByIdAndUpdate(
+                    { _id: args.appId },
+                    { $addToSet: { questions: args }, lastUpdated },
                     { new: true }
                 );
                 return updatedAppData;
