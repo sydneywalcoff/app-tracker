@@ -49,12 +49,20 @@ const resolvers = {
         addApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
+                const basicQuestionsList = ['What is the breakdown of the team and who does what?', 'What are you most excited about having a new person in this role?', 'What is your biggest pain point? How will this role alleviate that?', 'What advice would you give someone through the rest of the interviewing process?', 'What is the rest of the hiring process?'];
                 const statusChange = {
                     dateChanged: lastUpdated,
                     status: args.status
                 };
+                const questionList = basicQuestionsList.map(question => {
+                    return {
+                        questionText: question,
+                        roleTag: '',
+                        lastUpdated
+                    }
+                })
                 const statusHistory = [statusChange];
-                const appData = await App.create({ ...args, lastUpdated, statusHistory });
+                const appData = await App.create({ ...args, lastUpdated, statusHistory, questions: questionList });
                 await User.findByIdAndUpdate(
                     context.user._id,
                     { $push: { apps: appData._id } },
