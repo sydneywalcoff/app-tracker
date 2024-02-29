@@ -23,6 +23,10 @@ interface AddQuestionProps {
     appId: String
 }
 
+interface EditQuestionProps extends AddQuestionProps {
+    questionId: String
+}
+
 interface AddUserProps {
     username: String,
     password: String,
@@ -154,6 +158,21 @@ const resolvers = {
                     { new: true }
                 );
                 return updatedAppData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
+        editQuestion: async (_: undefined, args: EditQuestionProps, context) => {
+            if (context.user) {
+                const { questionText, questionId, appId } = args;
+                const lastUpdated = Date.now();
+                // console.log(args)
+                const updatedAppData = await App.findByIdAndUpdate(
+                    { _id: appId },
+                    { $addToSet: { questions: { _id: questionId } }, lastUpdated },
+                    { new: true }
+                );
+                console.log(updatedAppData)
+                return;
             }
             throw new AuthenticationError('You are not logged in');
         },
