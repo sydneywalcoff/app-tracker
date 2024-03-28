@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 
-const { App, User } = require("../models");
+const { App, User, Question } = require("../models");
 import { AppDocument } from '../models';
 const { signToken } = require('../utils/auth');
 
@@ -152,12 +152,12 @@ const resolvers = {
         addQuestion: async (_: undefined, args: AddQuestionProps, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
-                const updatedAppData = await App.findByIdAndUpdate(
-                    { _id: args.appId },
-                    { $addToSet: { questions: args }, lastUpdated },
-                    { new: true }
-                );
-                return updatedAppData;
+                // const updatedAppData = await App.findByIdAndUpdate(
+                //     { _id: args.appId },
+                //     { $addToSet: { questions: args }, lastUpdated },
+                //     { new: true }
+                // );
+                // return updatedAppData;
             }
             throw new AuthenticationError('You are not logged in');
         },
@@ -165,14 +165,12 @@ const resolvers = {
             if (context.user) {
                 const { questionText, questionId, appId } = args;
                 const lastUpdated = Date.now();
-                // console.log(args)
-                const updatedAppData = await App.findByIdAndUpdate(
-                    { _id: appId },
-                    { $addToSet: { questions: { _id: questionId } }, lastUpdated },
-                    { new: true }
-                );
-                console.log(updatedAppData)
-                return;
+                // const updatedAppData = await App.findByIdAndUpdate(
+                //     { _id: appId },
+                //     { questions: { _id: questionId, questionText }, lastUpdated },
+                //     { new: true }
+                // );
+                // return updatedAppData;
             }
             throw new AuthenticationError('You are not logged in');
         },

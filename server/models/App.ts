@@ -1,8 +1,9 @@
-import { Schema, model, Document, Model } from 'mongoose';
+import { Schema, model, Document, Model, Types } from 'mongoose';
 import dateFormat from '../utils/dateFormat'
+import { QuestionDocument } from './index';
 const noteSchema = require('./Note');
 const statusHistorySchema = require('./StatusHistory');
-const questionSchema = require('./Question');
+const quewt = require('./Question');
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -54,7 +55,12 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         type: String,
         require: false
     },
-    questions: [questionSchema],
+    questions: [
+        {
+            type: Types.ObjectId,
+            ref: 'Question'
+        }
+    ],
 },
 {
     toJSON: {
@@ -75,7 +81,7 @@ export interface AppDocument extends Document {
     lastUpdated: Date,
     notes: [],
     link: String,
-    questions: [],
+    questions: [QuestionDocument],
 }
 
 module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);

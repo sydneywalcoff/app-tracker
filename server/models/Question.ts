@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, model, Model } from 'mongoose';
 import dateFormat from '../utils/dateFormat';
 
 const questionSchema = new Schema<QuestionDocument>({
@@ -33,4 +33,4 @@ export interface QuestionDocument extends Document {
     lastUpdated: Date,
 }
 
-module.exports = questionSchema;
+module.exports = model<QuestionDocument, Model<QuestionDocument>>("Question", questionSchema);
