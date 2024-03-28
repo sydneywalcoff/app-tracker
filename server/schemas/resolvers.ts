@@ -36,11 +36,11 @@ interface AddUserProps {
 const resolvers = {
     Query: {
         apps: async () => {
-            const appsData = await App.find().sort({ dateApplied: -1, location: 'asc' });
+            const appsData = await App.find().sort({ dateApplied: -1, location: 'asc' }).populate('questions');
             return appsData;
         },
         app: async (_: undefined, { _id }: IdAppProps) => {
-            const appData = await App.findById(_id);
+            const appData = await App.findById(_id).populate('questions');
             return appData;
         },
         users: async () => {
@@ -70,15 +70,18 @@ const resolvers = {
                     dateChanged: lastUpdated,
                     status: args.status
                 };
-                const questionList = basicQuestionsList.map(question => {
+                const questionsList = basicQuestionsList.map(question => {
                     return {
                         questionText: question,
                         roleTag: '',
                         lastUpdated
-                    }
+                    };
                 })
+
+                const questionData = await Question.create(questionsList);
                 const statusHistory = [statusChange];
-                const appData = await App.create({ ...args, lastUpdated, statusHistory, questions: questionList });
+                const appData = await App.create({ ...args, lastUpdated, statusHistory, questions: questionData.map(question => question._id) });
+
                 await User.findByIdAndUpdate(
                     context.user._id,
                     { $push: { apps: appData._id } },
