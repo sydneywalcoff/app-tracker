@@ -48,6 +48,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
+userSchema.methods.hashNewPassword = async function(password) {
+    return bcrypt.hash(password, 10);
+}
+
 
 export interface UserDocument extends Document {
     username: String,
