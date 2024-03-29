@@ -23,6 +23,11 @@ interface AddUserProps {
     email: String
 }
 
+interface ChangePasswordProps {
+    newPassword: String,
+    oldPassword: String
+}
+
 const resolvers = {
     Query: {
         apps: async () => {
@@ -72,9 +77,9 @@ const resolvers = {
                     status: status,
                     dateChanged: lastUpdated
                 };
-                let appData = !status ? 
-                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) : 
-                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: {statusHistory: statusChange}, lastUpdated }, { new: true })
+                let appData = !status ?
+                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) :
+                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, lastUpdated }, { new: true })
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
@@ -87,7 +92,7 @@ const resolvers = {
                     status: status,
                     dateChanged: lastUpdated
                 };
-                const appData = await App.findByIdAndUpdate(_id, { $addToSet: {statusHistory: statusChange}, status, lastUpdated }, { new: true });
+                const appData = await App.findByIdAndUpdate(_id, { $addToSet: { statusHistory: statusChange }, status, lastUpdated }, { new: true });
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
@@ -144,7 +149,23 @@ const resolvers = {
             const token = signToken(user);
 
             return { user, token };
-        }
+        },
+        resetPassword: async (_: undefined, args: ChangePasswordProps, context) => {
+            if (context.user) {
+                const { newPassword, oldPassword } = args
+                const currUser = await User.findById(context.user._id);
+                const isOldPasswordCorrect = await currUser.isCorrectPassword(oldPassword)
+                if (!isOldPasswordCorrect) throw new AuthenticationError('Wrong password');
+                const hashedPassword = await  currUser.hashNewPassword(newPassword);
+                const updatedUserData = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { password: hashedPassword },
+                    { new: true }
+                );
+                return updatedUserData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
     }
 };
 
