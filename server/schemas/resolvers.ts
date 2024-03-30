@@ -156,12 +156,13 @@ const resolvers = {
         addQuestion: async (_: undefined, args: AddQuestionProps, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
-                // const updatedAppData = await App.findByIdAndUpdate(
-                //     { _id: args.appId },
-                //     { $addToSet: { questions: args }, lastUpdated },
-                //     { new: true }
-                // );
-                // return updatedAppData;
+                const questionData = await Question.create(args);
+                const updatedAppData = await App.findByIdAndUpdate(
+                    { _id: args.appId },
+                    { $push: { questions: questionData._id }, lastUpdated },
+                    { new: true }
+                ).populate('questions');
+                return updatedAppData;
             }
             throw new AuthenticationError('You are not logged in');
         },
