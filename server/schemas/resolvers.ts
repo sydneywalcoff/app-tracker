@@ -59,6 +59,7 @@ const resolvers = {
         addApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
+                // this might be handled on the backend;
                 const basicQuestionsList = [
                     'What is the breakdown of the team and who does what?',
                     'What are you most excited about having a new person in this role?',
