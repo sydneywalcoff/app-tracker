@@ -157,25 +157,25 @@ const resolvers = {
             if (context.user) {
                 const lastUpdated = Date.now();
                 const questionData = await Question.create(args);
-                const updatedAppData = await App.findByIdAndUpdate(
+                await App.findByIdAndUpdate(
                     { _id: args.appId },
                     { $push: { questions: questionData._id }, lastUpdated },
                     { new: true }
-                ).populate('questions');
-                return updatedAppData;
+                );
+                return questionData;
             }
             throw new AuthenticationError('You are not logged in');
         },
         editQuestion: async (_: undefined, args: EditQuestionProps, context) => {
             if (context.user) {
-                const { questionText, questionId, appId } = args;
+                const { questionText, questionId, roleTab } = args;
                 const lastUpdated = Date.now();
-                // const updatedAppData = await App.findByIdAndUpdate(
-                //     { _id: appId },
-                //     { questions: { _id: questionId, questionText }, lastUpdated },
-                //     { new: true }
-                // );
-                // return updatedAppData;
+                const questionData = await Question.findByIdAndUpdate(
+                    { _id: questionId },
+                    { questionText, lastUpdated, roleTab }, 
+                    { new: true }
+                );
+                return questionData;
             }
             throw new AuthenticationError('You are not logged in');
         },
