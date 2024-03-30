@@ -179,6 +179,13 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
+        deleteQuestion: async (_: undefined, args: EditQuestionProps, context) => {
+            if(context.user) {
+                const deletedQuestionData = Question.findByIdAndDelete(args.questionId);
+                return deletedQuestionData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
         addUser: async (_: undefined, args: AddUserProps) => {
             const userData = await User.create(args);
             const token = signToken(userData);
