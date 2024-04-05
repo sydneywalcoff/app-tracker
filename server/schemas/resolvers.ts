@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 
-const { App, User } = require("../models");
+const { App, User, Question } = require("../models");
 import { AppDocument } from '../models';
 const { signToken } = require('../utils/auth');
 
@@ -17,25 +17,30 @@ interface NoteIdProps {
     appId: String
 }
 
+interface AddQuestionProps {
+    questionText: String,
+    roleTab: String,
+    appId: String
+}
+
+interface EditQuestionProps extends AddQuestionProps {
+    questionId: String
+}
+
 interface AddUserProps {
     username: String,
     password: String,
     email: String
 }
 
-interface ChangePasswordProps {
-    newPassword: String,
-    oldPassword: String
-}
-
 const resolvers = {
     Query: {
         apps: async () => {
-            const appsData = await App.find().sort({ dateApplied: -1, location: 'asc' });
+            const appsData = await App.find().sort({ dateApplied: -1, location: 'asc' }).populate('questions');
             return appsData;
         },
         app: async (_: undefined, { _id }: IdAppProps) => {
-            const appData = await App.findById(_id);
+            const appData = await App.findById(_id).populate('questions');
             return appData;
         },
         users: async () => {
@@ -54,12 +59,30 @@ const resolvers = {
         addApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
+                // this might be handled on the backend;
+                const basicQuestionsList = [
+                    'What is the breakdown of the team and who does what?',
+                    'What are you most excited about having a new person in this role?',
+                    'What is your biggest pain point? How will this role alleviate that?',
+                    'What advice would you give someone through the rest of the interviewing process?',
+                    'What is the rest of the hiring process?'
+                ];
                 const statusChange = {
                     dateChanged: lastUpdated,
                     status: args.status
                 };
+                const questionsList = basicQuestionsList.map(question => {
+                    return {
+                        questionText: question,
+                        roleTag: '',
+                        lastUpdated
+                    };
+                })
+
+                const questionData = await Question.create(questionsList);
                 const statusHistory = [statusChange];
-                const appData = await App.create({ ...args, lastUpdated, statusHistory });
+                const appData = await App.create({ ...args, lastUpdated, statusHistory, questions: questionData.map(question => question._id) });
+
                 await User.findByIdAndUpdate(
                     context.user._id,
                     { $push: { apps: appData._id } },
@@ -71,7 +94,7 @@ const resolvers = {
         },
         editApp: async (_: undefined, args: AppDocument, context) => {
             if (context.user) {
-                const { _id, status, statusHistory } = args;
+                const { _id, status } = args;
                 const lastUpdated = Date.now();
                 let statusChange = {
                     status: status,
@@ -130,6 +153,39 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
+        addQuestion: async (_: undefined, args: AddQuestionProps, context) => {
+            if (context.user) {
+                const lastUpdated = Date.now();
+                const questionData = await Question.create(args);
+                await App.findByIdAndUpdate(
+                    { _id: args.appId },
+                    { $push: { questions: questionData._id }, lastUpdated },
+                    { new: true }
+                );
+                return questionData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
+        editQuestion: async (_: undefined, args: EditQuestionProps, context) => {
+            if (context.user) {
+                const { questionText, questionId, roleTab } = args;
+                const lastUpdated = Date.now();
+                const questionData = await Question.findByIdAndUpdate(
+                    { _id: questionId },
+                    { questionText, lastUpdated, roleTab }, 
+                    { new: true }
+                );
+                return questionData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
+        deleteQuestion: async (_: undefined, args: EditQuestionProps, context) => {
+            if(context.user) {
+                const deletedQuestionData = Question.findByIdAndDelete(args.questionId);
+                return deletedQuestionData;
+            }
+            throw new AuthenticationError('You are not logged in');
+        },
         addUser: async (_: undefined, args: AddUserProps) => {
             const userData = await User.create(args);
             const token = signToken(userData);
@@ -149,23 +205,7 @@ const resolvers = {
             const token = signToken(user);
 
             return { user, token };
-        },
-        resetPassword: async (_: undefined, args: ChangePasswordProps, context) => {
-            if (context.user) {
-                const { newPassword, oldPassword } = args
-                const currUser = await User.findById(context.user._id);
-                const isOldPasswordCorrect = await currUser.isCorrectPassword(oldPassword)
-                if (!isOldPasswordCorrect) throw new AuthenticationError('Wrong password');
-                const hashedPassword = await  currUser.hashNewPassword(newPassword);
-                const updatedUserData = await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { password: hashedPassword },
-                    { new: true }
-                );
-                return updatedUserData;
-            }
-            throw new AuthenticationError('You are not logged in');
-        },
+        }
     }
 };
 
