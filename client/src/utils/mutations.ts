@@ -18,6 +18,12 @@ export const ADD_APP = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -44,6 +50,12 @@ export const EDIT_APP = gql`
                 _id
                 noteText
                 dateAdded
+            }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
             }
         }
     }
@@ -84,6 +96,12 @@ export const DELETE_APP = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -104,6 +122,12 @@ export const ADD_NOTE = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -122,6 +146,12 @@ export const DELETE_NOTE = gql`
             notes {
                 _id
                 noteText
+            }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
             }
         }
     }

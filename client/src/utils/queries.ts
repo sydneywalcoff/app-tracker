@@ -23,6 +23,12 @@ export const QUERY_APPS = gql`
                 _id
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -50,6 +56,12 @@ export const QUERY_SINGLE_APP = gql`
                 _id
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -76,6 +88,12 @@ export const QUERY_MY_APPS = gql`
                 noteText
                 _id
                 dateAdded
+            }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
             }
         }
     }
