@@ -19,7 +19,7 @@ interface NoteIdProps {
 
 interface AddQuestionProps {
     questionText: String,
-    roleTab: String,
+    roleTag: String,
     appId: String
 }
 
@@ -168,11 +168,11 @@ const resolvers = {
         },
         editQuestion: async (_: undefined, args: EditQuestionProps, context) => {
             if (context.user) {
-                const { questionText, questionId, roleTab } = args;
+                const { questionText, questionId, roleTag } = args;
                 const lastUpdated = Date.now();
                 const questionData = await Question.findByIdAndUpdate(
                     { _id: questionId },
-                    { questionText, lastUpdated, roleTab }, 
+                    { questionText, lastUpdated, roleTag }, 
                     { new: true }
                 );
                 return questionData;
