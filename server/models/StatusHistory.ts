@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, SchemaDefinitionProperty } from 'mongoose';
 import dateFormat from '../utils/dateFormat';
 
 const statusHistorySchema = new Schema<StatusHistoryDocument>({
@@ -19,7 +19,7 @@ const statusHistorySchema = new Schema<StatusHistoryDocument>({
 });
 
 export interface StatusHistoryDocument extends Document {
-    dateChanged: Date,
+    dateChanged: Date | SchemaDefinitionProperty<Date>,
     status: string,
 }
 

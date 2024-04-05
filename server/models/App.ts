@@ -1,4 +1,4 @@
-import { Schema, model, Document, Model } from 'mongoose';
+import { Schema, model, Document, Model, SchemaDefinitionProperty } from 'mongoose';
 import dateFormat from '../utils/dateFormat'
 const noteSchema = require('./Note');
 const statusHistorySchema = require('./StatusHistory')
@@ -69,8 +69,8 @@ export interface AppDocument extends Document {
     location: string,
     quickApply: boolean,
     jobScore?: number,
-    dateApplied: Date,
-    lastUpdated: Date,
+    dateApplied: Date | SchemaDefinitionProperty<Date>,
+    lastUpdated: Date | SchemaDefinitionProperty<Date>,
     notes: [],
     link: String
 }
