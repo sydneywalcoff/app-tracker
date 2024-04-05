@@ -16,6 +16,7 @@ import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
 import StatusHistory from "../../components/StatusHistory";
+import Questions from "../../components/Questions";
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -151,32 +152,13 @@ const SingleApp = () => {
                     <a className="link" href={savedLinkUrl} rel="noreferrer" target="_BLANK">[here]</a>
                   </h4>
                 )}
-                <StatusHistory history={job.statusHistory}/>
+                <StatusHistory history={job.statusHistory} />
               </div>
             </div>
           </div>
           <div className="flex bottom-content">
             <div className="questions">
-              <h3 className="text-2xl mb-2">Questions</h3>
-              <ul className="px-5">
-                <li className="list-disc mb-3">
-                  What is the breakdown of the team and who does what?
-                </li>
-                <li className="list-disc mb-3">
-                  What are you most excited about having a new person in this role?
-                </li>
-                <li className="list-disc mb-3">
-                  What is your biggest pain point? How will this role alleviate
-                  that?
-                </li>
-                <li className="list-disc mb-3">
-                  What advice would you give someone through the rest of the
-                  interviewing process?
-                </li>
-                <li className="list-disc mb-3">
-                  What is the rest of the hiring process?
-                </li>
-              </ul>
+              <Questions />
             </div>
             <div className="flex-col notes">
               <Notes notes={job.notes} appId={job._id} />
