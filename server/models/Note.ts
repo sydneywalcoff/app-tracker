@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, SchemaDefinitionProperty } from 'mongoose';
 import dateFormat from '../utils/dateFormat';
 
 const noteSchema = new Schema<NoteDocument>({
@@ -20,7 +20,7 @@ const noteSchema = new Schema<NoteDocument>({
 
 export interface NoteDocument extends Document {
     noteText: string,
-    dateAdded: Date,
+    dateAdded: Date | SchemaDefinitionProperty<Date>,
 }
 
 module.exports = noteSchema;
