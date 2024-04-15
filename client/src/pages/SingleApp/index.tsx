@@ -7,8 +7,8 @@ import { DELETE_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
 import './assets/style.css'
-import trashIcon from './assets/trash.svg';
-import editIcon from './assets/edit.svg';
+import trashIcon from '../../assets/trash.svg';
+import editIcon from '../../assets/edit.svg';
 
 import StageBadge from "../../components/StageBadge";
 import Modal from "../../components/Modal";
