@@ -25,8 +25,8 @@ const Questions = ({ questions: questionList }: IQuestionParams) => {
                             <div className="li-content mb-3 flex justify-between">
                                 <p className='flex items-center'>{question.questionText}</p>
                                 <div className="buttons flex ml-1">
-                                    <img src={editBtn} alt="" />
-                                    <img src={deleteBtn} alt="" />
+                                    <button><img src={editBtn} alt="" /></button>
+                                    <button><img src={deleteBtn} alt="" /></button>
                                 </div>
                             </div>
                         </li>
