@@ -1,3 +1,16 @@
-.questions ul li .buttons {
-    width: 50px;
+.questions ul li .li-content {
+    min-height: 48px;
+    width: 100%;
+}
+
+.questions ul li .li-content p {
+    width: 85%;
+}
+
+.questions ul li .li-content .buttons {
+    width: 15%;
+}
+
+.questions ul li .li-content .buttons img{
+    width: 50%;
 }
