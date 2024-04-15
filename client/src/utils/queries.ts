@@ -25,9 +25,6 @@ export const QUERY_APPS = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
@@ -91,9 +88,6 @@ export const QUERY_MY_APPS = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
