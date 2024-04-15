@@ -157,7 +157,7 @@ const SingleApp = () => {
             </div>
           </div>
           <div className="flex bottom-content">
-            <div className="questions">
+            <div className="question-container">
               <Questions questions={job.questions}/>
             </div>
             <div className="flex-col notes">
