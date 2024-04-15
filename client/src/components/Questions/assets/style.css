@@ -9,6 +9,8 @@
 
 .questions ul li .li-content .buttons {
     width: 15%;
+    max-width: 65px;
+    min-width: 50px;
 }
 
 .questions ul li .li-content .buttons img{
