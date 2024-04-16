@@ -64,15 +64,15 @@ const Question = (question: IQuestion) => {
 };
 
 const Questions = ({ questions: questionList }: IQuestionParams) => {
-    const [newQuestionText, setNewQuestionText] = useState('');
+    // const [newQuestionText, setNewQuestionText] = useState('');
 
     
     const handleNewQuestionClick = () => {
-        console.log(newQuestionText)
+        // console.log(newQuestionText)
     };
 
     const handleNewQuestionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setNewQuestionText(e.target.value);
+        // setNewQuestionText(e.target.value);
     };
 
     return (
