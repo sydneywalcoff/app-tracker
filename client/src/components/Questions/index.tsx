@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+
+import TextArea from '../TextArea';
+import Button from '../Button';
 
 import './assets/style.css'
 import editBtn from '../../assets/edit.svg';
@@ -9,7 +12,7 @@ interface IQuestionParams {
 }
 
 interface IQuestion {
-    questionText: String;
+    questionText: string;
     _id: String;
     lastUpdated: String;
     roleTag: String;
@@ -17,24 +20,45 @@ interface IQuestion {
 
 const Question = (question: IQuestion) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [editText, setEditText] = useState('');
 
     const handleEditClick = () => {
-        console.log('edit')
+        setIsEditing(true);
     };
 
     const handleTrashClick = () => {
         console.log('trash')
     };
+    const handleQuestionEditChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setEditText(e.target.value);
+    };
+
+    const handleQuestionEditClick = () => {
+        console.log(editText)
+    };
 
     return (
-        <li className="list-disc" key={`${question._id}`}>
-            <div className="li-content mb-3 flex justify-between">
+        <li className="" key={`${question._id}`}>
+            {isEditing ? 
+                <div className="edit-container">
+                    <TextArea 
+                    onChange={handleQuestionEditChange} 
+                    labelText=''
+                    name={`${question._id}`}
+                    rows={2}
+                    value={question.questionText}
+                    />
+                    <Button text="Submit" 
+                    onClick={handleQuestionEditClick} 
+                    type="button"  />
+                </div> 
+                : <div className="li-content mb-3 flex justify-between">
                 <p className='flex items-center'>{question.questionText}</p>
                 <div className="buttons flex ml-1">
-                    <button onClick={handleEditClick}><img src={editBtn} alt="" /></button>
-                    <button onClick={handleTrashClick}><img src={deleteBtn} alt="" /></button>
+                    <button onClick={handleEditClick}><img src={editBtn} alt="click to edit this question" /></button>
+                    <button onClick={handleTrashClick}><img src={deleteBtn} alt="click to delete this question" /></button>
                 </div>
-            </div>
+            </div>}
         </li>
     );
 };

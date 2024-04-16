@@ -9,10 +9,18 @@
 
 .questions ul li .li-content .buttons {
     width: 15%;
-    max-width: 65px;
-    min-width: 50px;
+    max-width: 45px;
+    min-width: 30px;
 }
 
 .questions ul li .li-content .buttons button{
     width: 50%;
 }
+
+
+/* media query for small screens */
+/* 
+- wrap the buttons to the next line 
+- justify flex-end
+- 
+*/
