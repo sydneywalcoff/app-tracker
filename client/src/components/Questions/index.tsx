@@ -64,6 +64,16 @@ const Question = (question: IQuestion) => {
 };
 
 const Questions = ({ questions: questionList }: IQuestionParams) => {
+    const [newQuestionText, setNewQuestionText] = useState('');
+
+    
+    const handleNewQuestionClick = () => {
+        console.log(newQuestionText)
+    };
+
+    const handleNewQuestionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setNewQuestionText(e.target.value);
+    };
 
     return (
         <div className='questions'>
@@ -71,6 +81,8 @@ const Questions = ({ questions: questionList }: IQuestionParams) => {
             <ul className="px-5 flex flex-col">
                 {questionList && questionList.map(question => Question(question))}
             </ul>
+            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3}/>
+            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes="disabled"/>
         </div>
     );
 };
