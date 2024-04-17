@@ -5,8 +5,6 @@ import Button from '../Button';
 import Question from '../Question';
 
 import './assets/style.css'
-import editBtn from '../../assets/edit.svg';
-import deleteBtn from '../../assets/trash.svg';
 
 interface IQuestionParams {
     questions: IQuestion[];
