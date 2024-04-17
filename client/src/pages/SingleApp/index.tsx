@@ -16,7 +16,7 @@ import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
 import StatusHistory from "../../components/StatusHistory";
-import Questions from "../../components/Questions";
+import QuestionList from "../../components/QuestionList";
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -158,7 +158,7 @@ const SingleApp = () => {
           </div>
           <div className="flex bottom-content">
             <div className="question-container">
-              <Questions questions={job.questions}/>
+              <QuestionList questions={job.questions}/>
             </div>
             <div className="flex-col notes">
               <Notes notes={job.notes} appId={job._id} />
