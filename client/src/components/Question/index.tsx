@@ -54,7 +54,9 @@ const Question = (params: IQuestionParams) => {
                     />
                     <Button text="Submit"
                         onClick={handleQuestionEditClick}
-                        type="button" />
+                        type="button" 
+                        classes='blue'
+                    />
                 </div>
                 : <div className="li-content mb-3 flex justify-between">
                     <p className='flex items-center'>{question.questionText}</p>

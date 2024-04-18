@@ -36,7 +36,7 @@ const QuestionList = ({ questions: questionList }: IQuestionParams) => {
                 {questionList && questionList.map(question => <Question question={question} />)}
             </ul>
             <TextArea onChange={handleNewQuestionChange} labelText='' rows={3}/>
-            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes="disabled"/>
+            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes="disabled blue"/>
         </div>
     );
 };
