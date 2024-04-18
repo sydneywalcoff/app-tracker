@@ -45,9 +45,8 @@ const Question = (params: IQuestionParams) => {
         setIsEditing(false);
         setEditText(question.questionText);
     };
-
     return (
-        <li className="question" key={`${question._id}`}>
+        <li className="question" >
             {isEditing ?
                 <div className="edit-container">
                     <TextArea
