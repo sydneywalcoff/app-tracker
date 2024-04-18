@@ -24,7 +24,7 @@ interface IQuestion {
 const Question = (params: IQuestionParams) => {
     const { question } = params;
     const [isEditing, setIsEditing] = useState(false);
-    const [editText, setEditText] = useState('');
+    const [editText, setEditText] = useState(question.questionText);
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -41,6 +41,11 @@ const Question = (params: IQuestionParams) => {
         console.log(editText)
     };
 
+    const handleCancelEditClick = () => {
+        setIsEditing(false);
+        setEditText(question.questionText);
+    };
+
     return (
         <li className="question" key={`${question._id}`}>
             {isEditing ?
@@ -50,10 +55,10 @@ const Question = (params: IQuestionParams) => {
                         labelText=''
                         name={`${question._id}`}
                         rows={2}
-                        value={question.questionText}
+                        value={editText}
                     />
                     <div className="flex justify-end my-2 items-center">
-                        <p className='mr-2 cancel-btn'>Cancel</p>
+                        <p onClick={handleCancelEditClick} className='mr-2 cancel-btn'>Cancel</p>
                         <Button text="Submit"
                             onClick={handleQuestionEditClick}
                             type="button"
