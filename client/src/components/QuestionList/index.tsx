@@ -18,15 +18,22 @@ interface IQuestion {
 }
 
 const QuestionList = ({ questions: questionList }: IQuestionParams) => {
-    // const [newQuestionText, setNewQuestionText] = useState('');
+    const [newQuestionText, setNewQuestionText] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
 
-    
+
     const handleNewQuestionClick = () => {
-        // console.log(newQuestionText)
+        console.log(newQuestionText)
     };
 
     const handleNewQuestionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // setNewQuestionText(e.target.value);
+        const { value } = e.target;
+        setNewQuestionText(value);
+        if(value.length > 0 ) {
+            setIsDisabled(false);
+            return;
+        }
+        setIsDisabled(true);
     };
 
     return (
@@ -35,8 +42,8 @@ const QuestionList = ({ questions: questionList }: IQuestionParams) => {
             <ul className="px-5 flex flex-col">
                 {questionList && questionList.map(question => <Question question={question} />)}
             </ul>
-            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3}/>
-            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes="disabled blue ml-auto mt-4"/>
+            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} />
+            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled'} blue ml-auto mt-4`} />
         </div>
     );
 };
