@@ -42,9 +42,9 @@ const Question = (params: IQuestionParams) => {
     };
 
     return (
-        <li className="" key={`${question._id}`}>
+        <li className="question" key={`${question._id}`}>
             {isEditing ?
-                <div className="edit-container">
+                <div className="edit-container flex flex-col">
                     <TextArea
                         onChange={handleQuestionEditChange}
                         labelText=''
@@ -55,7 +55,7 @@ const Question = (params: IQuestionParams) => {
                     <Button text="Submit"
                         onClick={handleQuestionEditClick}
                         type="button" 
-                        classes='blue'
+                        classes='blue ml-auto mt-4'
                     />
                 </div>
                 : <div className="li-content mb-3 flex justify-between">
