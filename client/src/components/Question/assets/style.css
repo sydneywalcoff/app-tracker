@@ -17,6 +17,16 @@
     width: 50%;
 }
 
+.question .cancel-btn {
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.question .cancel-btn:hover {
+    color: var(--blue)
+}
+
 
 /* media query for small screens */
 /* 
