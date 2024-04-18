@@ -158,7 +158,7 @@ const SingleApp = () => {
           </div>
           <div className="flex bottom-content">
             <div className="question-container">
-              <QuestionList questions={job.questions}/>
+              <QuestionList questions={job.questions} appId={job._id}/>
             </div>
             <div className="flex-col notes">
               <Notes notes={job.notes} appId={job._id} />
