@@ -49,6 +49,7 @@ const QuestionList = ({ questions: questionList, appId }: IQuestionParams) => {
         try {
             await addQuestion({ variables: { questionText: newQuestionText, appId } });
             setNewQuestionText('');
+            setIsDisabled(true);
         } catch (e) {
             console.log(e)
         }
