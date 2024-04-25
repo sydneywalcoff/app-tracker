@@ -22,7 +22,7 @@ interface IQuestion {
     roleTag: String;
 }
 
-const QuestionList = ({ questions: questionList, appId }: IQuestionParams) => {
+const QuestionList = ({ questions, appId }: IQuestionParams) => {
     const [newQuestionText, setNewQuestionText] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
     const [addQuestion] = useMutation(ADD_QUESTION, {
@@ -36,7 +36,7 @@ const QuestionList = ({ questions: questionList, appId }: IQuestionParams) => {
                 }, ({ app }) => ({
                     app: {
                         ...app,
-                        questions: app.questions
+                        questions: [...app.questions, addQuestion]
                     }
                 }))
             } catch (e) {
@@ -44,6 +44,7 @@ const QuestionList = ({ questions: questionList, appId }: IQuestionParams) => {
             }
         }
     })
+    let questionList = questions || [];
 
     const handleNewQuestionClick = async () => {
         try {
