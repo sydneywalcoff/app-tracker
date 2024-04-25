@@ -181,9 +181,9 @@ export const EDIT_QUESTION = gql`
     }
 `;
 
-export const REMOVE_QUESTION = gql`
-    mutation Mutation($questionID: ID!) {
-        deleteQuestion(questionId: $questionID) {
+export const DELETE_QUESTION = gql`
+    mutation Mutation($questionID: ID!, $appId: ID!) {
+        deleteQuestion(questionId: $questionID, appId: $appId) {
         _id
         lastUpdated
         dateAdded

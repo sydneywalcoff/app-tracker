@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_QUESTION, EDIT_QUESTION, REMOVE_QUESTION } from '../../utils/mutations';
+import { ADD_QUESTION, EDIT_QUESTION, DELETE_QUESTION } from '../../utils/mutations';
 
 import './assets/style.css'
 import TextArea from '../TextArea';
@@ -27,7 +27,7 @@ const Question = (params: IQuestionParams) => {
     const { question, appId } = params;
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(question.questionText);
-    const [deleteQuestion] = useMutation(REMOVE_QUESTION, {
+    const [deleteQuestion] = useMutation(DELETE_QUESTION, {
         update(cache, { data: { deleteQuestion } }) {
             try {
                 cache.updateQuery({
@@ -55,7 +55,8 @@ const Question = (params: IQuestionParams) => {
         try {
             await deleteQuestion({
                 variables: {
-                    questionID
+                    questionID, 
+                    appId
                 }
             })
         } catch (e) {

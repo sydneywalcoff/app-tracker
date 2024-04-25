@@ -182,12 +182,12 @@ const resolvers = {
         deleteQuestion: async (_: undefined, args: EditQuestionProps, context) => {
             if (context.user) {
                 const { questionId, appId } = args;
-                const deletedQuestionData = await Question.findByIdAndDelete(questionId);
+                const deletedQuestionData = await Question.findOneAndDelete({ _id: questionId });
                 const lastUpdated = Date.now();
 
                 await App.findByIdAndUpdate(
                     { _id: appId },
-                    { $pull: { questions: { _id: questionId } }, lastUpdated },
+                    { $pull: { questions: questionId }, lastUpdated },
                     { new: true }
                 )
                 return deletedQuestionData;
