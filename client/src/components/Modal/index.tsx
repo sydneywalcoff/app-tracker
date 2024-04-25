@@ -138,7 +138,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 });
             }
             closeModal();
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
     };

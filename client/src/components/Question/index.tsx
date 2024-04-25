@@ -3,35 +3,64 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_QUESTION, EDIT_QUESTION, REMOVE_QUESTION } from '../../utils/mutations';
 
+import './assets/style.css'
 import TextArea from '../TextArea';
 import Button from '../Button';
 
-import './assets/style.css'
 import editBtn from '../../assets/edit.svg';
 import deleteBtn from '../../assets/trash.svg';
+import { QUERY_SINGLE_APP } from '../../utils/queries';
 
 interface IQuestionParams {
     question: IQuestion;
+    appId: string | undefined;
 }
 
 interface IQuestion {
     questionText: string;
-    _id: String;
+    _id: string;
     lastUpdated: String;
     roleTag: String;
 }
 
 const Question = (params: IQuestionParams) => {
-    const { question } = params;
+    const { question, appId } = params;
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(question.questionText);
+    const [deleteQuestion] = useMutation(REMOVE_QUESTION, {
+        update(cache, { data: { deleteQuestion } }) {
+            try {
+                cache.updateQuery({
+                    query: QUERY_SINGLE_APP,
+                    variables: {
+                        id: appId
+                    }
+                }, ({ app }) => ({
+                    app: {
+                        ...app,
+                        questions: app.questions
+                    }
+                }))
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    })
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
-    const handleTrashClick = () => {
-        console.log('trash')
+    const handleTrashClick = async (questionID: string) => {
+        try {
+            await deleteQuestion({
+                variables: {
+                    questionID
+                }
+            })
+        } catch (e) {
+            console.error(e)
+        }
     };
     const handleQuestionEditChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setEditText(e.target.value);
@@ -69,7 +98,7 @@ const Question = (params: IQuestionParams) => {
                     <p className='flex items-center'>{question.questionText}</p>
                     <div className="buttons flex ml-1">
                         <button onClick={handleEditClick}><img src={editBtn} alt="click to edit this question" /></button>
-                        <button onClick={handleTrashClick}><img src={deleteBtn} alt="click to delete this question" /></button>
+                        <button onClick={()=> handleTrashClick(question._id)}><img src={deleteBtn} alt="click to delete this question" /></button>
                     </div>
                 </div>}
         </li>

@@ -17,9 +17,9 @@ interface IQuestionParams {
 
 interface IQuestion {
     questionText: string;
-    _id: String;
-    lastUpdated: String;
-    roleTag: String;
+    _id: string;
+    lastUpdated: string;
+    roleTag: string;
 }
 
 const QuestionList = ({ questions, appId }: IQuestionParams) => {
@@ -70,7 +70,7 @@ const QuestionList = ({ questions, appId }: IQuestionParams) => {
         <div className='questions flex flex-col'>
             <h3 className="text-2xl mb-2">Questions</h3>
             <ul className="px-5 flex flex-col">
-                {questionList && questionList.map(question => <Question question={question} key={`Question${question._id}`} />)}
+                {questionList && questionList.map(question => <Question appId={appId} question={question} key={`Question${question._id}`} />)}
             </ul>
             <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText} />
             <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled'} blue ml-auto mt-4`} />
