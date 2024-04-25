@@ -71,7 +71,7 @@ const QuestionList = ({ questions: questionList, appId }: IQuestionParams) => {
             <ul className="px-5 flex flex-col">
                 {questionList && questionList.map(question => <Question question={question} key={`Question${question._id}`} />)}
             </ul>
-            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText}/>
+            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText} />
             <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled'} blue ml-auto mt-4`} />
         </div>
     );
