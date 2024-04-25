@@ -66,7 +66,7 @@ const typeDefs = gql`
         deleteNote(appId: ID!, noteId: ID! ): App
         addQuestion(appId: ID!, questionText: String!, roleTag: String) : Question
         editQuestion(questionId: ID!, questionText: String, roleTag: String) : Question
-        deleteQuestion(questionId: ID!) : Question
+        deleteQuestion(questionId: ID!, appId: ID!) : Question
         addUser(username: String!, password: String!, email: String!): Auth
         login(username: String!, password: String!): Auth
     }

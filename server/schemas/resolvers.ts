@@ -172,7 +172,7 @@ const resolvers = {
                 const lastUpdated = Date.now();
                 const questionData = await Question.findByIdAndUpdate(
                     { _id: questionId },
-                    { questionText, lastUpdated, roleTag }, 
+                    { questionText, lastUpdated, roleTag },
                     { new: true }
                 );
                 return questionData;
@@ -180,8 +180,16 @@ const resolvers = {
             throw new AuthenticationError('You are not logged in');
         },
         deleteQuestion: async (_: undefined, args: EditQuestionProps, context) => {
-            if(context.user) {
-                const deletedQuestionData = Question.findByIdAndDelete(args.questionId);
+            if (context.user) {
+                const { questionId, appId } = args;
+                const deletedQuestionData = await Question.findByIdAndDelete(questionId);
+                const lastUpdated = Date.now();
+
+                await App.findByIdAndUpdate(
+                    { _id: appId },
+                    { $pull: { questions: { _id: questionId } }, lastUpdated },
+                    { new: true }
+                )
                 return deletedQuestionData;
             }
             throw new AuthenticationError('You are not logged in');
