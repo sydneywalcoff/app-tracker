@@ -124,9 +124,6 @@ export const ADD_NOTE = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
@@ -149,9 +146,6 @@ export const DELETE_NOTE = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
