@@ -30,17 +30,21 @@ const Question = (params: IQuestionParams) => {
     const [deleteQuestion] = useMutation(DELETE_QUESTION, {
         update(cache, { data: { deleteQuestion } }) {
             try {
+                // const data = cache.readQuery({query: QUERY_SINGLE_APP});
+                // console.log(data)
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,
                     variables: {
                         id: appId
                     }
-                }, ({ app }) => ({
-                    app: {
-                        ...app,
-                        questions: app.questions
-                    }
-                }))
+                }, ({ app }) => {
+                    return ({
+                        app: {
+                            ...app,
+                            questions: [deleteQuestion, ...app.questions]
+                        }
+                    })
+                })
             } catch (e) {
                 console.error(e);
             }
@@ -55,7 +59,7 @@ const Question = (params: IQuestionParams) => {
         try {
             await deleteQuestion({
                 variables: {
-                    questionID, 
+                    questionID,
                     appId
                 }
             })
@@ -99,7 +103,7 @@ const Question = (params: IQuestionParams) => {
                     <p className='flex items-center'>{question.questionText}</p>
                     <div className="buttons flex ml-1">
                         <button onClick={handleEditClick}><img src={editBtn} alt="click to edit this question" /></button>
-                        <button onClick={()=> handleTrashClick(question._id)}><img src={deleteBtn} alt="click to delete this question" /></button>
+                        <button onClick={() => handleTrashClick(question._id)}><img src={deleteBtn} alt="click to delete this question" /></button>
                     </div>
                 </div>}
         </li>
