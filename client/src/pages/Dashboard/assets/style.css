@@ -1,0 +1,11 @@
+.dashboard .section-titles {
+    background-color: var(--gray);
+}
+
+.dashboard .section-titles .title {
+    width: 100%;
+}
+
+.dashboard .section-titles .spacer {
+    max-width: 64px;
+}
