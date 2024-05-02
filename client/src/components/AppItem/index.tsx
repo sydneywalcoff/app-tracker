@@ -1,6 +1,6 @@
-
-
 import './assets/style.css';
+
+import StageDropdown from '../StageDropdown';
 
 interface AppItemI {
     dateAdded: string;
@@ -13,6 +13,21 @@ interface AppItemI {
 
 const AppItem = (params: AppItemI) => {
     const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
+    const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
+
+    const handleDropdownChange = async (status: string) => {
+        // try {
+        //     await editAppStatus({
+        //         variables: {
+        //             ...job,
+        //             id: job._id,
+        //             status
+        //         }
+        //     })
+        // } catch (e) {
+        //     console.log(e)
+        // }
+    };
 
     return (
         <div className="app-item-outer flex justify-between p-2">
@@ -26,8 +41,7 @@ const AppItem = (params: AppItemI) => {
                 <p>{company}</p>
             </div>
             <div className='stage item'>
-                <p>{stage}</p>
-                {/* will be stage dropdown */}
+                <StageDropdown onStageChange={handleDropdownChange} selectedStage={stage} options={statusArr}/>
             </div>
             <div className='location item'>
                 <p>{location}</p>

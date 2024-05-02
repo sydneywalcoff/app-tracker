@@ -18,7 +18,7 @@ const DashboardPage = () => {
                     <div className="spacer title"></div>
                 </div>
                 <div className="body w-full">
-                    <AppItem dateAdded="5/1/2024" jobTitle="Software Engineer" company="Google" stage="Preparing" location="Remote" AtsScore={0} />
+                    <AppItem dateAdded="5/1/2024" jobTitle="Software Engineer" company="Google" stage="preparing" location="Remote" AtsScore={0} />
                 </div>
             </div>
         </ContentContainer>

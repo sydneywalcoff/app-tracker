@@ -10,3 +10,7 @@
 .app-item-outer .item p {
     font-size: 14px;
 }
+
+.app-item-outer .stage .dropdown label {
+    display: none;
+}
