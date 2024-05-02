@@ -1,0 +1,12 @@
+.app-item-outer {
+    width: 100%;
+    border: 1px solid var(--gray)
+}
+
+.app-item-outer .item {
+    width: 100%;
+}
+
+.app-item-outer .item p {
+    font-size: 14px;
+}
