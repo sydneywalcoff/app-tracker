@@ -23,9 +23,10 @@ interface StageDropdownPropsI {
     job?: jobProp | undefined;
     selectedStage: string;
     options: Array<string>;
+    hideLabel?: Boolean;
 }
 
-const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDropdownPropsI) => {
+const StageDropdown = ({ options, onStageChange, selectedStage, hideLabel, job }: StageDropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
     const dropDownElRef = useRef<HTMLDivElement>(null);
@@ -109,7 +110,7 @@ const StageDropdown = ({ options, onStageChange, selectedStage, job }: StageDrop
         <div className="dropdown">
             <label
                 htmlFor="stage-dropdown"
-                className="block font-medium"
+                className={`block font-medium ${hideLabel ? 'hidden' : ''}`}
             >
                 stage
             </label>

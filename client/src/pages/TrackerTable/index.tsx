@@ -197,7 +197,7 @@ const TrackerTable = () => {
                             <p>{job.companyName}</p>
                         </td>
                         <td className="whitespace-nowrap job-stage">
-                            <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} />
+                            <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} hideLabel />
                         </td>
                         <td className="job-location">
                             <p>{job.location}</p>
