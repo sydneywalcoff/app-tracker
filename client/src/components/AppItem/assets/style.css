@@ -5,12 +5,10 @@
 
 .app-item-outer .item {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .app-item-outer .item p {
     font-size: 14px;
-}
-
-.app-item-outer .stage .dropdown label {
-    display: none;
 }
