@@ -7,6 +7,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    padding: 0 4px;
 }
 
 .app-item-outer .item p {

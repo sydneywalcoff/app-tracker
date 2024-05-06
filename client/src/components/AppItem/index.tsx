@@ -30,7 +30,7 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <div className="app-item-outer flex justify-between px-2 py-1">
+        <div className="app-item-outer flex justify-between py-1">
             <div className='date-added item'>
                 <p>{dateAdded}</p>
             </div>
