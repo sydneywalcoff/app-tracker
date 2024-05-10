@@ -1,4 +1,4 @@
-import { useRef, useEffect, RefObject } from 'react';
+import { useRef, useEffect } from 'react';
 
 import './assets/style.css';
 
@@ -17,7 +17,7 @@ const AppItem = (params: AppItemI) => {
     const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
-    const appItemRef = useRef<HTMLDivElement>(null);
+    const appItemRef = useRef<HTMLTableRowElement>(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -46,29 +46,29 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <div className="app-item-outer flex justify-between py-1" ref={appItemRef}>
-            <div className='date-added item'>
+        <tr className="app-item-outer flex justify-between py-1" ref={appItemRef}>
+            <td className='date-added item'>
                 <p>{dateAdded}</p>
-            </div>
-            <div className='job-title item'>
+            </td>
+            <td className='job-title item'>
                 <p>{jobTitle}</p>
-            </div>
-            <div className='company item'>
+            </td>
+            <td className='company item'>
                 <p>{company}</p>
-            </div>
-            <div className='stage item'>
+            </td>
+            <td className='stage item'>
                 <StageDropdown onStageChange={handleDropdownChange} selectedStage={stage} options={statusArr} hideLabel />
-            </div>
-            <div className='location item'>
+            </td>
+            <td className='location item'>
                 <p>{location}</p>
-            </div>
-            <div className='ATS-score item'>
+            </td>
+            <td className='ATS-score item'>
                 <p>{AtsScore}</p>
-            </div>
-            <div className="spacer item">
+            </td>
+            <td className="spacer item">
                 <p>More.</p>
-            </div>
-        </div>
+            </td>
+        </tr>
     );
 };
 

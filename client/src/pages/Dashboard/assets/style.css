@@ -4,6 +4,8 @@
 
 .dashboard .section-titles .title {
     width: 100%;
+    text-align: left;
+    font-weight: 500;
 }
 
 .dashboard .spacer {

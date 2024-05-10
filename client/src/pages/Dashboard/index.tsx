@@ -7,20 +7,22 @@ const DashboardPage = () => {
 
     return (
         <ContentContainer className='dashboard'>
-            <div className="w-full">
-                <div className="section-titles flex justify-between p-2">
-                    <div className='date-added title'>Date</div>
-                    <div className='job-title title'>Job Title</div>
-                    <div className='company title'>Company</div>
-                    <div className='stage title'>Stage</div>
-                    <div className='location title'>Location</div>
-                    <div className='ATS-score title'>ATS Score</div>
-                    <div className="spacer title"></div>
-                </div>
-                <div className="body w-full">
+            <table className="w-full divide-y">
+                <thead className="w-full">
+                    <tr className="section-titles flex justify-between p-2 w-full">
+                        <th className='date-added title'>Date</th>
+                        <th className='job-title title'>Job Title</th>
+                        <th className='company title'>Company</th>
+                        <th className='stage title'>Stage</th>
+                        <th className='location title'>Location</th>
+                        <th className='ATS-score title'>ATS Score</th>
+                        <th className="spacer title"></th>
+                    </tr>
+                </thead>
+                <tbody className="body w-full">
                     <AppItem dateAdded="5/1/2024" jobTitle="Software Engineer" company="Google" stage="preparing" location="Remote" AtsScore={0} />
-                </div>
-            </div>
+                </tbody>
+            </table>
         </ContentContainer>
     );
 };
