@@ -30,8 +30,6 @@ const Question = (params: IQuestionParams) => {
     const [deleteQuestion] = useMutation(DELETE_QUESTION, {
         update(cache, { data: { deleteQuestion } }) {
             try {
-                // const data = cache.readQuery({query: QUERY_SINGLE_APP});
-                // console.log(data)
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,
                     variables: {
@@ -42,6 +40,28 @@ const Question = (params: IQuestionParams) => {
                         app: {
                             ...app,
                             questions: [deleteQuestion, ...app.questions]
+                        }
+                    })
+                })
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    })
+
+    const [editQuestion] = useMutation(EDIT_QUESTION, {
+        update(cache, { data: { editQuestion }}) {
+            try {
+                cache.updateQuery({
+                    query: QUERY_SINGLE_APP,
+                    variables: {
+                        id: appId
+                    }
+                }, ({app}) => {
+                    return ({
+                        app: {
+                            ...app,
+                            questions: [...app.questions]
                         }
                     })
                 })
@@ -71,8 +91,19 @@ const Question = (params: IQuestionParams) => {
         setEditText(e.target.value);
     };
 
-    const handleQuestionEditClick = () => {
-        console.log(editText)
+    const handleQuestionEditClick = async () => {
+        try {
+            await editQuestion({
+                variables: {
+                    questionId: question._id,
+                    questionText: editText,
+                }
+            })
+
+            setIsEditing(false);
+        } catch(e) {
+            console.error(e)
+        }
     };
 
     const handleCancelEditClick = () => {
