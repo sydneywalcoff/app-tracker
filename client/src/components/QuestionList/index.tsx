@@ -66,6 +66,11 @@ const QuestionList = ({ questions, appId }: IQuestionParams) => {
         setIsDisabled(true);
     };
 
+    const handleCancelClick = () => {
+        setNewQuestionText('');
+        setIsDisabled(true);
+    };
+
     return (
         <div className='questions flex flex-col'>
             <h3 className="text-2xl mb-2">Questions</h3>
@@ -73,7 +78,10 @@ const QuestionList = ({ questions, appId }: IQuestionParams) => {
                 {questionList && questionList.map(question => <Question appId={appId} question={question} key={`Question${question._id}`} />)}
             </ul>
             <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText} />
-            <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled'} blue ml-auto mt-4`} />
+            <div className='flex'>
+                <p onClick={handleCancelClick} className={`flex mr-2 cancel-btn ${isDisabled && 'hidden'} items-center ml-auto mt-4`}>Cancel</p>
+                <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled ml-auto'} blue mt-4`} />
+            </div>
         </div>
     );
 };
