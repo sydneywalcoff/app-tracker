@@ -1,3 +1,5 @@
+import { useRef, useEffect, RefObject } from 'react';
+
 import './assets/style.css';
 
 import StageDropdown from '../StageDropdown';
@@ -15,6 +17,20 @@ const AppItem = (params: AppItemI) => {
     const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
+    const appItemRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            console.log(appItemRef.current?.offsetWidth)
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [])
+
     const handleDropdownChange = async (status: string) => {
         // try {
         //     await editAppStatus({
@@ -30,7 +46,7 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <div className="app-item-outer flex justify-between py-1">
+        <div className="app-item-outer flex justify-between py-1" ref={appItemRef}>
             <div className='date-added item'>
                 <p>{dateAdded}</p>
             </div>
