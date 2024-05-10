@@ -77,7 +77,7 @@ const QuestionList = ({ questions, appId }: IQuestionParams) => {
             <ul className="px-5 flex flex-col">
                 {questionList && questionList.map(question => <Question appId={appId} question={question} key={`Question${question._id}`} />)}
             </ul>
-            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText} />
+            <TextArea onChange={handleNewQuestionChange} labelText='' rows={3} value={newQuestionText} placeholder='add new question...'/>
             <div className='flex'>
                 <p onClick={handleCancelClick} className={`flex mr-2 cancel-btn ${isDisabled && 'hidden'} items-center ml-auto mt-4`}>Cancel</p>
                 <Button onClick={handleNewQuestionClick} type="button" text="Submit" classes={`${isDisabled && 'disabled ml-auto'} blue mt-4`} />
