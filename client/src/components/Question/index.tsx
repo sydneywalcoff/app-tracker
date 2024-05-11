@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_QUESTION, EDIT_QUESTION, DELETE_QUESTION } from '../../utils/mutations';
+import { EDIT_QUESTION, DELETE_QUESTION } from '../../utils/mutations';
 
 import './assets/style.css'
 import TextArea from '../TextArea';
