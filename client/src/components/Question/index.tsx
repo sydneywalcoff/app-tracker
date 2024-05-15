@@ -39,7 +39,7 @@ const Question = (params: IQuestionParams) => {
                     return ({
                         app: {
                             ...app,
-                            questions: [deleteQuestion, ...app.questions]
+                            questions: app.questions
                         }
                     })
                 })

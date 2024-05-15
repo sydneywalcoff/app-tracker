@@ -178,11 +178,21 @@ export const EDIT_QUESTION = gql`
 export const DELETE_QUESTION = gql`
     mutation Mutation($questionID: ID!, $appId: ID!) {
         deleteQuestion(questionId: $questionID, appId: $appId) {
-        _id
-        lastUpdated
-        dateAdded
-        questionText
-        roleTag
+            _id
+            jobTitle
+            jobDescription
+            location
+            status
+            quickApply
+            jobScore
+            dateApplied
+            notes {
+                _id
+                noteText
+            }
+            questions {
+                _id
+            }
         }
     }  
 `;
