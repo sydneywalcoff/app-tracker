@@ -182,15 +182,15 @@ const resolvers = {
         deleteQuestion: async (_: undefined, args: EditQuestionProps, context) => {
             if (context.user) {
                 const { questionId, appId } = args;
-                const deletedQuestionData = await Question.findOneAndDelete({ _id: questionId });
+                await Question.findOneAndDelete({ _id: questionId });
                 const lastUpdated = Date.now();
 
-                await App.findByIdAndUpdate(
+                const updatedAppData = await App.findByIdAndUpdate(
                     { _id: appId },
                     { $pull: { questions: questionId }, lastUpdated },
                     { new: true }
                 )
-                return deletedQuestionData;
+                return updatedAppData;
             }
             throw new AuthenticationError('You are not logged in');
         },
