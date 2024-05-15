@@ -14,6 +14,7 @@ const typeDefs = gql`
         dateApplied: String
         lastUpdated: String
         notes: [Note]
+        questions: [Question]
         link: String
     }
 
@@ -21,6 +22,14 @@ const typeDefs = gql`
         _id: ID!
         noteText: String!
         dateAdded: String!
+    }
+
+    type Question {
+        _id: ID!
+        questionText: String!
+        dateAdded: String!
+        lastUpdated: String!
+        roleTag: String
     }
 
     type User {
@@ -55,9 +64,11 @@ const typeDefs = gql`
         deleteApp(_id: ID!) : App
         addNote(appId: ID!, noteText: String!) : App
         deleteNote(appId: ID!, noteId: ID! ): App
+        addQuestion(appId: ID!, questionText: String!, roleTag: String) : Question
+        editQuestion(questionId: ID!, questionText: String, roleTag: String) : Question
+        deleteQuestion(questionId: ID!, appId: ID!) : App
         addUser(username: String!, password: String!, email: String!): Auth
         login(username: String!, password: String!): Auth
-        resetPassword(newPassword: String!, oldPassword: String!): User
     }
 `;
 

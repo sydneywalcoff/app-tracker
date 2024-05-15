@@ -82,7 +82,7 @@
     padding: 0 20px;
 }
 
-.single-app .bottom-content .questions,
+.single-app .bottom-content .question-container,
 .single-app .bottom-content .notes {
     max-width: 50%;
     width: 100%;
@@ -106,6 +106,7 @@
         width: 100%;
         margin-bottom: 10px;
     }
+
     .single-app .job-details-container .delete-btn {
         margin-right: 0;
     }
@@ -128,12 +129,12 @@
         padding: 0;
     }
 
-    .single-app .bottom-content .questions,
+    .single-app .bottom-content .question-container,
     .single-app .bottom-content .notes {
         max-width: 100%;
     }
 
-    .single-app .bottom-content .questions {
+    .single-app .bottom-content .question-container {
         margin-bottom: 25px;
     }
 

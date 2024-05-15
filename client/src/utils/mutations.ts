@@ -18,6 +18,12 @@ export const ADD_APP = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -44,6 +50,12 @@ export const EDIT_APP = gql`
                 _id
                 noteText
                 dateAdded
+            }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
             }
         }
     }
@@ -84,6 +96,12 @@ export const DELETE_APP = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+                questionText
+                lastUpdated
+                roleTag
+            }
         }
     }
 `;
@@ -104,6 +122,9 @@ export const ADD_NOTE = gql`
                 noteText
                 dateAdded
             }
+            questions {
+                _id
+            }
         }
     }
 `;
@@ -123,8 +144,57 @@ export const DELETE_NOTE = gql`
                 _id
                 noteText
             }
+            questions {
+                _id
+            }
         }
     }
+`;
+
+export const ADD_QUESTION = gql`
+    mutation Mutation($appId: ID!, $questionText: String!, $roleTag: String) {
+        addQuestion(appId: $appId, questionText: $questionText, roleTag: $roleTag) {
+        _id
+        dateAdded
+        lastUpdated
+        questionText
+        roleTag
+        }
+    }
+`;
+
+export const EDIT_QUESTION = gql`
+    mutation EditQuestion($questionId: ID!, $questionText: String, $roleTag: String) {
+        editQuestion(questionId: $questionId, questionText: $questionText, roleTag: $roleTag) {
+        _id
+        dateAdded
+        lastUpdated
+        questionText
+        roleTag
+        }
+    }
+`;
+
+export const DELETE_QUESTION = gql`
+    mutation Mutation($questionID: ID!, $appId: ID!) {
+        deleteQuestion(questionId: $questionID, appId: $appId) {
+            _id
+            jobTitle
+            jobDescription
+            location
+            status
+            quickApply
+            jobScore
+            dateApplied
+            notes {
+                _id
+                noteText
+            }
+            questions {
+                _id
+            }
+        }
+    }  
 `;
 
 export const LOGIN = gql`

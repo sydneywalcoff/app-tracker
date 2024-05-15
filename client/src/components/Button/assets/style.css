@@ -21,3 +21,8 @@ button[type='submit'].primary {
     color: #fff;
 }
 
+button.disabled {
+    pointer-events: none;
+    cursor: pointer !important;
+    background-color: gray !important;
+}
