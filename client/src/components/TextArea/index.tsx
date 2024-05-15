@@ -9,9 +9,10 @@ interface TextAreaPropsI {
     name?: string;
     placeholder?: string;
     value?: string;
+    rows?: number;
 }
 
-const TextArea = ({onChange, labelText, name, classes, placeholder, value }: TextAreaPropsI) => {
+const TextArea = ({onChange, labelText, name, classes, placeholder, value, rows }: TextAreaPropsI) => {
     return (
         <>
             <label
@@ -22,9 +23,9 @@ const TextArea = ({onChange, labelText, name, classes, placeholder, value }: Tex
             </label>
             <textarea
                 name={name}
-                rows={5}
+                rows={rows ? rows : 5}
                 id={name}
-                className={`mt-1 py-2 px-3 block w-full drop-shadow-md ${classes}`}
+                className={`mt-1 py-2 px-3 block w-full drop-shadow-md ${classes ? classes : ''}`}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}

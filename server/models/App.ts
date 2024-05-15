@@ -1,5 +1,6 @@
-import { Schema, model, Document, Model, SchemaDefinitionProperty } from 'mongoose';
-import dateFormat from '../utils/dateFormat'
+import { Schema, model, Document, Model, SchemaDefinitionProperty, Types } from 'mongoose';
+import dateFormat from '../utils/dateFormat';
+import { QuestionDocument } from './index';
 const noteSchema = require('./Note');
 const statusHistorySchema = require('./StatusHistory')
 
@@ -52,7 +53,13 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     link: {
         type: String,
         require: false
-    }
+    },
+    questions: [
+        {
+            type: Types.ObjectId,
+            ref: 'Question'
+        }
+    ],
 },
 {
     toJSON: {
@@ -72,7 +79,8 @@ export interface AppDocument extends Document {
     dateApplied: Date | SchemaDefinitionProperty<Date>,
     lastUpdated: Date | SchemaDefinitionProperty<Date>,
     notes: [],
-    link: String
+    link: String,
+    questions: [QuestionDocument]
 }
 
 module.exports =  model<AppDocument, Model<AppDocument>>("App", appSchema);
