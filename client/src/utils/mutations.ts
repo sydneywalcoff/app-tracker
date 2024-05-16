@@ -20,9 +20,6 @@ export const ADD_APP = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
@@ -53,9 +50,6 @@ export const EDIT_APP = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
@@ -98,9 +92,6 @@ export const DELETE_APP = gql`
             }
             questions {
                 _id
-                questionText
-                lastUpdated
-                roleTag
             }
         }
     }
