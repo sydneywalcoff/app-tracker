@@ -34,7 +34,7 @@ const DashboardPage = () => {
         <ContentContainer className='dashboard'>
             <table className="w-full divide-y">
                 <thead className="w-full">
-                    <tr className="section-titles flex justify-between p-2 w-full">
+                    <tr className="section-titles flex justify-between p-1 w-full">
                         <th className='date-added title'>Date</th>
                         <th className='job-title title'>Job Title</th>
                         <th className='company title'>Company</th>

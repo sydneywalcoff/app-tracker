@@ -6,8 +6,13 @@
     width: 100%;
     text-align: left;
     font-weight: 500;
+    padding: 0 4px;
 }
 
 .dashboard .spacer {
     max-width: 64px;
+}
+
+.dashboard .date-added {
+    max-width: 75px;
 }

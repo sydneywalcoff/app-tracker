@@ -46,7 +46,7 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <tr className="app-item-outer flex justify-between py-1" ref={appItemRef}>
+        <tr className="app-item-outer flex justify-between p-1" ref={appItemRef}>
             <td className='date-added item'>
                 <p>{dateAdded}</p>
             </td>
