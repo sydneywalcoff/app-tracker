@@ -33,7 +33,15 @@ const DashboardPage = () => {
     ]
     return (
         <ContentContainer className='dashboard'>
-            <AppTable apps={apps} />
+            <>
+                <div className="main-container">
+                    <AppTable apps={apps} />
+
+                </div>
+                <div className="form-container">
+
+                </div>
+            </>
         </ContentContainer>
     );
 };
