@@ -4,7 +4,32 @@ import ContentContainer from "../../components/ContentContainer";
 import AppItem from "../../components/AppItem";
 
 const DashboardPage = () => {
-
+    const apps = [
+        {
+            dateAdded: '5/1/2024',
+            jobTitle: "Software Engineer",
+            company: "Google",
+            stage: "preparing",
+            location: 'remote',
+            AtsScore: 0
+        },
+        {
+            dateAdded: '5/1/2024',
+            jobTitle: "Software Engineer",
+            company: "Google",
+            stage: "preparing",
+            location: 'remote',
+            AtsScore: 0
+        },
+        {
+            dateAdded: '5/1/2024',
+            jobTitle: "Software Engineer",
+            company: "Google",
+            stage: "preparing",
+            location: 'remote',
+            AtsScore: 0
+        },
+    ]
     return (
         <ContentContainer className='dashboard'>
             <table className="w-full divide-y">
@@ -20,7 +45,7 @@ const DashboardPage = () => {
                     </tr>
                 </thead>
                 <tbody className="body w-full">
-                    <AppItem dateAdded="5/1/2024" jobTitle="Software Engineer" company="Google" stage="preparing" location="Remote" AtsScore={0} />
+                    {apps.map((app) => <AppItem dateAdded={app.dateAdded} jobTitle={app.jobTitle} company={app.company} stage={app.stage} location={app.location} AtsScore={app.AtsScore} />)}
                 </tbody>
             </table>
         </ContentContainer>
