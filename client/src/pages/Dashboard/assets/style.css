@@ -14,12 +14,9 @@
     border-top: none;
 }
 
-.dashboard .preparing tbody tr {
-    padding-right: 16px;
-}
-
+.dashboard .preparing tbody tr,
 .dashboard .preparing thead tr {
-    display: none;
+    padding-right: 16px;
 }
 
 .dashboard .preparing h4 { 
