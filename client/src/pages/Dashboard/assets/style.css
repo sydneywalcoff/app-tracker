@@ -1,0 +1,13 @@
+.dashboard .preparing {
+    width: 50%;
+}
+
+.dashboard .preparing .date-added,
+.dashboard .preparing .location,
+.dashboard .preparing .ATS-score {
+    display: none;
+}
+
+.dashboard .preparing .spacer {
+    width: 36px;
+}
