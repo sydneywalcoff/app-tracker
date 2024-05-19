@@ -35,11 +35,11 @@ const DashboardPage = () => {
     return (
         <ContentContainer className='dashboard flex'>
             <>
-                <div className="main-container">
+                <div className="main-container w-2/3">
                     <AppTable apps={apps} />
 
                 </div>
-                <div className="form-container">
+                <div className="form-container ml-4 w-1/3">
                     <TrackerForm />
                 </div>
             </>

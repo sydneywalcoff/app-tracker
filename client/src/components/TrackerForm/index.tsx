@@ -4,8 +4,6 @@ import { useMutation } from "@apollo/client";
 import { ADD_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
-import ContentContainer from "../ContentContainer";
-import SectionContainer from "../SectionContainer";
 import TextInput from "../TextInput";
 import TextArea from "../TextArea";
 import Button from '../Button';

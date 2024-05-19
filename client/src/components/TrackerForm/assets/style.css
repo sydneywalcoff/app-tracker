@@ -40,7 +40,6 @@
 
 .tracker.form-container .form-content .input-container,
 .tracker.form-container .form-content .dropdown-container  {
-    max-width: 48%;
     width: 100%;
     margin-bottom: 15px;
 }
@@ -69,12 +68,4 @@
     .tracker h1 {
         font-size: 35px;
     }
-
-    .tracker.form-container .form-content .input-container,
-    .tracker.form-container .form-content .dropdown-container,
-    .tracker.form-container .form-content .textArea-container,
-    .tracker.form-container .form-content .checkbox-container {
-        max-width: 100%;
-    }
-
 }
