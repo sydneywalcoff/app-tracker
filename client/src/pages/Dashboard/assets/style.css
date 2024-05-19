@@ -27,3 +27,7 @@
     font-weight: bold;
     font-size: 24px
 }
+
+.dashboard .all-apps table .date-added {
+    max-width: 104px;
+}

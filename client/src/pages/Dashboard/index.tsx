@@ -81,7 +81,7 @@ const DashboardPage = () => {
                     </div>
                     <div className="all-apps mt-12">
                         <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                        <AppTable apps={apps} />
+                        <AppTable apps={jobs} />
                     </div>
                 </div>
                 <div className="form-container ml-4 w-1/3">
