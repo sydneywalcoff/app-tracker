@@ -36,8 +36,12 @@ const DashboardPage = () => {
         <ContentContainer className='dashboard flex'>
             <>
                 <div className="main-container w-2/3">
-                    <AppTable apps={apps} />
-
+                    <div className="preparing">
+                        <AppTable apps={apps} />
+                    </div>
+                    <div className="all-apps mt-8">
+                        <AppTable apps={apps} />
+                    </div>
                 </div>
                 <div className="form-container ml-4 w-1/3">
                     <TrackerForm />
