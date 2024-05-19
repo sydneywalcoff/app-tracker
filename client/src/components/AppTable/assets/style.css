@@ -1,5 +1,6 @@
 table .stage {
     min-width: 120px;
+    max-width: 120px
 }
 
 table th {
@@ -17,10 +18,13 @@ table .section-titles .title {
     padding: 0 4px;
 }
 
-table .spacer {
+table .spacer,
+table .date-added {
     max-width: 64px;
 }
 
-table .date-added {
-    max-width: 75px;
+table .location,
+table .company,
+table .ATS-score {
+    max-width: 80px;
 }
