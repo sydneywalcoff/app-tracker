@@ -1,5 +1,7 @@
 import AppItem from "../../components/AppItem";
 
+import './assets/style.css';
+
 interface AppItemI {
     dateAdded: string;
     jobTitle: string;
@@ -21,12 +23,12 @@ const AppTable = (params:AppTableI) => {
         <table className="w-full divide-y">
             <thead className="w-full">
                 <tr className="section-titles flex justify-between p-1 w-full">
-                    <th className='date-added title'>Date</th>
-                    <th className='job-title title'>Job Title</th>
-                    <th className='company title'>Company</th>
-                    <th className='stage title'>Stage</th>
-                    <th className='location title'>Location</th>
-                    <th className='ATS-score title'>ATS Score</th>
+                    <th className='date-added title'><p>Date</p></th>
+                    <th className='job-title title'><p>Job Title</p></th>
+                    <th className='company title'><p>Company</p></th>
+                    <th className='stage title'><p>Stage</p></th>
+                    <th className='location title'><p>Location</p></th>
+                    <th className='ATS-score title'><p>ATS Score</p></th>
                     <th className="spacer title"></th>
                 </tr>
             </thead>

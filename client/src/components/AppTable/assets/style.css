@@ -1,15 +1,26 @@
-.app-item-outer {
-    width: 100%;
-    border: 1px solid var(--gray)
+table .stage {
+    min-width: 120px;
 }
 
-.app-item-outer .item {
-    width: 100%;
+table th {
     display: flex;
-    align-items: center;
+}
+
+table .section-titles {
+    background-color: var(--gray);
+}
+
+table .section-titles .title {
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
     padding: 0 4px;
 }
 
-.app-item-outer .item p {
-    font-size: 14px;
+table .spacer {
+    max-width: 64px;
+}
+
+table .date-added {
+    max-width: 75px;
 }
