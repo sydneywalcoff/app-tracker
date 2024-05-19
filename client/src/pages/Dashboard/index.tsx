@@ -72,7 +72,7 @@ const DashboardPage = () => {
                     <div className="top-section flex">
                         <div className="preparing w-1/2 flex flex-col">
                             <h4>Apps in Prep</h4>
-                            <AppTable apps={jobsInPrep} />
+                            <AppTable apps={apps} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>
