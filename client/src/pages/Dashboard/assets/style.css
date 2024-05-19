@@ -5,10 +5,15 @@
 }
 
 .dashboard .preparing .spacer {
-    width: 36px;
+    max-width: 36px;
 }
 
 .dashboard .preparing tbody {
     max-height: 140px;
     overflow-y: scroll;
+}
+
+.dashboard .preparing tbody tr, 
+.dashboard .preparing thead tr {
+    padding-right: 16px;
 }

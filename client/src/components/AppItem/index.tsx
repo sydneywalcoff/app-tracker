@@ -39,7 +39,7 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <tr className="app-item-outer flex justify-between p-1 pr-4">
+        <tr className="app-item-outer flex justify-between p-1">
             <td className='date-added item'>
                 <p>{dateAdded}</p>
             </td>
