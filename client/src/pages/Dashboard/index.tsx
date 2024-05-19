@@ -1,47 +1,65 @@
 import { useState } from 'react';
-import ContentContainer from "../../components/ContentContainer";
+import { useQuery } from '@apollo/client';
 
+import { QUERY_MY_APPS } from '../../utils/queries';
+
+import ContentContainer from "../../components/ContentContainer";
 import AppTable from '../../components/AppTable';
 import TrackerForm from '../../components/TrackerForm';
 import SearchBar from '../../components/SearchBar';
 
 import './assets/style.css';
 
+interface jobProp {
+    _id: string;
+    jobTitle: string;
+    companyName: string;
+    jobDescription: string;
+    location: string;
+    status: string;
+    dateApplied: string;
+    lastUpdated: string;
+}
+
 const DashboardPage = () => {
+    const { loading, data } = useQuery(QUERY_MY_APPS);
     const [searchText, setSearchText] = useState<string>('');
+    let jobs: jobProp[] = data?.myApps || [];
+    let jobsInPrep = jobs.filter(n => n.status == 'preparing');
+
     const apps = [
         {
-            dateAdded: '5/1/2024',
+            dateApplied: '5/1/2024',
             jobTitle: "Software Engineer",
-            company: "Google",
-            stage: "preparing",
+            companyName: "Google",
+            status: "preparing",
             location: 'remote',
             AtsScore: 0,
             _id: '1'
         },
         {
-            dateAdded: '5/1/2024',
+            dateApplied: '5/1/2024',
             jobTitle: "Software Engineer",
-            company: "Google",
-            stage: "preparing",
+            companyName: "Google",
+            status: "preparing",
             location: 'remote',
             AtsScore: 0,
             _id: '2'
         },
         {
-            dateAdded: '5/1/2024',
+            dateApplied: '5/1/2024',
             jobTitle: "Software Engineer",
-            company: "Google",
-            stage: "preparing",
+            companyName: "Google",
+            status: "preparing",
             location: 'remote',
             AtsScore: 0,
             _id: '3'
         },
         {
-            dateAdded: '5/1/2024',
+            dateApplied: '5/1/2024',
             jobTitle: "Software Engineer",
-            company: "Google",
-            stage: "preparing",
+            companyName: "Google",
+            status: "preparing",
             location: 'remote',
             AtsScore: 0,
             _id: '3'
@@ -54,7 +72,7 @@ const DashboardPage = () => {
                     <div className="top-section flex">
                         <div className="preparing w-1/2 flex flex-col">
                             <h4>Apps in Prep</h4>
-                            <AppTable apps={apps} />
+                            <AppTable apps={jobsInPrep} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>

@@ -3,10 +3,10 @@ import AppItem from "../../components/AppItem";
 import './assets/style.css';
 
 interface AppItemI {
-    dateAdded: string;
+    dateApplied: string;
     jobTitle: string;
-    company: string;
-    stage: string;
+    companyName: string;
+    status: string;
     location: string;
     AtsScore?: number;
     _id: string
@@ -34,7 +34,7 @@ const AppTable = (params:AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {apps.map((app) => <AppItem _id={app._id} dateAdded={app.dateAdded} jobTitle={app.jobTitle} company={app.company} stage={app.stage} location={app.location} AtsScore={app.AtsScore} />)}
+                {apps.map((app) => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
             </tbody>
         </table>
     );
