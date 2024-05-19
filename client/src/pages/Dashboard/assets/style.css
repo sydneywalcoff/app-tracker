@@ -7,3 +7,8 @@
 .dashboard .preparing .spacer {
     width: 36px;
 }
+
+.dashboard .preparing tbody {
+    max-height: 140px;
+    overflow-y: scroll;
+}

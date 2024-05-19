@@ -37,13 +37,22 @@ const DashboardPage = () => {
             AtsScore: 0,
             _id: '3'
         },
+        {
+            dateAdded: '5/1/2024',
+            jobTitle: "Software Engineer",
+            company: "Google",
+            stage: "preparing",
+            location: 'remote',
+            AtsScore: 0,
+            _id: '3'
+        },
     ]
     return (
         <ContentContainer className='dashboard flex'>
             <>
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
-                        <div className="preparing w-1/2">
+                        <div className="preparing w-1/2 flex flex-col">
                             <AppTable apps={apps} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">

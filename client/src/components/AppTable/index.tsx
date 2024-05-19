@@ -21,7 +21,7 @@ const AppTable = (params:AppTableI) => {
     const { apps } = params;
 
     return (
-        <table className="w-full divide-y">
+        <table className="w-full divide-y flex flex-col">
             <thead className="w-full">
                 <tr className="section-titles flex justify-between p-1 w-full">
                     <th className='date-added title'><p>Date</p></th>
