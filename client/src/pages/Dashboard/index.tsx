@@ -22,10 +22,10 @@ interface jobProp {
 }
 
 const DashboardPage = () => {
-    const { loading, data } = useQuery(QUERY_MY_APPS);
+    const { data } = useQuery(QUERY_MY_APPS);
     const [searchText, setSearchText] = useState<string>('');
     let jobs: jobProp[] = data?.myApps || [];
-    let jobsInPrep = jobs.filter(n => n.status == 'preparing');
+    let jobsInPrep = jobs.filter(n => n.status.toLowerCase() === 'preparing');
 
     const apps = [
         {
