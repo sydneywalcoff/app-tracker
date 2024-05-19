@@ -11,6 +11,7 @@ interface AppItemI {
     stage: string;
     location: string;
     AtsScore?: number;
+    _id: string
 }
 
 interface AppTableI {
@@ -49,7 +50,7 @@ const AppTable = (params:AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {apps.map((app) => <AppItem dateAdded={app.dateAdded} jobTitle={app.jobTitle} company={app.company} stage={app.stage} location={app.location} AtsScore={app.AtsScore} />)}
+                {apps.map((app) => <AppItem _id={app._id} dateAdded={app.dateAdded} jobTitle={app.jobTitle} company={app.company} stage={app.stage} location={app.location} AtsScore={app.AtsScore} />)}
             </tbody>
         </table>
     );

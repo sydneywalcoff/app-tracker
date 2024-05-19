@@ -1,6 +1,11 @@
-import './assets/style.css';
+import { useMutation } from '@apollo/client';
+
+import { EDIT_APP_STATUS } from '../../utils/mutations';
 
 import StageDropdown from '../StageDropdown';
+
+import './assets/style.css';
+
 
 interface AppItemI {
     dateAdded: string;
@@ -9,24 +14,28 @@ interface AppItemI {
     stage: string;
     location: string;
     AtsScore?: number;
+    _id: string;
 }
 
 const AppItem = (params: AppItemI) => {
+    const [editAppStatus] = useMutation(EDIT_APP_STATUS);
+
     const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     const handleDropdownChange = async (status: string) => {
-        // try {
-        //     await editAppStatus({
-        //         variables: {
-        //             ...job,
-        //             id: job._id,
-        //             status
-        //         }
-        //     })
-        // } catch (e) {
-        //     console.log(e)
-        // }
+        try {
+            console.log(status)
+            // await editAppStatus({
+            //     variables: {
+            //         ...params,
+            //         id: params._id,
+            //         status
+            //     }
+            // })
+        } catch (e) {
+            console.log(e)
+        }
     };
 
     return (

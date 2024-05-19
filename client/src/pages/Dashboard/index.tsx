@@ -16,7 +16,8 @@ const DashboardPage = () => {
             company: "Google",
             stage: "preparing",
             location: 'remote',
-            AtsScore: 0
+            AtsScore: 0,
+            _id: '1'
         },
         {
             dateAdded: '5/1/2024',
@@ -24,7 +25,8 @@ const DashboardPage = () => {
             company: "Google",
             stage: "preparing",
             location: 'remote',
-            AtsScore: 0
+            AtsScore: 0,
+            _id: '2'
         },
         {
             dateAdded: '5/1/2024',
@@ -32,7 +34,8 @@ const DashboardPage = () => {
             company: "Google",
             stage: "preparing",
             location: 'remote',
-            AtsScore: 0
+            AtsScore: 0,
+            _id: '3'
         },
     ]
     return (
