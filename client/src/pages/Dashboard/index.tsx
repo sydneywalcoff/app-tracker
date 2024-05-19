@@ -56,8 +56,8 @@ const DashboardPage = () => {
                             <AppTable apps={apps} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
-                            <h4>Today</h4>
-                            <p><span></span> Apps Applied to</p>
+                            {/* <h4>Today</h4>
+                            <p><span></span> Apps Applied to</p> */}
                         </div>
                     </div>
                     <div className="all-apps mt-12">
