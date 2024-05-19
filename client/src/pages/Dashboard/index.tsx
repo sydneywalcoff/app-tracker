@@ -53,6 +53,7 @@ const DashboardPage = () => {
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
                         <div className="preparing w-1/2 flex flex-col">
+                            <h4>Apps in Prep</h4>
                             <AppTable apps={apps} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">

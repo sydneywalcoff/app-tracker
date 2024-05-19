@@ -11,9 +11,18 @@
 .dashboard .preparing tbody {
     max-height: 140px;
     overflow-y: scroll;
+    border-top: none;
 }
 
-.dashboard .preparing tbody tr, 
-.dashboard .preparing thead tr {
+.dashboard .preparing tbody tr {
     padding-right: 16px;
+}
+
+.dashboard .preparing thead tr {
+    display: none;
+}
+
+.dashboard .preparing h4 { 
+    font-weight: bold;
+    font-size: 24px
 }
