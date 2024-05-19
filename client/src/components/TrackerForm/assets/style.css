@@ -23,39 +23,39 @@
     margin-bottom: 16px;
 }
 
-.tracker .form-container {
+.tracker.form-container {
     width: 100%;
     align-items: flex-end;
     flex-direction: column;
 }
-.tracker .form-container .content {
+.tracker.form-container .content {
     padding: 16px;
 }
 
-.tracker .form-container .form-content {
+.tracker.form-container .form-content {
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.tracker .form-container .form-content .input-container,
-.tracker .form-container .form-content .dropdown-container  {
+.tracker.form-container .form-content .input-container,
+.tracker.form-container .form-content .dropdown-container  {
     max-width: 48%;
     width: 100%;
     margin-bottom: 15px;
 }
-.tracker .form-container .form-content .input-container input { width: 100%; }
+.tracker.form-container .form-content .input-container input { width: 100%; }
 
-.tracker .form-container .form-content .input-container.link {
+.tracker.form-container .form-content .input-container.link {
     margin-top: auto;
 }
 
-.tracker .form-container .form-content .textArea-container {
+.tracker.form-container .form-content .textArea-container {
     width: 100%;
     margin-bottom: 15px;
 }
 
-.tracker .form-container .form-content .checkbox-container {
+.tracker.form-container .form-content .checkbox-container {
     display: inline-flex;
 }
 
@@ -63,17 +63,17 @@
     .tracker .flex {
         flex-direction: column;
     }
-    .tracker .form-container {
+    .tracker.form-container {
         order: 1;
     }
     .tracker h1 {
         font-size: 35px;
     }
 
-    .tracker .form-container .form-content .input-container,
-    .tracker .form-container .form-content .dropdown-container,
-    .tracker .form-container .form-content .textArea-container,
-    .tracker .form-container .form-content .checkbox-container {
+    .tracker.form-container .form-content .input-container,
+    .tracker.form-container .form-content .dropdown-container,
+    .tracker.form-container .form-content .textArea-container,
+    .tracker.form-container .form-content .checkbox-container {
         max-width: 100%;
     }
 

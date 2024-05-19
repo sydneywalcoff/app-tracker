@@ -3,6 +3,7 @@ import './assets/style.css';
 import ContentContainer from "../../components/ContentContainer";
 
 import AppTable from '../../components/AppTable';
+import TrackerForm from '../../components/TrackerForm';
 
 const DashboardPage = () => {
     const apps = [
@@ -32,14 +33,14 @@ const DashboardPage = () => {
         },
     ]
     return (
-        <ContentContainer className='dashboard'>
+        <ContentContainer className='dashboard flex'>
             <>
                 <div className="main-container">
                     <AppTable apps={apps} />
 
                 </div>
                 <div className="form-container">
-
+                    <TrackerForm />
                 </div>
             </>
         </ContentContainer>
