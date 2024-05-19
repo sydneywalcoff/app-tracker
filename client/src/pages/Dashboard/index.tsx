@@ -1,11 +1,14 @@
-import './assets/style.css';
-
+import { useState } from 'react';
 import ContentContainer from "../../components/ContentContainer";
 
 import AppTable from '../../components/AppTable';
 import TrackerForm from '../../components/TrackerForm';
+import SearchBar from '../../components/SearchBar';
+
+import './assets/style.css';
 
 const DashboardPage = () => {
+    const [searchText, setSearchText] = useState<string>('');
     const apps = [
         {
             dateAdded: '5/1/2024',
@@ -39,7 +42,8 @@ const DashboardPage = () => {
                     <div className="preparing">
                         <AppTable apps={apps} />
                     </div>
-                    <div className="all-apps mt-8">
+                    <div className="all-apps mt-12">
+                        <SearchBar searchText={searchText} setSearchText={setSearchText} />
                         <AppTable apps={apps} />
                     </div>
                 </div>
