@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react';
-
 import './assets/style.css';
 
 import StageDropdown from '../StageDropdown';
@@ -17,20 +15,6 @@ const AppItem = (params: AppItemI) => {
     const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
-    const appItemRef = useRef<HTMLTableRowElement>(null);
-
-    useEffect(() => {
-        const handleResize = () => {
-            console.log(appItemRef.current?.offsetWidth)
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [])
-
     const handleDropdownChange = async (status: string) => {
         // try {
         //     await editAppStatus({
@@ -46,7 +30,7 @@ const AppItem = (params: AppItemI) => {
     };
 
     return (
-        <tr className="app-item-outer flex justify-between p-1" ref={appItemRef}>
+        <tr className="app-item-outer flex justify-between p-1">
             <td className='date-added item'>
                 <p>{dateAdded}</p>
             </td>

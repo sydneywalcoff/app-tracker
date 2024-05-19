@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 import AppItem from "../../components/AppItem";
 
 import './assets/style.css';
@@ -18,9 +20,23 @@ interface AppTableI {
 
 const AppTable = (params:AppTableI) => {
     const { apps } = params;
+    const appTableRef = useRef<HTMLTableElement>(null)
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            console.log(appTableRef.current?.offsetWidth)
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [])
 
     return (
-        <table className="w-full divide-y">
+        <table className="w-full divide-y" ref={appTableRef}>
             <thead className="w-full">
                 <tr className="section-titles flex justify-between p-1 w-full">
                     <th className='date-added title'><p>Date</p></th>
