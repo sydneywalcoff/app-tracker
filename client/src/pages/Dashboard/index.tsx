@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_MY_APPS } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
 import ContentContainer from "../../components/ContentContainer";
 import AppTable from '../../components/AppTable';
@@ -22,6 +23,11 @@ interface jobProp {
 }
 
 const DashboardPage = () => {
+    const loggedIn = Auth.loggedIn();
+    if (!loggedIn) {
+        window.location.assign('/login')
+    }
+
     const { data } = useQuery(QUERY_MY_APPS);
     const [searchText, setSearchText] = useState<string>('');
     let jobs: jobProp[] = data?.myApps || [];
