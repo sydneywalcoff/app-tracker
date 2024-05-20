@@ -16,9 +16,36 @@ interface AppTableI {
     apps: AppItemI[]
 }
 
+type jobStatusObj = {
+    [key: string]: AppItemI[]
+}
 
 const AppTable = (params:AppTableI) => {
     const { apps } = params;
+    let jobs = apps;
+
+    const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
+
+    const filterByStatus = () => {
+        const jobStatusObj: jobStatusObj = {};
+        jobs.forEach(app => {
+            const { status } = app;
+            if (!jobStatusObj[status]) {
+                jobStatusObj[status] = [app];
+                return;
+            }
+            jobStatusObj[status] = [app, ...jobStatusObj[status]];
+
+        })
+        let sortedJobs: AppItemI[][] = [];
+        statusArr.forEach(status => {
+            if (jobStatusObj[status]) {
+                sortedJobs.push(jobStatusObj[status])
+            }
+        })
+        return sortedJobs.flat();
+    }
+    jobs = filterByStatus();
 
     return (
         <table className="w-full divide-y flex flex-col">
@@ -34,7 +61,7 @@ const AppTable = (params:AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {apps.map((app) => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
+                {jobs.map((app) => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
             </tbody>
         </table>
     );
