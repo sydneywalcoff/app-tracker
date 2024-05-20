@@ -24,7 +24,6 @@ table .date-added {
 }
 
 table .location,
-table .company,
 table .ATS-score {
     max-width: 80px;
 }
