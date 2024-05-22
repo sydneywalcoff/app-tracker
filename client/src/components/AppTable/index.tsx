@@ -25,7 +25,6 @@ type jobStatusObj = {
 
 const AppTable = (params: AppTableI) => {
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
-    const [lastShownApp, setLastShownApp] = useState<number>(9);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { apps } = params;
     let jobs = apps;
@@ -55,16 +54,26 @@ const AppTable = (params: AppTableI) => {
     }
     jobs = sortByStatus();
 
+    const paginateJobs = () => {
+        let paginatedJobs: AppItemI[] = [];
+        if (numJobs <= 10) return jobs;
+        for (let i = firstShownApp; i <= (firstShownApp + 10); i++) {
+            if (jobs[i]) {
+                paginatedJobs.push(jobs[i]);
+            }
+        }
+        return paginatedJobs;
+    };
+    jobs = paginateJobs();
+
     const pageCounter = () => {
         const handleBack = () => {
             setCurrentPage(currentPage - 1);
             setFirstShownApp(firstShownApp - 10);
-            setLastShownApp(lastShownApp - 10);
         }
         const handleNext = () => {
             setCurrentPage(currentPage + 1);
             setFirstShownApp(firstShownApp + 10);
-            setLastShownApp(lastShownApp + 10);
         }
         return (
             <div className="page-counter-wrap">
@@ -108,7 +117,12 @@ const AppTable = (params: AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {jobs.map((app) => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
+                {jobs.map((app) => {
+                    return (
+                        <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />
+                    )
+                })
+                }
             </tbody>
             {numJobs > 10 && pageCounter()}
         </table>
