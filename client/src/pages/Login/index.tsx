@@ -56,7 +56,7 @@ const LoginPage = () => {
                 variables: { ...loginForm }
             })
             Auth.login(loginData.token);
-            window.location.assign('/tracker')
+            window.location.assign('/dashboard')
         } catch (e) {
             console.error(e);
             notify(`${e} Please try again!`);
