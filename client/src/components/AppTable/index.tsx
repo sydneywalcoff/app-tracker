@@ -66,41 +66,13 @@ const AppTable = (params: AppTableI) => {
     };
     jobs = paginateJobs();
 
-    const pageCounter = () => {
-        const handleBack = () => {
-            setCurrentPage(currentPage - 1);
-            setFirstShownApp(firstShownApp - 10);
-        }
-        const handleNext = () => {
-            setCurrentPage(currentPage + 1);
-            setFirstShownApp(firstShownApp + 10);
-        }
-        return (
-            <div className="page-counter-wrap">
-                <div className="page-buttons">
-                    {currentPage !== 1 &&
-                        <Button
-                            type='button'
-                            onClick={handleBack}
-                            text='prev'
-                            classes="prev"
-                        ></Button>
-
-                    }
-                    {currentPage !== totalPages && currentPage !== 1 && '/'}
-                    {currentPage !== totalPages &&
-                        <Button
-                            type='button'
-                            onClick={handleNext}
-                            text='next'
-                            classes="next"
-                        ></Button>}
-                </div>
-                <div className="pages-counter">
-                    <p className="curr">{currentPage}</p> / <p className="total">{totalPages} </p>
-                </div>
-            </div>
-        );
+    const handleBackPage = () => {
+        setCurrentPage(currentPage - 1);
+        setFirstShownApp(firstShownApp - 10);
+    }
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+        setFirstShownApp(firstShownApp + 10);
     }
 
     return (
@@ -117,14 +89,35 @@ const AppTable = (params: AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {jobs.map((app) => {
-                    return (
-                        <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />
-                    )
-                })
-                }
+                {jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
             </tbody>
-            {numJobs > 10 && pageCounter()}
+            {numJobs > 10 &&
+                (
+                    <div className="page-counter-wrap">
+                        <div className="page-buttons">
+                            {currentPage !== 1 &&
+                                <Button
+                                    type='button'
+                                    onClick={handleBackPage}
+                                    text='prev'
+                                    classes="prev"
+                                ></Button>
+
+                            }
+                            {currentPage !== totalPages && currentPage !== 1 && '/'}
+                            {currentPage !== totalPages &&
+                                <Button
+                                    type='button'
+                                    onClick={handleNextPage}
+                                    text='next'
+                                    classes="next"
+                                ></Button>}
+                        </div>
+                        <div className="pages-counter">
+                            <p className="curr">{currentPage}</p> / <p className="total">{totalPages} </p>
+                        </div>
+                    </div>
+                )}
         </table>
     );
 };
