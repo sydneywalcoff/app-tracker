@@ -32,53 +32,19 @@ const DashboardPage = () => {
     const [searchText, setSearchText] = useState<string>('');
     let jobs: jobProp[] = data?.myApps || [];
     let jobsInPrep = jobs.filter(n => n.status.toLowerCase() === 'preparing');
+    let jobsInProcess = jobs.filter(n => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected').slice(0,2);
 
-    const apps = [
-        {
-            dateApplied: '5/1/2024',
-            jobTitle: "Software Engineer",
-            companyName: "Google",
-            status: "preparing",
-            location: 'remote',
-            AtsScore: 0,
-            _id: '1'
-        },
-        {
-            dateApplied: '5/1/2024',
-            jobTitle: "Software Engineer",
-            companyName: "Google",
-            status: "preparing",
-            location: 'remote',
-            AtsScore: 0,
-            _id: '2'
-        },
-        {
-            dateApplied: '5/1/2024',
-            jobTitle: "Software Engineer",
-            companyName: "Google",
-            status: "preparing",
-            location: 'remote',
-            AtsScore: 0,
-            _id: '3'
-        },
-        {
-            dateApplied: '5/1/2024',
-            jobTitle: "Software Engineer",
-            companyName: "Google",
-            status: "preparing",
-            location: 'remote',
-            AtsScore: 0,
-            _id: '3'
-        },
-    ]
+    let focusTitle = jobsInPrep.length > 0 ? 'Apps In Prep' : 'Apps in Process';
+    let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep : jobsInProcess;
+
     return (
         <ContentContainer className='dashboard flex'>
             <>
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
-                        <div className="preparing w-1/2 flex flex-col">
-                            <h4>Apps in Prep</h4>
-                            <AppTable apps={apps} />
+                        <div className="focus w-1/2 flex flex-col">
+                            <h4>{focusTitle}</h4>
+                            <AppTable apps={focusedJobs} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>

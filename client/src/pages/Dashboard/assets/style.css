@@ -2,28 +2,28 @@
     min-height: 140px;
 }
 
-.dashboard .preparing .date-added,
-.dashboard .preparing .location,
-.dashboard .preparing .ATS-score {
+.dashboard .focus .date-added,
+.dashboard .focus .location,
+.dashboard .focus .ATS-score {
     display: none;
 }
 
-.dashboard .preparing .spacer {
+.dashboard .focus .spacer {
     max-width: 36px;
 }
 
-.dashboard .preparing tbody {
+.dashboard .focus tbody {
     max-height: 140px;
     overflow-y: scroll;
     border-top: none;
 }
 
-.dashboard .preparing tbody tr,
-.dashboard .preparing thead tr {
+.dashboard .focus tbody tr,
+.dashboard .focus thead tr {
     padding-right: 16px;
 }
 
-.dashboard .preparing h4 { 
+.dashboard .focus h4 { 
     font-weight: bold;
     font-size: 24px
 }
