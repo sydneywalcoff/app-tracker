@@ -1,29 +1,29 @@
-table .stage {
+.app-table .stage {
     min-width: 120px;
     max-width: 120px
 }
 
-table th {
+.app-table th {
     display: flex;
 }
 
-table .section-titles {
+.app-table .section-titles {
     background-color: var(--gray);
 }
 
-table .section-titles .title {
+.app-table .section-titles .title {
     width: 100%;
     text-align: left;
     font-weight: 500;
     padding: 0 4px;
 }
 
-table .spacer,
-table .date-added {
+.app-table .spacer,
+.app-table .date-added {
     max-width: 64px;
 }
 
-table .location,
-table .ATS-score {
+.app-table .location,
+.app-table .ATS-score {
     max-width: 80px;
 }

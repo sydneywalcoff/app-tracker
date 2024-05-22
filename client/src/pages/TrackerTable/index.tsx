@@ -197,7 +197,7 @@ const TrackerTable = () => {
                             <p>{job.companyName}</p>
                         </td>
                         <td className="whitespace-nowrap job-stage">
-                            <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} hideLabel />
+                            <StageDropdown options={statusArr} onStageChange={handleDropdownChange} selectedStage={job.status} job={job} />
                         </td>
                         <td className="job-location">
                             <p>{job.location}</p>
@@ -227,7 +227,7 @@ const TrackerTable = () => {
                 <div className="table-container shadow">
                     <table className="w-full divide-y">
                         <thead className="w-full">
-                            <tr className="w-full flex">
+                            <tr className="w-full">
                                 <th scope="col">
                                     Date Applied
                                 </th>
