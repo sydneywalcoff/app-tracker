@@ -227,7 +227,7 @@ const TrackerTable = () => {
                 <div className="table-container shadow">
                     <table className="w-full divide-y">
                         <thead className="w-full">
-                            <tr className="w-full">
+                            <tr className="w-full flex">
                                 <th scope="col">
                                     Date Applied
                                 </th>
