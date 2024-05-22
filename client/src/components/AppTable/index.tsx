@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import AppItem from "../../components/AppItem";
+import Button from '../Button';
 
 import './assets/style.css';
 
@@ -20,9 +23,14 @@ type jobStatusObj = {
     [key: string]: AppItemI[]
 }
 
-const AppTable = (params:AppTableI) => {
+const AppTable = (params: AppTableI) => {
+    const [firstShownApp, setFirstShownApp] = useState<number>(0);
+    const [lastShownApp, setLastShownApp] = useState<number>(9);
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const { apps } = params;
     let jobs = apps;
+    let numJobs: number = jobs.length || 0;
+    let totalPages: number | undefined = numJobs > 10 ? Math.ceil(numJobs / 10) : undefined;
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
@@ -47,6 +55,45 @@ const AppTable = (params:AppTableI) => {
     }
     jobs = sortByStatus();
 
+    const pageCounter = () => {
+        const handleBack = () => {
+            setCurrentPage(currentPage - 1);
+            setFirstShownApp(firstShownApp - 10);
+            setLastShownApp(lastShownApp - 10);
+        }
+        const handleNext = () => {
+            setCurrentPage(currentPage + 1);
+            setFirstShownApp(firstShownApp + 10);
+            setLastShownApp(lastShownApp + 10);
+        }
+        return (
+            <div className="page-counter-wrap">
+                <div className="page-buttons">
+                    {currentPage !== 1 &&
+                        <Button
+                            type='button'
+                            onClick={handleBack}
+                            text='prev'
+                            classes="prev"
+                        ></Button>
+
+                    }
+                    {currentPage !== totalPages && currentPage !== 1 && '/'}
+                    {currentPage !== totalPages &&
+                        <Button
+                            type='button'
+                            onClick={handleNext}
+                            text='next'
+                            classes="next"
+                        ></Button>}
+                </div>
+                <div className="pages-counter">
+                    <p className="curr">{currentPage}</p> / <p className="total">{totalPages} </p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <table className="w-full divide-y flex flex-col">
             <thead className="w-full">
@@ -63,6 +110,7 @@ const AppTable = (params:AppTableI) => {
             <tbody className="body w-full">
                 {jobs.map((app) => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
             </tbody>
+            {numJobs > 10 && pageCounter()}
         </table>
     );
 };
