@@ -26,7 +26,7 @@ const AppTable = (params:AppTableI) => {
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
-    const filterByStatus = () => {
+    const sortByStatus = () => {
         const jobStatusObj: jobStatusObj = {};
         jobs.forEach(app => {
             const { status } = app;
@@ -45,7 +45,7 @@ const AppTable = (params:AppTableI) => {
         })
         return sortedJobs.flat();
     }
-    jobs = filterByStatus();
+    jobs = sortByStatus();
 
     return (
         <table className="w-full divide-y flex flex-col">
