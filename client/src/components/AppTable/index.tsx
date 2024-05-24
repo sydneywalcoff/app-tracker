@@ -89,7 +89,7 @@ const AppTable = (params: AppTableI) => {
                 </tr>
             </thead>
             <tbody className="body w-full">
-                {jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} />)}
+                {jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} AtsScore={app.AtsScore} key={app._id}/>)}
             </tbody>
             {numJobs > 10 &&
                 (
