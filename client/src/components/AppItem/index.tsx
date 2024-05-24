@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { EDIT_APP_STATUS } from '../../utils/mutations';
@@ -18,21 +19,22 @@ interface AppItemI {
 }
 
 const AppItem = (params: AppItemI) => {
+    const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
+    const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
-    const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     const handleDropdownChange = async (status: string) => {
         try {
-            console.log(status)
-            // await editAppStatus({
-            //     variables: {
-            //         ...params,
-            //         id: params._id,
-            //         status
-            //     }
-            // })
+            setSelectedStage(status);
+            await editAppStatus({
+                variables: {
+                    ...params,
+                    id: params._id,
+                    status
+                }
+            })
         } catch (e) {
             console.log(e)
         }
@@ -50,7 +52,7 @@ const AppItem = (params: AppItemI) => {
                 <p>{company}</p>
             </td>
             <td className='stage item'>
-                <StageDropdown onStageChange={handleDropdownChange} selectedStage={stage} options={statusArr} hideLabel />
+                <StageDropdown onStageChange={handleDropdownChange} selectedStage={selectedStage} options={statusArr} hideLabel />
             </td>
             <td className='location item'>
                 <p>{location}</p>
