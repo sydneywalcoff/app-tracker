@@ -52,7 +52,7 @@ const AppTable = (params: AppTableI) => {
         })
         return sortedJobs.flat();
     }
-    jobs = sortByStatus();
+    jobs = sortByStatus(); // default sort
 
     const paginateJobs = () => {
         let paginatedJobs: AppItemI[] = [];
@@ -64,7 +64,7 @@ const AppTable = (params: AppTableI) => {
         }
         return paginatedJobs;
     };
-    jobs = paginateJobs();
+    jobs = paginateJobs(); // paginate jobs
 
     const handleBackPage = () => {
         setCurrentPage(currentPage - 1);
