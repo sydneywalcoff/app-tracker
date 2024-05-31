@@ -16,10 +16,16 @@ const TrackerForm = () => {
     const [formState, setFormState] = useState({
         jobTitle: "",
         companyName: "",
-        location: "",
+        location: {
+            officeLocation: "",
+            workStyle: ""
+        },
         jobDescription: "",
         status: "preparing",
-        jobScore: 0,
+        source: "",
+        salary: "",
+        atsScore: 0,
+        link: "",
     });
     const [checkboxState, setCheckboxState] = useState(false);
     const [inputError, setInputError] = useState("");
@@ -32,24 +38,23 @@ const TrackerForm = () => {
 
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { jobTitle, companyName, location, jobDescription } = formState;
+        const { jobTitle, companyName, location: { workStyle, officeLocation }, jobDescription } = formState;
         if (
             jobTitle.length === 0 ||
             companyName.length === 0 ||
-            location.length === 0 ||
             jobDescription.length === 0
         ) {
             setInputError("All fields are required :(");
             return;
         }
         try {
-            await addApp({
-                variables: {
-                    ...formState,
-                    quickApply: checkboxState,
-                },
-            });
-            window.location.assign('/applied')
+            console.log(formState)
+            // await addApp({
+            //     variables: {
+            //         ...formState,
+            //         quickApply: checkboxState,
+            //     },
+            // });
         } catch (err) {
             console.error(err);
         }
@@ -80,8 +85,8 @@ const TrackerForm = () => {
             case "job-description":
                 name = "jobDescription";
                 break;
-            case "job-score":
-                name = "jobScore";
+            case "ats-score":
+                name = "atsScore";
                 break;
             case "stage":
                 name = "status";
@@ -96,7 +101,7 @@ const TrackerForm = () => {
         //     setInputError(`${inputName} is required!`);
         //     return;
         // }
-        if (name === "jobScore") {
+        if (name === "atsScore") {
             const scoreNum = parseInt(value, 10);
             setFormState({ ...formState, [name]: scoreNum });
             return;
@@ -136,8 +141,8 @@ const TrackerForm = () => {
                         <div className="input-container">
                             <TextInput
                                 onChange={handleChange}
-                                name="job-score"
-                                labelTitle="JobScan score"
+                                name="ats-score"
+                                labelTitle="ATS score"
                             />
                         </div>
                         <div className="dropdown-container">
