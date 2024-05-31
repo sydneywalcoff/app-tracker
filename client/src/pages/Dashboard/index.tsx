@@ -36,6 +36,7 @@ const DashboardPage = () => {
 
     let focusTitle = jobsInPrep.length > 0 ? 'Apps In Prep' : 'Apps in Process';
     let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep.slice(0,3) : jobsInProcess.slice(0,3);
+    // TODO: add solution for no jobsInPrep or jobsInProcess
 
     return (
         <ContentContainer className='dashboard flex'>
