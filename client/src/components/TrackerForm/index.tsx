@@ -107,6 +107,14 @@ const TrackerForm = () => {
             return;
         }
 
+        if(name === 'office-location') {
+            // TODO: fix this to account for nested state object
+            // setFormState({ ...formState, location: {
+            //     ...location,
+            //     officeLocation: value
+            // }})
+        }
+
         setFormState({ ...formState, [name]: value });
     };
 
@@ -134,8 +142,8 @@ const TrackerForm = () => {
                         <div className="input-container">
                             <TextInput
                                 onChange={handleChange}
-                                name="location"
-                                labelTitle="Location"
+                                name="office-location"
+                                labelTitle="Office Location"
                             />
                         </div>
                         <div className="input-container">
@@ -153,6 +161,20 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="job-url"
                                 labelTitle="Link"
+                            />
+                        </div>
+                        <div className="input-container link">
+                            <TextInput
+                                onChange={handleChange}
+                                name="source"
+                                labelTitle="Source"
+                            />
+                        </div>
+                        <div className="input-container link">
+                            <TextInput
+                                onChange={handleChange}
+                                name="salary"
+                                labelTitle="Salary"
                             />
                         </div>
                         <div className="textArea-container">
