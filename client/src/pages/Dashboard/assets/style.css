@@ -13,8 +13,7 @@
 }
 
 .dashboard .focus tbody {
-    max-height: 140px;
-    overflow-y: scroll;
+    min-height: 130px;
     border-top: none;
 }
 

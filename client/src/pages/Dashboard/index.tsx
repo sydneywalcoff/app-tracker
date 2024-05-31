@@ -32,10 +32,10 @@ const DashboardPage = () => {
     const [searchText, setSearchText] = useState<string>('');
     let jobs: jobProp[] = data?.myApps || [];
     let jobsInPrep = jobs.filter(n => n.status.toLowerCase() === 'preparing');
-    let jobsInProcess = jobs.filter(n => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected').slice(0,2);
+    let jobsInProcess = jobs.filter(n => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
 
     let focusTitle = jobsInPrep.length > 0 ? 'Apps In Prep' : 'Apps in Process';
-    let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep : jobsInProcess;
+    let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep.slice(0,3) : jobsInProcess.slice(0,3);
 
     return (
         <ContentContainer className='dashboard flex'>
