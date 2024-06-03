@@ -42,7 +42,7 @@ const DashboardPage = () => {
     let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep.slice(0,3) : jobsInProcess.slice(0,3);
     // TODO: add solution for no jobsInPrep or jobsInProcess
 
-    // TODO: use searchText to filter jobs
+    jobs = filterJobsByText(searchText, jobs);
 
     return (
         <ContentContainer className='dashboard flex'>
