@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_MY_APPS } from '../../utils/queries';
 import Auth from '../../utils/auth';
+import filterJobsByText from '../../utils/filterJobsByText';
 
 import ContentContainer from "../../components/ContentContainer";
 import AppTable from '../../components/AppTable';
@@ -20,6 +21,7 @@ interface jobProp {
     status: string;
     dateApplied: string;
     lastUpdated: string;
+    atsScore: number;
 }
 
 const DashboardPage = () => {
@@ -39,6 +41,8 @@ const DashboardPage = () => {
     let focusTitle = jobsInPrep.length > 0 ? 'Apps In Prep' : 'Apps in Process';
     let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep.slice(0,3) : jobsInProcess.slice(0,3);
     // TODO: add solution for no jobsInPrep or jobsInProcess
+
+    // TODO: use searchText to filter jobs
 
     return (
         <ContentContainer className='dashboard flex'>
