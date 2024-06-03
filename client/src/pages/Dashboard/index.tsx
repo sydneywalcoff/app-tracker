@@ -23,14 +23,16 @@ interface jobProp {
 }
 
 const DashboardPage = () => {
+    const [searchText, setSearchText] = useState<string>('');
+
     const loggedIn = Auth.loggedIn();
     if (!loggedIn) {
         window.location.assign('/login')
     }
 
     const { data } = useQuery(QUERY_MY_APPS);
-    const [searchText, setSearchText] = useState<string>('');
     let jobs: jobProp[] = data?.myApps || [];
+    // TODO: refactor jobsInPrep and jobsInProcess to use a single filter fxn
     let jobsInPrep = jobs.filter(n => n.status.toLowerCase() === 'preparing');
     let jobsInProcess = jobs.filter(n => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
 
