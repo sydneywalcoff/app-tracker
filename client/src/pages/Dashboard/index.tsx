@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_MY_APPS } from '../../utils/queries';
@@ -26,6 +26,16 @@ interface jobProp {
 
 const DashboardPage = () => {
     const [searchText, setSearchText] = useState<string>('');
+    const [jobs, setJobs] = useState({
+        inPrep: [],
+        inProcess: [],
+        all: []
+    })
+
+    const [focus, setFocus] = useState({
+        title: 'Apps in Prep',
+        jobs: [],
+    });
 
     const loggedIn = Auth.loggedIn();
     if (!loggedIn) {
@@ -33,16 +43,28 @@ const DashboardPage = () => {
     }
 
     const { data } = useQuery(QUERY_MY_APPS);
-    let jobs: jobProp[] = data?.myApps || [];
-    // TODO: refactor jobsInPrep and jobsInProcess to use a single filter fxn
-    let jobsInPrep = jobs.filter(n => n.status.toLowerCase() === 'preparing');
-    let jobsInProcess = jobs.filter(n => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
 
-    let focusTitle = jobsInPrep.length > 0 ? 'Apps In Prep' : 'Apps in Process';
-    let focusedJobs = jobsInPrep.length > 0 ? jobsInPrep.slice(0,3) : jobsInProcess.slice(0,3);
-    // TODO: add solution for no jobsInPrep or jobsInProcess
-
-    jobs = filterJobsByText(searchText, jobs);
+    useEffect(() => {
+        let jobsData = data?.myApps || [];
+        let jobsInPrep = jobsData.filter((n:jobProp) => n.status.toLowerCase() === 'preparing');
+        let jobsInProcess = jobsData.filter((n:jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');;
+        setJobs({
+            inProcess: jobsInProcess,
+            inPrep: jobsInPrep,
+            all: jobsData
+        })
+        if(jobsInPrep.length>0) {
+            setFocus({
+                jobs: jobsInPrep,
+                title: 'Apps in Prep'
+            })
+        } else {
+            setFocus({
+                jobs: jobsInProcess,
+                title: 'Apps in Process'
+            })
+        }
+    }, [data])
 
     return (
         <ContentContainer className='dashboard flex'>
@@ -50,8 +72,8 @@ const DashboardPage = () => {
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
                         <div className="focus w-1/2 flex flex-col">
-                            <h4>{focusTitle}</h4>
-                            <AppTable apps={focusedJobs} />
+                            <h4>{focus.title}</h4>
+                            <AppTable apps={focus.jobs} />
                         </div>
                         <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>
@@ -60,7 +82,7 @@ const DashboardPage = () => {
                     </div>
                     <div className="all-apps mt-12">
                         <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                        <AppTable apps={jobs} />
+                        <AppTable apps={jobs.all} />
                     </div>
                 </div>
                 <div className="form-container ml-4 w-1/3">
