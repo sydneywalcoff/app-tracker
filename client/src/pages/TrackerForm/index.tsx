@@ -125,9 +125,6 @@ const TrackerFormPage = () => {
                 <div className="mt-10 sm:mt-0">
                     <ContentContainer>
                         <div className="flex">
-                            <div className="about">
-
-                            </div>
                             <div className="form-container flex">
                                 <form action="#" className="form shadow" onSubmit={handleSubmit}>
                                     <div className="content">
