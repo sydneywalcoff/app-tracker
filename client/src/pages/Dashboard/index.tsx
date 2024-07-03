@@ -47,7 +47,7 @@ const DashboardPage = () => {
     useEffect(() => {
         let jobsData = data?.myApps || [];
         let jobsInPrep = jobsData.filter((n:jobProp) => n.status.toLowerCase() === 'preparing');
-        let jobsInProcess = jobsData.filter((n:jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');;
+        let jobsInProcess = jobsData.filter((n:jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
         setJobs({
             inProcess: jobsInProcess,
             inPrep: jobsInPrep,
