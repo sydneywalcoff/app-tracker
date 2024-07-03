@@ -15,14 +15,16 @@ import StageDropdown from "../../components/StageDropdown";
 import './assets/style.css';
 
 const TrackerFormPage = () => {
-    const [formState, setFormState] = useState({
+    const formInit = {
         jobTitle: "",
         companyName: "",
         location: "",
         jobDescription: "",
         status: "preparing",
         jobScore: 0,
-    });
+        link: "",
+    }
+    const [formState, setFormState] = useState(formInit);
     const [checkboxState, setCheckboxState] = useState(false);
     const [inputError, setInputError] = useState("");
     const [addApp] = useMutation(ADD_APP);
@@ -67,14 +69,7 @@ const TrackerFormPage = () => {
 
     const handleClearClick = () => {
         console.log('hi')
-        // setFormState({
-        //     jobTitle: "",
-        //     companyName: "",
-        //     location: "",
-        //     jobDescription: "",
-        //     status: "preparing",
-        //     jobScore: 0,
-        // })
+        // setFormState(formInit)
     }
 
     const handleChange = (
