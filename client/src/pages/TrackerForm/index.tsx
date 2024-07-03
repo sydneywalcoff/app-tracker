@@ -68,8 +68,7 @@ const TrackerFormPage = () => {
     };
 
     const handleClearClick = () => {
-        console.log('hi')
-        // setFormState(formInit)
+        setFormState(formInit);
     }
 
     const handleChange = (
@@ -131,6 +130,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="job-title"
                                                     labelTitle="Job title"
+                                                    value={formState.jobTitle}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -138,6 +138,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="company-name"
                                                     labelTitle="Company name"
+                                                    value={formState.companyName}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -145,6 +146,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="location"
                                                     labelTitle="Location"
+                                                    value={formState.location}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -152,6 +154,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="job-score"
                                                     labelTitle="JobScan score"
+                                                    value={formState.jobScore}
                                                 />
                                             </div>
                                             <div className="dropdown-container">
@@ -162,10 +165,12 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="job-url"
                                                     labelTitle="Link"
+                                                    value={formState.link}
                                                 />
                                             </div>
                                             <div className="textArea-container">
-                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
+                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description" 
+                                                value={formState.jobDescription}/>
                                             </div>
                                             <div className="checkbox-container">
                                                 <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
