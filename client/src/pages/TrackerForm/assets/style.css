@@ -59,6 +59,17 @@
     display: inline-flex;
 }
 
+.tracker .form-container .form-content .right-btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.tracker .form-container .form-content .right-btn-container .clear-btn {
+   color: #fff;
+   text-decoration: underline;
+   cursor: pointer;
+}
+
 @media screen and (max-width: 960px) {
     .tracker .flex {
         flex-direction: column;

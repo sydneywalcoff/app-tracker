@@ -15,14 +15,16 @@ import StageDropdown from "../../components/StageDropdown";
 import './assets/style.css';
 
 const TrackerFormPage = () => {
-    const [formState, setFormState] = useState({
+    const formInit = {
         jobTitle: "",
         companyName: "",
         location: "",
         jobDescription: "",
         status: "preparing",
         jobScore: 0,
-    });
+        link: "",
+    }
+    const [formState, setFormState] = useState(formInit);
     const [checkboxState, setCheckboxState] = useState(false);
     const [inputError, setInputError] = useState("");
     const [addApp] = useMutation(ADD_APP);
@@ -62,8 +64,12 @@ const TrackerFormPage = () => {
     };
 
     const handleDropDownChange = (newStage: string) => {
-        setFormState({...formState, status: newStage})
+        setFormState({ ...formState, status: newStage })
     };
+
+    const handleClearClick = () => {
+        setFormState(formInit);
+    }
 
     const handleChange = (
         e:
@@ -89,7 +95,7 @@ const TrackerFormPage = () => {
                 name = "status";
                 break;
             case "job-url":
-                name="link";
+                name = "link";
                 break;
             default:
                 break;
@@ -113,9 +119,6 @@ const TrackerFormPage = () => {
                 <div className="mt-10 sm:mt-0">
                     <ContentContainer>
                         <div className="flex">
-                            <div className="about">
-                        
-                            </div>
                             <div className="form-container flex">
                                 <form action="#" className="form shadow" onSubmit={handleSubmit}>
                                     <div className="content">
@@ -127,6 +130,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="job-title"
                                                     labelTitle="Job title"
+                                                    value={formState.jobTitle}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -134,6 +138,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="company-name"
                                                     labelTitle="Company name"
+                                                    value={formState.companyName}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -141,6 +146,7 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="location"
                                                     labelTitle="Location"
+                                                    value={formState.location}
                                                 />
                                             </div>
                                             <div className="input-container">
@@ -148,26 +154,34 @@ const TrackerFormPage = () => {
                                                     onChange={handleChange}
                                                     name="job-score"
                                                     labelTitle="JobScan score"
+                                                    value={formState.jobScore}
                                                 />
                                             </div>
                                             <div className="dropdown-container">
-                                                <StageDropdown selectedStage={formState.status}  onStageChange={handleDropDownChange} options={['preparing', 'applied']}/>
+                                                <StageDropdown selectedStage={formState.status} onStageChange={handleDropDownChange} options={['preparing', 'applied']} />
                                             </div>
                                             <div className="input-container link">
                                                 <TextInput
                                                     onChange={handleChange}
                                                     name="job-url"
                                                     labelTitle="Link"
+                                                    value={formState.link}
                                                 />
                                             </div>
                                             <div className="textArea-container">
-                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
+                                                <TextArea onChange={handleChange} name="job-description" labelText="Job description" 
+                                                value={formState.jobDescription}/>
                                             </div>
                                             <div className="checkbox-container">
                                                 <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
                                             </div>
-                                            <div className="btn-container">
-                                                <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                            <div className="right-btn-container">
+                                                <div className="clear-container mr-4">
+                                                    <div className="clear-btn underline text-white" onClick={handleClearClick}>x Clear</div>
+                                                </div>
+                                                <div className="btn-container">
+                                                    <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                                </div>
                                             </div>
                                         </div>
                                         {inputError && (
