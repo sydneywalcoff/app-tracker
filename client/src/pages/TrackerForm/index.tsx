@@ -62,8 +62,20 @@ const TrackerFormPage = () => {
     };
 
     const handleDropDownChange = (newStage: string) => {
-        setFormState({...formState, status: newStage})
+        setFormState({ ...formState, status: newStage })
     };
+
+    const handleClearClick = () => {
+        console.log('hi')
+        // setFormState({
+        //     jobTitle: "",
+        //     companyName: "",
+        //     location: "",
+        //     jobDescription: "",
+        //     status: "preparing",
+        //     jobScore: 0,
+        // })
+    }
 
     const handleChange = (
         e:
@@ -89,7 +101,7 @@ const TrackerFormPage = () => {
                 name = "status";
                 break;
             case "job-url":
-                name="link";
+                name = "link";
                 break;
             default:
                 break;
@@ -114,7 +126,7 @@ const TrackerFormPage = () => {
                     <ContentContainer>
                         <div className="flex">
                             <div className="about">
-                        
+
                             </div>
                             <div className="form-container flex">
                                 <form action="#" className="form shadow" onSubmit={handleSubmit}>
@@ -151,7 +163,7 @@ const TrackerFormPage = () => {
                                                 />
                                             </div>
                                             <div className="dropdown-container">
-                                                <StageDropdown selectedStage={formState.status}  onStageChange={handleDropDownChange} options={['preparing', 'applied']}/>
+                                                <StageDropdown selectedStage={formState.status} onStageChange={handleDropDownChange} options={['preparing', 'applied']} />
                                             </div>
                                             <div className="input-container link">
                                                 <TextInput
@@ -166,8 +178,13 @@ const TrackerFormPage = () => {
                                             <div className="checkbox-container">
                                                 <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
                                             </div>
-                                            <div className="btn-container">
-                                                <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                            <div className="right-btn-container">
+                                                <div className="clear-container mr-4">
+                                                    <div className="clear-btn underline text-white" onClick={handleClearClick}>x Clear</div>
+                                                </div>
+                                                <div className="btn-container">
+                                                    <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                                                </div>
                                             </div>
                                         </div>
                                         {inputError && (
