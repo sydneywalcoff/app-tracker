@@ -46,14 +46,14 @@ const DashboardPage = () => {
 
     useEffect(() => {
         let jobsData = data?.myApps || [];
-        let jobsInPrep = jobsData.filter((n:jobProp) => n.status.toLowerCase() === 'preparing');
-        let jobsInProcess = jobsData.filter((n:jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
+        let jobsInPrep = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
+        let jobsInProcess = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
         setJobs({
             inProcess: jobsInProcess,
             inPrep: jobsInPrep,
             all: jobsData
         })
-        if(jobsInPrep.length>0) {
+        if (jobsInPrep.length > 0) {
             setFocus({
                 jobs: jobsInPrep,
                 title: 'Apps in Prep'
