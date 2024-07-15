@@ -75,7 +75,7 @@ const DashboardPage = () => {
                             <h4>{focus.title}</h4>
                             <AppTable apps={focus.jobs} />
                         </div>
-                        <div className="stats ml-4 shadow-md w-1/2 rounded-lg p-4">
+                        <div className="stats ml-4 w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>
                             <p><span></span> Apps Applied to</p> */}
                         </div>
