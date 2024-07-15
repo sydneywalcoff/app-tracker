@@ -180,10 +180,7 @@ const TrackerForm = () => {
                         <div className="textArea-container">
                             <TextArea onChange={handleChange} name="job-description" labelText="Job description*" />
                         </div>
-                        <div className="checkbox-container">
-                            <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
-                        </div>
-                        <div className="btn-container">
+                        <div className="btn-container w-full justify-end flex">
                             <Button text="Save" classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
