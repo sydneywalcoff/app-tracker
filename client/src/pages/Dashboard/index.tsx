@@ -64,7 +64,7 @@ const DashboardPage = () => {
                 title: 'Apps in Process'
             })
         }
-    }, [data?.myApps])
+    }, [data?.myApps, jobs.inPrep.length])
 
     return (
         <ContentContainer className='dashboard flex'>
