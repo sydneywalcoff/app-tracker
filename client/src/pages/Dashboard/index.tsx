@@ -25,6 +25,11 @@ interface jobProp {
 }
 
 const DashboardPage = () => {
+    const loggedIn = Auth.loggedIn();
+    if (!loggedIn) {
+        window.location.assign('/login');
+    }
+
     const [searchText, setSearchText] = useState<string>('');
     const [jobs, setJobs] = useState({
         inPrep: [],
@@ -36,11 +41,6 @@ const DashboardPage = () => {
         title: 'Apps in Prep',
         jobs: [],
     });
-
-    const loggedIn = Auth.loggedIn();
-    if (!loggedIn) {
-        window.location.assign('/login')
-    }
 
     const { data } = useQuery(QUERY_MY_APPS);
 
