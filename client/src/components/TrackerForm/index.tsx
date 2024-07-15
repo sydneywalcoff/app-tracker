@@ -123,20 +123,20 @@ const TrackerForm = () => {
             <form action="#" className="form shadow" onSubmit={handleSubmit}>
                 <div className="content">
                     <h1>Track.</h1>
-                    <p>All fields except JobScan Score, Link, and Quick Apply are required.</p>
+                    <p>All fields with a * are required.</p>
                     <div className="form-content">
                         <div className="input-container">
                             <TextInput
                                 onChange={handleChange}
                                 name="job-title"
-                                labelTitle="Job title"
+                                labelTitle="Job title*"
                             />
                         </div>
                         <div className="input-container">
                             <TextInput
                                 onChange={handleChange}
                                 name="company-name"
-                                labelTitle="Company name"
+                                labelTitle="Company name*"
                             />
                         </div>
                         <div className="input-container">
@@ -163,14 +163,14 @@ const TrackerForm = () => {
                                 labelTitle="Link"
                             />
                         </div>
-                        <div className="input-container link">
+                        <div className="input-container source">
                             <TextInput
                                 onChange={handleChange}
                                 name="source"
                                 labelTitle="Source"
                             />
                         </div>
-                        <div className="input-container link">
+                        <div className="input-container salary">
                             <TextInput
                                 onChange={handleChange}
                                 name="salary"
@@ -178,7 +178,7 @@ const TrackerForm = () => {
                             />
                         </div>
                         <div className="textArea-container">
-                            <TextArea onChange={handleChange} name="job-description" labelText="Job description" />
+                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" />
                         </div>
                         <div className="checkbox-container">
                             <Checkbox name="quick-apply" text="Quick Apply" onChange={handleCheckboxChange} classes="ml-3" />
