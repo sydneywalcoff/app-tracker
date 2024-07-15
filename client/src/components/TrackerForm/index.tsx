@@ -7,7 +7,6 @@ import Auth from '../../utils/auth';
 import TextInput from "../TextInput";
 import TextArea from "../TextArea";
 import Button from '../Button';
-import Checkbox from "../Checkbox";
 import StageDropdown from "../StageDropdown";
 
 import './assets/style.css';
@@ -27,7 +26,6 @@ const TrackerForm = () => {
         atsScore: 0,
         link: "",
     });
-    const [checkboxState, setCheckboxState] = useState(false);
     const [inputError, setInputError] = useState("");
     const [addApp] = useMutation(ADD_APP);
 
@@ -52,16 +50,12 @@ const TrackerForm = () => {
             // await addApp({
             //     variables: {
             //         ...formState,
-            //         quickApply: checkboxState,
+                    // quickApply: checkboxState, // remove this
             //     },
             // });
         } catch (err) {
             console.error(err);
         }
-    };
-
-    const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCheckboxState(!checkboxState);
     };
 
     const handleDropDownChange = (newStage: string) => {
