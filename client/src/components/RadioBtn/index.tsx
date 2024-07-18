@@ -3,18 +3,15 @@ import { ChangeEventHandler } from "react";
 import './assets/style.css';
 
 interface RadioBtnPropsI {
+    label: string;
     // onChange: ChangeEventHandler<HTMLInputElement>
-    // classes?: string;
-    // name: string;
-    // text: string;
-    // type?: string;
 }
 
 const RadioBtn = (params: RadioBtnPropsI) => {
-    
+    const { label } = params;
     return(
         <div className="radio-btn-div">
-           hi
+           {label}
         </div>
     )
 };

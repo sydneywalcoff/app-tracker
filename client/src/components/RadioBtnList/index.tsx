@@ -18,7 +18,7 @@ const RadioBtnList = (params: RadioBtnListPropsI) => {
     console.log(options)
     return(
         <div className="radio-btn-list flex justify-between">
-           {options.map(option => <RadioBtn />)}
+           {options.map(option => <RadioBtn label={option}/>)}
         </div>
     )
 };
