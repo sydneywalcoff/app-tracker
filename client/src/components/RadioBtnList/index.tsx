@@ -4,8 +4,13 @@ import RadioBtn from "../RadioBtn";
 
 import './assets/style.css';
 
+interface RadioBtnOptionI {
+    label: string,
+    selected: boolean
+}
+
 interface RadioBtnListPropsI {
-    options: string[]
+    options: RadioBtnOptionI[]
 }
 
 const RadioBtnList = (params: RadioBtnListPropsI) => {
@@ -13,7 +18,7 @@ const RadioBtnList = (params: RadioBtnListPropsI) => {
     
     return(
         <div className="radio-btn-list flex justify-between">
-           {options.map(option => <RadioBtn label={option}/>)}
+           {options.map(option => <RadioBtn label={option.label} key={option.label}/>)}
         </div>
     )
 };

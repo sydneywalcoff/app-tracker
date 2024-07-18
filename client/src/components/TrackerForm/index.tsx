@@ -51,7 +51,7 @@ const TrackerForm = () => {
             // await addApp({
             //     variables: {
             //         ...formState,
-                    // quickApply: checkboxState, // remove this
+            // quickApply: checkboxState, // remove this
             //     },
             // });
         } catch (err) {
@@ -102,7 +102,7 @@ const TrackerForm = () => {
             return;
         }
 
-        if(name === 'office-location') {
+        if (name === 'office-location') {
             // TODO: fix this to account for nested state object
             // setFormState({ ...formState, location: {
             //     ...location,
@@ -112,6 +112,8 @@ const TrackerForm = () => {
 
         setFormState({ ...formState, [name]: value });
     };
+
+    let radioBtnOptions = [{ label: 'on-site', selected: false }, { label: 'hybrid', selected: true }, { label: 'remote', selected: false },]
 
     return (
         <div className="tracker form-container flex">
@@ -140,7 +142,7 @@ const TrackerForm = () => {
                                 name="office-location"
                                 labelTitle="Office Location"
                             />
-                            <RadioBtnList options={['remote', 'hybrid', 'onsite']}/>
+                            <RadioBtnList options={radioBtnOptions} />
                         </div>
                         <div className="input-container">
                             <TextInput

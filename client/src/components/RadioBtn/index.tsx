@@ -10,8 +10,8 @@ interface RadioBtnPropsI {
 const RadioBtn = (params: RadioBtnPropsI) => {
     const { label } = params;
     return (
-        <div className="radio-btn-div">
-            
+        <div className="radio-btn-container">
+            <div className="radio-btn"></div>
             <p>{label}</p>
         </div>
     )
