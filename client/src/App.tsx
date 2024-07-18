@@ -54,8 +54,6 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="tracker" element={<TrackerFormPage />} />
-            <Route path="applied" element={<TrackerTable />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> 
             <Route path="credits" element={<CreditsPage />} /> 
             <Route path="dashboard" element={<DashboardPage/>} />
