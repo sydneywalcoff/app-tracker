@@ -13,7 +13,7 @@ interface jobProp {
 const filterJobsByText = (searchText: string, jobsArr: jobProp[]): jobProp[] => {
     if (!searchText) return jobsArr;
     let searchResults: Set<jobProp> = new Set();
-    jobsArr.filter((job: jobProp) => {
+    jobsArr.forEach((job: jobProp) => {
         const {
             jobTitle,
             location,
