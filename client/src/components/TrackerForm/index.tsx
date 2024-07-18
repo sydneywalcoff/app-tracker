@@ -134,15 +134,13 @@ const TrackerForm = () => {
                                 labelTitle="Company name*"
                             />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container location">
                             <TextInput
                                 onChange={handleChange}
                                 name="office-location"
                                 labelTitle="Office Location"
                             />
-                        </div>
-                        <div className="radio-btn-container">
-                            <RadioBtnList />
+                            <RadioBtnList options={['remote', 'hybrid', 'onsite']}/>
                         </div>
                         <div className="input-container">
                             <TextInput
