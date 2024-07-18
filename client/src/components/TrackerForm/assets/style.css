@@ -23,7 +23,6 @@
 .tracker p {
     font-size: 16px;
     line-height: 1;
-    margin-bottom: 16px;
 }
 
 .tracker.form-container {
@@ -34,6 +33,10 @@
 
 .tracker.form-container .content {
     padding: 16px;
+}
+
+.tracker.form-container .content>p {
+    margin-bottom: 16px;
 }
 
 .tracker.form-container .form-content {
