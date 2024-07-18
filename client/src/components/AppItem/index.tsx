@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { EDIT_APP_STATUS } from '../../utils/mutations';
@@ -22,20 +22,11 @@ interface AppItemI {
 const AppItem = (params: AppItemI) => {
     const { dateAdded, jobTitle, company, stage, location, AtsScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
-    const [editAppStatus] = useMutation(EDIT_APP_STATUS, {
-        update(cache, { data: { editAppStatus } }) {
-            try {
-                const { myApps }:any = cache.readQuery({ query: QUERY_MY_APPS });
-                const editedApp = myApps.find((app: AppItemI) => app._id === _id);
-                cache.writeQuery({
-                    query: QUERY_MY_APPS,
-                    data: { myApps: {...myApps, editedApp}}
-                })
-            } catch (e) {
-                console.log(e)
-            }
-        }
-    });
+    const [editAppStatus] = useMutation(EDIT_APP_STATUS);
+
+    useEffect(()=> {
+        setSelectedStage(stage)
+    }, [stage])
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
