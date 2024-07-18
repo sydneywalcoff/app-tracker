@@ -16,7 +16,7 @@ const RadioBtnList = (params: RadioBtnListPropsI) => {
     
     return(
         <div className="radio-btn-list">
-           
+           radio btn
         </div>
     )
 };

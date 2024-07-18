@@ -141,6 +141,9 @@ const TrackerForm = () => {
                                 labelTitle="Office Location"
                             />
                         </div>
+                        <div className="radio-btn-container">
+                            <RadioBtnList />
+                        </div>
                         <div className="input-container">
                             <TextInput
                                 onChange={handleChange}
