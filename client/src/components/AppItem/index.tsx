@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { EDIT_APP_STATUS } from '../../utils/mutations';
-import { QUERY_MY_APPS } from '../../utils/queries';
 
 import StageDropdown from '../StageDropdown';
 
