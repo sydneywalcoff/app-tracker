@@ -24,7 +24,7 @@ const TrackerForm = () => {
         status: "preparing",
         source: "",
         salary: "",
-        atsScore: 0,
+        jobScore: 0,
         link: "",
     });
     const [inputError, setInputError] = useState("");
@@ -81,7 +81,7 @@ const TrackerForm = () => {
                 name = "jobDescription";
                 break;
             case "ats-score":
-                name = "atsScore";
+                name = "jobScore";
                 break;
             case "stage":
                 name = "status";
@@ -96,7 +96,7 @@ const TrackerForm = () => {
         //     setInputError(`${inputName} is required!`);
         //     return;
         // }
-        if (name === "atsScore") {
+        if (name === "jobScore") {
             const scoreNum = parseInt(value, 10);
             setFormState({ ...formState, [name]: scoreNum });
             return;
