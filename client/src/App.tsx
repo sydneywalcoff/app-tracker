@@ -14,8 +14,6 @@ import "./App.css";
 // components
 import Header from "./components/Header";
 import SingleApp from "./pages/SingleApp";
-import TrackerFormPage from "./components/TrackerForm";
-import TrackerTable from "./pages/TrackerTable";
 import LoginPage from "./pages/Login";
 import CreditsPage from './pages/Credits'
 import LandingPage from "./pages/Landing";
