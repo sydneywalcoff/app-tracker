@@ -29,7 +29,8 @@ const AppTable = (params: AppTableI) => {
     const { apps } = params;
     let jobs = apps;
     let numJobs: number = jobs.length || 0;
-    let totalPages: number | undefined = numJobs > 10 ? Math.ceil(numJobs / 10) : undefined;
+    let perPageNum = 8;
+    let totalPages: number | undefined = numJobs > perPageNum ? Math.ceil(numJobs / perPageNum) : undefined;
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
@@ -57,7 +58,7 @@ const AppTable = (params: AppTableI) => {
     const paginateJobs = () => {
         let paginatedJobs: AppItemI[] = [];
         if (numJobs <= 10) return jobs;
-        for (let i = firstShownApp; i <= (firstShownApp + 10); i++) {
+        for (let i = firstShownApp; i <= (firstShownApp + perPageNum); i++) {
             if (jobs[i]) {
                 paginatedJobs.push(jobs[i]);
             }
@@ -68,11 +69,11 @@ const AppTable = (params: AppTableI) => {
 
     const handleBackPage = () => {
         setCurrentPage(currentPage - 1);
-        setFirstShownApp(firstShownApp - 10);
+        setFirstShownApp(firstShownApp - perPageNum);
     }
     const handleNextPage = () => {
         setCurrentPage(currentPage + 1);
-        setFirstShownApp(firstShownApp + 10);
+        setFirstShownApp(firstShownApp + perPageNum);
     }
 
     return (
