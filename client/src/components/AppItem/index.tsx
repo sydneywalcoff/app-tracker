@@ -19,7 +19,7 @@ interface AppItemI {
 }
 
 const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location, AtsScore, _id } = params;
+    const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
