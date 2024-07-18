@@ -24,6 +24,13 @@ interface jobProp {
     atsScore: number;
 }
 
+interface jobsStateI {
+    inPrep: jobProp[],
+    inProcess: jobProp[],
+    all: jobProp[],
+    focus: string
+}
+
 const DashboardPage = () => {
     const loggedIn = Auth.loggedIn();
     if (!loggedIn) {
@@ -31,7 +38,7 @@ const DashboardPage = () => {
     }
 
     const [searchText, setSearchText] = useState<string>('');
-    const [jobs, setJobs] = useState({
+    const [jobs, setJobs] = useState<jobsStateI>({
         inPrep: [],
         inProcess: [],
         all: [],
@@ -39,14 +46,13 @@ const DashboardPage = () => {
     })
 
     const { data } = useQuery(QUERY_MY_APPS);
-    let jobsData, jobsInPrep, jobsInProcess, focus: string;
 
     useEffect(() => {
-        jobsData = data?.myApps || [];
-        jobsInPrep = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
-        jobsInProcess = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
-        focus = jobsInPrep.length >0 ? 'Apps in Prep' : 'Apps in Process'
-       
+        let jobsData: jobProp[] = data?.myApps || [];
+        let jobsInPrep: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
+        let jobsInProcess: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
+        let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process'
+
         setJobs({
             inProcess: jobsInProcess,
             inPrep: jobsInPrep,
@@ -61,8 +67,8 @@ const DashboardPage = () => {
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
                         <div className="focus w-1/2 flex flex-col">
-                            <h4>{jobs.focus == 'inPrep' ? 'Apps in Prep' : 'Apps in Process'}</h4>
-                            <AppTable apps={jobs.focus == 'inPrep' ? jobs.inPrep : jobs.inProcess} />
+                            <h4>{jobs.focus === 'inPrep' ? 'Apps in Prep' : 'Apps in Process'}</h4>
+                            <AppTable apps={jobs.focus === 'inPrep' ? jobs.inPrep : jobs.inProcess} />
                         </div>
                         <div className="stats ml-4 w-1/2 rounded-lg p-4">
                             {/* <h4>Today</h4>
