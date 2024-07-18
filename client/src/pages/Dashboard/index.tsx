@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_MY_APPS } from '../../utils/queries';
 import Auth from '../../utils/auth';
-// import filterJobsByText from '../../utils/filterJobsByText';
+import filterJobsByText from '../../utils/filterJobsByText';
 
 import ContentContainer from "../../components/ContentContainer";
 import AppTable from '../../components/AppTable';
@@ -56,10 +56,10 @@ const DashboardPage = () => {
         setJobs({
             inProcess: jobsInProcess,
             inPrep: jobsInPrep,
-            all: jobsData,
+            all: filterJobsByText(searchText, jobsData),
             focus: focus
         })
-    }, [data?.myApps, jobs.inPrep.length])
+    }, [data?.myApps, jobs.inPrep.length, searchText])
 
     return (
         <ContentContainer className='dashboard flex'>
