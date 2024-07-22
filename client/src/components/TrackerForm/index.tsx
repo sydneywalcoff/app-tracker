@@ -18,7 +18,7 @@ const TrackerForm = () => {
         companyName: "",
         location: {
             officeLocation: "",
-            workStyle: ""
+            workStyle: "hybrid"
         },
         jobDescription: "",
         status: "preparing",
@@ -113,6 +113,10 @@ const TrackerForm = () => {
         setFormState({ ...formState, [name]: value });
     };
 
+    const handleRadioBtnChange = (newWorkStyle: string) => {
+        console.log(newWorkStyle)
+    };
+
     let radioBtnOptions = [{ label: 'on-site', selected: false }, { label: 'hybrid', selected: true }, { label: 'remote', selected: false },]
 
     return (
@@ -142,7 +146,7 @@ const TrackerForm = () => {
                                 name="office-location"
                                 labelTitle="Office Location"
                             />
-                            <RadioBtnList options={radioBtnOptions} />
+                            <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange}/>
                         </div>
                         <div className="input-container">
                             <TextInput
