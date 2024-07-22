@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+// import { ChangeEventHandler } from "react";
 
 import RadioBtn from "../RadioBtn";
 
@@ -18,7 +18,7 @@ const RadioBtnList = (params: RadioBtnListPropsI) => {
     
     return(
         <div className="radio-btn-list flex justify-between">
-           {options.map(option => <RadioBtn label={option.label} key={option.label}/>)}
+           {options.map(option => <RadioBtn label={option.label} key={option.label} selected={option.selected}/>)}
         </div>
     )
 };
