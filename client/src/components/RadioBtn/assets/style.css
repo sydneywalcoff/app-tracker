@@ -1,3 +1,20 @@
-.radio-btn-container>p{
-    margin: 4px 0;
+:root {
+    --radio-btn-diameter: 24px;
+}
+
+.radio-btn-container {
+    margin-top: 16px;
+}
+
+.radio-btn-container .label{
+    margin: 4px 0 4px 8px;
+}
+
+.radio-btn-container .radio-btn {
+    width: var(--radio-btn-diameter);
+    height: var(--radio-btn-diameter);
+    background: #fff;
+    border-radius: 50%;
+    border-color: var(--blue);
+    border-width: 1px;
 }
