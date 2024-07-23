@@ -17,12 +17,12 @@ interface AppItemI {
     company: string;
     stage: string;
     location: string;
-    AtsScore?: number;
+    jobScore?: number;
     _id: string;
 }
 
 const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location, AtsScore, _id } = params;
+    const { dateAdded, jobTitle, company, stage, location, jobScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
@@ -65,7 +65,7 @@ const AppItem = (params: AppItemI) => {
                 <p>{location}</p>
             </td>
             <td className='ATS-score item'>
-                <p>{AtsScore}</p>
+                <p>{jobScore}</p>
             </td>
             <td className="spacer item">
                 <Link
