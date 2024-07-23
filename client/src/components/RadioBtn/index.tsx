@@ -20,8 +20,8 @@ const RadioBtn = (params: RadioBtnPropsI) => {
     };
 
     return (
-        <div className="radio-btn-container flex">
-            <div className={`radio-btn shadow-sm ${isSelected ? 'selected' : ''}`} onClick={handleClick}></div>
+        <div className="radio-btn-container flex" onClick={handleClick}>
+            <div className={`radio-btn shadow-sm ${isSelected ? 'selected' : ''}`}></div>
             <p className="label">{label}</p>
         </div>
     )

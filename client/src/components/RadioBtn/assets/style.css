@@ -5,6 +5,7 @@
 
 .radio-btn-container {
     margin-top: 16px;
+    cursor: pointer;
 }
 
 .radio-btn-container .label{
