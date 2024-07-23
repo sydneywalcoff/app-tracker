@@ -10,6 +10,8 @@ import AppTable from '../../components/AppTable';
 import TrackerForm from '../../components/TrackerForm';
 import SearchBar from '../../components/SearchBar';
 
+import DashboardImg from '../../assets/dashboard-img.svg';
+
 import './assets/style.css';
 
 interface jobProp {
@@ -70,9 +72,8 @@ const DashboardPage = () => {
                             <h4>{jobs.focus === 'inPrep' ? 'Apps in Prep' : 'Apps in Process'}</h4>
                             <AppTable apps={jobs.focus === 'inPrep' ? jobs.inPrep : jobs.inProcess} />
                         </div>
-                        <div className="stats ml-4 w-1/2 rounded-lg p-4">
-                            {/* <h4>Today</h4>
-                            <p><span></span> Apps Applied to</p> */}
+                        <div className="dashboard-img ml-4 w-1/2 rounded-lg p-4">
+                            <img src={DashboardImg} alt="man sitting working on a computer" />
                         </div>
                     </div>
                     <div className="all-apps mt-12">

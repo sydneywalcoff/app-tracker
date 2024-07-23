@@ -30,3 +30,8 @@
 .dashboard .all-apps table .date-added {
     max-width: 104px;
 }
+
+.dashboard .dashboard-img img {
+    width: 250px;
+    margin: 0 auto;
+}
