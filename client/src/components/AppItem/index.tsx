@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { EDIT_APP_STATUS } from '../../utils/mutations';
 
 import StageDropdown from '../StageDropdown';
+
+import plusIcon from '../../assets/plus-icon.svg';
 
 import './assets/style.css';
 
@@ -19,11 +22,11 @@ interface AppItemI {
 }
 
 const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location, AtsScore } = params;
+    const { dateAdded, jobTitle, company, stage, location, AtsScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
-    useEffect(()=> {
+    useEffect(() => {
         setSelectedStage(stage)
     }, [stage])
 
@@ -65,7 +68,12 @@ const AppItem = (params: AppItemI) => {
                 <p>{AtsScore}</p>
             </td>
             <td className="spacer item">
-                <p>More.</p>
+                <Link
+                    to={`/applied/${_id}`}
+                    className="hover:text-indigo-900"
+                >
+                    <img src={plusIcon} alt="more" className='plus-icon'/>
+                </Link>
             </td>
         </tr>
     );

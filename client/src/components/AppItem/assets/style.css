@@ -13,3 +13,13 @@
 .app-item-outer .item p {
     font-size: 14px;
 }
+
+.app-item-outer .spacer a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.app-item-outer .plus-icon {
+    width: 10px;
+}
