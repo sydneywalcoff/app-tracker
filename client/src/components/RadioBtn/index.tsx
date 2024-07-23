@@ -13,7 +13,7 @@ const RadioBtn = (params: RadioBtnPropsI) => {
     const [isSelected, setSelected] = useState(false);
 
     useEffect(() => { 
-        selected == label ? setSelected(true) : setSelected(false)
+        selected === label ? setSelected(true) : setSelected(false)
     }, [selected]);
 
     const handleClick = () => {
