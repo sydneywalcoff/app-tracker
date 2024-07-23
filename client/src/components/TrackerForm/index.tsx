@@ -103,11 +103,11 @@ const TrackerForm = () => {
         }
 
         if (name === 'office-location') {
-            // TODO: fix this to account for nested state object
-            // setFormState({ ...formState, location: {
-            //     ...location,
-            //     officeLocation: value
-            // }})
+            setFormState({ ...formState, location: {
+                ...formState.location,
+                officeLocation: value
+            }});
+            return;
         }
 
         setFormState({ ...formState, [name]: value });
