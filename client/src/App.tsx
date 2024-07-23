@@ -40,7 +40,7 @@ const client = new ApolloClient({
 function App() {
   if(window.location.pathname==='/') {
     if(Auth.loggedIn()) {
-      window.location.assign('/applied');
+      window.location.assign('/dashboard');
     }
   }
   return (
