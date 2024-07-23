@@ -114,10 +114,15 @@ const TrackerForm = () => {
     };
 
     const handleRadioBtnChange = (newWorkStyle: string) => {
-        console.log(newWorkStyle)
+        setFormState({
+            ...formState, location: {
+                ...formState.location,
+                workStyle: newWorkStyle
+            }
+        })
     };
 
-    let radioBtnOptions = [{ label: 'on-site', selected: false }, { label: 'hybrid', selected: true }, { label: 'remote', selected: false },]
+    let radioBtnOptions = ['on-site', 'hybrid', 'remote'];
 
     return (
         <div className="tracker form-container flex">
@@ -146,7 +151,7 @@ const TrackerForm = () => {
                                 name="office-location"
                                 labelTitle="Office Location"
                             />
-                            <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange}/>
+                            <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange} selected={formState.location.workStyle} />
                         </div>
                         <div className="input-container">
                             <TextInput

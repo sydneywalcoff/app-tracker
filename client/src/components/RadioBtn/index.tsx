@@ -4,19 +4,21 @@ import './assets/style.css';
 
 interface RadioBtnPropsI {
     label: string;
-    selected: boolean;
-    onStyleChange: (newStyle: string)=> void;
+    selected: string;
+    onStyleChange: (newStyle: string) => void;
     // onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const RadioBtn = (params: RadioBtnPropsI) => {
-    const { label, selected } = params;
-    const [isSelected, setSelected] = useState(selected);
+    const { label, onStyleChange, selected } = params;
+    const [isSelected, setSelected] = useState(false);
 
-    useEffect(() => {setSelected(selected)}, [selected]);
+    useEffect(() => { 
+        selected == label ? setSelected(true) : setSelected(false)
+    }, [selected]);
 
     const handleClick = () => {
-        console.log(label);
+        onStyleChange(label);
     };
 
     return (
