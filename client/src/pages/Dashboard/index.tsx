@@ -68,11 +68,11 @@ const DashboardPage = () => {
             <>
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
-                        <div className="focus w-1/2 flex flex-col">
+                        <div className="focus flex flex-col">
                             <h4>{jobs.focus === 'inPrep' ? 'Apps in Prep' : 'Apps in Process'}</h4>
                             <AppTable apps={jobs.focus === 'inPrep' ? jobs.inPrep : jobs.inProcess} />
                         </div>
-                        <div className="dashboard-img ml-4 w-1/2 rounded-lg p-4">
+                        <div className="dashboard-img ml-4">
                             <img src={DashboardImg} alt="man sitting working on a computer" />
                         </div>
                     </div>

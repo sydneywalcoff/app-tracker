@@ -2,6 +2,12 @@
     min-height: 140px;
 }
 
+.dashboard .focus {
+    width: 100%;
+    max-width: 60%;
+    min-width: 340px;
+}
+
 .dashboard .focus .date-added,
 .dashboard .focus .location,
 .dashboard .focus .ATS-score {
@@ -9,7 +15,7 @@
 }
 
 .dashboard .focus .spacer {
-    max-width: 36px;
+    max-width: 24px;
 }
 
 .dashboard .focus tbody {
@@ -22,7 +28,7 @@
     padding-right: 16px;
 }
 
-.dashboard .focus h4 { 
+.dashboard .focus h4 {
     font-weight: bold;
     font-size: 24px
 }
@@ -32,6 +38,18 @@
 }
 
 .dashboard .dashboard-img img {
-    width: 250px;
+    max-width: 250px;
+    width: 100%;
     margin: 0 auto;
+}
+
+
+@media screen and (max-width: 967px) {
+    .dashboard .top-section .dashboard-img img {
+        display: none
+    }
+
+    .dashboard .form-container {
+        min-width: 340px;
+    }
 }

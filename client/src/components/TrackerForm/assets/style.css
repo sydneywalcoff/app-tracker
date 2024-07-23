@@ -73,9 +73,6 @@
 }
 
 @media screen and (max-width: 960px) {
-    .tracker .flex {
-        flex-direction: column;
-    }
 
     .tracker.form-container {
         order: 1;
