@@ -6,7 +6,6 @@ interface RadioBtnPropsI {
     label: string;
     selected: string;
     onStyleChange: (newStyle: string) => void;
-    // onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const RadioBtn = (params: RadioBtnPropsI) => {

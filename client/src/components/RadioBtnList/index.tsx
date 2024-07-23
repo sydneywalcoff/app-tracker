@@ -1,4 +1,3 @@
-// import { ChangeEventHandler } from "react";
 
 import RadioBtn from "../RadioBtn";
 
