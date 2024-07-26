@@ -30,3 +30,15 @@
 .app-table .ATS-score {
     max-width: 80px;
 }
+
+.app-table .page-counter-wrap,
+.app-table .page-counter-wrap .pages-counter,
+.app-table .page-counter-wrap .page-buttons {
+    display: flex;
+}
+
+.app-table .page-counter-wrap,
+.app-table .page-counter-wrap .page-buttons {
+    justify-content: center;
+    align-items: center;
+}
