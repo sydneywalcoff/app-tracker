@@ -53,7 +53,8 @@ const DashboardPage = () => {
         let jobsData: jobProp[] = data?.myApps || [];
         let jobsInPrep: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
         let jobsInProcess: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
-        let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process'
+        let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process';
+        console.log()
 
         setJobs({
             inProcess: jobsInProcess,
@@ -69,8 +70,8 @@ const DashboardPage = () => {
                 <div className="main-container w-2/3">
                     <div className="top-section flex">
                         <div className="focus flex flex-col">
-                            <h4>{jobs.focus === 'inPrep' ? 'Apps in Prep' : 'Apps in Process'}</h4>
-                            <AppTable apps={jobs.focus === 'inPrep' ? jobs.inPrep : jobs.inProcess} />
+                            <h4>{jobs.focus}</h4>
+                            <AppTable apps={jobs.focus === 'Apps in Prep' ? jobs.inPrep : jobs.inProcess} />
                         </div>
                         <div className="dashboard-img ml-4">
                             <img src={DashboardImg} alt="man sitting working on a computer" />
