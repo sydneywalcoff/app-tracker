@@ -1,3 +1,11 @@
+.dashboard .table-container {
+    width: 66.667%;
+}
+
+.dashboard .outer-form-container {
+    width: 33.33%;
+}
+
 .dashboard .top-section {
     min-height: 140px;
 }
@@ -45,11 +53,30 @@
 
 
 @media screen and (max-width: 967px) {
-    .dashboard .top-section .dashboard-img img {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard .table-container,
+    .dashboard .outer-form-container,
+    .dashboard .table-container .top-section .focus {
+        width: 100%;
+    }
+
+    .dashboard .outer-form-container {
+        max-width: 540px;
+        min-width: 340px;
+        margin-top: 48px;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .dashboard .top-section .dashboard-img {
         display: none
     }
 
-    .dashboard .form-container {
-        min-width: 340px;
+    .dashboard .table-container .top-section .focus {
+        max-width: 100%;
     }
 }

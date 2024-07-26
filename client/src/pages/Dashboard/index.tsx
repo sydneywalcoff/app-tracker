@@ -67,7 +67,7 @@ const DashboardPage = () => {
     return (
         <ContentContainer className='dashboard flex'>
             <>
-                <div className="main-container w-2/3">
+                <div className="table-container">
                     <div className="top-section flex">
                         <div className="focus flex flex-col">
                             <h4>{jobs.focus}</h4>
@@ -82,7 +82,7 @@ const DashboardPage = () => {
                         <AppTable apps={jobs.all} />
                     </div>
                 </div>
-                <div className="form-container ml-4 w-1/3">
+                <div className="outer-form-container ml-4">
                     <TrackerForm />
                 </div>
             </>
