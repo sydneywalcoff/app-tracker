@@ -1,7 +1,8 @@
 import { Schema, model, Document, Model, SchemaDefinitionProperty } from 'mongoose';
 import dateFormat from '../utils/dateFormat'
 const noteSchema = require('./Note');
-const statusHistorySchema = require('./StatusHistory')
+const statusHistorySchema = require('./StatusHistory');
+const locationSchema = require('./Location');
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -22,8 +23,7 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         require: true
     },
     location:  {
-        type: String,
-        require: true
+        type: locationSchema || String
     },
     quickApply:  {
         type: Boolean,
@@ -66,7 +66,7 @@ export interface AppDocument extends Document {
     companyName: string,
     status: string,
     statusHistory: [],
-    location: string,
+    location: {},
     quickApply: boolean,
     jobScore?: number,
     dateApplied: Date | SchemaDefinitionProperty<Date>,
