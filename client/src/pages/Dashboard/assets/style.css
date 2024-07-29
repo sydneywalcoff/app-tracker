@@ -68,7 +68,9 @@
         max-width: 540px;
         min-width: 340px;
         margin-top: 48px;
+        margin-left: 0;
     }
+    
 }
 
 @media screen and (max-width: 767.98px) {
@@ -78,5 +80,9 @@
 
     .dashboard .table-container .top-section .focus {
         max-width: 100%;
+    }
+
+    .dashboard .table-container .top-section .focus tbody {
+        min-height: unset;
     }
 }

@@ -23,3 +23,7 @@
 .app-item-outer .plus-icon {
     width: 10px;
 }
+
+@media screen and (max-width: 500px) {
+    .app-item-outer .item p { font-size: 12px; }
+}
