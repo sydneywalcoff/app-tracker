@@ -81,22 +81,22 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        editApp: async (_: undefined, args: AppDocument, context) => {
+        editApp: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
-                const { _id, status, statusHistory } = args;
+                const { _id, status, officeLocation, workStyle } = args;
                 const lastUpdated = Date.now();
                 let statusChange = {
                     status: status,
                     dateChanged: lastUpdated
                 };
                 let appData = !status ?
-                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) :
-                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, lastUpdated }, { new: true })
+                    await App.findByIdAndUpdate(_id, { ...args, locationObj: { officeLocation, workStyle }, lastUpdated }, { new: true }) :
+                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, locationObj: { officeLocation, workStyle } }, { new: true })
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
         },
-        editAppStatus: async (_: undefined, args: AppDocument, context) => {
+        editAppStatus: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const { _id, status } = args;
                 const lastUpdated = Date.now();
