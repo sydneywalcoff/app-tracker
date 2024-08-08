@@ -23,7 +23,10 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         require: true
     },
     location:  {
-        type: locationSchema || String
+        type: String
+    },
+    locationObj: {
+        type: locationSchema
     },
     quickApply:  {
         type: Boolean,
@@ -66,7 +69,8 @@ export interface AppDocument extends Document {
     companyName: string,
     status: string,
     statusHistory: [],
-    location: {},
+    location: string,
+    locationObj: {},
     quickApply: boolean,
     jobScore?: number,
     dateApplied: Date | SchemaDefinitionProperty<Date>,
