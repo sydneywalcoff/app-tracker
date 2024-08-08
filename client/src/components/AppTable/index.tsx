@@ -5,12 +5,17 @@ import Button from '../Button';
 
 import './assets/style.css';
 
+interface Location {
+    workStyle: string;
+    officeLocation: string;
+}
+
 interface AppItemI {
     dateApplied: string;
     jobTitle: string;
     companyName: string;
     status: string;
-    location: string;
+    locationObj: Location;
     jobScore?: number;
     _id: string
 }

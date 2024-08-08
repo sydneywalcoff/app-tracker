@@ -14,12 +14,17 @@ import DashboardImg from '../../assets/dashboard-img.svg';
 
 import './assets/style.css';
 
+interface Location {
+    workStyle: string;
+    officeLocation: string;
+}
+
 interface jobProp {
     _id: string;
     jobTitle: string;
     companyName: string;
     jobDescription: string;
-    location: string;
+    locationObj: Location;
     status: string;
     dateApplied: string;
     lastUpdated: string;

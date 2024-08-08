@@ -1,9 +1,14 @@
+interface Location {
+    workStyle: string;
+    officeLocation: string;
+}
+
 interface jobProp {
     _id: string;
     jobTitle: string;
     companyName: string;
     jobDescription: string;
-    location: string;
+    locationObj: Location;
     status: string;
     dateApplied: string;
     lastUpdated: string;
@@ -16,10 +21,9 @@ const filterJobsByText = (searchText: string, jobsArr: jobProp[]): jobProp[] => 
     jobsArr.forEach((job: jobProp) => {
         const {
             jobTitle,
-            location,
             companyName
         } = job;
-        if (companyName.toLowerCase().includes(searchText.toLowerCase()) || location.toLowerCase().includes(searchText.toLowerCase()) || jobTitle.toLowerCase().includes(searchText.toLowerCase())) {
+        if (companyName.toLowerCase().includes(searchText.toLowerCase()) || jobTitle.toLowerCase().includes(searchText.toLowerCase())) {
             searchResults.add(job)
         }
     })
