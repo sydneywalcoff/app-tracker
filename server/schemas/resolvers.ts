@@ -8,8 +8,10 @@ interface IdAppProps {
     _id: String
 }
 
-interface AppIdProps extends AppDocument {
+interface AppProps extends AppDocument {
     appId: String
+    workStyle: String
+    officeLocation: String
 }
 
 interface NoteIdProps {
@@ -51,15 +53,25 @@ const resolvers = {
         }
     },
     Mutation: {
-        addApp: async (_: undefined, args: AppDocument, context) => {
+        addApp: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
+                const { status, workStyle, officeLocation } = args;
                 const statusChange = {
                     dateChanged: lastUpdated,
-                    status: args.status
+                    status
                 };
                 const statusHistory = [statusChange];
-                const appData = await App.create({ ...args, lastUpdated, statusHistory });
+                
+                const appData = await App.create({
+                    ...args,
+                    locationObj: {
+                        workStyle,
+                        officeLocation
+                    }, 
+                    lastUpdated, 
+                    statusHistory 
+                });
                 await User.findByIdAndUpdate(
                     context.user._id,
                     { $push: { apps: appData._id } },
@@ -104,7 +116,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        addNote: async (_: undefined, args: AppIdProps, context) => {
+        addNote: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const { appId } = args;
                 const lastUpdated = Date.now();
