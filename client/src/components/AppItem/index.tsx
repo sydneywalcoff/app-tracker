@@ -10,19 +10,23 @@ import plusIcon from '../../assets/plus-icon.svg';
 
 import './assets/style.css';
 
+interface Location {
+    workStyle: string;
+    officeLocation: string;
+}
 
 interface AppItemI {
     dateAdded: string;
     jobTitle: string;
     company: string;
     stage: string;
-    location: string;
+    location: Location;
     jobScore?: number;
     _id: string;
 }
 
 const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location, jobScore, _id } = params;
+    const { dateAdded, jobTitle, company, stage, location: { workStyle, officeLocation }, jobScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
@@ -31,6 +35,10 @@ const AppItem = (params: AppItemI) => {
     }, [stage])
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
+
+    let styledLocation;
+    styledLocation = workStyle === 'remote' ? 'Remote' : officeLocation;
+
 
     const handleDropdownChange = async (status: string) => {
         try {
@@ -62,7 +70,7 @@ const AppItem = (params: AppItemI) => {
                 <StageDropdown onStageChange={handleDropdownChange} selectedStage={selectedStage} options={statusArr} hideLabel />
             </td>
             <td className='location item'>
-                <p>{location}</p>
+                <p>{styledLocation}</p>
             </td>
             <td className='ATS-score item'>
                 <p>{jobScore}</p>
@@ -72,7 +80,7 @@ const AppItem = (params: AppItemI) => {
                     to={`/applied/${_id}`}
                     className="hover:text-indigo-900"
                 >
-                    <img src={plusIcon} alt="more" className='plus-icon'/>
+                    <img src={plusIcon} alt="more" className='plus-icon' />
                 </Link>
             </td>
         </tr>

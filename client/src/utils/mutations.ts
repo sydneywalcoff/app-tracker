@@ -8,6 +8,10 @@ export const ADD_APP = gql`
             jobDescription
             status
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             quickApply
             jobScore
             dateApplied
@@ -34,6 +38,10 @@ export const EDIT_APP = gql`
                 status
             }
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             quickApply
             jobScore
             dateApplied
@@ -60,6 +68,10 @@ export const EDIT_APP_STATUS = gql`
                 status
             }
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             dateApplied
             companyName
             lastUpdated
@@ -74,6 +86,10 @@ export const DELETE_APP = gql`
             jobTitle
             jobDescription
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             status
             quickApply
             jobScore
@@ -95,6 +111,10 @@ export const ADD_NOTE = gql`
             jobTitle
             jobDescription
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             status
             quickApply
             jobScore
@@ -115,6 +135,10 @@ export const DELETE_NOTE = gql`
             jobTitle
             jobDescription
             location
+            locationObj {
+                workStyle
+                officeLocation
+            }
             status
             quickApply
             jobScore
