@@ -72,6 +72,12 @@
     display: inline-flex;
 }
 
+.tracker .clear-btn {
+    margin: 0;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
 @media screen and (max-width: 960px) {
 
     .tracker.form-container {

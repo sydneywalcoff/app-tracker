@@ -12,6 +12,7 @@ import RadioBtnList from "../RadioBtnList";
 
 import './assets/style.css';
 import { QUERY_MY_APPS } from "../../utils/queries";
+import { clear } from "console";
 
 const TrackerForm = () => {
     let defaultFormState = {
@@ -69,7 +70,7 @@ const TrackerForm = () => {
                     officeLocation
                 },
             });
-            setFormState(defaultFormState);
+            clearForm();
         } catch (err) {
             console.error(err);
         }
@@ -138,6 +139,10 @@ const TrackerForm = () => {
                 workStyle: newWorkStyle
             }
         })
+    };
+
+    const clearForm = () => {
+        setFormState(defaultFormState);
     };
 
     let radioBtnOptions = ['on-site', 'hybrid', 'remote'];
@@ -214,7 +219,8 @@ const TrackerForm = () => {
                             <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} />
                         </div>
                         <div className="btn-container w-full justify-end flex">
-                            <Button text="Save" classes="primary drop-shadow-md" type="submit" />
+                            <Button text="clear" classes="clear-btn" type={undefined} onClick={clearForm}/>
+                            <Button text="save" classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
                     {inputError && (
