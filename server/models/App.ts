@@ -28,11 +28,6 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     locationObj: {
         type: locationSchema
     },
-    quickApply:  {
-        type: Boolean,
-        require: true,
-        default: false
-    },
     jobScore:  {
         type: Number,
         require: false

@@ -16,7 +16,6 @@ export const QUERY_APPS = gql`
                 workStyle
                 officeLocation
             }
-            quickApply
             jobScore
             dateApplied
             companyName
@@ -47,7 +46,6 @@ export const QUERY_SINGLE_APP = gql`
                 workStyle
                 officeLocation
             }
-            quickApply
             jobScore
             dateApplied
             companyName
@@ -78,7 +76,6 @@ export const QUERY_MY_APPS = gql`
                 workStyle
                 officeLocation
             }
-            quickApply
             jobScore
             dateApplied
             companyName

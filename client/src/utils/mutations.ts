@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_APP = gql`
-    mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $location: String!, $quickApply: Boolean!, $jobScore: Int, $link: String) {
-        addApp(jobTitle: $jobTitle, companyName: $companyName, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, jobScore: $jobScore, link: $link) {
+    mutation addApp($jobTitle: String!, $companyName: String!, $jobDescription: String!, $status: String!, $workStyle: String!, $officeLocation: String!, $jobScore: Int, $link: String) {
+        addApp(jobTitle: $jobTitle, companyName: $companyName, workStyle: $workStyle, officeLocation: $officeLocation, jobDescription: $jobDescription, status: $status, jobScore: $jobScore, link: $link) {
             _id
             jobTitle
             jobDescription
@@ -12,7 +12,6 @@ export const ADD_APP = gql`
                 workStyle
                 officeLocation
             }
-            quickApply
             jobScore
             dateApplied
             lastUpdated
@@ -27,8 +26,8 @@ export const ADD_APP = gql`
 `;
 
 export const EDIT_APP = gql`
-    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String, $location: String!, $quickApply: Boolean!, $jobScore: Int, $link: String) {
-        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, quickApply: $quickApply, companyName:$companyName, jobScore: $jobScore, link: $link ) {
+    mutation editApp($id: ID!, $jobTitle: String!, $jobDescription: String!, $companyName: String!, $status: String, $location: String!, $jobScore: Int, $link: String) {
+        editApp(_id: $id, jobTitle: $jobTitle, jobDescription: $jobDescription, status: $status, location: $location, companyName:$companyName, jobScore: $jobScore, link: $link ) {
             _id
             jobTitle
             jobDescription
@@ -42,7 +41,6 @@ export const EDIT_APP = gql`
                 workStyle
                 officeLocation
             }
-            quickApply
             jobScore
             dateApplied
             companyName
@@ -91,7 +89,6 @@ export const DELETE_APP = gql`
                 officeLocation
             }
             status
-            quickApply
             jobScore
             dateApplied
             link
@@ -116,7 +113,6 @@ export const ADD_NOTE = gql`
                 officeLocation
             }
             status
-            quickApply
             jobScore
             dateApplied
             notes {
@@ -140,7 +136,6 @@ export const DELETE_NOTE = gql`
                 officeLocation
             }
             status
-            quickApply
             jobScore
             dateApplied
             notes {

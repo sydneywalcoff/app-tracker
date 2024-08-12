@@ -16,7 +16,7 @@ const TrackerForm = () => {
     const [formState, setFormState] = useState({
         jobTitle: "",
         companyName: "",
-        location: {
+        locationObj: {
             officeLocation: "",
             workStyle: "hybrid"
         },
@@ -37,7 +37,7 @@ const TrackerForm = () => {
 
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { jobTitle, companyName, location: { workStyle, officeLocation }, jobDescription } = formState;
+        const { jobTitle, companyName, locationObj: { workStyle, officeLocation }, jobDescription } = formState;
         if (
             jobTitle.length === 0 ||
             companyName.length === 0 ||
@@ -47,13 +47,13 @@ const TrackerForm = () => {
             return;
         }
         try {
-            console.log(formState)
-            // await addApp({
-            //     variables: {
-            //         ...formState,
-            // quickApply: checkboxState, // remove this
-            //     },
-            // });
+            await addApp({
+                variables: {
+                    ...formState,
+                    workStyle,
+                    officeLocation
+                },
+            });
         } catch (err) {
             console.error(err);
         }
@@ -103,10 +103,12 @@ const TrackerForm = () => {
         }
 
         if (name === 'office-location') {
-            setFormState({ ...formState, location: {
-                ...formState.location,
-                officeLocation: value
-            }});
+            setFormState({
+                ...formState, locationObj: {
+                    ...formState.locationObj,
+                    officeLocation: value
+                }
+            });
             return;
         }
 
@@ -115,8 +117,8 @@ const TrackerForm = () => {
 
     const handleRadioBtnChange = (newWorkStyle: string) => {
         setFormState({
-            ...formState, location: {
-                ...formState.location,
+            ...formState, locationObj: {
+                ...formState.locationObj,
                 workStyle: newWorkStyle
             }
         })
@@ -151,7 +153,7 @@ const TrackerForm = () => {
                                 name="office-location"
                                 labelTitle="Office Location"
                             />
-                            <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange} selected={formState.location.workStyle} />
+                            <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange} selected={formState.locationObj.workStyle} />
                         </div>
                         <div className="input-container">
                             <TextInput

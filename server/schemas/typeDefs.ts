@@ -10,7 +10,6 @@ const typeDefs = gql`
         statusHistory: [StatusChange]
         location: String
         locationObj: Location
-        quickApply: Boolean!
         jobScore: Int
         dateApplied: String
         lastUpdated: String
@@ -55,8 +54,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addApp(jobTitle: String!, companyName: String!, jobDescription: String!, status: String!, officeLocation: String, workStyle: String, quickApply: Boolean!, jobScore: Int, link: String): App
-        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String, officeLocation: String, workStyle: String, quickApply: Boolean!, jobScore: Int, lastUpdated: String, link: String) : App
+        addApp(jobTitle: String!, companyName: String!, jobDescription: String!, status: String!, officeLocation: String, workStyle: String, jobScore: Int, link: String): App
+        editApp(_id: ID!, jobTitle: String!, jobDescription: String!, companyName: String!, status: String, officeLocation: String, workStyle: String, jobScore: Int, lastUpdated: String, link: String) : App
         editAppStatus(_id: ID!, status: String!) : App
         deleteApp(_id: ID!) : App
         addNote(appId: ID!, noteText: String!) : App
