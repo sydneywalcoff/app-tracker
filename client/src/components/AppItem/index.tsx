@@ -20,13 +20,14 @@ interface AppItemI {
     jobTitle: string;
     company: string;
     stage: string;
-    location: Location;
+    locationObj: Location;
+    location?: string;
     jobScore?: number;
     _id: string;
 }
 
 const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location: { workStyle, officeLocation }, jobScore, _id } = params;
+    const { dateAdded, jobTitle, company, stage, location, locationObj, jobScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(stage);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
@@ -37,8 +38,12 @@ const AppItem = (params: AppItemI) => {
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     let styledLocation;
-    styledLocation = workStyle === 'remote' ? 'Remote' : officeLocation;
-
+    if(locationObj) {
+        const { workStyle, officeLocation } = locationObj;
+        styledLocation = workStyle === 'remote' ? 'Remote' : officeLocation;
+    } else {
+        styledLocation = location;
+    }
 
     const handleDropdownChange = async (status: string) => {
         try {
