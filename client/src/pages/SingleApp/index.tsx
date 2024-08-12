@@ -41,7 +41,7 @@ const SingleApp = () => {
     await deleteApp({
       variables: { id: jobId },
     });
-    window.location.assign("/applied");
+    window.location.assign("/dashboard");
   };
 
   const seeMoreClass = isSeeMoreOpen ? 'active' : '';
