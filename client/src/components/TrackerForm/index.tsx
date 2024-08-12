@@ -11,6 +11,7 @@ import StageDropdown from "../StageDropdown";
 import RadioBtnList from "../RadioBtnList";
 
 import './assets/style.css';
+import { QUERY_MY_APPS } from "../../utils/queries";
 
 const TrackerForm = () => {
     let defaultFormState = {
@@ -29,11 +30,24 @@ const TrackerForm = () => {
     };
     const [formState, setFormState] = useState(defaultFormState);
     const [inputError, setInputError] = useState("");
-    const [addApp] = useMutation(ADD_APP);
+    const [addApp] = useMutation(ADD_APP, {
+        update(cache, { data: { addApp } }) {
+            try {
+                cache.updateQuery({ query: QUERY_MY_APPS }, ({ myApps }) => ({
+                    myApps: {
+                        ...myApps,
+                        addApp
+                    }
+                }))
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    });
 
     const loggedIn = Auth.loggedIn();
     if (!loggedIn) {
-        window.location.assign('/login')
+        window.location.assign('/login');
     }
 
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -196,7 +210,7 @@ const TrackerForm = () => {
                             />
                         </div>
                         <div className="textArea-container">
-                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription}/>
+                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} />
                         </div>
                         <div className="btn-container w-full justify-end flex">
                             <Button text="Save" classes="primary drop-shadow-md" type="submit" />
