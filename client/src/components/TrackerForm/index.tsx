@@ -13,7 +13,7 @@ import RadioBtnList from "../RadioBtnList";
 import './assets/style.css';
 
 const TrackerForm = () => {
-    const [formState, setFormState] = useState({
+    let defaultFormState = {
         jobTitle: "",
         companyName: "",
         locationObj: {
@@ -26,7 +26,8 @@ const TrackerForm = () => {
         salary: "",
         jobScore: 0,
         link: "",
-    });
+    };
+    const [formState, setFormState] = useState(defaultFormState);
     const [inputError, setInputError] = useState("");
     const [addApp] = useMutation(ADD_APP);
 
@@ -54,6 +55,7 @@ const TrackerForm = () => {
                     officeLocation
                 },
             });
+            setFormState(defaultFormState);
         } catch (err) {
             console.error(err);
         }
@@ -138,6 +140,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="job-title"
                                 labelTitle="Job title*"
+                                value={formState.jobTitle}
                             />
                         </div>
                         <div className="input-container">
@@ -145,6 +148,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="company-name"
                                 labelTitle="Company name*"
+                                value={formState.companyName}
                             />
                         </div>
                         <div className="input-container location">
@@ -152,6 +156,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="office-location"
                                 labelTitle="Office Location"
+                                value={formState.locationObj.officeLocation}
                             />
                             <RadioBtnList options={radioBtnOptions} onStyleChange={handleRadioBtnChange} selected={formState.locationObj.workStyle} />
                         </div>
@@ -160,6 +165,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="ats-score"
                                 labelTitle="ATS score"
+                                value={formState.jobScore}
                             />
                         </div>
                         <div className="dropdown-container">
@@ -170,6 +176,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="job-url"
                                 labelTitle="Link"
+                                value={formState.link}
                             />
                         </div>
                         <div className="input-container source">
@@ -177,6 +184,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="source"
                                 labelTitle="Source"
+                                value={formState.source}
                             />
                         </div>
                         <div className="input-container salary">
@@ -184,10 +192,11 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="salary"
                                 labelTitle="Salary"
+                                value={formState.salary}
                             />
                         </div>
                         <div className="textArea-container">
-                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" />
+                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription}/>
                         </div>
                         <div className="btn-container w-full justify-end flex">
                             <Button text="Save" classes="primary drop-shadow-md" type="submit" />
