@@ -7,12 +7,17 @@ interface TextInputPropsI {
     onChange: ChangeEventHandler<HTMLInputElement>;
     name: string;
     value?: string | number;
+    type?: string;
 }
 
-const TextInput = ({ labelTitle, onChange, name, value }: TextInputPropsI) => {
+const TextInput = ({ labelTitle, onChange, name, value, type }: TextInputPropsI) => {
     const styledName = labelTitle ? labelTitle : name;
+    if(!type) {
+        type = name === 'password' ? 'password' : 'text';
+    }
+
     return (
-        <input type={name === 'password' ? 'password' : 'text'} name={name} className="drop-shadow-md p-2" onChange={onChange} placeholder={styledName} value={value}/>
+        <input type={type} name={name} className="drop-shadow-md p-2" onChange={onChange} placeholder={styledName} value={value}/>
     );
 }
 
