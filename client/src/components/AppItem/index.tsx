@@ -78,7 +78,7 @@ const AppItem = (params: AppItemI) => {
                 <p>{styledLocation}</p>
             </td>
             <td className='ATS-score item'>
-                <p>{jobScore}</p>
+                <p>{jobScore ? jobScore : ''}</p>
             </td>
             <td className="spacer item">
                 <Link
