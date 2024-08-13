@@ -189,7 +189,7 @@ const TrackerForm = () => {
                             />
                         </div>
                         <div className="dropdown-container">
-                            <StageDropdown selectedStage={formState.status} onStageChange={handleDropDownChange} options={['preparing', 'applied']} />
+                            <StageDropdown selectedStage={formState.status} onStageChange={handleDropDownChange} options={['preparing', 'applied']} classes="drop-shadow-md" />
                         </div>
                         <div className="input-container link">
                             <TextInput

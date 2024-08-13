@@ -53,6 +53,16 @@
 
 .tracker.form-container .form-content .dropdown-container .dropdown {
     margin-left: unset;
+    position: relative;
+    z-index: 100;
+}
+
+.tracker.tracker.form-container .form-content .dropdown-container .stage-select-container:hover {
+    box-shadow: none;
+}
+
+.tracker.tracker.form-container .form-content .dropdown-container .stage-select-container .arrow {
+    visibility: visible;
 }
 
 .tracker.form-container .form-content .input-container input {
