@@ -38,9 +38,15 @@ const AppItem = (params: AppItemI) => {
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
     let styledLocation;
-    if(locationObj) {
+    if (locationObj) {
         const { workStyle, officeLocation } = locationObj;
-        styledLocation = workStyle === 'remote' ? 'Remote' : officeLocation;
+        if (workStyle === 'remote') {
+            styledLocation = 'Remote';
+        } else if (!officeLocation) {
+            styledLocation = workStyle; 
+        } else {
+            styledLocation = officeLocation
+        }
     } else {
         styledLocation = location;
     }
