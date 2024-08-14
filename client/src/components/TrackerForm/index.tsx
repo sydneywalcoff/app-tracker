@@ -12,7 +12,6 @@ import RadioBtnList from "../RadioBtnList";
 
 import './assets/style.css';
 import { QUERY_MY_APPS } from "../../utils/queries";
-import { clear } from "console";
 
 const TrackerForm = () => {
     let defaultFormState = {
