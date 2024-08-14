@@ -173,7 +173,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input
                                     name="job-title"
                                     className="mb-2 p-1 border-solid border-2"
-                                    value={jobTitle}
+                                    value={editJobForm.jobTitle}
                                     onChange={changeHandler}
                                 />
                             </div>
@@ -184,7 +184,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 <input
                                     className="mb-2 p-1 border-solid border-2"
                                     name="company-name"
-                                    value={companyName}
+                                    value={editJobForm.companyName}
                                     onChange={changeHandler}
                                 />
                             </div>
@@ -195,7 +195,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                         <textarea
                             className="whitespace-pre-wrap p-1 w-full h-full border-solid border-2 job-description"
                             name="job-description"
-                            value={jobDescription}
+                            value={editJobForm.jobDescription}
                             onChange={changeHandler}
                         />
                     </div>
@@ -215,7 +215,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                         name="office-location"
                                         id="office-location"
                                         className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
-                                        value={job.locationObj.officeLocation}
+                                        value={editJobForm.officeLocation}
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -228,13 +228,13 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                         name="work-style"
                                         id="work-style"
                                         className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
-                                        value={job.locationObj.workStyle}
+                                        value={editJobForm.workStyle}
                                         onChange={changeHandler}
                                     />
                                 </div>
                                 <div className="mb-3 detail">
                                     <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={jobScore} />
+                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.jobScore} />
                                 </div>
                             </div>
                             <div className="detail-row">
@@ -243,7 +243,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 </div>
                                 <div className="mb-3 detail">
                                     <label htmlFor="job-url" className="font-bold">Link</label>
-                                    <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={link} />
+                                    <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.link} />
                                 </div>
                             </div>
                         </div>
