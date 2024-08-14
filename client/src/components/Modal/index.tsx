@@ -15,11 +15,17 @@ interface jobProp {
     companyName: string;
     jobDescription: string;
     location: string;
+    locationObj: LocationI;
     status: string;
     dateApplied: string;
     quickApply: boolean;
     jobScore: number;
     link: string;
+}
+
+interface LocationI {
+    workStyle: string;
+    officeLocation: string;
 }
 
 interface ModalProps {
@@ -48,7 +54,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        quickApply,
+        locationObj,
         jobScore,
         link
     } = job;
@@ -62,7 +68,9 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         jobScore,
-        link
+        link,
+        officeLocation: locationObj.officeLocation,
+        workStyle: locationObj.workStyle,
     });
 
     const changeHandler = (
@@ -85,14 +93,17 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             case "stage":
                 name = "status";
                 break;
-            case "quick-apply":
-                // console.log('quickApply', e.currentTarget.checked);
-                break;
             case "job-score":
                 name = "jobScore";
                 break;
             case 'job-url':
                 name = 'link';
+                break;
+            case 'office-location':
+                name = 'officeLocation'
+                break;
+            case 'work-style':
+                name = 'workStyle'
                 break;
             default:
                 break;
@@ -124,16 +135,14 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             if (status !== editJobForm.status) {
                 await editApp({
                     variables: {
-                        ...editJobForm,
-                        quickApply: quickApply,
+                        ...editJobForm
                     },
                 });
             } else {
                 let { status: _, ...temp } = editJobForm;
                 await editApp({
                     variables: {
-                        ...temp,
-                        quickApply: quickApply,
+                        ...temp
                     },
                 });
             }
@@ -193,15 +202,28 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 {dateApplied}{" "}
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="location" className="font-bold">
-                                    location:{" "}
+                                <label htmlFor="office-location" className="font-bold">
+                                    office location:{" "}
                                 </label>
                                 <input
                                     type="text"
-                                    name="location"
-                                    id="location"
+                                    name="office-location"
+                                    id="office-location"
                                     className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
-                                    placeholder={job.location}
+                                    placeholder={job.locationObj.officeLocation}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="work-style" className="font-bold">
+                                    work style:{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="work-style"
+                                    id="work-style"
+                                    className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
+                                    placeholder={job.locationObj.workStyle}
                                     onChange={changeHandler}
                                 />
                             </div>
