@@ -1,9 +1,15 @@
 .app-table,
-.app-table tbody.body { height: 100%; }
+.app-table tbody.body {
+    height: 100%;
+}
 
 .app-table .stage {
     min-width: 120px;
     max-width: 120px
+}
+
+.app-table .dropdown {
+    margin-left: -.5rem;
 }
 
 .app-table th {
@@ -42,18 +48,24 @@
     align-items: center;
 }
 
-.app-table .spacer{
+.app-table .spacer {
     max-width: 30px;
 }
 
 @media screen and (max-width: 1240px) {
-    .app-table .ATS-score { display: none; }
+    .app-table .ATS-score {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) {
-    .app-table .location { display: none; }
+    .app-table .location {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 967px) {
-    .app-table .date-added { display: none; }
+    .app-table .date-added {
+        display: none;
+    }
 }
