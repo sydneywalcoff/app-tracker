@@ -14,7 +14,7 @@ const RadioBtn = (params: RadioBtnPropsI) => {
 
     useEffect(() => { 
         selected === label ? setSelected(true) : setSelected(false)
-    }, [selected]);
+    }, [selected, label]);
 
     const handleClick = () => {
         onStyleChange(label);
@@ -22,8 +22,8 @@ const RadioBtn = (params: RadioBtnPropsI) => {
 
     return (
         <div className="radio-btn-container flex" onClick={handleClick}>
-            <div className={`radio-btn shadow-sm ${isSelected ? 'selected' : ''}`}></div>
-            <p className="label">{label}</p>
+            <div role="radio" aria-checked={isSelected} aria-labelledby={`radio-label-${label}`} tabIndex={0} className={`radio-btn shadow-sm ${isSelected ? 'selected' : ''}`}></div>
+            <p className="label" id={`radio-label-${label}`}>{label}</p>
         </div>
     )
 };

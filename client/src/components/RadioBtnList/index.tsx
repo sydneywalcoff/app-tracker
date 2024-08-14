@@ -13,7 +13,7 @@ const RadioBtnList = (params: RadioBtnListPropsI) => {
     const { options, onStyleChange, selected } = params;
     
     return(
-        <div className="radio-btn-list flex justify-between">
+        <div className="radio-btn-list flex justify-between" role="radiogroup">
            {options.map(option => <RadioBtn label={option} key={option} selected={selected} onStyleChange={onStyleChange}/>)}
         </div>
     )
