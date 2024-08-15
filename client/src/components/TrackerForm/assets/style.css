@@ -1,0 +1,100 @@
+.tracker .form {
+    background-color: var(--light-blue);
+    border-radius: 12px;
+    width: 100%;
+}
+
+.tracker button {
+    font-size: 22px;
+    width: auto;
+    margin-left: auto;
+}
+
+.tracker label {
+    padding-left: .5em;
+}
+
+.tracker h1 {
+    font-weight: 600;
+    text-align: left;
+    line-height: 1;
+}
+
+.tracker p {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.tracker.form-container {
+    width: 100%;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.tracker.form-container .content {
+    padding: 16px;
+}
+
+.tracker.form-container .content>p {
+    margin-bottom: 16px;
+}
+
+.tracker.form-container .form-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tracker.form-container .form-content .input-container,
+.tracker.form-container .form-content .dropdown-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.tracker.form-container .form-content .dropdown-container .dropdown {
+    margin-left: unset;
+    position: relative;
+    z-index: 100;
+}
+
+.tracker.tracker.form-container .form-content .dropdown-container .stage-select-container:hover {
+    box-shadow: none;
+}
+
+.tracker.tracker.form-container .form-content .dropdown-container .stage-select-container .arrow {
+    visibility: visible;
+}
+
+.tracker.form-container .form-content .input-container input {
+    width: 100%;
+}
+
+.tracker.form-container .form-content .input-container.link {
+    margin-top: auto;
+}
+
+.tracker.form-container .form-content .textArea-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.tracker.form-container .form-content .checkbox-container {
+    display: inline-flex;
+}
+
+.tracker .clear-btn {
+    margin: 0;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 960px) {
+
+    .tracker.form-container {
+        order: 1;
+    }
+
+    .tracker h1 {
+        font-size: 35px;
+    }
+}

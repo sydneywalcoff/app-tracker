@@ -2,7 +2,8 @@ import { Schema, model, Document, Model, SchemaDefinitionProperty, Types } from 
 import dateFormat from '../utils/dateFormat';
 import { QuestionDocument } from './index';
 const noteSchema = require('./Note');
-const statusHistorySchema = require('./StatusHistory')
+const statusHistorySchema = require('./StatusHistory');
+const locationSchema = require('./Location');
 
 const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     jobTitle: {
@@ -23,13 +24,10 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
         require: true
     },
     location:  {
-        type: String,
-        require: true
+        type: String
     },
-    quickApply:  {
-        type: Boolean,
-        require: true,
-        default: false
+    locationObj: {
+        type: locationSchema
     },
     jobScore:  {
         type: Number,
@@ -74,6 +72,7 @@ export interface AppDocument extends Document {
     status: string,
     statusHistory: [],
     location: string,
+    locationObj: {},
     quickApply: boolean,
     jobScore?: number,
     dateApplied: Date | SchemaDefinitionProperty<Date>,

@@ -42,7 +42,7 @@ const SingleApp = () => {
     await deleteApp({
       variables: { id: jobId },
     });
-    window.location.assign("/applied");
+    window.location.assign("/dashboard");
   };
 
   const seeMoreClass = isSeeMoreOpen ? 'active' : '';
@@ -58,6 +58,18 @@ const SingleApp = () => {
 
   let savedLinkUrl = job?.link || '';
   savedLinkUrl = savedLinkUrl.includes('https://') ? savedLinkUrl : 'https://' + savedLinkUrl;
+
+  let locationText;
+  if (job?.locationObj) {
+    let { officeLocation, workStyle } = job.locationObj;
+    if (officeLocation && workStyle) {
+      locationText = `${officeLocation} (${workStyle})`
+    } else if (officeLocation) {
+      locationText = officeLocation;
+    } else {
+      locationText = workStyle;
+    }
+  }
 
   const quickApplyText = () => job.quickApply ? "yes" : "no";
   return (
@@ -80,7 +92,7 @@ const SingleApp = () => {
                   </h4>
                   <h4>
                     <span className="font-bold">location: </span>
-                    {job.location}
+                    {locationText}
                   </h4>
                   <h4>
                     <span className="font-bold">stage: </span>
@@ -126,7 +138,7 @@ const SingleApp = () => {
                 </h4>
                 <h4>
                   <span className="font-bold">location: </span>
-                  {job.location}
+                  {locationText}
                 </h4>
                 <h4>
                   <span className="font-bold">stage: </span>

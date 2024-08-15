@@ -8,8 +8,10 @@ interface IdAppProps {
     _id: String
 }
 
-interface AppIdProps extends AppDocument {
+interface AppProps extends AppDocument {
     appId: String
+    workStyle: String
+    officeLocation: String
 }
 
 interface NoteIdProps {
@@ -56,9 +58,10 @@ const resolvers = {
         }
     },
     Mutation: {
-        addApp: async (_: undefined, args: AppDocument, context) => {
+        addApp: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const lastUpdated = Date.now();
+                const { status, workStyle, officeLocation } = args;
                 // this might be handled on the backend;
                 const basicQuestionsList = [
                     'What is the breakdown of the team and who does what?',
@@ -69,7 +72,7 @@ const resolvers = {
                 ];
                 const statusChange = {
                     dateChanged: lastUpdated,
-                    status: args.status
+                    status
                 };
                 const questionsList = basicQuestionsList.map(question => {
                     return {
@@ -81,7 +84,17 @@ const resolvers = {
 
                 const questionData = await Question.create(questionsList);
                 const statusHistory = [statusChange];
-                const appData = await App.create({ ...args, lastUpdated, statusHistory, questions: questionData.map(question => question._id) });
+                
+                const appData = await App.create({
+                    ...args,
+                    locationObj: {
+                        workStyle,
+                        officeLocation
+                    }, 
+                    lastUpdated, 
+                    statusHistory,
+                    questions: questionData.map(question => question._id) 
+                });
 
                 await User.findByIdAndUpdate(
                     context.user._id,
@@ -92,22 +105,22 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        editApp: async (_: undefined, args: AppDocument, context) => {
+        editApp: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
-                const { _id, status } = args;
+                const { _id, status, officeLocation, workStyle } = args;
                 const lastUpdated = Date.now();
                 let statusChange = {
                     status: status,
                     dateChanged: lastUpdated
                 };
                 let appData = !status ?
-                    await App.findByIdAndUpdate(_id, { ...args, lastUpdated }, { new: true }) :
-                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, lastUpdated }, { new: true })
+                    await App.findByIdAndUpdate(_id, { ...args, locationObj: { officeLocation, workStyle }, lastUpdated }, { new: true }) :
+                    await App.findByIdAndUpdate(_id, { ...args, $addToSet: { statusHistory: statusChange }, locationObj: { officeLocation, workStyle } }, { new: true })
                 return appData;
             }
             throw new AuthenticationError('You are not logged in');
         },
-        editAppStatus: async (_: undefined, args: AppDocument, context) => {
+        editAppStatus: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const { _id, status } = args;
                 const lastUpdated = Date.now();
@@ -127,7 +140,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You are not logged in');
         },
-        addNote: async (_: undefined, args: AppIdProps, context) => {
+        addNote: async (_: undefined, args: AppProps, context) => {
             if (context.user) {
                 const { appId } = args;
                 const lastUpdated = Date.now();

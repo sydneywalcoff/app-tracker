@@ -15,11 +15,17 @@ interface jobProp {
     companyName: string;
     jobDescription: string;
     location: string;
+    locationObj: LocationI;
     status: string;
     dateApplied: string;
     quickApply: boolean;
     jobScore: number;
     link: string;
+}
+
+interface LocationI {
+    workStyle: string;
+    officeLocation: string;
 }
 
 interface ModalProps {
@@ -48,7 +54,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        quickApply,
+        locationObj,
         jobScore,
         link
     } = job;
@@ -62,7 +68,9 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         jobScore,
-        link
+        link,
+        officeLocation: locationObj.officeLocation,
+        workStyle: locationObj.workStyle,
     });
 
     const changeHandler = (
@@ -85,14 +93,17 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             case "stage":
                 name = "status";
                 break;
-            case "quick-apply":
-                // console.log('quickApply', e.currentTarget.checked);
-                break;
             case "job-score":
                 name = "jobScore";
                 break;
             case 'job-url':
                 name = 'link';
+                break;
+            case 'office-location':
+                name = 'officeLocation'
+                break;
+            case 'work-style':
+                name = 'workStyle'
                 break;
             default:
                 break;
@@ -124,16 +135,14 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             if (status !== editJobForm.status) {
                 await editApp({
                     variables: {
-                        ...editJobForm,
-                        quickApply: quickApply,
+                        ...editJobForm
                     },
                 });
             } else {
                 let { status: _, ...temp } = editJobForm;
                 await editApp({
                     variables: {
-                        ...temp,
-                        quickApply: quickApply,
+                        ...temp
                     },
                 });
             }
@@ -154,69 +163,90 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                         x
                     </p>
                 </div>
-                <div className="flex p-4">
+                <div className="flex p-4 modal-content">
                     <div className="flex-col w-full flex basis-3/4 mr-3">
-                        <div className="my-3">
-                            <label htmlFor="job-title" className="font-bold mr-2 pr-1">
-                                Title:
-                            </label>
-                            <input
-                                name="job-title"
-                                className="mb-2 p-1 border-solid border-2"
-                                placeholder={jobTitle}
-                                onChange={changeHandler}
-                            />
-                            <label htmlFor="company-name" className="font-bold m-2 pr-1">
-                                Company:
-                            </label>
-                            <input
-                                className="mb-2 p-1 border-solid border-2"
-                                name="company-name"
-                                placeholder={companyName}
-                                onChange={changeHandler}
-                            />
+                        <div className="my-3 top-details flex">
+                            <div className="item">
+                                <label htmlFor="job-title" className="font-bold mr-2 pr-1">
+                                    Title:
+                                </label>
+                                <input
+                                    name="job-title"
+                                    className="mb-2 p-1 border-solid border-2"
+                                    value={editJobForm.jobTitle}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className="item">
+                                <label htmlFor="company-name" className="font-bold m-2 pr-1">
+                                    Company:
+                                </label>
+                                <input
+                                    className="mb-2 p-1 border-solid border-2"
+                                    name="company-name"
+                                    value={editJobForm.companyName}
+                                    onChange={changeHandler}
+                                />
+                            </div>
                         </div>
                         <label htmlFor="job-description" className="font-bold mb-2">
                             Job Description
                         </label>
                         <textarea
-                            className="whitespace-pre-wrap p-1 w-full h-full border-solid border-2"
+                            className="whitespace-pre-wrap p-1 w-full h-full border-solid border-2 job-description"
                             name="job-description"
-                            placeholder={jobDescription}
+                            value={editJobForm.jobDescription}
                             onChange={changeHandler}
                         />
                     </div>
-                    <div className="flex-col basis-1/4">
-                        <>
-                            <div className="mb-3">
-                                <span className="font-bold">date applied: </span>
-                                {dateApplied}{" "}
+                    <div className="basis-1/4">
+                        <div className="flex-col flex  details-container">
+                            <div className="detail-row">
+                                <div className="mb-3 detail date-applied">
+                                    <span className="font-bold">date applied: </span>
+                                    {dateApplied}{" "}
+                                </div>
+                                <div className="mb-3 detail">
+                                    <label htmlFor="office-location" className="font-bold">
+                                        office location:{" "}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="office-location"
+                                        id="office-location"
+                                        className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
+                                        value={editJobForm.officeLocation}
+                                        onChange={changeHandler}
+                                    />
+                                </div>
+                                <div className="mb-3 detail">
+                                    <label htmlFor="work-style" className="font-bold">
+                                        work style:{" "}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="work-style"
+                                        id="work-style"
+                                        className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
+                                        value={editJobForm.workStyle}
+                                        onChange={changeHandler}
+                                    />
+                                </div>
+                                <div className="mb-3 detail">
+                                    <label htmlFor="job-score" className="font-bold">Job Score:</label>
+                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.jobScore} />
+                                </div>
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="location" className="font-bold">
-                                    location:{" "}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="location"
-                                    id="location"
-                                    className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full"
-                                    placeholder={job.location}
-                                    onChange={changeHandler}
-                                />
+                            <div className="detail-row">
+                                <div className="mb-3 detail">
+                                    <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status} />
+                                </div>
+                                <div className="mb-3 detail">
+                                    <label htmlFor="job-url" className="font-bold">Link</label>
+                                    <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.link} />
+                                </div>
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={jobScore} />
-                            </div>
-                            <div className="mb-3">
-                                <StageDropdown options={['preparing', 'rejected', 'applied', 'phone screen', 'first interview', 'technical', 'offer']} onStageChange={handleDropDownChange} selectedStage={editJobForm.status} />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="job-url" className="font-bold">Link</label>
-                                <input type="text" name="job-url" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={link} />
-                            </div>
-                        </>
+                        </div>
                         <Button
                             type="button"
                             onClick={submitHandler}

@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 import './assets/style.css';
 
 const LoginPage = () => {
+    if (Auth.loggedIn()) window.location.assign('/dashboard');
     const notify = (text: string) => toast.error(`${text}`, {
         position: 'top-center',
         autoClose: 5000,
@@ -19,7 +20,6 @@ const LoginPage = () => {
         closeOnClick: true,
         theme: 'colored'
     });
-    if (Auth.loggedIn()) window.location.assign('/applied');
 
     const [loginForm, setLoginForm] = useState({
         username: "",
@@ -56,7 +56,7 @@ const LoginPage = () => {
                 variables: { ...loginForm }
             })
             Auth.login(loginData.token);
-            window.location.assign('/tracker')
+            window.location.assign('/dashboard')
         } catch (e) {
             console.error(e);
             notify(`${e} Please try again!`);
@@ -71,7 +71,7 @@ const LoginPage = () => {
                 variables: { ...signupForm }
             })
             Auth.login(signupData.token);
-            window.location.assign('/tracker')
+            window.location.assign('/dashboard')
         } catch (e) {
             console.error(e);
             notify(`${e} Please try again!`);
