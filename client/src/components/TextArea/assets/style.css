@@ -1,3 +1,7 @@
 textarea {
     border-radius: 12px;
 }
+
+textarea.error {
+    border: 2px solid var(--error-color);
+}

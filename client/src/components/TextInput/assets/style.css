@@ -1,3 +1,7 @@
 input {
     border-radius: 4px;
 }
+
+input.error {
+    border: 2px solid var(--error-color);
+}
