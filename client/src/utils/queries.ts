@@ -12,7 +12,10 @@ export const QUERY_APPS = gql`
                 status
             }
             location
-            quickApply
+            locationObj {
+                workStyle
+                officeLocation
+            }
             jobScore
             dateApplied
             companyName
@@ -42,7 +45,10 @@ export const QUERY_SINGLE_APP = gql`
                 status
             }
             location
-            quickApply
+            locationObj {
+                workStyle
+                officeLocation
+            }
             jobScore
             dateApplied
             companyName
@@ -75,7 +81,10 @@ export const QUERY_MY_APPS = gql`
                 status
             }
             location
-            quickApply
+            locationObj {
+                workStyle
+                officeLocation
+            }
             jobScore
             dateApplied
             companyName

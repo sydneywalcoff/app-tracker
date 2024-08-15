@@ -21,12 +21,8 @@ const Header = () => {
 
     const routingObjArr: pageRoutingObj[] = [
         {
-            name: 'Track.',
-            location: '/tracker',
-        },
-        {
-            name: 'Applied.',
-            location: '/applied',
+            name: 'Dash.',
+            location: '/dashboard'
         },
         // {
         //     name: 'stats.',
