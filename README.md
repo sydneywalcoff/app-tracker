@@ -34,7 +34,6 @@ Make an account or use `test` as username and password.
 
 - Single App Page
     - Make questions answerable
-    - Add custom questions per app
 
 ## Contributing
 

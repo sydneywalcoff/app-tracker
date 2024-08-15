@@ -184,7 +184,6 @@ const TrackerForm = () => {
                                 name="ats-score"
                                 labelTitle="ATS score"
                                 value={formState.jobScore}
-                                type="number"
                             />
                         </div>
                         <div className="dropdown-container">

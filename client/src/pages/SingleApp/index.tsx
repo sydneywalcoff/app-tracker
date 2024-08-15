@@ -7,8 +7,8 @@ import { DELETE_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
 import './assets/style.css'
-import trashIcon from './assets/trash.svg';
-import editIcon from './assets/edit.svg';
+import trashIcon from '../../assets/trash.svg';
+import editIcon from '../../assets/edit.svg';
 
 import StageBadge from "../../components/StageBadge";
 import Modal from "../../components/Modal";
@@ -16,6 +16,7 @@ import Notes from "../../components/Notes";
 import SectionContainer from "../../components/SectionContainer";
 import ContentContainer from "../../components/ContentContainer";
 import StatusHistory from "../../components/StatusHistory";
+import QuestionList from "../../components/QuestionList";
 
 const SingleApp = () => {
   const loggedIn = Auth.loggedIn();
@@ -168,27 +169,8 @@ const SingleApp = () => {
             </div>
           </div>
           <div className="flex bottom-content">
-            <div className="questions">
-              <h3 className="text-2xl mb-2">Questions</h3>
-              <ul className="px-5">
-                <li className="list-disc mb-3">
-                  What is the breakdown of the team and who does what?
-                </li>
-                <li className="list-disc mb-3">
-                  What are you most excited about having a new person in this role?
-                </li>
-                <li className="list-disc mb-3">
-                  What is your biggest pain point? How will this role alleviate
-                  that?
-                </li>
-                <li className="list-disc mb-3">
-                  What advice would you give someone through the rest of the
-                  interviewing process?
-                </li>
-                <li className="list-disc mb-3">
-                  What is the rest of the hiring process?
-                </li>
-              </ul>
+            <div className="question-container">
+              <QuestionList questions={job.questions} appId={job._id}/>
             </div>
             <div className="flex-col notes">
               <Notes notes={job.notes} appId={job._id} />
