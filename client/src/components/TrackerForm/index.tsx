@@ -45,11 +45,6 @@ const TrackerForm = () => {
         }
     });
 
-    const loggedIn = Auth.loggedIn();
-    if (!loggedIn) {
-        window.location.assign('/login');
-    }
-
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { jobTitle, companyName, locationObj: { workStyle, officeLocation }, jobDescription } = formState;
