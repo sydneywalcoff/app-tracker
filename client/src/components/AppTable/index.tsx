@@ -64,8 +64,8 @@ const AppTable = (params: AppTableI) => {
 
     const paginateJobs = () => {
         let paginatedJobs: AppItemI[] = [];
-        if (numJobs <= 10) return jobs;
-        for (let i = firstShownApp; i <= (firstShownApp + perPageNum); i++) {
+        if (numJobs <= perPageNum) return jobs;
+        for (let i = firstShownApp; i < (firstShownApp + perPageNum); i++) {
             if (jobs[i]) {
                 paginatedJobs.push(jobs[i]);
             }
