@@ -118,6 +118,14 @@ const TrackerForm = () => {
             return;
         }
 
+        if (
+            formState.jobTitle.length !== 0 &&
+            formState.companyName.length !== 0 &&
+            formState.jobDescription.length !== 0
+        ) {
+            setInputError("");
+        }
+
         setFormState({ ...formState, [name]: value });
     };
 
