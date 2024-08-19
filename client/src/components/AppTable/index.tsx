@@ -23,6 +23,7 @@ interface AppItemI {
 
 interface AppTableI {
     apps: AppItemI[]
+    loading: Boolean;
 }
 
 type jobStatusObj = {
@@ -32,7 +33,7 @@ type jobStatusObj = {
 const AppTable = (params: AppTableI) => {
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const { apps } = params;
+    let { apps, loading } = params;
     let jobs = apps;
     let numJobs: number = jobs.length || 0;
     let perPageNum = 8;
@@ -98,15 +99,20 @@ const AppTable = (params: AppTableI) => {
                 </thead>
 
                 <tbody className="body w-full">
-                    {numJobs === 0 ? (
-                        <tr className='no-jobs-tracked'>
+                    {loading ?
+                        (<tr className="loading">
                             <td>
-                                <h1>no jobs tracked yet ¯\_(ツ)_/¯</h1>
-                                <p>Go find some jobs to track.</p>
+                                <p>Loading...</p>
                             </td>
-                        </tr>) : (
-                        jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)
-                    )
+                        </tr>) : numJobs === 0 ? (
+                            <tr className='no-jobs-tracked'>
+                                <td>
+                                    <h1>no jobs tracked yet ¯\_(ツ)_/¯</h1>
+                                    <p>Go find some jobs to track.</p>
+                                </td>
+                            </tr>) : (
+                            jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)
+                        )
                     }
                 </tbody>
             </table>

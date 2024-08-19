@@ -52,7 +52,7 @@ const DashboardPage = () => {
         focus: 'inPrep'
     })
 
-    const { data } = useQuery(QUERY_MY_APPS);
+    const { data, loading } = useQuery(QUERY_MY_APPS);
 
     useEffect(() => {
         let jobsData: jobProp[] = data?.myApps || [];
@@ -75,7 +75,7 @@ const DashboardPage = () => {
                     <div className="top-section flex">
                         <div className="focus flex flex-col">
                             <h4>{jobs.focus}</h4>
-                            <AppTable apps={jobs.focus === 'Apps in Prep' ? jobs.inPrep : jobs.inProcess} />
+                            <AppTable apps={jobs.focus === 'Apps in Prep' ? jobs.inPrep : jobs.inProcess} loading={loading}/>
                         </div>
                         <div className="dashboard-img ml-4">
                             <img src={DashboardImg} alt="man sitting working on a computer" />
@@ -83,7 +83,7 @@ const DashboardPage = () => {
                     </div>
                     <div className="all-apps md:mt-4">
                         <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                        <AppTable apps={jobs.all} />
+                        <AppTable apps={jobs.all} loading={loading} />
                     </div>
                 </div>
                 <div className="outer-form-container ml-4">

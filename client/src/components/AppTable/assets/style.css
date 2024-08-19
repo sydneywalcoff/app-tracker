@@ -11,6 +11,10 @@
     padding: 8px;
 }
 
+.app-table .no-jobs-tracked p {
+    text-align: center;
+}
+
 .app-table .no-jobs-tracked h1 {
     font-size: 24px;
 }
@@ -62,6 +66,14 @@
 
 .app-table .spacer {
     max-width: 30px;
+}
+
+.app-table .loading {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
 }
 
 @media screen and (max-width: 1240px) {
