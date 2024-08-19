@@ -15,7 +15,7 @@ const TextInput = ({ labelTitle, onChange, name, value, required }: TextInputPro
     const styledName = labelTitle ? labelTitle : name;
     let inputType;
     if(name === 'password') inputType = 'password';
-    if(name === 'job-score') inputType = 'number';
+    if(name === 'job-score' || name === 'ats-score') inputType = 'number';
     
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(typeof(value) === 'string' && required && value?.length > 0 ) {
