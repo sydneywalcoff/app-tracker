@@ -81,7 +81,7 @@ const DashboardPage = () => {
                             <img src={DashboardImg} alt="man sitting working on a computer" />
                         </div>
                     </div>
-                    <div className="all-apps mt-12">
+                    <div className="all-apps md:mt-4">
                         <SearchBar searchText={searchText} setSearchText={setSearchText} />
                         <AppTable apps={jobs.all} />
                     </div>
