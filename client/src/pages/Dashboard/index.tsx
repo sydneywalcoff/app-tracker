@@ -59,7 +59,6 @@ const DashboardPage = () => {
         let jobsInPrep: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
         let jobsInProcess: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
         let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process';
-        console.log()
 
         setJobs({
             inProcess: jobsInProcess,
