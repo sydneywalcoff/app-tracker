@@ -96,14 +96,18 @@ const AppTable = (params: AppTableI) => {
                         <th className="spacer title"></th>
                     </tr>
                 </thead>
-                { numJobs === 0 &&
-                        <div className='no-jobs-tracked'>
-                            <h1>no jobs tracked yet ¯\_(ツ)_/¯</h1>
-                            <p>Go find some jobs to track.</p>
-                        </div>
-                }
+               
                 <tbody className="body w-full">
-                    {jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)}
+                { numJobs === 0 ?(
+                        <tr className='no-jobs-tracked'>
+                            <td>
+                                <h1>no jobs tracked yet ¯\_(ツ)_/¯</h1>
+                                <p>Go find some jobs to track.</p>
+                            </td>
+                        </tr>) : (
+                            jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)
+                        )
+                }
                 </tbody>
             </table>
             {numJobs > 10 &&
