@@ -29,7 +29,7 @@ const TrackerForm = () => {
     };
     const [formState, setFormState] = useState(defaultFormState);
     const [inputError, setInputError] = useState("");
-    const [addApp] = useMutation(ADD_APP, {
+    const [addApp, { loading }] = useMutation(ADD_APP, {
         update(cache, { data: { addApp } }) {
             try {
                 cache.updateQuery({ query: QUERY_MY_APPS }, ({ myApps }) => ({
@@ -217,7 +217,7 @@ const TrackerForm = () => {
                         </div>
                         <div className="btn-container w-full justify-end flex">
                             <Button text="clear" classes="clear-btn" type={undefined} onClick={clearForm} />
-                            <Button text="save" classes="primary drop-shadow-md" type="submit" />
+                            <Button text={loading ? 'loading...' :'save'} classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
                     {inputError && (
