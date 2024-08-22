@@ -183,7 +183,6 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="ats-score"
                                 labelTitle="ATS score"
-                                value={formState.jobScore}
                             />
                         </div>
                         <div className="dropdown-container">
