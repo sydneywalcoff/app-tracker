@@ -216,7 +216,7 @@ const TrackerForm = () => {
                             <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} required />
                         </div>
                         <div className="btn-container w-full justify-end flex">
-                            <Button text="clear" classes="clear-btn" type={undefined} onClick={clearForm} />
+                            <Button text="clear" classes="clear-btn" onClick={clearForm} type="button" />
                             <Button text={loading ? 'loading...' :'save'} classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
