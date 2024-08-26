@@ -29,6 +29,8 @@ const TrackerForm = () => {
     };
     const [formState, setFormState] = useState(defaultFormState);
     const [inputError, setInputError] = useState("");
+    const [isCleared, setIsCleared] = useState(false);
+
     const [addApp, { loading }] = useMutation(ADD_APP, {
         update(cache, { data: { addApp } }) {
             try {
@@ -140,6 +142,8 @@ const TrackerForm = () => {
 
     const clearForm = () => {
         setFormState(defaultFormState);
+        setIsCleared(true);
+        setInputError("");
     };
 
     let radioBtnOptions = ['on-site', 'hybrid', 'remote'];
@@ -158,6 +162,8 @@ const TrackerForm = () => {
                                 labelTitle="Job title*"
                                 value={formState.jobTitle}
                                 required
+                                isCleared={isCleared}
+                                setIsCleared={setIsCleared}
                             />
                         </div>
                         <div className="input-container">
@@ -167,6 +173,8 @@ const TrackerForm = () => {
                                 labelTitle="Company name*"
                                 value={formState.companyName}
                                 required
+                                isCleared={isCleared}
+                                setIsCleared={setIsCleared}
                             />
                         </div>
                         <div className="input-container location">
@@ -213,7 +221,8 @@ const TrackerForm = () => {
                             />
                         </div>
                         <div className="textArea-container">
-                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} required />
+                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} required isCleared={isCleared} setIsCleared={setIsCleared}
+                            />
                         </div>
                         <div className="btn-container w-full justify-end flex">
                             <Button text="clear" classes="clear-btn" onClick={clearForm} type="button" />

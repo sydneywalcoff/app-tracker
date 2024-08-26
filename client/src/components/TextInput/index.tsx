@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ChangeEvent, useState } from 'react';
+import { ChangeEventHandler, ChangeEvent, useState, Dispatch, useEffect } from 'react';
 
 import './assets/style.css';
 
@@ -8,14 +8,23 @@ interface TextInputPropsI {
     name: string;
     value?: string | number;
     required?: boolean;
+    setIsCleared?: Dispatch<boolean>
+    isCleared?: boolean;
 }
 
-const TextInput = ({ labelTitle, onChange, name, value, required }: TextInputPropsI) => {
+const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, isCleared }: TextInputPropsI) => {
     const [error, setError] = useState(false);
     const styledName = labelTitle ? labelTitle : name;
     let inputType;
     if(name === 'password') inputType = 'password';
     if(name === 'job-score' || name === 'ats-score') inputType = 'number';
+
+    useEffect(() => {
+        if(isCleared && setIsCleared) { 
+            setError(false);
+            setIsCleared(false)
+        }
+    }, [isCleared, setIsCleared])
     
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(typeof(value) === 'string' && required && value?.length > 0 ) {
