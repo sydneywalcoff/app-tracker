@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 
 import { ADD_APP } from "../../utils/mutations";
-import Auth from '../../utils/auth';
 
 import TextInput from "../TextInput";
 import TextArea from "../TextArea";
@@ -30,7 +29,9 @@ const TrackerForm = () => {
     };
     const [formState, setFormState] = useState(defaultFormState);
     const [inputError, setInputError] = useState("");
-    const [addApp] = useMutation(ADD_APP, {
+    const [isCleared, setIsCleared] = useState(false);
+
+    const [addApp, { loading }] = useMutation(ADD_APP, {
         update(cache, { data: { addApp } }) {
             try {
                 cache.updateQuery({ query: QUERY_MY_APPS }, ({ myApps }) => ({
@@ -45,11 +46,6 @@ const TrackerForm = () => {
         }
     });
 
-    const loggedIn = Auth.loggedIn();
-    if (!loggedIn) {
-        window.location.assign('/login');
-    }
-
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { jobTitle, companyName, locationObj: { workStyle, officeLocation }, jobDescription } = formState;
@@ -58,7 +54,7 @@ const TrackerForm = () => {
             companyName.length === 0 ||
             jobDescription.length === 0
         ) {
-            setInputError("All fields are required :(");
+            setInputError("please fix required fields");
             return;
         }
         try {
@@ -108,10 +104,6 @@ const TrackerForm = () => {
             default:
                 break;
         }
-        // if (!value.length) {
-        //     setInputError(`${inputName} is required!`);
-        //     return;
-        // }
         if (name === "jobScore") {
             const scoreNum = parseInt(value, 10);
             setFormState({ ...formState, [name]: scoreNum });
@@ -128,6 +120,14 @@ const TrackerForm = () => {
             return;
         }
 
+        if (
+            formState.jobTitle.length !== 0 &&
+            formState.companyName.length !== 0 &&
+            formState.jobDescription.length !== 0
+        ) {
+            setInputError("");
+        }
+
         setFormState({ ...formState, [name]: value });
     };
 
@@ -142,6 +142,8 @@ const TrackerForm = () => {
 
     const clearForm = () => {
         setFormState(defaultFormState);
+        setIsCleared(true);
+        setInputError("");
     };
 
     let radioBtnOptions = ['on-site', 'hybrid', 'remote'];
@@ -151,7 +153,7 @@ const TrackerForm = () => {
             <form action="#" className="form shadow" onSubmit={handleSubmit}>
                 <div className="content">
                     <h1>Track.</h1>
-                    <p>All fields with a * are required.</p>
+                    <p>Fields with * are required.</p>
                     <div className="form-content">
                         <div className="input-container">
                             <TextInput
@@ -159,6 +161,9 @@ const TrackerForm = () => {
                                 name="job-title"
                                 labelTitle="Job title*"
                                 value={formState.jobTitle}
+                                required
+                                isCleared={isCleared}
+                                setIsCleared={setIsCleared}
                             />
                         </div>
                         <div className="input-container">
@@ -167,6 +172,9 @@ const TrackerForm = () => {
                                 name="company-name"
                                 labelTitle="Company name*"
                                 value={formState.companyName}
+                                required
+                                isCleared={isCleared}
+                                setIsCleared={setIsCleared}
                             />
                         </div>
                         <div className="input-container location">
@@ -183,7 +191,6 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="ats-score"
                                 labelTitle="ATS score"
-                                value={formState.jobScore}
                             />
                         </div>
                         <div className="dropdown-container">
@@ -214,15 +221,16 @@ const TrackerForm = () => {
                             />
                         </div>
                         <div className="textArea-container">
-                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} />
+                            <TextArea onChange={handleChange} name="job-description" labelText="Job description*" value={formState.jobDescription} required isCleared={isCleared} setIsCleared={setIsCleared}
+                            />
                         </div>
                         <div className="btn-container w-full justify-end flex">
-                            <Button text="clear" classes="clear-btn" type={undefined} onClick={clearForm}/>
-                            <Button text="save" classes="primary drop-shadow-md" type="submit" />
+                            <Button text="clear" classes="clear-btn" onClick={clearForm} type="button" />
+                            <Button text={loading ? 'loading...' :'save'} classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
                     {inputError && (
-                        <p className="text-red-700 mt-2">{inputError}</p>
+                        <p className="error-text mt-4 text-center">{inputError}</p>
                     )}
                 </div>
             </form>

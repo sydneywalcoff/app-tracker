@@ -28,6 +28,7 @@ const RadioBtn = (params: RadioBtnPropsI) => {
         const { toggleKeys } = Accessibility;
 
         if(toggleKeys.includes(code)) {
+            e.preventDefault();
             handleClick();
             return;
         }
