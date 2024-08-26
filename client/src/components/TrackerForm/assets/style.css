@@ -88,6 +88,10 @@
     font-size: 18px;
 }
 
+.tracker .error-text {
+    color: var(--error-color);
+}
+
 @media screen and (max-width: 960px) {
 
     .tracker.form-container {

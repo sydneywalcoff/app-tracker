@@ -52,14 +52,13 @@ const DashboardPage = () => {
         focus: 'inPrep'
     })
 
-    const { data } = useQuery(QUERY_MY_APPS);
+    const { data, loading } = useQuery(QUERY_MY_APPS);
 
     useEffect(() => {
         let jobsData: jobProp[] = data?.myApps || [];
         let jobsInPrep: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
         let jobsInProcess: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
         let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process';
-        console.log()
 
         setJobs({
             inProcess: jobsInProcess,
@@ -76,15 +75,15 @@ const DashboardPage = () => {
                     <div className="top-section flex">
                         <div className="focus flex flex-col">
                             <h4>{jobs.focus}</h4>
-                            <AppTable apps={jobs.focus === 'Apps in Prep' ? jobs.inPrep : jobs.inProcess} />
+                            <AppTable apps={jobs.focus === 'Apps in Prep' ? jobs.inPrep : jobs.inProcess} loading={loading}/>
                         </div>
                         <div className="dashboard-img ml-4">
                             <img src={DashboardImg} alt="man sitting working on a computer" />
                         </div>
                     </div>
-                    <div className="all-apps mt-12">
+                    <div className="all-apps md:mt-4">
                         <SearchBar searchText={searchText} setSearchText={setSearchText} />
-                        <AppTable apps={jobs.all} />
+                        <AppTable apps={jobs.all} loading={loading} />
                     </div>
                 </div>
                 <div className="outer-form-container ml-4">
