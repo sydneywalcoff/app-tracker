@@ -16,9 +16,13 @@ const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, 
     const [error, setError] = useState(false);
     const styledName = labelTitle ? labelTitle : name;
     let inputType;
+    let displayedVal = value;
     if(name === 'password') inputType = 'password';
     if(name === 'job-score' || name === 'ats-score') inputType = 'number';
 
+    if(inputType === 'number' && (value === 0 || Number.isNaN(value))) {
+        displayedVal = '';
+    }
     useEffect(() => {
         if(isCleared && setIsCleared) { 
             setError(false);
@@ -39,11 +43,12 @@ const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, 
             setError(true);
             return;
         }
+        setError(false);
     };
 
 
     return (
-        <input type={inputType} name={name} className={`drop-shadow-md p-2 ${error ? 'error' : ''}`} onChange={handleChange} placeholder={styledName} value={value} onBlur={handleBlur}/>
+        <input type={inputType} name={name} className={`drop-shadow-md p-2 ${error ? 'error' : ''}`} onChange={handleChange} placeholder={styledName} value={displayedVal} onBlur={handleBlur}/>
     );
 }
 

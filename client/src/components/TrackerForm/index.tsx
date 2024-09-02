@@ -105,7 +105,8 @@ const TrackerForm = () => {
                 break;
         }
         if (name === "jobScore") {
-            const scoreNum = parseInt(value, 10);
+            let scoreNum = parseInt(value, 10);
+            scoreNum = Number.isNaN(scoreNum) ? 0 : scoreNum;
             setFormState({ ...formState, [name]: scoreNum });
             return;
         }
@@ -191,6 +192,7 @@ const TrackerForm = () => {
                                 onChange={handleChange}
                                 name="ats-score"
                                 labelTitle="ATS score"
+                                value={formState.jobScore}
                             />
                         </div>
                         <div className="dropdown-container">
@@ -226,7 +228,7 @@ const TrackerForm = () => {
                         </div>
                         <div className="btn-container w-full justify-end flex">
                             <Button text="clear" classes="clear-btn" onClick={clearForm} type="button" />
-                            <Button text={loading ? 'loading...' :'save'} classes="primary drop-shadow-md" type="submit" />
+                            <Button text={loading ? 'loading...' : 'save'} classes="primary drop-shadow-md" type="submit" />
                         </div>
                     </div>
                     {inputError && (
