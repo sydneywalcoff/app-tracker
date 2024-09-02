@@ -39,6 +39,7 @@ const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, 
             setError(true);
             return;
         }
+        setError(false);
     };
 
 
