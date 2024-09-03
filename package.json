@@ -8,7 +8,8 @@
     "start": "cd server; npm start",
     "install": "cd server && npm i && cd ../client && npm i",
     "heroku-postbuild": "cd client && npm run build",
-    "start:dev": "concurrently \"cd server; npm run watch\" \"cd client; npm run start\""
+    "start:dev": "concurrently \"cd server; npm run watch\" \"cd client; npm run start\"",
+    "seed": "cd server && npm run seed"
   },
   "keywords": [],
   "author": "",
