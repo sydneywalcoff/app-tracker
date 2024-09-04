@@ -9,11 +9,11 @@ db.once('open', async () => {
 
     // identify existing apps
     const userData = await User.findOne({ username }).select('-__v -password').populate('apps');
-    const { apps, _id} = userData;
+    const { apps, _id } = userData;
     let questionsToDeleteById = []
-    const appsToDeleteById = apps.map(app => { 
+    const appsToDeleteById = apps.map(app => {
         questionsToDeleteById = [...questionsToDeleteById, ...app.questions]
-        return app._id; 
+        return app._id;
     });
 
     // delete existing apps and associated Qs
@@ -26,6 +26,7 @@ db.once('open', async () => {
     // create fake application data
     let fakeData = []
     let workStyles = ['remote', 'hybrid', 'on-site'];
+    let statusOptions = ['applied', 'first interview', 'rejected', 'technical', 'phone screen', 'offer']
     for (let i = 0; i < 50; i++) {
         const application = {};
         const jobTitle = faker.person.jobTitle();
@@ -37,7 +38,7 @@ db.once('open', async () => {
         const source = faker.datatype.boolean() ? 'LinkedIn' : '';
         const salary = faker.datatype.boolean() ? faker.number.float({ min: 65000, max: 100000, multipleOf: 1000 }) : '';
         const atsScore = faker.datatype.boolean() ? faker.number.float({ min: 70, max: 100, multipleOf: 1 }) : 0;
-        // add application status
+        const status = faker.datatype.boolean() ? statusOptions[faker.number.int(statusOptions.length - 1)] : 'preparing';
 
         application["jobTitle"] = jobTitle;
         application["company"] = company;
@@ -48,9 +49,10 @@ db.once('open', async () => {
         application["source"] = source;
         application["salary"] = salary;
         application["jobScore"] = atsScore;
+        application["status"] = status;
         fakeData.push(application)
     }
-    // console.log(fakeData)
+    console.log(fakeData)
 
     // add fake data to test account
 
