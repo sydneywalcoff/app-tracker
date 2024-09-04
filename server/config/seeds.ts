@@ -1,13 +1,26 @@
 const db = require('./connection');
 import { faker } from '@faker-js/faker';
 
-const { App, User } = require('../models');
+const { App, User, Question } = require('../models');
 
 db.once('open', async () => {
     // grab test account 
+    let username = 'testaccount';
 
     // identify existing apps
-    // delete existing apps
+    const userData = await User.findOne({ username }).select('-__v -password').populate('apps');
+    const { apps, _id} = userData;
+    let questionsToDeleteById = []
+    const appsToDeleteById = apps.map(app => { 
+        questionsToDeleteById = [...questionsToDeleteById, ...app.questions]
+        return app._id; 
+    });
+
+    // delete existing apps and associated Qs
+    // await App.deleteMany({_id: { $in: appsToDeleteById}}, function(err) {})
+
+    // await Question.deleteMany({_id: { $in: questionsToDeleteById}}, function(err) {})
+
     // clear test account apps Array
 
     // create fake application data
@@ -24,6 +37,7 @@ db.once('open', async () => {
         const source = faker.datatype.boolean() ? 'LinkedIn' : '';
         const salary = faker.datatype.boolean() ? faker.number.float({ min: 65000, max: 100000, multipleOf: 1000 }) : '';
         const atsScore = faker.datatype.boolean() ? faker.number.float({ min: 70, max: 100, multipleOf: 1 }) : 0;
+        // add application status
 
         application["jobTitle"] = jobTitle;
         application["company"] = company;
@@ -36,7 +50,7 @@ db.once('open', async () => {
         application["jobScore"] = atsScore;
         fakeData.push(application)
     }
-    console.log(fakeData)
+    // console.log(fakeData)
 
     // add fake data to test account
 
