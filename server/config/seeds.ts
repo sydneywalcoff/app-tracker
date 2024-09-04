@@ -17,18 +17,41 @@ db.once('open', async () => {
     });
 
     // delete existing apps and associated Qs
-    // await App.deleteMany({_id: { $in: appsToDeleteById }}, function(err) {})
+    if (appsToDeleteById.length > 0) {
+        await App.deleteMany({ _id: { $in: appsToDeleteById } }, function (err) { }).clone();
+        console.log("existing apps deleted");
+    }
 
-    // await Question.deleteMany({_id: { $in: questionsToDeleteById }}, function(err) {})
-
-    // clear test account apps Array
+    if (questionsToDeleteById.length > 0) {
+        await Question.deleteMany({ _id: { $in: questionsToDeleteById } }, function (err) { }).clone();
+        console.log('existing questions deleted')
+    }
 
     // create fake application data
+    const lastUpdated = Date.now();
     let fakeData = []
     let workStyles = ['remote', 'hybrid', 'on-site'];
     let statusOptions = ['preparing', 'first interview', 'rejected', 'technical', 'phone screen', 'offer']
+    const basicQuestionsList = [
+        'What is the breakdown of the team and who does what?',
+        'What are you most excited about having a new person in this role?',
+        'What is your biggest pain point? How will this role alleviate that?',
+        'What advice would you give someone through the rest of the interviewing process?',
+        'What is the rest of the hiring process?'
+    ];
+    const questionsList = basicQuestionsList.map(question => {
+        return {
+            questionText: question,
+            roleTag: '',
+            lastUpdated
+        };
+    })
+
     for (let i = 0; i < 50; i++) {
-        const application = {};
+        const questionData = await Question.create(questionsList);
+        const application = {
+            locationObj: {}
+        };
         const jobTitle = faker.person.jobTitle();
         const company = faker.company.name();
         const officeLocation = faker.location.city();
@@ -41,21 +64,27 @@ db.once('open', async () => {
         const status = faker.datatype.boolean() ? statusOptions[faker.number.int(statusOptions.length - 1)] : 'applied';
 
         application["jobTitle"] = jobTitle;
-        application["company"] = company;
-        application["officeLocation"] = officeLocation;
+        application["companyName"] = company;
+        application["locationObj"]["officeLocation"] = officeLocation;
         application["jobDescription"] = jobDescription;
-        application["workStyle"] = workStyle;
+        application["locationObj"]["workStyle"] = workStyle;
         application["link"] = link;
         application["source"] = source;
         application["salary"] = salary;
         application["jobScore"] = atsScore;
         application["status"] = status;
+        application["questions"] = questionData.map(question => question._id);
         fakeData.push(application);
     }
-    console.log(fakeData)
+
+    const newApps = await App.create(fakeData);
 
     // add fake data to test account
-
+    const userDataAfter = await User.findByIdAndUpdate(_id,
+        { apps: newApps },
+        { new: true }
+    );
+    console.log(`done adding ${userDataAfter.apps.length} applications`);
     process.exit();
 })
 
