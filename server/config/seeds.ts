@@ -1,3 +1,4 @@
+require('dotenv').config();
 const db = require('./connection');
 import { faker } from '@faker-js/faker';
 
@@ -5,7 +6,7 @@ const { App, User, Question } = require('../models');
 
 db.once('open', async () => {
     // grab test account 
-    let username = 'testaccount';
+    let username = 'test';
 
     // identify existing apps
     const userData = await User.findOne({ username }).select('-__v -password').populate('apps');
