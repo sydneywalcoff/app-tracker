@@ -31,9 +31,7 @@ const TextArea = ({ onChange, labelText, name, classes, placeholder, value, rows
         onChange(e);
     };
 
-    const handleBlur = () => {
-        if (isRequired && value.length === 0) { setError(true) };
-    };
+    const handleBlur = () => {isRequired && value.length === 0 ?  setError(true) : setError(false)};
 
     return (
         <>
