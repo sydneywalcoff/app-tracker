@@ -17,19 +17,10 @@ import SearchBar from '../../components/SearchBar';
 import Switch from '../../components/Switch';
 import Button from "../../components/Button";
 
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    location: string;
-    status: string;
-    dateApplied: string;
-    lastUpdated: string;
-}
+import { JobProp } from "../../types/global.types";
 
 type jobStatusObj = {
-    [key: string]: jobProp[]
+    [key: string]: JobProp[]
 }
 
 const TrackerTable = () => {
@@ -45,7 +36,7 @@ const TrackerTable = () => {
     const [firstShownApp, setFirstShownApp] = useState<number>(0);
     const [lastShownApp, setLastShownApp] = useState<number>(9);
     const { loading, data } = useQuery(QUERY_MY_APPS);
-    let jobs: jobProp[] = data?.myApps || [];
+    let jobs: JobProp[] = data?.myApps || [];
     let totalPages: number;
 
     if (loading) {
@@ -79,7 +70,7 @@ const TrackerTable = () => {
             jobStatusObj[status] = [app, ...jobStatusObj[status]];
 
         })
-        let sortedJobs: jobProp[][] = [];
+        let sortedJobs: JobProp[][] = [];
         statusArr.forEach(status => {
             if (jobStatusObj[status]) {
                 sortedJobs.push(jobStatusObj[status])
@@ -90,7 +81,7 @@ const TrackerTable = () => {
     jobs = filterByStatus();
 
     if (searchText) {
-        let searchResults: Set<jobProp> = new Set();
+        let searchResults: Set<JobProp> = new Set();
         jobs.filter(job => {
             const {
                 jobTitle,
@@ -104,17 +95,18 @@ const TrackerTable = () => {
         jobs = Array.from(searchResults)
     }
 
-    if (activeApps) {
-        let activeApps: Set<jobProp> = new Set();
-        jobs.filter(job => {
-            const { status, lastUpdated } = job;
-            const isGhosted = hasBeenGhosted(lastUpdated);
-            if (status !== 'rejected' && !isGhosted) {
-                activeApps.add(job);
-            }
-        })
-        jobs = Array.from(activeApps);
-    }
+    // this isn't working anyway so...
+    // if (activeApps) {
+    //     let activeApps: Set<JobProp> = new Set();
+    //     jobs.filter(job => {
+    //         const { status, lastUpdated } = job;
+    //         const isGhosted = hasBeenGhosted(lastUpdated);
+    //         if (status !== 'rejected' && !isGhosted) {
+    //             activeApps.add(job);
+    //         }
+    //     })
+    //     jobs = Array.from(activeApps);
+    // }
 
     const numJobs = jobs.length;
     const pageCounter = () => {
@@ -159,15 +151,15 @@ const TrackerTable = () => {
         totalPages = Math.ceil(numJobs / 10);
     }
 
-    const tableBody = (jobs: jobProp[]) => {
-        let paginatedJobs: jobProp[] = [];
+    const tableBody = (jobs: JobProp[]) => {
+        let paginatedJobs: JobProp[] = [];
         for (let i = firstShownApp; i <= lastShownApp; i++) {
             if (jobs[i]) {
                 paginatedJobs.push(jobs[i])
             }
         }
         return (
-            paginatedJobs.map((job: jobProp) => {
+            paginatedJobs.map((job: JobProp) => {
                 const handleDropdownChange = async (status: string) => {
                     try {
                         await editAppStatus({
@@ -252,7 +244,7 @@ const TrackerTable = () => {
                     </table>
                 </div>
                 <div className="mobile-table">
-                    {jobs.map((job: jobProp) => (
+                    {jobs.map((job: JobProp) => (
                         <div className="job-item" key={job._id}>
                             <div className="top-container">
                                 <div className="text">
