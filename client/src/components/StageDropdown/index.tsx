@@ -7,20 +7,12 @@ import Accessibility from "../../utils/accessibility";
 
 import './assets/style.css';
 
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    location: string;
-    status: string;
-    dateApplied: string;
-    lastUpdated: string;
-}
+import { JobProp } from "../../types/global.types";
+
 
 interface StageDropdownPropsI {
-    onStageChange: (newStage: string, job?: (jobProp | undefined)) => Promise<void> | void;
-    job?: jobProp | undefined;
+    onStageChange: (newStage: string, job?: (JobProp | undefined)) => Promise<void> | void;
+    job?: JobProp | undefined;
     selectedStage: string;
     options: Array<string>;
     hideLabel?: Boolean;

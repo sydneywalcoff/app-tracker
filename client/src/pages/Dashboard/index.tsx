@@ -12,29 +12,14 @@ import SearchBar from '../../components/SearchBar';
 
 import DashboardImg from '../../assets/dashboard-img.svg';
 
+import { JobProp } from '../../types/global.types';
+
 import './assets/style.css';
 
-interface Location {
-    workStyle: string;
-    officeLocation: string;
-}
-
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    locationObj: Location;
-    status: string;
-    dateApplied: string;
-    lastUpdated: string;
-    atsScore: number;
-}
-
-interface jobsStateI {
-    inPrep: jobProp[],
-    inProcess: jobProp[],
-    all: jobProp[],
+interface JobsStateI {
+    inPrep: JobProp[],
+    inProcess: JobProp[],
+    all: JobProp[],
     focus: string
 }
 
@@ -45,7 +30,7 @@ const DashboardPage = () => {
     }
 
     const [searchText, setSearchText] = useState<string>('');
-    const [jobs, setJobs] = useState<jobsStateI>({
+    const [jobs, setJobs] = useState<JobsStateI>({
         inPrep: [],
         inProcess: [],
         all: [],
@@ -55,9 +40,9 @@ const DashboardPage = () => {
     const { data, loading } = useQuery(QUERY_MY_APPS);
 
     useEffect(() => {
-        let jobsData: jobProp[] = data?.myApps || [];
-        let jobsInPrep: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() === 'preparing');
-        let jobsInProcess: jobProp[] = jobsData.filter((n: jobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
+        let jobsData: JobProp[] = data?.myApps || [];
+        let jobsInPrep: JobProp[] = jobsData.filter((n: JobProp) => n.status.toLowerCase() === 'preparing');
+        let jobsInProcess: JobProp[] = jobsData.filter((n: JobProp) => n.status.toLowerCase() !== 'preparing' && n.status.toLowerCase() !== 'applied' && n.status.toLowerCase() !== 'rejected');
         let focus: string = jobsInPrep.length > 0 ? 'Apps in Prep' : 'Apps in Process';
 
         setJobs({

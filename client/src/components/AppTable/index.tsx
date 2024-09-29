@@ -5,29 +5,15 @@ import Button from '../Button';
 
 import './assets/style.css';
 
-interface Location {
-    workStyle: string;
-    officeLocation: string;
-}
-
-interface AppItemI {
-    dateApplied: string;
-    jobTitle: string;
-    companyName: string;
-    status: string;
-    locationObj: Location;
-    location?: string;
-    jobScore?: number;
-    _id: string
-}
+import { JobProp } from '../../types/global.types';
 
 interface AppTableI {
-    apps: AppItemI[]
+    apps: JobProp[]
     loading: Boolean;
 }
 
 type jobStatusObj = {
-    [key: string]: AppItemI[]
+    [key: string]: JobProp[]
 }
 
 const AppTable = (params: AppTableI) => {
@@ -52,7 +38,7 @@ const AppTable = (params: AppTableI) => {
             jobStatusObj[status] = [app, ...jobStatusObj[status]];
 
         })
-        let sortedJobs: AppItemI[][] = [];
+        let sortedJobs: JobProp[][] = [];
         statusArr.forEach(status => {
             if (jobStatusObj[status]) {
                 sortedJobs.push(jobStatusObj[status])
@@ -63,7 +49,7 @@ const AppTable = (params: AppTableI) => {
     jobs = sortByStatus(); // default sort
 
     const paginateJobs = () => {
-        let paginatedJobs: AppItemI[] = [];
+        let paginatedJobs: JobProp[] = [];
         if (numJobs <= perPageNum) return jobs;
         for (let i = firstShownApp; i < (firstShownApp + perPageNum); i++) {
             if (jobs[i]) {
@@ -111,7 +97,7 @@ const AppTable = (params: AppTableI) => {
                                     <p>Go find some jobs to track.</p>
                                 </td>
                             </tr>) : (
-                            jobs.map(app => <AppItem _id={app._id} dateAdded={app.dateApplied} jobTitle={app.jobTitle} company={app.companyName} stage={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)
+                            jobs.map(app => <AppItem _id={app._id} dateApplied={app.dateApplied} jobTitle={app.jobTitle} companyName={app.companyName} status={app.status} location={app.location} locationObj={app.locationObj} atsScore={app.atsScore} key={app._id} />)
                         )
                     }
                 </tbody>

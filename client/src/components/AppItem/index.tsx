@@ -10,30 +10,17 @@ import plusIcon from '../../assets/plus-icon.svg';
 
 import './assets/style.css';
 
-interface Location {
-    workStyle: string;
-    officeLocation: string;
-}
+import { JobProp } from '../../types/global.types';
 
-interface AppItemI {
-    dateAdded: string;
-    jobTitle: string;
-    company: string;
-    stage: string;
-    locationObj: Location;
-    location?: string;
-    jobScore?: number;
-    _id: string;
-}
 
-const AppItem = (params: AppItemI) => {
-    const { dateAdded, jobTitle, company, stage, location, locationObj, jobScore, _id } = params;
-    const [selectedStage, setSelectedStage] = useState(stage);
+const AppItem = (params: JobProp) => {
+    const { dateApplied, jobTitle, companyName, status, location, locationObj, atsScore, _id } = params;
+    const [selectedStage, setSelectedStage] = useState(status);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
     useEffect(() => {
-        setSelectedStage(stage)
-    }, [stage])
+        setSelectedStage(status)
+    }, [status])
 
     const statusArr: string[] = ["offer", "first interview", "technical", "phone screen", "preparing", "applied", "rejected"];
 
@@ -69,22 +56,22 @@ const AppItem = (params: AppItemI) => {
     return (
         <tr className="app-item-outer flex justify-between p-1">
             <td className='date-added item'>
-                <p>{dateAdded}</p>
+                <p>{dateApplied}</p>
             </td>
             <td className='job-title item'>
                 <p>{jobTitle}</p>
             </td>
-            <td className='company item'>
-                <p>{company}</p>
+            <td className='companyName item'>
+                <p>{companyName}</p>
             </td>
-            <td className='stage item'>
+            <td className='status item'>
                 <StageDropdown onStageChange={handleDropdownChange} selectedStage={selectedStage} options={statusArr} hideLabel />
             </td>
             <td className='location item'>
                 <p>{styledLocation}</p>
             </td>
             <td className='ATS-score item'>
-                <p>{jobScore ? jobScore : ''}</p>
+                <p>{atsScore ? atsScore : ''}</p>
             </td>
             <td className="spacer item">
                 <Link

@@ -1,24 +1,9 @@
-interface Location {
-    workStyle: string;
-    officeLocation: string;
-}
+import { JobProp } from "../types/global.types";
 
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    locationObj: Location;
-    status: string;
-    dateApplied: string;
-    lastUpdated: string;
-    atsScore: number;
-}
-
-const filterJobsByText = (searchText: string, jobsArr: jobProp[]): jobProp[] => {
+const filterJobsByText = (searchText: string, jobsArr: JobProp[]): JobProp[] => {
     if (!searchText) return jobsArr;
-    let searchResults: Set<jobProp> = new Set();
-    jobsArr.forEach((job: jobProp) => {
+    let searchResults: Set<JobProp> = new Set();
+    jobsArr.forEach((job: JobProp) => {
         const {
             jobTitle,
             companyName

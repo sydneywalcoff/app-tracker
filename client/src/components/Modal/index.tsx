@@ -9,27 +9,10 @@ import StageDropdown from "../StageDropdown";
 import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_SINGLE_APP } from '../../utils/queries';
 
-interface jobProp {
-    _id: string;
-    jobTitle: string;
-    companyName: string;
-    jobDescription: string;
-    location: string;
-    locationObj: LocationI;
-    status: string;
-    dateApplied: string;
-    quickApply: boolean;
-    jobScore: number;
-    link: string;
-}
-
-interface LocationI {
-    workStyle: string;
-    officeLocation: string;
-}
+import { JobProp } from "../../types/global.types";
 
 interface ModalProps {
-    job: jobProp;
+    job: JobProp;
     setModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -55,7 +38,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         locationObj,
-        jobScore,
+        atsScore,
         link
     } = job;
 
@@ -67,7 +50,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        jobScore,
+        atsScore,
         link,
         officeLocation: locationObj.officeLocation,
         workStyle: locationObj.workStyle,
@@ -94,7 +77,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 name = "status";
                 break;
             case "job-score":
-                name = "jobScore";
+                name = "atsScore";
                 break;
             case 'job-url':
                 name = 'link';
@@ -108,7 +91,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default:
                 break;
         }
-        if (name === 'jobScore') {
+        if (name === 'atsScore') {
             setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
@@ -234,7 +217,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 </div>
                                 <div className="mb-3 detail">
                                     <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.jobScore} />
+                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.atsScore} />
                                 </div>
                             </div>
                             <div className="detail-row">
