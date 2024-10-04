@@ -14,7 +14,7 @@ interface JobProp {
     status: string;
     dateApplied: string;
     lastUpdated?: string;
-    atsScore: number;
+    jobScore: number;
     link?: string;
 }
 
