@@ -97,7 +97,7 @@ const AppTable = (params: AppTableI) => {
                                     <p>Go find some jobs to track.</p>
                                 </td>
                             </tr>) : (
-                            jobs.map(app => <AppItem _id={app._id} dateApplied={app.dateApplied} jobTitle={app.jobTitle} companyName={app.companyName} status={app.status} location={app.location} locationObj={app.locationObj} atsScore={app.atsScore} key={app._id} />)
+                            jobs.map(app => <AppItem _id={app._id} dateApplied={app.dateApplied} jobTitle={app.jobTitle} companyName={app.companyName} status={app.status} location={app.location} locationObj={app.locationObj} jobScore={app.jobScore} key={app._id} />)
                         )
                     }
                 </tbody>

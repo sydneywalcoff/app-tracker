@@ -38,7 +38,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         jobDescription,
         location,
         locationObj,
-        atsScore,
+        jobScore,
         link
     } = job;
 
@@ -50,7 +50,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         status,
         jobDescription,
         location,
-        atsScore,
+        jobScore,
         link,
         officeLocation: locationObj.officeLocation,
         workStyle: locationObj.workStyle,
@@ -77,7 +77,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                 name = "status";
                 break;
             case "job-score":
-                name = "atsScore";
+                name = "jobScore";
                 break;
             case 'job-url':
                 name = 'link';
@@ -91,7 +91,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
             default:
                 break;
         }
-        if (name === 'atsScore') {
+        if (name === 'jobScore') {
             setEditJobForm({ ...editJobForm, [name]: parseInt(value) });
             return;
         }
@@ -217,7 +217,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                                 </div>
                                 <div className="mb-3 detail">
                                     <label htmlFor="job-score" className="font-bold">Job Score:</label>
-                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.atsScore} />
+                                    <input type="number" name="job-score" className="mt-1 pl-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border border-gray-300 rounded-md w-full" onChange={changeHandler} defaultValue={editJobForm.jobScore} />
                                 </div>
                             </div>
                             <div className="detail-row">
