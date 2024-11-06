@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink
+} from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import "./App.css";
+
+// components
+import Header from "./components/Header";
+import SingleApp from "./pages/SingleApp";
+import LoginPage from "./pages/Login";
+import CreditsPage from './pages/Credits'
+import LandingPage from "./pages/Landing";
+import DashboardPage from "./pages/Dashboard";
+
+import Auth from './utils/auth';
+
+const cache = new InMemoryCache();
+const httpLink = createHttpLink({
+  uri: "/graphql"
+})
+const token = localStorage.getItem('token');
+const authLink = setContext((request, { headers }) => ({
+  headers: {
+    authorization: token
+  }
+}))
+
+const client = new ApolloClient({
+  cache: cache,
+  link: authLink.concat(httpLink)
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  if(window.location.pathname==='/') {
+    if(Auth.loggedIn()) {
+      window.location.assign('/dashboard');
+    }
+  }
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ApolloProvider client={client}>
+      <>
+        <Header />
+        <ToastContainer />
+        <main className="relative flex">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="applied/:jobId" element={<SingleApp />} /> 
+            <Route path="credits" element={<CreditsPage />} /> 
+            <Route path="dashboard" element={<DashboardPage/>} />
+          </Routes>
+        </main>
+      </>
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
