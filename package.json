@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
