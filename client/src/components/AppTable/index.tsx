@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import AppItem from "../../components/AppItem";
+import AppItem from "../AppItem";
 import Button from '../Button';
 
 import './assets/style.css';

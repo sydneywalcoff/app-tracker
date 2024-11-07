@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -26,7 +27,7 @@ const httpLink = createHttpLink({
   uri: "/graphql"
 })
 const token = localStorage.getItem('token');
-const authLink = setContext((request, { headers }) => ({
+const authLink = setContext(() => ({
   headers: {
     authorization: token
   }
@@ -51,7 +52,7 @@ function App() {
         <main className="relative flex">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> 
             <Route path="credits" element={<CreditsPage />} /> 
             <Route path="dashboard" element={<DashboardPage/>} />

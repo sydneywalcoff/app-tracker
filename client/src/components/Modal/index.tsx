@@ -19,7 +19,7 @@ interface ModalProps {
 const Modal = ({ job, setModalOpen }: ModalProps) => {
     document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     const [editApp] = useMutation(EDIT_APP, {
-        update(cache, { data: { editApp } }) {
+        update(cache) {
             try {
                 cache.updateQuery({ query: QUERY_SINGLE_APP, variables: { id: job._id } }, ({ app }) => ({
                     app
