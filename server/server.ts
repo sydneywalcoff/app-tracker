@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 const db = require('./config/connection');
 
-const PORT: string | number = process.env.PORT || 3001;
+const PORT: string | number = process.env.PORT || 5174;
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 
