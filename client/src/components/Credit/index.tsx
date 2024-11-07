@@ -9,7 +9,7 @@ interface CreditPropsI {
     desc: string
 }
 
-const Credit = ({ name, artist, source, link, credit, desc }: CreditPropsI) => {
+const Credit = ({ name, artist, link, credit, desc }: CreditPropsI) => {
     return (
         <div className="credit rounded shadow-lg flex flex-col justify-between">
             <div className="img-container flex items-center h-full">

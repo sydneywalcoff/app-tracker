@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 const db = require('./config/connection');
 
-const PORT: string | number = process.env.PORT || 3001;
+const PORT: string | number = process.env.PORT || 5174;
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 
@@ -26,9 +26,9 @@ const startServer = async () => {
 startServer();
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
 };
 
