@@ -28,7 +28,7 @@ const Question = (params: IQuestionParams) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(question.questionText);
     const [deleteQuestion] = useMutation(DELETE_QUESTION, {
-        update(cache, { data: { deleteQuestion } }) {
+        update(cache) {
             try {
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,
@@ -50,7 +50,7 @@ const Question = (params: IQuestionParams) => {
     })
 
     const [editQuestion] = useMutation(EDIT_QUESTION, {
-        update(cache, { data: { editQuestion }}) {
+        update(cache) {
             try {
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,

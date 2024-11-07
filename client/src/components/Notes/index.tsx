@@ -23,7 +23,7 @@ const Notes = ({ notes, appId }: NoteProp) => {
     const [noteText, setNoteText] = useState('');
     const [isDisabledClass, setIsDisabledClass] = useState('disabled');
     const [addNote] = useMutation(ADD_NOTE, {
-        update(cache, { data: { addNote } }) {
+        update(cache) {
             try {
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP, 
@@ -43,7 +43,7 @@ const Notes = ({ notes, appId }: NoteProp) => {
     });
 
     const [deleteNote] = useMutation(DELETE_NOTE, {
-        update(cache, { data: { deleteNote } }) {
+        update(cache) {
             try {
                 cache.updateQuery({
                     query: QUERY_SINGLE_APP,
