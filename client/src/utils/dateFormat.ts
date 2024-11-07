@@ -10,9 +10,9 @@ const parseDateString = (dateStr:string) => {
 };
 
 const hasBeenGhosted = (lastUpdated: string) => {
-    const todayMonth = DateTime.local().month;
+    // const todayMonth = DateTime.local().month;
     const todayDate = DateTime.local().day;
-    const lastUpdatedMonth = parseInt(lastUpdated.slice(0,2));
+    // const lastUpdatedMonth = parseInt(lastUpdated.slice(0,2));
     const lastUpdatedDay = parseInt(lastUpdated.slice(2,4))
     if((todayDate -lastUpdatedDay)>= 14) {
         return true;
