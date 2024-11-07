@@ -14,7 +14,7 @@ import { JobProp } from '../../types/global.types';
 
 
 const AppItem = (params: JobProp) => {
-    const { dateApplied, jobTitle, companyName, status, location, locationObj, atsScore, _id } = params;
+    const { dateApplied, jobTitle, companyName, status, location, locationObj, jobScore, _id } = params;
     const [selectedStage, setSelectedStage] = useState(status);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
@@ -71,7 +71,7 @@ const AppItem = (params: JobProp) => {
                 <p>{styledLocation}</p>
             </td>
             <td className='ATS-score item'>
-                <p>{atsScore ? atsScore : ''}</p>
+                <p>{jobScore ? jobScore : ''}</p>
             </td>
             <td className="spacer item">
                 <Link
