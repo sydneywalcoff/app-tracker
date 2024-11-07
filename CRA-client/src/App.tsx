@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -52,7 +51,7 @@ function App() {
         <main className="relative flex">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="login" element={<LoginPage />} />
             <Route path="applied/:jobId" element={<SingleApp />} /> 
             <Route path="credits" element={<CreditsPage />} /> 
             <Route path="dashboard" element={<DashboardPage/>} />
