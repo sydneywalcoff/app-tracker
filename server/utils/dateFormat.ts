@@ -39,6 +39,7 @@ const dateFormat = (
 
     const dateObj = new Date(timestamp);
     const dateStr = dateObj.toLocaleDateString()
+    console.log('date string', dateStr)
     let [month, day, year] = dateStr.split('/');
     const formattedMonth = months[(Number(month) - 1)];
 
@@ -47,7 +48,7 @@ const dateFormat = (
         : day;
 
     const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year}`;
-
+    console.log('formatted timestamp', formattedTimeStamp)
     return formattedTimeStamp;
 };
 
