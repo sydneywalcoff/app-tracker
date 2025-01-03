@@ -1,5 +1,5 @@
 import { Schema, model, Document, Model, SchemaDefinitionProperty, Types } from 'mongoose';
-import dateFormat from '../utils/dateFormat';
+// import dateFormat from '../utils/dateFormat';
 import { QuestionDocument } from './index';
 const noteSchema = require('./Note');
 const statusHistorySchema = require('./StatusHistory');
@@ -36,16 +36,16 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
     dateApplied: {
         type: Date,
         default: Date.now,
-        get: timeStamp => dateFormat(timeStamp),
+        // get: timeStamp => dateFormat(timeStamp),
     },
     lastUpdated: {
         type: Date,
-        get: timeStamp => {
-            if(!timeStamp) {
-                return ''
-            }
-            return dateFormat(timeStamp)
-        },
+        // get: timeStamp => {
+        //     if(!timeStamp) {
+        //         return ''
+        //     }
+        //     return dateFormat(timeStamp)
+        // },
     },
     notes: [noteSchema], 
     link: {
@@ -61,7 +61,7 @@ const appSchema = new Schema<AppDocument, Model<AppDocument>>({
 },
 {
     toJSON: {
-        getters: true
+        getters: false
     }
 });
 

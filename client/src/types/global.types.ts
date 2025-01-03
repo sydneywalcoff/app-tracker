@@ -12,8 +12,8 @@ interface JobProp {
     location: string;
     locationObj: Location;
     status: string;
-    dateApplied: string;
-    lastUpdated?: string;
+    dateApplied: Date;
+    lastUpdated?: Date;
     jobScore: number;
     link?: string;
 }

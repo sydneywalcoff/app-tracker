@@ -1,5 +1,5 @@
 import { Schema, Document, model, Model, SchemaDefinitionProperty } from 'mongoose';
-import dateFormat from '../utils/dateFormat';
+// import dateFormat from '../utils/dateFormat';
 
 const questionSchema = new Schema<QuestionDocument>({
     questionText: {
@@ -13,16 +13,16 @@ const questionSchema = new Schema<QuestionDocument>({
     dateAdded: {
         type: Date,
         default: Date.now,
-        get: timeStamp => dateFormat(timeStamp)
+        // get: timeStamp => dateFormat(timeStamp)
     },
     lastUpdated: {
         type: Date,
         default: Date.now,
-        get: timeStamp => dateFormat(timeStamp)
+        // get: timeStamp => dateFormat(timeStamp)
     }
 }, {
     toJSON: {
-        getters: true
+        getters: false
     }
 });
 

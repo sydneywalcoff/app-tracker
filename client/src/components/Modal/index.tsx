@@ -10,6 +10,7 @@ import { EDIT_APP } from "../../utils/mutations";
 import { QUERY_SINGLE_APP } from '../../utils/queries';
 
 import { JobProp } from "../../types/global.types";
+import { formatDate } from "../../utils/dateFormat";
 
 interface ModalProps {
     job: JobProp;
@@ -55,6 +56,8 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
         officeLocation: locationObj.officeLocation,
         workStyle: locationObj.workStyle,
     });
+
+    const formattedDateApplied = formatDate(dateApplied);
 
     const changeHandler = (
         e:
@@ -187,7 +190,7 @@ const Modal = ({ job, setModalOpen }: ModalProps) => {
                             <div className="detail-row">
                                 <div className="mb-3 detail date-applied">
                                     <span className="font-bold">date applied: </span>
-                                    {dateApplied}{" "}
+                                    {formattedDateApplied}{" "}
                                 </div>
                                 <div className="mb-3 detail">
                                     <label htmlFor="office-location" className="font-bold">
