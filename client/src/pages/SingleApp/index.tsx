@@ -5,6 +5,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_SINGLE_APP } from "../../utils/queries";
 import { DELETE_APP } from "../../utils/mutations";
 import Auth from '../../utils/auth';
+import { formatDate } from "../../utils/dateFormat";
 
 import './assets/style.css'
 import trashIcon from '../../assets/trash.svg';
@@ -34,6 +35,9 @@ const SingleApp = () => {
   });
   const [deleteApp] = useMutation(DELETE_APP);
   const job = data?.app || {};
+  console.log(job)
+  let formattedLastUpdated = formatDate(job.lastUpdated);
+  let formattedDateApplied = formatDate(job.dateApplied);
   const handleEdit = () => {
     setModalOpen(!modalOpen);
   };
@@ -88,7 +92,7 @@ const SingleApp = () => {
                 <div className="details">
                   <h4>
                     <span className="font-bold">updated last: </span>
-                    {job.lastUpdated}
+                    {formattedLastUpdated}
                   </h4>
                   <h4>
                     <span className="font-bold">location: </span>
@@ -100,7 +104,7 @@ const SingleApp = () => {
                   </h4>
                   <h4>
                     <span className="font-bold">date applied: </span>
-                    {job.dateApplied}
+                    {formattedDateApplied}
                   </h4>
                   <h4>
                     <span className="font-bold">quick apply?: </span>
@@ -134,7 +138,7 @@ const SingleApp = () => {
               <div className="details h-full flex flex-col">
                 <h4>
                   <span className="font-bold">updated last: </span>
-                  {job.lastUpdated}
+                  {formattedLastUpdated}
                 </h4>
                 <h4>
                   <span className="font-bold">location: </span>
@@ -146,7 +150,7 @@ const SingleApp = () => {
                 </h4>
                 <h4>
                   <span className="font-bold">date applied: </span>
-                  {job.dateApplied}
+                  {formattedDateApplied}
                 </h4>
                 <h4>
                   <span className="font-bold">quick apply?: </span>

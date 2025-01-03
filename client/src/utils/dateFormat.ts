@@ -24,6 +24,7 @@ export const formatDate = (
     timestamp: Date,
     { monthLength = 'short', dateSuffix = true } = {}
 ) => {
+    if(!timestamp) return '';
     // create month object
     const months: Months = {
         0: monthLength === 'short' ? 'Jan' : 'January',
