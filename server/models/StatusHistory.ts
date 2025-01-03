@@ -1,11 +1,11 @@
 import { Schema, Document, SchemaDefinitionProperty } from 'mongoose';
-import dateFormat from '../utils/dateFormat';
+// import dateFormat from '../utils/dateFormat';
 
 const statusHistorySchema = new Schema<StatusHistoryDocument>({
     dateChanged: {
         type: Date,
         default: Date.now,
-        get: timeStamp => dateFormat(timeStamp)
+        // get: timeStamp => dateFormat(timeStamp)
     },
     status: {
         type: String,
