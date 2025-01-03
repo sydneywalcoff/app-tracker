@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { EDIT_APP_STATUS } from '../../utils/mutations';
+import { formatDate } from '../../utils/dateFormat';
 
 import StageDropdown from '../StageDropdown';
 
@@ -15,6 +16,7 @@ import { JobProp } from '../../types/global.types';
 
 const AppItem = (params: JobProp) => {
     const { dateApplied, jobTitle, companyName, status, location, locationObj, jobScore, _id } = params;
+    const formattedDateApplied = formatDate(dateApplied);
     const [selectedStage, setSelectedStage] = useState(status);
     const [editAppStatus] = useMutation(EDIT_APP_STATUS);
 
@@ -56,7 +58,7 @@ const AppItem = (params: JobProp) => {
     return (
         <tr className="app-item-outer flex justify-between p-1">
             <td className='date-added item'>
-                <p>{dateApplied}</p>
+                <p>{formattedDateApplied}</p>
             </td>
             <td className='job-title item'>
                 <p>{jobTitle}</p>

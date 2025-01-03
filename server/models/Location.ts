@@ -11,7 +11,7 @@ const locationSchema = new Schema<LocationDocument>({
 },
     {
         toJSON: {
-            getters: true
+            getters: false
         }
     });
 
