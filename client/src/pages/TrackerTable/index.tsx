@@ -5,6 +5,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { EDIT_APP_STATUS } from "../../utils/mutations";
 import { QUERY_MY_APPS } from "../../utils/queries";
 import Auth from '../../utils/auth';
+import { formatDate } from "../../utils/dateFormat";
 
 import './assets/style.css';
 import arrow from './assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg';
@@ -176,7 +177,7 @@ const TrackerTable = () => {
                     <tr key={job._id}>
                         <td className="whitespace-nowrap job-date-applied">
                             <p>
-                                {job.dateApplied}
+                                {formatDate(job.dateApplied)}
                             </p>
                         </td>
                         <td className="job-title">
@@ -256,7 +257,7 @@ const TrackerTable = () => {
                             </div>
                             <div className="bottom-container">
                                 <div className="text">
-                                    <p><span>applied:</span> {job.dateApplied}</p>
+                                    <p><span>applied:</span> {formatDate(job.dateApplied)}</p>
                                     <p><span>location:</span> {job.location}</p>
                                 </div>
                                 <Link
