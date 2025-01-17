@@ -1,0 +1,82 @@
+.dropdown {
+    min-width: 120px;
+}
+
+.dropdown-select-container,
+.dropdown-select-container .selected-option {
+    border-radius: 4px;
+}
+
+.dropdown-select-container,
+.dropdown-select-container .dropdown-options {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.dropdown-select-container > div {
+    background-color: #fff;
+}
+
+.dropdown-select-container .selected-option { 
+    position: relative; 
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-select-container .selected-option .arrow {
+    position: absolute;
+    height: 100%;
+    width: 25px;
+    top: 0;
+    right: 0;
+}
+
+.active.dropdown-select-container .selected-option .arrow {
+    z-index: 300;
+}
+
+.dropdown-select-container .selected-option .arrow img { height: 100%; }
+
+.dropdown-options { display: none; }
+
+/* active dropdown styles */
+.dropdown-select-container.active {
+    position: relative;
+}
+
+.dropdown-select-container.active .selected-option .arrow img { transform: rotate(90deg) }
+
+.dropdown-select-container.active .dropdown-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    z-index: 100;
+}
+
+.dropdown-select-container.active .dropdown-options .dropdown-container:not(:last-of-type) {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.dropdown-select-container.active .dropdown-options .dropdown-container:hover {
+    background: #f4f4f4;
+    border-radius: 4px;
+}
+
+.dropdown-select-container .arrow {
+    visibility: hidden;
+}
+
+.dropdown-select-container:hover {
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.dropdown-select-container:hover .arrow,
+.active.dropdown-select-container .arrow {
+    visibility: visible;
+}
