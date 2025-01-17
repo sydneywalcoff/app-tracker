@@ -1,4 +1,4 @@
-interface StageBadgeProps {
+export interface StageBadgeProps {
     stage: string
 }
 
