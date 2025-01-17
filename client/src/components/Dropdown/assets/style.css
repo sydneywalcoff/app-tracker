@@ -13,6 +13,14 @@
     border-bottom-left-radius: 4px;
 }
 
+.dropdown-container .dropdown-select-container:hover {
+    box-shadow: none;
+}
+
+.dropdown-container .dropdown-select-container .arrow {
+    visibility: visible;
+}
+
 .dropdown-select-container > div {
     background-color: #fff;
 }
