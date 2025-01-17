@@ -24,6 +24,7 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(() => createRef<HTMLDivElement>()));
     const maxIndex = optionRefs.current.length - 1;
+    
 
     useEffect(() => {
         setSelectedIndex(0)
@@ -134,7 +135,7 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
                 </div>
                 <div className='dropdown-options shadow-lg' id={id} onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
                     {options && options.map((option, index) => (
-                        <div className="dropdown-container py-1 px-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option)} ref={optionRefs.current[index]} aria-label={option} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
+                        <div className="options-container p-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option)} ref={optionRefs.current[index]} aria-label={option} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
                             <p>{option}</p>
                         </div>
                     ))}
