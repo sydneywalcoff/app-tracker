@@ -9,8 +9,8 @@ import './assets/style.css';
 
 interface DropdownPropsI {
     onChange: (newlySelected: string) => Promise<void> | void;
-    selectedOption: string;
-    options: Array<string>;
+    selectedOption: string | JSX.Element;
+    options: Array<string> | Array<JSX.Element>;
     hideLabel?: Boolean;
     classes?: string;
     label: string;
@@ -24,7 +24,6 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(() => createRef<HTMLDivElement>()));
     const maxIndex = optionRefs.current.length - 1;
-    
 
     useEffect(() => {
         setSelectedIndex(0)
@@ -134,11 +133,18 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
                     </div>
                 </div>
                 <div className='dropdown-options shadow-lg' id={id} onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
-                    {options && options.map((option, index) => (
-                        <div className="options-container p-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option)} ref={optionRefs.current[index]} aria-label={option} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
-                            <p>{option}</p>
+                    {options && options.map((option, index) =>{
+                        let optionText = option;
+                        let isArrayOfElements = typeof(option) === 'object';
+                        if(isArrayOfElements) {
+                            optionText = option.props.stage
+                            isArrayOfElements = true;
+                        }
+                        return (
+                        <div className="options-container p-2" key={optionText.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(optionText)} ref={optionRefs.current[index]} aria-label={optionText} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
+                            {isArrayOfElements ? option : <p>{optionText}</p>}
                         </div>
-                    ))}
+                    )})}
                 </div>
             </div>
         </div>

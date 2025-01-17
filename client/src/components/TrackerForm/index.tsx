@@ -58,19 +58,18 @@ const TrackerForm = () => {
             setInputError("please fix required fields");
             return;
         }
-        console.log(formState)
-        // try {
-        //     await addApp({
-        //         variables: {
-        //             ...formState,
-        //             workStyle,
-        //             officeLocation
-        //         },
-        //     });
-        //     clearForm();
-        // } catch (err) {
-        //     console.error(err);
-        // }
+        try {
+            await addApp({
+                variables: {
+                    ...formState,
+                    workStyle,
+                    officeLocation
+                },
+            });
+            clearForm();
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const handleStageChange = (newStage: string) => {
@@ -150,7 +149,6 @@ const TrackerForm = () => {
     };
 
     let radioBtnOptions = ['on-site', 'hybrid', 'remote'];
-    let stageOptions = ['preparing', 'applied']
 
     return (
         <div className="tracker form-container flex">
