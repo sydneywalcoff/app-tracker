@@ -17,11 +17,9 @@ interface StageDropdownPropsI {
 import Dropdown from '../Dropdown';
 
 const StageDropdown = ({ onStageChange, job, selectedStage, options, hideLabel, classes }: StageDropdownPropsI) => {
-    let optionStageBadges = options.map(option => <StageBadge stage={option}/>)
-    if(typeof(options[0]) == 'object') {
-    }
+
     return (
-        <Dropdown onChange={onStageChange} selectedOption={<StageBadge stage={selectedStage} />} options={optionStageBadges} hideLabel={hideLabel} label="stage" id="stage-dropdown" classes={classes}/>
+        <Dropdown onChange={onStageChange} selectedOption={selectedStage} options={options} hideLabel={hideLabel} label="stage" id="stage-dropdown" classes={classes} OptionWrapperEl={StageBadge}/>
     )
 };
 

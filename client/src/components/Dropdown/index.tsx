@@ -6,18 +6,20 @@ import Accessibility from "../../utils/accessibility";
 
 import './assets/style.css';
 
+import { StageBadgeProps, } from "../StageBadge";
 
 interface DropdownPropsI {
     onChange: (newlySelected: string) => Promise<void> | void;
-    selectedOption: string | JSX.Element;
-    options: Array<string> | Array<JSX.Element>;
+    selectedOption: string;
+    options: Array<string>;
     hideLabel?: Boolean;
     classes?: string;
     label: string;
     id: string;
+    OptionWrapperEl?: ({ stage }: StageBadgeProps) => JSX.Element;
 }
 
-const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, label }: DropdownPropsI) => {
+const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, label, OptionWrapperEl }: DropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selection, setSelection] = useState(selectedOption);
     const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
@@ -37,7 +39,7 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
     const onDropdownChange = (newSelection: string) => {
         setSelection(newSelection);
 
-        if(onChange) {
+        if (onChange) {
             onChange(newSelection);
         }
     };
@@ -127,24 +129,19 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
                 ref={dropDownElRef}
             >
                 <div className="selected-option p-2">
-                    <p>{selection}</p>
+                    {OptionWrapperEl ? <OptionWrapperEl stage={selection} /> : <p>{selection}</p>}
                     <div className="arrow">
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>
                 <div className='dropdown-options shadow-lg' id={id} onMouseLeave={closeDropdown} role="listbox" aria-expanded={isDropdownOpen}>
-                    {options && options.map((option, index) =>{
-                        let optionText = option;
-                        let isArrayOfElements = typeof(option) === 'object';
-                        if(isArrayOfElements) {
-                            optionText = option.props.stage
-                            isArrayOfElements = true;
-                        }
+                    {options && options.map((option, index) => {
                         return (
-                        <div className="options-container p-2" key={optionText.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(optionText)} ref={optionRefs.current[index]} aria-label={optionText} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
-                            {isArrayOfElements ? option : <p>{optionText}</p>}
-                        </div>
-                    )})}
+                            <div className="options-container p-2" key={option.split(' ').join('-')} tabIndex={0} onClick={() => handleClick(option)} ref={optionRefs.current[index]} aria-label={option} role="option" aria-selected={options.indexOf(option) === selectedIndex}>
+                                {OptionWrapperEl ? <OptionWrapperEl stage={option} /> : <p>{option}</p>}
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
