@@ -16,7 +16,7 @@ interface StageDropdownPropsI {
 
 import Dropdown from '../Dropdown';
 
-const StageDropdown = ({ onStageChange, job, selectedStage, options, hideLabel, classes }: StageDropdownPropsI) => {
+const StageDropdown = ({ onStageChange, selectedStage, options, hideLabel, classes }: StageDropdownPropsI) => {
 
     return (
         <Dropdown onChange={onStageChange} selectedOption={selectedStage} options={options} hideLabel={hideLabel} label="stage" id="stage-dropdown" classes={classes} OptionWrapperEl={StageBadge}/>
