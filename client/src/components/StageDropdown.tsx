@@ -2,8 +2,6 @@ import StageBadge from "./StageBadge";
 
 import { JobProp } from "../types/global.types";
 
-import './assets/style.css';
-
 
 interface StageDropdownPropsI {
     onStageChange: (newStage: string, job?: (JobProp | undefined)) => Promise<void> | void;
