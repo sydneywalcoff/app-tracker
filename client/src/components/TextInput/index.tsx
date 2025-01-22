@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ChangeEvent, useState, Dispatch, useEffect } from 'react';
+import { ChangeEventHandler, ChangeEvent, useState, Dispatch, useEffect, MouseEventHandler } from 'react';
 
 import './assets/style.css';
 
@@ -10,9 +10,10 @@ interface TextInputPropsI {
     required?: boolean;
     setIsCleared?: Dispatch<boolean>
     isCleared?: boolean;
+    onClick?: MouseEventHandler<HTMLInputElement>
 }
 
-const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, isCleared }: TextInputPropsI) => {
+const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, isCleared, onClick:handleClick }: TextInputPropsI) => {
     const [error, setError] = useState(false);
     const styledName = labelTitle ? labelTitle : name;
     let inputType;
@@ -48,7 +49,7 @@ const TextInput = ({ labelTitle, onChange, name, value, required, setIsCleared, 
 
 
     return (
-        <input type={inputType} name={name} className={`drop-shadow-md p-2 ${error ? 'error' : ''}`} onChange={handleChange} placeholder={styledName} value={displayedVal} onBlur={handleBlur}/>
+        <input type={inputType} name={name} className={`drop-shadow-md p-2 ${error ? 'error' : ''}`} onChange={handleChange} placeholder={styledName} value={displayedVal} onBlur={handleBlur} onClick={handleClick}/>
     );
 }
 
