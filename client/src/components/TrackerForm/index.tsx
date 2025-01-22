@@ -215,13 +215,13 @@ const TrackerForm = () => {
                                 value={formState.source}
                             />
                         </div>
-                        <div className="input-container source">
+                        <div className="input-container source-dropdown">
                             <TextInputDropdown
                                 // onChange={handleChange}
                                 // name="source"
                                 // labelTitle="Source"
                                 // value={formState.source}
-                                classes="drop-shadow-md"
+                                classes="drop-shadow-md z-[100] relative"
                             />
                         </div>
                         <div className="input-container salary">
