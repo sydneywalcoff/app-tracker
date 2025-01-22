@@ -27,7 +27,8 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(() => createRef<HTMLDivElement>()));
     const maxIndex = optionRefs.current.length - 1;
-    let arrowClass = hideArrow ? 'hideArrow' : 'showArrow';
+    const arrowClass = hideArrow ? 'hideArrow' : 'showArrow';
+    const isSelectionEmpty = Boolean(selection == '')
 
     useEffect(() => {
         setSelectedIndex(0)
@@ -131,7 +132,7 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
                 ref={dropDownElRef}
             >
                 <div className="selected-option p-2">
-                    {OptionWrapperEl ? <OptionWrapperEl stage={selection} /> : <p>{selection}</p>}
+                    {isSelectionEmpty ? <p className="placeholder">{label}</p> : OptionWrapperEl ? <OptionWrapperEl stage={selection} /> : <p>{selection}</p>}
                     <div className={`arrow ${arrowClass}`}>
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
