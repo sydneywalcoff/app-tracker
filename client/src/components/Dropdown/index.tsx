@@ -17,15 +17,17 @@ interface DropdownPropsI {
     label: string;
     id: string;
     OptionWrapperEl?: ({ stage }: StageBadgeProps) => JSX.Element;
+    hideArrow?: Boolean;
 }
 
-const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, label, OptionWrapperEl }: DropdownPropsI) => {
+const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, label, OptionWrapperEl, hideArrow }: DropdownPropsI) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selection, setSelection] = useState(selectedOption);
     const [selectedIndex, setSelectedIndex] = useState<SetStateAction<null | number>>(null);
     const dropDownElRef = useRef<HTMLDivElement>(null);
     const optionRefs = useRef(options.map(() => createRef<HTMLDivElement>()));
     const maxIndex = optionRefs.current.length - 1;
+    let arrowClass = hideArrow ? 'hideArrow' : 'showArrow';
 
     useEffect(() => {
         setSelectedIndex(0)
@@ -130,7 +132,7 @@ const Dropdown = ({ options, onChange, selectedOption, hideLabel, classes, id, l
             >
                 <div className="selected-option p-2">
                     {OptionWrapperEl ? <OptionWrapperEl stage={selection} /> : <p>{selection}</p>}
-                    <div className="arrow">
+                    <div className={`arrow ${arrowClass}`}>
                         <img src={ArrowSVG} alt="arrow icon" />
                     </div>
                 </div>

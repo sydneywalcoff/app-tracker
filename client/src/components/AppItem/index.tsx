@@ -67,7 +67,7 @@ const AppItem = (params: JobProp) => {
                 <p>{companyName}</p>
             </td>
             <td className='status item'>
-                <StageDropdown onStageChange={handleDropdownChange} selectedStage={selectedStage} options={statusArr} hideLabel />
+                <StageDropdown onStageChange={handleDropdownChange} selectedStage={selectedStage} options={statusArr} hideLabel hideArrow/>
             </td>
             <td className='location item'>
                 <p>{styledLocation}</p>
