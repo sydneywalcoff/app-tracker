@@ -51,6 +51,11 @@
     margin-bottom: 15px;
 }
 
+.tracker.form-container .form-content .dropdown-select-container .selected-option,
+.tracker.form-container .form-content .dropdown-options .options-container {
+    height: 40px;
+}
+
 .tracker.form-container .form-content .dropdown-container .dropdown {
     margin-left: unset;
     position: relative;
