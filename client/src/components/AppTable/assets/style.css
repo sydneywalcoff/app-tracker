@@ -19,11 +19,6 @@
     font-size: 24px;
 }
 
-.app-table .stage {
-    min-width: 120px;
-    max-width: 120px
-}
-
 .app-table .dropdown {
     margin-left: -.5rem;
 }
