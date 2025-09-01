@@ -24,6 +24,11 @@
     width: 10px;
 }
 
+.app-item-outer .item .stage {
+    min-width: 120px;
+    max-width: 120px
+}
+
 @media screen and (max-width: 500px) {
     .app-item-outer .item p { font-size: 12px; }
 }
